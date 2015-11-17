@@ -1,0 +1,2639 @@
+<pgterms:etext rdf:ID="etext29791">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Most Sentimental Man</dc:title>
+  <dc:creator rdf:parseType="Literal">Smith, Evelyn E., 1922-2000</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Most Sentimental Man by Evelyn E. Smith</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Short stories</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-08-25</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>38</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext29579">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Watchbird</dc:title>
+  <dc:creator rdf:parseType="Literal">Sheckley, Robert, 1928-2005</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Emshwiller, Ed, 1925-1990 [Illustrator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">Watchbird by Robert Sheckley</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Short stories</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-08-02</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>141</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext20857">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Spacehounds of IPC</dc:title>
+  <dc:creator rdf:parseType="Literal">Smith, E. E. (Edward Elmer), 1890-1965</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Spacehounds of IPC by E. E.  Smith</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-03-20</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>169</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext32688">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Ordeal of Colonel Johns</dc:title>
+  <dc:creator rdf:parseType="Literal">Smith, George H. (George Henry), 1922-1996</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Palais, Rudolph [Illustrator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Ordeal of Colonel Johns by George H.  Smith</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-06-04</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>25</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext32303">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Pastoral Affair</dc:title>
+  <dc:creator rdf:parseType="Literal">Stearns, Charles A.</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Francis, Dick [Illustrator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">Pastoral Affair by Charles A. Stearns</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Short stories</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-05-09</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>23</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext30330">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">High Dragon Bump</dc:title>
+  <dc:creator rdf:parseType="Literal">Thompson, Don, 1935-1994</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Orban, Paul, 1896-1974 [Illustrator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">High Dragon Bump by Don Thompson</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Short stories</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-10-25</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>25</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext29790">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Pleasant Journey</dc:title>
+  <dc:creator rdf:parseType="Literal">Thieme, Richard F.</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Schelling, George Luther, 1938- [Illustrator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">Pleasant Journey by Richard F. Thieme</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Short stories</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-08-25</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>32</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext24566">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Faithfully Yours</dc:title>
+  <dc:creator rdf:parseType="Literal">Tabakow, Lou, 1915?-1981</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Faithfully Yours by Lou Tabakow</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Short stories</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Escapes -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-02-10</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>40</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext24655">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Tinker's Dam</dc:title>
+  <dc:creator rdf:parseType="Literal">Tinker, Joseph</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Schoenherr, John, 1935-2010 [Illustrator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">Tinker's Dam by Joseph Tinker</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Short stories</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Telepathy -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction, American</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>United States. Federal Bureau of Investigation -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-02-20</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>31</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext5096">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">20000 Lieues Sous Les Mers — Part 2</dc:title>
+  <dc:creator rdf:parseType="Literal">Verne, Jules, 1828-1905</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">20000 Lieues Sous Les Mers — Part 2 by Verne</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>fr</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Sea stories</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Underwater exploration -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Submarines (Ships) -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-02-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>23</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext5095">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">20000 Lieues Sous Les Mers — Part 1</dc:title>
+  <dc:creator rdf:parseType="Literal">Verne, Jules, 1828-1905</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">20000 Lieues Sous Les Mers — Part 1 by Verne</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>fr</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Sea stories</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Underwater exploration -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Submarines (Ships) -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-02-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>39</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext11393">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Vingt mille lieues sous les mers. Dutch</dc:title>
+  <dc:title rdf:parseType="Literal">20.000 Mijlen onder Zee: Westelijk Halfrond</dc:title>
+  <dc:description rdf:parseType="Literal">Volume 2 (of 2)</dc:description>
+  <dc:creator rdf:parseType="Literal">Verne, Jules, 1828-1905</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Vingt mille lieues sous les mers. Dutch by Verne</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>nl</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Sea stories</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Underwater exploration -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Submarines (Ships) -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-03-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>40</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext8986">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">From the Earth to the Moon</dc:title>
+  <dc:creator rdf:parseType="Literal">Verne, Jules, 1828-1905</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">From the Earth to the Moon by Jules Verne</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Manned space flight -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Space flight to the moon -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Space ships -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Moon -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-09-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>14</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:type><pgterms:category><rdf:value>Audio Book, computer-generated</rdf:value></pgterms:category></dc:type>
+  <dc:rights>Copyrighted work. See license inside work.</dc:rights>
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext10349">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Voyage au centre de la terre. Dutch</dc:title>
+  <dc:title rdf:parseType="Literal">Naar het middelpunt der Aarde</dc:title>
+  <dc:creator rdf:parseType="Literal">Verne, Jules, 1828-1905</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Voyage au centre de la terre. Dutch by Jules Verne</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>nl</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Adventure stories</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Earth (Planet) -- Core -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Voyages, Imaginary -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2003-12-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>110</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext1353">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Off on a Comet! a Journey through Planetary Space</dc:title>
+  <dc:description rdf:parseType="Literal">Translation of Hector Servadac; voyages et aventures</dc:description>
+  <dc:creator rdf:parseType="Literal">Verne, Jules, 1828-1905</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Off on a Comet! a Journey through Planetary Space</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Interplanetary voyages -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>1998-06-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>185</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext1268">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Île mystérieuse. English</dc:title>
+  <dc:title rdf:parseType="Literal">The Mysterious Island</dc:title>
+  <dc:creator rdf:parseType="Literal">Verne, Jules, 1828-1905</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Île mystérieuse. English by Jules Verne</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Adventure stories</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Castaways -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Islands of the Pacific -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>1998-04-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>1150</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext28628">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Devil Crystals of Arret</dc:title>
+  <dc:creator rdf:parseType="Literal">Wells, Hal K., 1900-</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Devil Crystals of Arret by Hal K. Wells</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-04-28</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>25</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext22890">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Worlds of If</dc:title>
+  <dc:creator rdf:parseType="Literal">Weinbaum, Stanley Grauman, 1902-1935</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Worlds of If by Stanley Grauman Weinbaum</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Short stories</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-10-05</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>59</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext775">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">When the Sleeper Wakes</dc:title>
+  <dc:creator rdf:parseType="Literal">Wells, H. G. (Herbert George), 1866-1946</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">When the Sleeper Wakes by H. G.  Wells</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>London (England) -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Dystopias -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Twenty-first century -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Technological innovations -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Time travel -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PR</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>1997-01-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>294</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext164">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Vingt mille lieues sous les mers. English</dc:title>
+  <dc:title rdf:parseType="Literal">Twenty Thousand Leagues under the Sea</dc:title>
+  <dc:alternative rdf:parseType="Literal">20,000 Leagues Under the Sea</dc:alternative>
+  <dc:creator rdf:parseType="Literal">Verne, Jules, 1828-1905</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Vingt mille lieues sous les mers. English by Verne</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Sea stories</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Underwater exploration -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Submarines (Ships) -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>1994-09-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>1363</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext8978">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">When the Sleeper Wakes</dc:title>
+  <dc:creator rdf:parseType="Literal">Wells, H. G. (Herbert George), 1866-1946</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">When the Sleeper Wakes by H. G.  Wells</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>London (England) -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Dystopias -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Technological innovations -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Twenty-first century -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Time travel -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PR</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-09-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>11</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:type><pgterms:category><rdf:value>Audio Book, computer-generated</rdf:value></pgterms:category></dc:type>
+  <dc:rights>Copyrighted work. See license inside work.</dc:rights>
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext26967">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Coming of the Ice</dc:title>
+  <dc:creator rdf:parseType="Literal">Peyton, Green, 1907-1968</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Paul, Frank Rudolph [Illustrator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Coming of the Ice by Green Peyton</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Short stories</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-10-19</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>61</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext8968">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The World Set Free</dc:title>
+  <dc:creator rdf:parseType="Literal">Wells, H. G. (Herbert George), 1866-1946</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The World Set Free by H. G.  Wells</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>War stories</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Nuclear warfare -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Imaginary wars and battles -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PR</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-09-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>7</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:type><pgterms:category><rdf:value>Audio Book, computer-generated</rdf:value></pgterms:category></dc:type>
+  <dc:rights>Copyrighted work. See license inside work.</dc:rights>
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext9833">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Pee-Wee Harris</dc:title>
+  <dc:creator rdf:parseType="Literal">Fitzhugh, Percy Keese, 1876-1950</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Pee-Wee Harris by Percy Keese Fitzhugh</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Boy Scouts of America -- Juvenile fiction</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PZ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-02-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>34</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext7050">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Swoop! or, How Clarence Saved England: A Tale of the Great Invasion</dc:title>
+  <dc:creator rdf:parseType="Literal">Wodehouse, P. G. (Pelham Grenville), 1881-1975</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Swoop! or, How Clarence Saved England: A Tale </pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Humorous stories</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>England -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Boy Scouts -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Satire</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Imaginary wars and battles -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PR</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-12-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>151</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext34593">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Famous Flyers
+And Their Famous Flights</dc:title>
+  <dc:creator rdf:parseType="Literal">Grayson, J. J.</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Famous Flyers by J. J. Grayson</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-12-07</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>24</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext20040">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Call of the Beaver Patrol; Or, A Break in the Glacier</dc:title>
+  <dc:tableOfContents rdf:parseType="Literal">Boy Scouts in the coal caverns, or, The light in tunnel six -- Boy Scouts in Alaska, or, The camp on the glacier -- Black art in Cincinatti.</dc:tableOfContents>
+  <dc:creator rdf:parseType="Literal">Sherman, V. T.</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Call of the Beaver Patrol; Or, A Break in the </pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Boy Scouts of America -- Juvenile fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Coal mines and mining -- Juvenile fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Alaska -- Juvenile fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PZ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-12-06</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>10</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext19495">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Tom Slade, Motorcycle Dispatch Bearer</dc:title>
+  <dc:creator rdf:parseType="Literal">Fitzhugh, Percy Keese, 1876-1950</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Owen, Robert Emmett, 1878-1957 [Illustrator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">Tom Slade, Motorcycle Dispatch Bearer by Fitzhugh</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Boy Scouts of America -- Juvenile fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>World War, 1914-1918 -- Juvenile fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PZ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-10-08</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>26</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext15715">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">My Adventures as a Spy</dc:title>
+  <dc:creator rdf:parseType="Literal">Baden-Powell of Gilwell, Robert Stephenson Smyth Baden-Powell, Baron, 1857-1941</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">My Adventures as a Spy by Baden-Powell of Gilwell</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Baden-Powell of Gilwell, Robert Stephenson Smyth Baden-Powell, Baron, 1857-1941</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Spies -- Great Britain -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>UB</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-04-26</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>177</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext15466">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Victorian Short Stories of Troubled Marriages</dc:title>
+  <dc:tableOfContents rdf:parseType="Literal">The Bronckhorst Divorce-Case, by Rudyard Kipling -- Irremediable, by Ella D'Arcy -- &quot;A Poor Stick,&quot; by Arthur Morrison -- The Adventure of the Abbey Grange, by Arthur Conan Doyle -- The Prize Lodger, by George Gissing.</dc:tableOfContents>
+  <dc:contributor>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Kipling, Rudyard, 1865-1936 [Contributor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Doyle, Arthur Conan, 1859-1930 [Contributor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Morrison, Arthur, 1863-1945 [Contributor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Gissing, George, 1857-1903 [Contributor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">D'Arcy, Ella, 1851-1939? [Contributor]</rdf:li>
+    </rdf:Bag>
+  </dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">Victorian Short Stories of Troubled Marriages</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Short stories, English</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PR</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-03-26</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>112</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext11275">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Anti-Slavery Examiner, Omnibus</dc:title>
+  <dc:creator rdf:parseType="Literal">American Anti-Slavery Society</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Anti-Slavery Examiner, Omnibus</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Antislavery movements -- United States -- Periodicals</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-02-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>22</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext5603">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Seven Icelandic Short Stories</dc:title>
+  <dc:tableOfContents rdf:parseType="Literal">The story of Audunn and the bear -- A dry spell -- The old hay -- When I was on the frigate -- Father and son -- The fox skin -- New Iceland.</dc:tableOfContents>
+  <dc:contributor>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Steingrímur J. Þorsteinsson [Editor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Ásgeir Pétursson [Editor]</rdf:li>
+    </rdf:Bag>
+  </dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">Seven Icelandic Short Stories</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Short stories, Icelandic -- Translations into English</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PT</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-05-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>90</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext2588">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Stories by English Authors: Scotland (Selected by Scribners)</dc:title>
+  <dc:tableOfContents rdf:parseType="Literal">The Courting of T'nowhead's Bell, J. M. Barrie -- The Heather Lintie, S. R. Crockett -- A Doctor of the Old School, Ian Maclaren -- Wandering Willie's Tale, Sir Walter Scott -- The Glenmutchkin Railway, Professor Aytoun -- Thrawn Janet, R. L. Stevenson</dc:tableOfContents>
+  <dc:contributor>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Aytoun, William Edmondstoune, 1813-1865 [Contributor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Crockett, S. R. (Samuel Rutherford), 1860-1914 [Contributor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Barrie, J. M. (James Matthew), 1860-1937 [Contributor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Scott, Walter, 1771-1832 [Contributor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Maclaren, Ian, 1850-1907 [Contributor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Stevenson, Robert Louis, 1850-1894 [Contributor]</rdf:li>
+    </rdf:Bag>
+  </dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">Stories by English Authors: Scotland (Selected by </pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Short stories</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>English literature -- Scottish authors</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Scottish literature</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PR</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-04-04</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>60</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext585">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Running a Thousand Miles for Freedom
+Or, The Escape of William and Ellen Craft from Slavery</dc:title>
+  <dc:creator>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Craft, William</rdf:li>
+      <rdf:li rdf:parseType="Literal">Craft, Ellen</rdf:li>
+    </rdf:Bag>
+  </dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Running a Thousand Miles for Freedom by Craft</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Craft, Ellen</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves' writings, American</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Georgia -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Craft, William</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Fugitive slaves -- United States -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>1996-07-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>120</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext17971">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Abolition Of Slavery The Right Of The Government Under The War Power</dc:title>
+  <dc:contributor rdf:parseType="Literal">Garrison, William Lloyd, 1805-1879 [Editor]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Abolition Of Slavery The Right Of The Governme</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>War and emergency powers -- United States</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- United States</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCC><rdf:value>KF</rdf:value></dcterms:LCC></rdf:li>
+      <rdf:li><dcterms:LCC><rdf:value>E456</rdf:value></dcterms:LCC></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-03-12</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>145</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext13176">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Abolitionists
+Together With Personal Memories Of The Struggle For Human Rights, 1830-1864</dc:title>
+  <dc:creator rdf:parseType="Literal">Hume, John F. (John Ferguson), 1830-</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Abolitionists by John F.  Hume</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Abolitionists -- United States</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Antislavery movements -- United States</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-08-13</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>17</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext25277">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Right of American Slavery</dc:title>
+  <dc:creator rdf:parseType="Literal">Hoit, T. W. (True Worthy), 1815-</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Right of American Slavery by T. W.  Hoit</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- Justification</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- United States</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-05-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>16</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext16516">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Walker's Appeal, with a Brief Sketch of His Life
+And Also Garnet's Address to the Slaves of the United States of America</dc:title>
+  <dc:creator>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Walker, David, 1785-1830</rdf:li>
+      <rdf:li rdf:parseType="Literal">Garnet, Henry Highland, 1815-1882</rdf:li>
+    </rdf:Bag>
+  </dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Walker's Appeal, with a Brief Sketch of His Life</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Slavery -- United States</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-08-12</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>61</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext11255">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the United States
+From Interviews with Former Slaves
+Arkansas Narratives, Part 1</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slave narratives -- Arkansas</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Arkansas -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- Arkansas -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- Arkansas</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Arkansas -- Social conditions</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-02-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>428</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext15735">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">History of the Negro Race in America From 1619 to 1880. Vol 1
+Negroes as Slaves, as Soldiers, and as Citizens</dc:title>
+  <dc:creator rdf:parseType="Literal">Williams, George Washington, 1849-1891</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">History of the Negro Race in America From 1619 to </pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Liberia</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Sierra Leone</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- History</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E151</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-04-30</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>64</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext12297">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the United States
+From Interviews with Former Slaves
+Florida Narratives</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- United States -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- Florida -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slave narratives -- Florida</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-05-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>173</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext11709">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the United States
+From Interviews with Former Slaves
+Arkansas Narratives, Part 6</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slave narratives -- Arkansas</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Arkansas -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- Arkansas -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- Arkansas</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Arkansas -- Social conditions</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-03-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>101</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext11422">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the United States
+From Interviews with Former Slaves
+Arkansas Narratives, Part 7</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slave narratives -- Arkansas</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Arkansas -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- Arkansas -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- Arkansas</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Arkansas -- Social conditions</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-03-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>81</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext13579">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the United States
+From Interviews with Former Slaves
+Indiana Narratives</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Indiana -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Indiana -- Social conditions</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slave narratives -- Indiana</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- Indiana -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- Indiana</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-10-02</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>224</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext11920">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the United States
+From Interviews with Former Slaves
+Kentucky Narratives</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Kentucky -- Social conditions</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- Kentucky</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slave narratives -- Kentucky</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- Kentucky -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Kentucky -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-04-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>195</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext18485">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the United States
+From Interviews with Former Slaves
+Georgia Narratives, Part 4</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slave narratives -- Georgia</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- Georgia -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Georgia -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- Georgia</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Georgia -- Social conditions</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-06-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>232</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext36022">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: A Folk History of Slavery in the United States From Interviews with Former Slaves: Volume XIV, South Carolina Narratives, Part 3</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: A Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2011-05-04</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>149</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext30967">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the United States From Interviews with Former Slaves.
+Texas Narratives, Part 2</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- Texas -- History -- Sources</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Texas -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- Texas -- Interviews</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Texas -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-01-14</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>272</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext13847">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the United States
+From Interviews with Former Slaves
+Administrative Files
+Selected Records Bearing on the History of the Slave Narratives</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Federal Writers' Project. Slave narratives</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E740</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-10-25</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>99</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext11271">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Anti-Slavery Examiner, Part 1 of 4</dc:title>
+  <dc:creator rdf:parseType="Literal">American Anti-Slavery Society</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Anti-Slavery Examiner, Part 1 of 4</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Antislavery movements -- United States -- Periodicals</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-02-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>27</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext4677">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Our World; Or, the Slaveholder's Daughter</dc:title>
+  <dc:creator rdf:parseType="Literal">Adams, F. Colburn (Francis Colburn)</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Our World; Or, the Slaveholder's Daughter by Adams</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaveholders -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2003-11-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>33</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext28973">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the United States, From Interviews with Former Slaves
+Virginia Narratives</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Slaves -- Virginia -- Biography</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-05-26</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>158</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext15398">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Narrative of the Life and Adventures of Henry Bibb, an American Slave, Written by Himself</dc:title>
+  <dc:creator rdf:parseType="Literal">Bibb, Henry, 1815-1854</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Narrative of the Life and Adventures of Henry Bibb</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- United States -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Kentucky -- Social conditions -- 19th century</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- Kentucky -- History -- 19th century</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Bibb, Henry, b. 1815</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-03-17</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>67</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext10619">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">An Englishman's Travels in America
+His Observations of Life and Manners in the Free and Slave States</dc:title>
+  <dc:creator rdf:parseType="Literal">Benwell, John</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">An Englishman's Travels in America by John Benwell</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>United States -- Social life and customs -- 1783-1865</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- United States</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>United States -- Description and travel</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E151</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-01-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>29</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext17827">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Story of Mattie J. Jackson
+Her Parentage—Experience of Eighteen years in
+Slavery—Incidents during the War—Her Escape from Slavery</dc:title>
+  <dc:creator rdf:parseType="Literal">Thompson, L. S. (Lucy S.)</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Story of Mattie J. Jackson by L. S.  Thompson</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Missouri -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Jackson, Mattie J.</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves' writings, American</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-02-22</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>36</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext10633">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The History of the Rise, Progress and Accomplishment of the Abolition of the African Slave-Trade, by the British Parliament (1839)</dc:title>
+  <dc:creator rdf:parseType="Literal">Clarkson, Thomas, 1760-1846</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The History of the Rise, Progress and Accomplishme</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Slave trade -- Africa</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>HT</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-01-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>152</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext20752">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Journal of Negro History, Volume 2, 1917</dc:title>
+  <dc:creator rdf:parseType="Literal">Various</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Journal of Negro History, Volume 2, 1917</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>African Americans -- Periodicals</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E151</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-03-06</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>85</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext15698">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">A Review of Uncle Tom's Cabin
+or, An Essay on Slavery</dc:title>
+  <dc:creator rdf:parseType="Literal">Woodward, A.</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">A Review of Uncle Tom's Cabin by A. Woodward</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Stowe, Harriet Beecher, 1811-1896. Uncle Tom's cabin</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- United States</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Uncle Tom (Fictitious character)</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-04-24</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>47</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext13602">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the United States
+From Interviews with Former Slaves
+Georgia Narratives, Part 1</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slave narratives -- Georgia</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- Georgia -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Georgia -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- Georgia</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Georgia -- Social conditions</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-10-05</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>224</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext11552">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the United States
+From Interviews with Former Slaves
+Maryland Narratives</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Work Projects Administration</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Slave Narratives: a Folk History of Slavery in the</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Slavery -- Maryland</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slave narratives -- Maryland</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Maryland -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Slaves -- Maryland -- Social conditions</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>African Americans -- Maryland -- Biography</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E300</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-03-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>157</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext31529">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Modern marriage and how to bear it</dc:title>
+  <dc:creator rdf:parseType="Literal">Braby, Maud Churton</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Modern marriage and how to bear it by Braby</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Marriage</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>HQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-03-07</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>50</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext13722">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Youth and Sex
+Dangers and Safeguards for Girls and Boys</dc:title>
+  <dc:creator>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Scharlieb, Mary, 1845-1930</rdf:li>
+      <rdf:li rdf:parseType="Literal">Sibly, Frederick Arthur</rdf:li>
+    </rdf:Bag>
+  </dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Youth and Sex by Scharlieb and Sibly</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Youth</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Sexual ethics</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Adolescence</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Sex (Psychology)</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Child psychology</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Moral conditions</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>HQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-10-12</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>76</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext10433">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">A Flock of Girls and Boys</dc:title>
+  <dc:tableOfContents rdf:parseType="Literal">That little Smith girl -- The egg boy -- Major Molly's Christmas promise -- Polly's valentine -- Sibyl's slipper -- A little boarding-school Samaritan -- Esther Bodn -- Becky -- Ally -- An April fool -- The Thanksgiving guest.</dc:tableOfContents>
+  <dc:creator rdf:parseType="Literal">Perry, Nora, 1831-1896</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Parker, Charlotte Tiffany [Illustrator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">A Flock of Girls and Boys by Nora Perry</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Youth -- Conduct of life -- Juvenile fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Conduct of life -- Juvenile fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Children's stories</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PZ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2003-12-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>11</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext35949">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Girl in Her Teens</dc:title>
+  <dc:creator rdf:parseType="Literal">Slattery, Margaret</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Girl in Her Teens by Margaret Slattery</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2011-04-24</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>36</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext31671">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Plain Talks on Avoided Subjects</dc:title>
+  <dc:creator rdf:parseType="Literal">Guernsey, Henry N. (Henry Newell), 1817-1885</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Plain Talks on Avoided Subjects by Guernsey</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Sexual ethics</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>HQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-03-17</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>31</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext27752">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Aphrodisiacs and Anti-aphrodisiacs: Three Essays on the Powers of Reproduction</dc:title>
+  <dc:creator rdf:parseType="Literal">Davenport, John, 1789-1877</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Aphrodisiacs and Anti-aphrodisiacs: Three Essays o</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Phallicism</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Sex customs -- France -- History -- 17th century</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Sex</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>HQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-01-09</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>76</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext21418">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Eugenic Marriage, Volume IV. (of IV.)
+A Personal Guide to the New Science of Better Living and Better Babies</dc:title>
+  <dc:creator rdf:parseType="Literal">Hague, W. Grant (William Grant), 1868-</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Eugenic Marriage, Volume IV. (of IV.) by Hague</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Hygiene</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Eugenics</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Marriage</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>RJ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-05-11</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>11</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext35409">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Beauty
+Illustrated Chiefly by an Analysis and Classificatin of Beauty in Woman</dc:title>
+  <dc:creator rdf:parseType="Literal">Walker, Alexander</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Beauty by Alexander Walker</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2011-02-26</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>77</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext31861">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Almost a Woman</dc:title>
+  <dc:creator rdf:parseType="Literal">Wood-Allen, Mary, 1841-1908</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Almost a Woman by Mary Wood-Allen</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Sexual ethics</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>HQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-04-02</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>64</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext27827">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Kama Sutra of Vatsyayana
+Translated From the Sanscrit in Seven Parts With Preface, Introduction and Concluding Remarks</dc:title>
+  <dc:creator rdf:parseType="Literal">Vatsyayana</dc:creator>
+  <dc:contributor>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Indrajit, Bhagavanlal [Translator]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Bhide, Shivaram Parashuram [Translator]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Burton, Richard Francis, Sir, 1821-1890 [Translator]</rdf:li>
+    </rdf:Bag>
+  </dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Kama Sutra of Vatsyayana by Vatsyayana</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Love</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Sex</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>HQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-01-18</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>13450</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext16135">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Safe Marriage
+A Return to Sanity</dc:title>
+  <dc:creator rdf:parseType="Literal">Rout, Ettie Annie, 1877-1936</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Lane, William Arbuthnot, Sir, 1856-1943 [Commentator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">Safe Marriage by Ettie Annie Rout</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Birth control</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Contraception</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>HQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-06-26</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>84</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext25044">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Eugenic Marriage, Vol. 3
+A Personal Guide to the New Science of Better Living and Better Babies</dc:title>
+  <dc:creator rdf:parseType="Literal">Hague, W. Grant (William Grant), 1868-</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Eugenic Marriage, Vol. 3 by W. Grant  Hague</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Hygiene</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Eugenics</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Marriage</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>RJ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-04-11</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>12</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext24766">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Psychopathia Sexualis
+avec recherches spéciales sur l'inversion sexuelle</dc:title>
+  <dc:creator rdf:parseType="Literal">Krafft-Ebing, R. von (Richard), 1840-1902</dc:creator>
+  <dc:contributor>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Csapo, Sigismond [Translator]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Laurent, Emile, 1861-1904 [Translator]</rdf:li>
+    </rdf:Bag>
+  </dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">Psychopathia Sexualis by R. von  Krafft-Ebing</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>fr</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Paraphilias</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>HQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-03-06</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>227</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext14117">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Wanted, a Young Woman to Do Housework
+Business principles applied to housework</dc:title>
+  <dc:creator rdf:parseType="Literal">Barker, C. Hélène, 1868-</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Wanted, a Young Woman to Do Housework by Barker</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Domestics</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Home economics</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>HD</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-11-22</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>48</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext13906">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Conception Control and Its Effects on the Individual and the Nation</dc:title>
+  <dc:creator rdf:parseType="Literal">Barrett, Florence Elizabeth Perry, Lady</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Conception Control and Its Effects on the Individu</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Contraception</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>RG</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-10-31</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>7</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext28458">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">What a Young Woman Ought to Know</dc:title>
+  <dc:creator rdf:parseType="Literal">Wood-Allen, Mary, 1841-1908</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">What a Young Woman Ought to Know by Wood-Allen</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Sexual ethics</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- Health and hygiene</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>HQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-03-30</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>131</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext24001">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Physical Life of Woman: Advice to the Maiden, Wife and Mother</dc:title>
+  <dc:creator rdf:parseType="Literal">Napheys, George H. (George Henry), 1842-1876</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Physical Life of Woman: Advice to the Maiden, </pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Women -- Health and hygiene</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>RG</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-12-24</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>74</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext22323">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Impressions of South Africa</dc:title>
+  <dc:creator rdf:parseType="Literal">Bryce, James Bryce, Viscount, 1838-1922</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Impressions of South Africa by Bryce</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Blacks -- South Africa</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>South African War, 1899-1902</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>South Africa -- History -- 1836-1909</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Transvaal (South Africa)</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>South Africa -- Politics and government -- 1836-1909</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Free State (South Africa)</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>South Africa -- Description and travel</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>DT</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-08-14</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>52</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext8173">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Contes de la Montagne</dc:title>
+  <dc:tableOfContents rdf:parseType="Literal">Une nuit dans les bois -- Le tisserand de la Steinbach -- Le violon du pendu -- L'héritage de mon oncle Christian -- Hugues-le-loup -- Pourquoi Hunebourg ne fut pas rendu -- Le bouc d'Israël -- Le combat d'ours.</dc:tableOfContents>
+  <dc:creator rdf:parseType="Literal">Erckmann-Chatrian</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Contes de la Montagne by Erckmann-Chatrian</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>fr</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>French fiction</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PQ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-05-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>17</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext22483">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Across Unknown South America</dc:title>
+  <dc:creator rdf:parseType="Literal">Landor, Arnold Henry Savage, 1865-1924</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Across Unknown South America by Landor</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Peru -- Description and travel</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Brazil -- Description and travel</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCC><rdf:value>F2501</rdf:value></dcterms:LCC></rdf:li>
+      <rdf:li><dcterms:LCC><rdf:value>F3401</rdf:value></dcterms:LCC></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-08-31</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>111</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext19209">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Andes and the Amazon
+Or, Across the Continent of South America</dc:title>
+  <dc:creator rdf:parseType="Literal">Orton, James, 1830-1877</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Andes and the Amazon by James Orton</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Natural history -- South America</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Amazon River -- Description and travel</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Ecuador -- Description and travel</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Andes -- Description and travel</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>F3701</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-09-08</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>94</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext11464">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Cuba, Old and New</dc:title>
+  <dc:creator rdf:parseType="Literal">Robinson, Albert G. (Albert Gardner), 1855-1932</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Cuba, Old and New by Albert G.  Robinson</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Cuba</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>F1751</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-03-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>98</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext8159">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Wanderings in South America</dc:title>
+  <dc:creator rdf:parseType="Literal">Waterton, Charles, 1782-1865</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Wanderings in South America by Charles Waterton</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Pernambuco (Brazil) -- Description and travel</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Waterton, Charles, 1782-1865 -- Travel</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Zoology -- Guyana</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Antilles, Lesser -- Description and travel</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Guyana -- Description and travel</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>F2351</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-05-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>116</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext7847">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Jack North's Treasure Hunt; Or, Daring Adventures in South America</dc:title>
+  <dc:creator rdf:parseType="Literal">Rockwood, Roy</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Jack North's Treasure Hunt; Or, Daring Adventures </pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>South America -- Juvenile fiction</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PZ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-04-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>31</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext16231">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">&quot;Forward, March&quot;: A Tale of the Spanish-American War</dc:title>
+  <dc:creator rdf:parseType="Literal">Munroe, Kirk, 1850-1930</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">&quot;Forward, March&quot;: A Tale of the Spanish-American W</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Spanish-American War, 1898 -- Juvenile fiction</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PZ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-07-07</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>20</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext7300">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Woman and the Republic
+A Survey of the Woman-Suffrage Movement in the United States and a Discussion of the Claims and Arguments of Its Foremost Advocates</dc:title>
+  <dc:creator rdf:parseType="Literal">Johnson, Helen Kendrick, 1844-1917</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Woman and the Republic by Helen Kendrick Johnson</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- Legal status, laws, etc. -- United States</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- Suffrage -- United States</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>JK</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-01-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>26</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext4210">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Our War with Spain for Cuba's Freedom</dc:title>
+  <dc:creator rdf:parseType="Literal">White, Trumbull, 1868-1941</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Our War with Spain for Cuba's Freedom by White</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>United States -- Foreign relations -- Spain</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Spanish-American War, 1898</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Spain -- Foreign relations -- United States</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Cuba -- History</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E660</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2003-07-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>20</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext26323">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Suffrage Cook Book</dc:title>
+  <dc:contributor rdf:parseType="Literal">Kleber, L. O., Mrs. [Compiler]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Suffrage Cook Book</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Cooking, American</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- Suffrage -- United States</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TX</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-08-15</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>119</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext11114">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Debate on Woman Suffrage in the Senate of the United States,
+2d Session, 49th Congress, December 8, 1886, and January 25, 1887</dc:title>
+  <dc:creator rdf:parseType="Literal">Various</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Debate on Woman Suffrage in the Senate of the Unit</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Women -- Suffrage -- United States</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>JK</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-02-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>17</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext2157">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Female Suffrage: A Letter to the Christian Women of America</dc:title>
+  <dc:creator rdf:parseType="Literal">Cooper, Susan Fenimore, 1813-1894</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Female Suffrage: A Letter to the Christian Women o</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- United States -- History</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- Suffrage -- United States -- History -- 19th century</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- Suffrage -- United States -- History -- 19th century -- Sources</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women's rights -- United States</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Christian women -- Conduct of life</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>JK</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2000-04-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>11</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext34856">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">My Own Story</dc:title>
+  <dc:creator rdf:parseType="Literal">Pankhurst, Emmeline, 1858-1928</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">My Own Story by Emmeline Pankhurst</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2011-01-06</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>693</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext28020">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">History of Woman Suffrage, Volume I</dc:title>
+  <dc:description rdf:parseType="Literal">This volume covers 1848-1861.</dc:description>
+  <dc:contributor>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Gage, Matilda Joslyn, 1826-1898 [Editor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Stanton, Elizabeth Cady, 1815-1902 [Editor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Anthony, Susan B. (Susan Brownell), 1820-1906 [Editor]</rdf:li>
+    </rdf:Bag>
+  </dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">History of Woman Suffrage, Volume I</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Women's rights -- United States -- History</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- Suffrage -- United States -- History</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women's rights -- History</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- Suffrage -- History</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>JK</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-02-07</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>174</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext13568">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Woman Suffrage By Federal Constitutional Amendment</dc:title>
+  <dc:contributor rdf:parseType="Literal">Catt, Carrie Chapman, 1859-1947 [Compiler]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">Woman Suffrage By Federal Constitutional Amendment</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Women -- Suffrage -- United States</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>KF</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-10-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>7</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext5183">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Unexpurgated Case Against Woman Suffrage</dc:title>
+  <dc:creator rdf:parseType="Literal">Wright, Almroth, 1861-1947</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Unexpurgated Case Against Woman Suffrage</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- Suffrage</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women's rights -- Great Britain</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- Suffrage -- Great Britain</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>JN</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-02-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>48</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext28039">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">History of Woman Suffrage, Volume II</dc:title>
+  <dc:description rdf:parseType="Literal">This volume covers 1861-1876.</dc:description>
+  <dc:contributor>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Anthony, Susan B. (Susan Brownell), 1820-1906 [Editor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Gage, Matilda Joslyn, 1826-1898 [Editor]</rdf:li>
+      <rdf:li rdf:parseType="Literal">Stanton, Elizabeth Cady, 1815-1902 [Editor]</rdf:li>
+    </rdf:Bag>
+  </dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">History of Woman Suffrage, Volume II</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Women's rights -- United States -- History</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women's rights -- History</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- Suffrage -- United States -- History</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Women -- Suffrage -- History</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>JK</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-02-09</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>62</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext18878">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Return-Loads Bureaus To Save Waste In Transportation</dc:title>
+  <dc:creator rdf:parseType="Literal">United States. Council of National Defense. Highways Transport Committee</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Return-Loads Bureaus To Save Waste In Transportati</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Trucking</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Roads</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Transportation, Automotive</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>HE</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-07-20</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>3</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext17777">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Transactions of the American Society of Civil Engineers, vol. LXX, Dec. 1910
+Reinforced Concrete Pier Construction</dc:title>
+  <dc:creator rdf:parseType="Literal">Klapp, Eugene</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Transactions of the American Society of Civil Engi</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Civil engineering -- Periodicals</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Piers -- Design and construction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TA</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-02-16</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>6</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext35916">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">A History of the Growth of the Steam-Engine</dc:title>
+  <dc:creator rdf:parseType="Literal">Thurston, Robert H.</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">A History of the Growth of the Steam-Engine</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2011-04-19</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>282</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext35344">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Third Biennial Report of the Oregon State Highway Commission
+Covering the Period December 1st, 1916 to November 30th, 1918</dc:title>
+  <dc:creator>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Thompson, W. L.</rdf:li>
+      <rdf:li rdf:parseType="Literal">Booth, R. A.</rdf:li>
+      <rdf:li rdf:parseType="Literal">Benson, S.</rdf:li>
+      <rdf:li rdf:parseType="Literal">Nunn, Herbert</rdf:li>
+    </rdf:Bag>
+  </dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Third Biennial Report of the Oregon State Highway </pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2011-02-21</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>35</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext26670">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Making a Fireplace</dc:title>
+  <dc:creator rdf:parseType="Literal">Saylor, Henry H. (Henry Hodgman), 1880-</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Making a Fireplace by Henry H.  Saylor</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Fireplaces</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TH</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-09-19</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>123</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext26440">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Fire Prevention and Fire Extinction</dc:title>
+  <dc:creator rdf:parseType="Literal">Braidwood, James</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Fire Prevention and Fire Extinction by Braidwood</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Fire extinction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Fire prevention</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TH</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-08-27</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>45</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext33643">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">In the Day of Adversity</dc:title>
+  <dc:creator rdf:parseType="Literal">Bloundelle-Burton, John</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">In the Day of Adversity by John Bloundelle-Burton</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-09-05</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>16</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext30112">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Development of the Phonograph at Alexander Graham Bell's Volta Laboratory
+Contributions from the Museum of History and Technology, United States National Museum Bulletin 218, Paper 5, (pages 69-79)</dc:title>
+  <dc:creator rdf:parseType="Literal">Newville, Leslie J.</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Development of the Phonograph at Alexander Graham </pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Phonograph</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>Q</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-09-27</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>70</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext35121">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Asbestos
+Its production and use, with some account of the asbestos
+mines of Canada</dc:title>
+  <dc:creator rdf:parseType="Literal">Jones, Robert H.</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Asbestos by Robert H. Jones</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2011-01-30</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>19</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext34061">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Earliest Electromagnetic Instruments</dc:title>
+  <dc:creator rdf:parseType="Literal">Chipman, Robert A.</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Earliest Electromagnetic Instruments</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-10-12</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>86</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext31024">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Mine Pumping in Agricola's Time and Later</dc:title>
+  <dc:creator rdf:parseType="Literal">Multhauf, Robert P., 1919-2004</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Mine Pumping in Agricola's Time and Later</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Mine pumps -- History</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Mining machinery -- History</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TN</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-01-20</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>21</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext34114">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Soap-Making Manual
+A Practical Handbook on the Raw Materials, Their
+Manipulation, Analysis and Control in the Modern Soap Plant.</dc:title>
+  <dc:creator rdf:parseType="Literal">Thomssen, E. G.</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Soap-Making Manual by E. G. Thomssen</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-10-22</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>1483</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext19073">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Cocoa and Chocolate: Their History from Plantation to Consumer</dc:title>
+  <dc:creator rdf:parseType="Literal">Knapp, Arthur William</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Cocoa and Chocolate: Their History from Plantation</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Chocolate</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Cocoa</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>SB</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-08-18</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>382</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext17740">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Chemistry of Hat Manufacturing
+Lectures Delivered Before the Hat Manufacturers' Association</dc:title>
+  <dc:creator rdf:parseType="Literal">Smith, Watson, 1845-1920</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Shonk, Albert [Editor]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Chemistry of Hat Manufacturing by Watson Smith</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Hats</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-02-10</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>76</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext33198">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Borghesi Astronomical Clock in the Museum of History and Technology
+Contributions from the Museum of History and Technology, Paper 35</dc:title>
+  <dc:creator rdf:parseType="Literal">Bedini, Silvio A., 1917-2007</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Borghesi Astronomical Clock in the Museum of H</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-07-18</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>97</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext32482">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Introduction of Self-Registering Meteorological Instruments</dc:title>
+  <dc:creator rdf:parseType="Literal">Multhauf, Robert P., 1919-2004</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Introduction of Self-Registering Meteorologica</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-05-22</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>78</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext17576">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">A Rudimentary Treatise on Clocks, Watches and Bells</dc:title>
+  <dc:creator rdf:parseType="Literal">Grimthorpe, Edmund Beckett, Baron, 1816-1905</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">A Rudimentary Treatise on Clocks, Watches and Bell</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Bells</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Clocks and watches</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-01-22</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>120</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext12443">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Jute Industry: From Seed to Finished Cloth</dc:title>
+  <dc:creator>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Woodhouse, Thomas, 1862-1933</rdf:li>
+      <rdf:li rdf:parseType="Literal">Kilgour, Peter</rdf:li>
+    </rdf:Bag>
+  </dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Jute Industry: From Seed to Finished Cloth</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Jute fiber</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-05-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>139</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext27031">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">De l'imprimé à Internet</dc:title>
+  <dc:creator rdf:parseType="Literal">Lebert, Marie</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">De l'imprimé à Internet by Marie Lebert</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>fr</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-10-26</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>28</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights>Copyrighted work. See license inside work.</dc:rights>
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext24858">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Story of Wool</dc:title>
+  <dc:creator rdf:parseType="Literal">Bassett, Sara Ware, 1872-1968</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Otis, Elizabeth [Illustrator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Story of Wool by Sara Ware Bassett</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Sheep -- Juvenile literature</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCC><rdf:value>PZ</rdf:value></dcterms:LCC></rdf:li>
+      <rdf:li><dcterms:LCC><rdf:value>SF</rdf:value></dcterms:LCC></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-03-17</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>54</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext20698">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Story of Glass</dc:title>
+  <dc:creator rdf:parseType="Literal">Bassett, Sara Ware, 1872-1968</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Gray, Charles Paxson [Illustrator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Story of Glass by Sara Ware Bassett</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Glass manufacture -- Juvenile literature</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PZ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-02-27</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>63</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext30066">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Laboratory Manual of Glass-Blowing</dc:title>
+  <dc:creator rdf:parseType="Literal">Frary, Francis C. (Francis Cowles), 1884-</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Laboratory Manual of Glass-Blowing by Frary</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Glass blowing and working</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>QD</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-09-22</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>188</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext17855">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Hemp Hurds as Paper-Making Material
+United States Department of Agriculture, Bulletin No. 404</dc:title>
+  <dc:creator>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Dewey, Lyster H. (Lyster Hoxie), 1865-1944</rdf:li>
+      <rdf:li rdf:parseType="Literal">Merrill, Jason L.</rdf:li>
+    </rdf:Bag>
+  </dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Hemp Hurds as Paper-Making Material by Dewey</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Hemp</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Fiber plants</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Paper industry</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-02-25</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>145</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext15622">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Handbook on Japanning: 2nd Edition
+For Ironware, Tinware, Wood, Etc. With Sections on Tinplating and Galvanizing</dc:title>
+  <dc:creator rdf:parseType="Literal">Brown, William Norman</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Handbook on Japanning: 2nd Edition by Brown</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Japanning</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TP</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-04-14</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>268</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext34030">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Turning and Boring
+A specialized treatise for machinists, students in the industrial and engineering schools, and apprentices, on turning and boring methods, etc.</dc:title>
+  <dc:creator rdf:parseType="Literal">Jones, Franklin D.</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Turning and Boring by Franklin D. Jones</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-10-04</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>387</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext31415">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Stained Glass Work: A text-book for students and workers in glass</dc:title>
+  <dc:creator rdf:parseType="Literal">Whall, Christopher, 1849-1924</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Stained Glass Work: A text-book for students and w</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Glass painting and staining</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>NK</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2010-02-27</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>118</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext30215">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Intarsia and Marquetry</dc:title>
+  <dc:creator rdf:parseType="Literal">Jackson, F. Hamilton (Frederick Hamilton), 1848-1923</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Intarsia and Marquetry by F. Hamilton  Jackson</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Marquetry</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>NK</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-10-08</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>154</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext34854">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Handicraft for Girls
+A Tentative Course in Needlework, Basketry, Designing,
+Paper and Cardboard Construction, Textile Fibers and Fabrics
+and Home Decoration and Care</dc:title>
+  <dc:creator rdf:parseType="Literal">McGlauflin, Idabelle</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Handicraft for Girls by Idabelle McGlauflin</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2011-01-05</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>220</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext29382">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Ladies' Work-Table Book
+Containing Clear and Practical Instructions in Plain and
+Fancy Needlework, Embroidery, Knitting, Netting and Crochet</dc:title>
+  <dc:creator rdf:parseType="Literal">Anonymous</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Ladies' Work-Table Book by Anonymous</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Crocheting</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Needlework</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Netting</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Knitting</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TT</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-07-12</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>231</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext20386">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Embroidery and Tapestry Weaving</dc:title>
+  <dc:creator rdf:parseType="Literal">Christie, Grace</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Embroidery and Tapestry Weaving by Grace Christie</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Embroidery</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Tapestry</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TT</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-01-16</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>349</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext19740">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Make Your Own Hats</dc:title>
+  <dc:creator rdf:parseType="Literal">Martin, Gene Allen</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Make Your Own Hats by Gene Allen Martin</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Hats</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Millinery</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TT</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-11-08</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>164</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext14715">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The House in Good Taste</dc:title>
+  <dc:creator rdf:parseType="Literal">De Wolfe, Elsie, 1865-1950</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The House in Good Taste by Elsie De Wolfe</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Interior decoration</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>NK</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-01-17</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>177</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext12366">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Cost of Shelter</dc:title>
+  <dc:creator rdf:parseType="Literal">Richards, Ellen H. (Ellen Henrietta), 1842-1911</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Cost of Shelter by Ellen H.  Richards</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Building</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Home economics</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TX</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-05-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>52</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext35066">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Guide to Hotel Housekeeping</dc:title>
+  <dc:creator rdf:parseType="Literal">Palmer, Mary E.</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Guide to Hotel Housekeeping by Mary E. Palmer</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2011-01-25</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>108</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext20557">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Ontario Teachers' Manuals: Household Science in Rural Schools</dc:title>
+  <dc:creator rdf:parseType="Literal">Ontario. Ministry of Education</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Ontario Teachers' Manuals: Household Science in Ru</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Home economics -- Study and teaching -- Ontario</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Cooking -- Study and teaching -- Ontario</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>LT</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-02-10</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>53</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext30478">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Vegetable Diet: As Sanctioned by Medical Men, and by Experience in All Ages
+Including a System of Vegetable Cookery</dc:title>
+  <dc:creator rdf:parseType="Literal">Alcott, William A. (William Andrus), 1798-1859</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Vegetable Diet: As Sanctioned by Medical Men, and </pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Food</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Vegetarianism</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TX</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-11-15</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>89</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext21281">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Colored Inventor
+A Record of Fifty Years</dc:title>
+  <dc:creator rdf:parseType="Literal">Baker, Henry E. (Henry Edwin), 1859-</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Colored Inventor by Henry E.  Baker</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>African American inventors</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Inventions -- United States</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>E151</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-05-03</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>54</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext18408">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Transactions of the American Society of Civil Engineers, vol. LXVIII, Sept. 1910
+The Site of the Terminal Station. Paper No. 1157</dc:title>
+  <dc:creator rdf:parseType="Literal">Clarke, George C.</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Transactions of the American Society of Civil Engi</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Civil engineering -- Periodicals</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Railroad stations -- Design and construction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TA</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-05-17</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>78</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext25454">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Introduction of the Locomotive Safety Truck
+Contributions from the Museum of History and Technology: Paper 24</dc:title>
+  <dc:creator rdf:parseType="Literal">White, John H., 1933-</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Introduction of the Locomotive Safety Truck</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Railroads -- Safety applications</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Locomotives</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TJ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-05-12</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>88</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext18747">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Transactions of the American Society of Civil Engineers, Vol. LXX, Dec. 1910
+Locomotive Performance On Grades Of Various Lengths, Paper No. 1172</dc:title>
+  <dc:creator rdf:parseType="Literal">Randolph, B. S. (Beverly S.)</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Transactions of the American Society of Civil Engi</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Civil engineering -- Periodicals</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Railroads -- Grades</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Locomotives</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCC><rdf:value>TA</rdf:value></dcterms:LCC></rdf:li>
+      <rdf:li><dcterms:LCC><rdf:value>TF</rdf:value></dcterms:LCC></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2006-07-03</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>10</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext24885">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Atlantic Monthly, Volume 14, No. 85, November, 1864
+A Magazine of Literature, Art, and Politics</dc:title>
+  <dc:creator rdf:parseType="Literal">Various</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Atlantic Monthly, Volume 14, No. 85, November,</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>American periodicals</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>AP</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-03-21</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>35</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext22298">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Practical Mechanics for Boys</dc:title>
+  <dc:creator rdf:parseType="Literal">Zerbe, James Slough, 1850-</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Practical Mechanics for Boys by James Slough Zerbe</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Handicraft for boys</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Tools</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TT</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-08-11</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>271</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext16938">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Pressure, Resistance, and Stability of Earth
+American Society of Civil Engineers: Transactions, Paper No. 1174,
+Volume LXX, December 1910</dc:title>
+  <dc:creator rdf:parseType="Literal">Meem, J. C.</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Pressure, Resistance, and Stability of Earth</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Civil engineering -- Periodicals</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Soil mechanics</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TA</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-10-25</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>23</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext25420">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Early History of the Airplane</dc:title>
+  <dc:tableOfContents rdf:parseType="Literal">The Wright brothers' aeroplane -- How we made the first flight -- Some aeronautical experiments.</dc:tableOfContents>
+  <dc:creator>
+    <rdf:Bag>
+      <rdf:li rdf:parseType="Literal">Wright, Orville, 1871-1948</rdf:li>
+      <rdf:li rdf:parseType="Literal">Wright, Wilbur, 1867-1912</rdf:li>
+    </rdf:Bag>
+  </dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Early History of the Airplane by Wright</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Airplanes</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TL</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-05-11</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>179</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext7969">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Oxy-Acetylene Welding and Cutting
+Electric, Forge and Thermit Welding together with related methods and materials used in metal working and the oxygen process for removal of carbon</dc:title>
+  <dc:creator rdf:parseType="Literal">Manly, Harold P. (Harold Phillips), 1887-</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Oxy-Acetylene Welding and Cutting by Manly</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Oxyacetylene welding and cutting</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TS</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-04-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>67</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext27574">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Le Téléphone, le Microphone et le Phonographe</dc:title>
+  <dc:creator rdf:parseType="Literal">Du Moncel, Th., comte, 1821-1884</dc:creator>
+  <dc:contributor rdf:parseType="Literal">Bonnafoux, B. [Illustrator]</dc:contributor>
+  <pgterms:friendlytitle rdf:parseType="Literal">Le Téléphone, le Microphone et le Phonographe</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>fr</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Telephone</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Microphone</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Phonograph</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TK</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2008-12-20</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>43</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext12839">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Young Wireless Operator—As a Fire Patrol
+The Story of a Young Wireless Amateur Who Made Good as a Fire Patrol</dc:title>
+  <dc:creator rdf:parseType="Literal">Theiss, Lewis E. (Lewis Edwin), 1878-1963</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Young Wireless Operator—As a Fire Patrol</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Radio -- Juvenile fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Forest fires -- Prevention and control -- Juvenile fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PZ</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2004-07-07</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>28</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext36092">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">North Devon Pottery and Its Export to America in the 17th Century</dc:title>
+  <dc:creator rdf:parseType="Literal">Watkins, C. Malcolm</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">North Devon Pottery and Its Export to America in t</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:created><dcterms:W3CDTF><rdf:value>2011-05-13</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>116</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext21592">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">The Art of Making Whiskey
+So As to Obtain a Better, Purer, Cheaper and Greater Quantity of Spirit, From a Given Quantity of Grain</dc:title>
+  <dc:creator rdf:parseType="Literal">Boucherie, Anthony</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">The Art of Making Whiskey by Anthony Boucherie</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Whiskey</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Gin</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TP</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2007-05-24</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>144</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext16260">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Nouveau moyen de préparer la couche sensible des plaques destinées à recevoir les images photographiques
+Lettre à M. Arago</dc:title>
+  <dc:creator rdf:parseType="Literal">Daguerre, Louis Jacques Mandé, 1787-1851</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Nouveau moyen de préparer la couche sensible des </pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>fr</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject><dcterms:LCSH><rdf:value>Daguerreotype</rdf:value></dcterms:LCSH></dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>TR</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2005-07-11</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>20</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext4659">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">Lady Hester; Or, Ursula's Narrative</dc:title>
+  <dc:creator rdf:parseType="Literal">Yonge, Charlotte M. (Charlotte Mary), 1823-1901</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">Lady Hester; Or, Ursula's Narrative by Yonge</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Domestic fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>England -- Social life and customs -- 19th century -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Canada -- History -- 1763-1867 -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Upper class -- England -- History -- 19th century -- Fiction</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>PR</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2003-11-01</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>11</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>
+
+<pgterms:etext rdf:ID="etext28553">
+  <dc:publisher>&pg;</dc:publisher>
+  <dc:title rdf:parseType="Literal">How it Works
+Dealing in simple language with steam, electricity, light, heat, sound, hydraulics, optics, etc., and with their applications to apparatus in common use</dc:title>
+  <dc:creator rdf:parseType="Literal">Williams, Archibald, 1871-1934</dc:creator>
+  <pgterms:friendlytitle rdf:parseType="Literal">How it Works by Archibald Williams</pgterms:friendlytitle>
+  <dc:language><dcterms:ISO639-2><rdf:value>en</rdf:value></dcterms:ISO639-2></dc:language>
+  <dc:subject>
+    <rdf:Bag>
+      <rdf:li><dcterms:LCSH><rdf:value>Science -- Juvenile literature</rdf:value></dcterms:LCSH></rdf:li>
+      <rdf:li><dcterms:LCSH><rdf:value>Technology -- Juvenile literature</rdf:value></dcterms:LCSH></rdf:li>
+    </rdf:Bag>
+  </dc:subject>
+  <dc:subject><dcterms:LCC><rdf:value>T</rdf:value></dcterms:LCC></dc:subject>
+  <dc:created><dcterms:W3CDTF><rdf:value>2009-04-10</rdf:value></dcterms:W3CDTF></dc:created>
+  <pgterms:downloads><xsd:nonNegativeInteger><rdf:value>526</rdf:value></xsd:nonNegativeInteger></pgterms:downloads>
+  <dc:rights rdf:resource="&lic;" />
+</pgterms:etext>

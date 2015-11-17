@@ -8,6 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		7AA794A04ED5426536CC6469 /* libPods-ProjectBook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */; };
+		A77A08F91BFBE78700CA62F8 /* PGBparsingThroughText.m in Sources */ = {isa = PBXBuildFile; fileRef = A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */; };
+		A77A09081BFBE7B800CA62F8 /* bookInformationSet1.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A08FA1BFBE7B800CA62F8 /* bookInformationSet1.txt */; };
+		A77A09091BFBE7B800CA62F8 /* bookInformationSet2.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A08FB1BFBE7B800CA62F8 /* bookInformationSet2.txt */; };
+		A77A090A1BFBE7B800CA62F8 /* bookInformationSet3.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A08FC1BFBE7B800CA62F8 /* bookInformationSet3.txt */; };
+		A77A090B1BFBE7B800CA62F8 /* bookInformationSet4.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A08FD1BFBE7B800CA62F8 /* bookInformationSet4.txt */; };
+		A77A090C1BFBE7B800CA62F8 /* bookInformationSet6.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A08FE1BFBE7B800CA62F8 /* bookInformationSet6.txt */; };
+		A77A090D1BFBE7B800CA62F8 /* bookInformationSet7.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A08FF1BFBE7B800CA62F8 /* bookInformationSet7.txt */; };
+		A77A090E1BFBE7B800CA62F8 /* bookInformationSet8.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09001BFBE7B800CA62F8 /* bookInformationSet8.txt */; };
+		A77A090F1BFBE7B800CA62F8 /* bookInformationSet10.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09011BFBE7B800CA62F8 /* bookInformationSet10.txt */; };
+		A77A09101BFBE7B800CA62F8 /* bookInformationSet11.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09021BFBE7B800CA62F8 /* bookInformationSet11.txt */; };
+		A77A09111BFBE7B800CA62F8 /* bookInformationSet12.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09031BFBE7B800CA62F8 /* bookInformationSet12.txt */; };
+		A77A09121BFBE7B800CA62F8 /* bookInformationSet13.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09041BFBE7B800CA62F8 /* bookInformationSet13.txt */; };
+		A77A09131BFBE7B800CA62F8 /* bookInformationSet14.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09051BFBE7B800CA62F8 /* bookInformationSet14.txt */; };
+		A77A09141BFBE7B800CA62F8 /* bookInformationSet15.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */; };
+		A77A09151BFBE7B800CA62F8 /* bookInformationSet16.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */; };
 		CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5A1BFBA076002CE0A4 /* main.m */; };
 		CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */; };
 		CBFD3F611BFBA076002CE0A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F601BFBA076002CE0A4 /* ViewController.m */; };
@@ -39,6 +54,22 @@
 
 /* Begin PBXFileReference section */
 		9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook.release.xcconfig"; sourceTree = "<group>"; };
+		A77A08F71BFBE78700CA62F8 /* PGBparsingThroughText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBparsingThroughText.h; sourceTree = "<group>"; };
+		A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBparsingThroughText.m; sourceTree = "<group>"; };
+		A77A08FA1BFBE7B800CA62F8 /* bookInformationSet1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet1.txt; sourceTree = "<group>"; };
+		A77A08FB1BFBE7B800CA62F8 /* bookInformationSet2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet2.txt; sourceTree = "<group>"; };
+		A77A08FC1BFBE7B800CA62F8 /* bookInformationSet3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet3.txt; sourceTree = "<group>"; };
+		A77A08FD1BFBE7B800CA62F8 /* bookInformationSet4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet4.txt; sourceTree = "<group>"; };
+		A77A08FE1BFBE7B800CA62F8 /* bookInformationSet6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet6.txt; sourceTree = "<group>"; };
+		A77A08FF1BFBE7B800CA62F8 /* bookInformationSet7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet7.txt; sourceTree = "<group>"; };
+		A77A09001BFBE7B800CA62F8 /* bookInformationSet8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet8.txt; sourceTree = "<group>"; };
+		A77A09011BFBE7B800CA62F8 /* bookInformationSet10.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet10.txt; sourceTree = "<group>"; };
+		A77A09021BFBE7B800CA62F8 /* bookInformationSet11.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet11.txt; sourceTree = "<group>"; };
+		A77A09031BFBE7B800CA62F8 /* bookInformationSet12.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet12.txt; sourceTree = "<group>"; };
+		A77A09041BFBE7B800CA62F8 /* bookInformationSet13.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet13.txt; sourceTree = "<group>"; };
+		A77A09051BFBE7B800CA62F8 /* bookInformationSet14.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet14.txt; sourceTree = "<group>"; };
+		A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet15.txt; sourceTree = "<group>"; };
+		A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet16.txt; sourceTree = "<group>"; };
 		CBFD3F561BFBA076002CE0A4 /* ProjectBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFD3F5A1BFBA076002CE0A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -130,10 +161,26 @@
 		CBFD3F581BFBA076002CE0A4 /* ProjectBook */ = {
 			isa = PBXGroup;
 			children = (
+				A77A08FA1BFBE7B800CA62F8 /* bookInformationSet1.txt */,
+				A77A08FB1BFBE7B800CA62F8 /* bookInformationSet2.txt */,
+				A77A08FC1BFBE7B800CA62F8 /* bookInformationSet3.txt */,
+				A77A08FD1BFBE7B800CA62F8 /* bookInformationSet4.txt */,
+				A77A08FE1BFBE7B800CA62F8 /* bookInformationSet6.txt */,
+				A77A08FF1BFBE7B800CA62F8 /* bookInformationSet7.txt */,
+				A77A09001BFBE7B800CA62F8 /* bookInformationSet8.txt */,
+				A77A09011BFBE7B800CA62F8 /* bookInformationSet10.txt */,
+				A77A09021BFBE7B800CA62F8 /* bookInformationSet11.txt */,
+				A77A09031BFBE7B800CA62F8 /* bookInformationSet12.txt */,
+				A77A09041BFBE7B800CA62F8 /* bookInformationSet13.txt */,
+				A77A09051BFBE7B800CA62F8 /* bookInformationSet14.txt */,
+				A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */,
+				A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */,
 				CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */,
 				CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */,
 				CBFD3F5F1BFBA076002CE0A4 /* ViewController.h */,
 				CBFD3F601BFBA076002CE0A4 /* ViewController.m */,
+				A77A08F71BFBE78700CA62F8 /* PGBparsingThroughText.h */,
+				A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */,
 				CBFD3F621BFBA076002CE0A4 /* Main.storyboard */,
 				CBFD3F681BFBA077002CE0A4 /* Assets.xcassets */,
 				CBFD3F6A1BFBA077002CE0A4 /* LaunchScreen.storyboard */,
@@ -183,7 +230,6 @@
 				CBFD3F521BFBA076002CE0A4 /* Sources */,
 				CBFD3F531BFBA076002CE0A4 /* Frameworks */,
 				CBFD3F541BFBA076002CE0A4 /* Resources */,
-				D670383251FFA6E99C63DF7C /* Embed Pods Frameworks */,
 				EDBC7E4402A43EC4D3D5591E /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -281,9 +327,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A77A090C1BFBE7B800CA62F8 /* bookInformationSet6.txt in Resources */,
+				A77A09101BFBE7B800CA62F8 /* bookInformationSet11.txt in Resources */,
 				CBFD3F6C1BFBA077002CE0A4 /* LaunchScreen.storyboard in Resources */,
+				A77A090E1BFBE7B800CA62F8 /* bookInformationSet8.txt in Resources */,
 				CBFD3F691BFBA077002CE0A4 /* Assets.xcassets in Resources */,
 				CBFD3F641BFBA076002CE0A4 /* Main.storyboard in Resources */,
+				A77A090B1BFBE7B800CA62F8 /* bookInformationSet4.txt in Resources */,
+				A77A09151BFBE7B800CA62F8 /* bookInformationSet16.txt in Resources */,
+				A77A09091BFBE7B800CA62F8 /* bookInformationSet2.txt in Resources */,
+				A77A09081BFBE7B800CA62F8 /* bookInformationSet1.txt in Resources */,
+				A77A09141BFBE7B800CA62F8 /* bookInformationSet15.txt in Resources */,
+				A77A090F1BFBE7B800CA62F8 /* bookInformationSet10.txt in Resources */,
+				A77A090A1BFBE7B800CA62F8 /* bookInformationSet3.txt in Resources */,
+				A77A090D1BFBE7B800CA62F8 /* bookInformationSet7.txt in Resources */,
+				A77A09111BFBE7B800CA62F8 /* bookInformationSet12.txt in Resources */,
+				A77A09131BFBE7B800CA62F8 /* bookInformationSet14.txt in Resources */,
+				A77A09121BFBE7B800CA62F8 /* bookInformationSet13.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,21 +379,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D670383251FFA6E99C63DF7C /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		EDBC7E4402A43EC4D3D5591E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -359,6 +404,7 @@
 				CBFD3F611BFBA076002CE0A4 /* ViewController.m in Sources */,
 				CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */,
 				CBFD3F911BFBB250002CE0A4 /* PGBDownloadHelper.m in Sources */,
+				A77A08F91BFBE78700CA62F8 /* PGBparsingThroughText.m in Sources */,
 				CBFD3F671BFBA076002CE0A4 /* ProjectBook.xcdatamodeld in Sources */,
 				CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */,
 			);
