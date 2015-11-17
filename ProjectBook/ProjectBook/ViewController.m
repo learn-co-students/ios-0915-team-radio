@@ -7,8 +7,12 @@
 //
 
 #import "ViewController.h"
+#import "PGBDownloadHelper.h"
 
 @interface ViewController ()
+
+@property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
+@property UIDocumentInteractionController *docController;
 
 @end
 
@@ -16,12 +20,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    NSURL *URL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/50470.epub.images"];
+    self.downloadHelper = [[PGBDownloadHelper alloc] init];
+    [self.downloadHelper download:URL];
     
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"foo"] = @"bar";
-    [testObject saveInBackground];
+}
+- (IBAction)readButtonTapped:(id)sender
+{
+    NSString *litFileName = @"pg50470-images.epub";
+    NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];
+    NSURL *targetURL = [NSURL fileURLWithPath:filePath];
+
+    self.docController = [UIDocumentInteractionController interactionControllerWithURL:targetURL];
     
+    if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"itms-books:"]]) {
+        
+        [self.docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+        NSLog(@"iBooks installed");
+        
+    } else {
+        
+        NSLog(@"iBooks not installed");
+    }
 }
 
 - (void)didReceiveMemoryWarning {

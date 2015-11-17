@@ -10,4 +10,14 @@
 
 @interface PGBDownloadHelper : NSObject
 
+//READ
+//for opening files in iBooks
+//@property (nonatomic) UIDocumentInteractionController *docController;
+
+
+//DOWNLOAD
+//for downloading books from URL
+-(void)download:(NSURL *)url;
+
+
 @end

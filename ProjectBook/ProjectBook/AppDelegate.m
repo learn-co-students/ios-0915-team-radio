@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "PGBDownloadHelper.h"
 
 @interface AppDelegate ()
 
@@ -30,6 +31,7 @@
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+
     
     return YES;
 }
