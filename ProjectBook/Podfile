@@ -6,6 +6,7 @@
 target 'ProjectBook' do
 
 pod 'Realm'
+pod 'Parse'
 
 end
 
