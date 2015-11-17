@@ -17,6 +17,7 @@
 		CBFD3F6C1BFBA077002CE0A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBFD3F6A1BFBA077002CE0A4 /* LaunchScreen.storyboard */; };
 		CBFD3F771BFBA077002CE0A4 /* ProjectBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F761BFBA077002CE0A4 /* ProjectBookTests.m */; };
 		CBFD3F821BFBA077002CE0A4 /* ProjectBookUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F811BFBA077002CE0A4 /* ProjectBookUITests.m */; };
+		CBFD3F911BFBB250002CE0A4 /* PGBDownloadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		CBFD3F7D1BFBA077002CE0A4 /* ProjectBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFD3F811BFBA077002CE0A4 /* ProjectBookUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectBookUITests.m; sourceTree = "<group>"; };
 		CBFD3F831BFBA077002CE0A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBDownloadHelper.h; sourceTree = "<group>"; };
+		CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBDownloadHelper.m; sourceTree = "<group>"; };
 		CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ProjectBook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6D5D825C0751CEEFFC1E7B5 /* Pods-ProjectBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +140,8 @@
 				CBFD3F6D1BFBA077002CE0A4 /* Info.plist */,
 				CBFD3F651BFBA076002CE0A4 /* ProjectBook.xcdatamodeld */,
 				CBFD3F591BFBA076002CE0A4 /* Supporting Files */,
+				CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */,
+				CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */,
 			);
 			path = ProjectBook;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 			files = (
 				CBFD3F611BFBA076002CE0A4 /* ViewController.m in Sources */,
 				CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */,
+				CBFD3F911BFBB250002CE0A4 /* PGBDownloadHelper.m in Sources */,
 				CBFD3F671BFBA076002CE0A4 /* ProjectBook.xcdatamodeld in Sources */,
 				CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */,
 			);
