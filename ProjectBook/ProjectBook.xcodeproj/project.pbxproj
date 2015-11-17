@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7AA794A04ED5426536CC6469 /* libPods-ProjectBook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */; };
 		CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5A1BFBA076002CE0A4 /* main.m */; };
 		CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */; };
 		CBFD3F611BFBA076002CE0A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F601BFBA076002CE0A4 /* ViewController.m */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook.release.xcconfig"; sourceTree = "<group>"; };
 		CBFD3F561BFBA076002CE0A4 /* ProjectBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFD3F5A1BFBA076002CE0A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -53,6 +55,8 @@
 		CBFD3F7D1BFBA077002CE0A4 /* ProjectBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFD3F811BFBA077002CE0A4 /* ProjectBookUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectBookUITests.m; sourceTree = "<group>"; };
 		CBFD3F831BFBA077002CE0A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ProjectBook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6D5D825C0751CEEFFC1E7B5 /* Pods-ProjectBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AA794A04ED5426536CC6469 /* libPods-ProjectBook.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +85,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4106D733AAA830B3691BDA27 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F6D5D825C0751CEEFFC1E7B5 /* Pods-ProjectBook.debug.xcconfig */,
+				9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		67D9EF55715E7EB36B72C5A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CBFD3F4D1BFBA076002CE0A4 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +109,8 @@
 				CBFD3F751BFBA077002CE0A4 /* ProjectBookTests */,
 				CBFD3F801BFBA077002CE0A4 /* ProjectBookUITests */,
 				CBFD3F571BFBA076002CE0A4 /* Products */,
+				4106D733AAA830B3691BDA27 /* Pods */,
+				67D9EF55715E7EB36B72C5A3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,9 +174,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBFD3F861BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "ProjectBook" */;
 			buildPhases = (
+				46C146BD0D81A8587F41E81D /* Check Pods Manifest.lock */,
 				CBFD3F521BFBA076002CE0A4 /* Sources */,
 				CBFD3F531BFBA076002CE0A4 /* Frameworks */,
 				CBFD3F541BFBA076002CE0A4 /* Resources */,
+				D670383251FFA6E99C63DF7C /* Embed Pods Frameworks */,
+				EDBC7E4402A43EC4D3D5591E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -270,6 +297,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46C146BD0D81A8587F41E81D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D670383251FFA6E99C63DF7C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDBC7E4402A43EC4D3D5591E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CBFD3F521BFBA076002CE0A4 /* Sources */ = {
@@ -418,6 +493,7 @@
 		};
 		CBFD3F871BFBA077002CE0A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6D5D825C0751CEEFFC1E7B5 /* Pods-ProjectBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ProjectBook/Info.plist;
@@ -429,6 +505,7 @@
 		};
 		CBFD3F881BFBA077002CE0A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ProjectBook/Info.plist;
@@ -505,6 +582,7 @@
 				CBFD3F881BFBA077002CE0A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CBFD3F891BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "ProjectBookTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +591,7 @@
 				CBFD3F8B1BFBA077002CE0A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CBFD3F8C1BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "ProjectBookUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +600,7 @@
 				CBFD3F8E1BFBA077002CE0A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
