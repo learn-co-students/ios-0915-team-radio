@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4CDC25D91BFBC6DB00B50BF8 /* PGBRealmBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDC25D81BFBC6DB00B50BF8 /* PGBRealmBook.m */; };
+		4CFA8DD71BFBB4CF008A4C97 /* PGBRealmUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFA8DD61BFBB4CF008A4C97 /* PGBRealmUser.m */; };
 		7AA794A04ED5426536CC6469 /* libPods-ProjectBook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */; };
 		CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5A1BFBA076002CE0A4 /* main.m */; };
 		CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */; };
@@ -37,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4CDC25D71BFBC6DB00B50BF8 /* PGBRealmBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBRealmBook.h; sourceTree = "<group>"; };
+		4CDC25D81BFBC6DB00B50BF8 /* PGBRealmBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBRealmBook.m; sourceTree = "<group>"; };
+		4CFA8DD51BFBB4CF008A4C97 /* PGBRealmUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBRealmUser.h; sourceTree = "<group>"; };
+		4CFA8DD61BFBB4CF008A4C97 /* PGBRealmUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBRealmUser.m; sourceTree = "<group>"; };
 		9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook.release.xcconfig"; sourceTree = "<group>"; };
 		CBFD3F561BFBA076002CE0A4 /* ProjectBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFD3F5A1BFBA076002CE0A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -94,6 +100,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4CFA8DD81BFBC573008A4C97 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4CFA8DD51BFBB4CF008A4C97 /* PGBRealmUser.h */,
+				4CFA8DD61BFBB4CF008A4C97 /* PGBRealmUser.m */,
+				4CDC25D71BFBC6DB00B50BF8 /* PGBRealmBook.h */,
+				4CDC25D81BFBC6DB00B50BF8 /* PGBRealmBook.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		67D9EF55715E7EB36B72C5A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +144,7 @@
 		CBFD3F581BFBA076002CE0A4 /* ProjectBook */ = {
 			isa = PBXGroup;
 			children = (
+				4CFA8DD81BFBC573008A4C97 /* Model */,
 				CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */,
 				CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */,
 				CBFD3F5F1BFBA076002CE0A4 /* ViewController.h */,
@@ -352,8 +370,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBFD3F611BFBA076002CE0A4 /* ViewController.m in Sources */,
+				4CFA8DD71BFBB4CF008A4C97 /* PGBRealmUser.m in Sources */,
 				CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */,
 				CBFD3F671BFBA076002CE0A4 /* ProjectBook.xcdatamodeld in Sources */,
+				4CDC25D91BFBC6DB00B50BF8 /* PGBRealmBook.m in Sources */,
 				CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

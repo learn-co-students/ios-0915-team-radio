@@ -19,7 +19,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"foo"] = @"bar";
+    testObject[@"foo"] = @"LEO is testing again !";
     [testObject saveInBackground];
     
 }
