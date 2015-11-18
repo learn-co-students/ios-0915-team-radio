@@ -25,7 +25,6 @@
 		A77A09131BFBE7B800CA62F8 /* bookInformationSet14.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09051BFBE7B800CA62F8 /* bookInformationSet14.txt */; };
 		A77A09141BFBE7B800CA62F8 /* bookInformationSet15.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */; };
 		A77A09151BFBE7B800CA62F8 /* bookInformationSet16.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */; };
-		CBF2C6161BFCF96700BCBCDD /* PGBHomePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C6151BFCF96700BCBCDD /* PGBHomePageTableViewController.m */; };
 		CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */; };
 		CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */; };
 		CBF2C61F1BFD1FF300BCBCDD /* PGBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */; };
@@ -81,8 +80,6 @@
 		A77A09051BFBE7B800CA62F8 /* bookInformationSet14.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet14.txt; sourceTree = "<group>"; };
 		A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet15.txt; sourceTree = "<group>"; };
 		A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet16.txt; sourceTree = "<group>"; };
-		CBF2C6141BFCF96700BCBCDD /* PGBHomePageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBHomePageTableViewController.h; sourceTree = "<group>"; };
-		CBF2C6151BFCF96700BCBCDD /* PGBHomePageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBHomePageTableViewController.m; sourceTree = "<group>"; };
 		CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBBookCustomTableCell.h; sourceTree = "<group>"; };
 		CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBBookCustomTableCell.m; sourceTree = "<group>"; };
 		CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBBookCustomTableCell.xib; sourceTree = "<group>"; };
@@ -216,8 +213,6 @@
 				4C9597AD1BFBEB2600BBD558 /* Model */,
 				CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */,
 				CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */,
-				CBF2C6141BFCF96700BCBCDD /* PGBHomePageTableViewController.h */,
-				CBF2C6151BFCF96700BCBCDD /* PGBHomePageTableViewController.m */,
 				CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */,
 				CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */,
 				CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */,
@@ -467,7 +462,6 @@
 				CBF2C61F1BFD1FF300BCBCDD /* PGBHomeViewController.m in Sources */,
 				CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */,
 				CBFD3F611BFBA076002CE0A4 /* PGBBookPageViewController.m in Sources */,
-				CBF2C6161BFCF96700BCBCDD /* PGBHomePageTableViewController.m in Sources */,
 				CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */,
 				CBFD3F911BFBB250002CE0A4 /* PGBDownloadHelper.m in Sources */,
 				4C9597AB1BFBEB2000BBD558 /* PGBRealmUser.m in Sources */,

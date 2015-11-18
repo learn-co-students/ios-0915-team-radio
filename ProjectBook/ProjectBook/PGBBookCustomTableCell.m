@@ -10,15 +10,11 @@
 
 @interface PGBBookCustomTableCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *bookCover;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
-@property (weak, nonatomic) IBOutlet UILabel *genreLabel;
-@property (weak, nonatomic) IBOutlet UIButton *downloadButton;
+
 
 @end
 
-@implementation BookTableViewCell
+@implementation PGBBookCustomTableCell
 
 - (void)awakeFromNib {
     // Initialization code

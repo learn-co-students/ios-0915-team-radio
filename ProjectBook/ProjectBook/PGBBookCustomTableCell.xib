@@ -5,9 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PGBBookCustomTableCell"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomCell" rowHeight="177" id="3gO-Bt-Kh0" customClass="PGBBookCustomTableCell">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="177" id="3gO-Bt-Kh0" customClass="PGBBookCustomTableCell">
             <rect key="frame" x="0.0" y="0.0" width="567" height="177"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3gO-Bt-Kh0" id="xfd-hc-Uwr">
@@ -17,7 +17,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TaM-gH-GAi">
                         <rect key="frame" x="0.0" y="0.0" width="285" height="176"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiL-8P-xAE">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiL-8P-xAE">
                         <rect key="frame" x="329" y="26" width="188" height="29"/>
                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -40,6 +40,12 @@
                         <state key="normal" title="Download"/>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="PiL-8P-xAE" firstAttribute="centerY" secondItem="xfd-hc-Uwr" secondAttribute="centerY" id="HVA-d4-QyC"/>
+                    <constraint firstItem="PiL-8P-xAE" firstAttribute="centerX" secondItem="xfd-hc-Uwr" secondAttribute="centerX" id="bQi-rU-W1g"/>
+                    <constraint firstItem="PiL-8P-xAE" firstAttribute="width" secondItem="xfd-hc-Uwr" secondAttribute="width" id="eV0-r7-DhI"/>
+                    <constraint firstItem="PiL-8P-xAE" firstAttribute="height" secondItem="xfd-hc-Uwr" secondAttribute="height" id="u3T-mr-XIt"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="authorLabel" destination="jIa-gk-zA2" id="yb4-2h-jY5"/>
@@ -48,7 +54,7 @@
                 <outlet property="genreLabel" destination="nZ9-An-Zam" id="fjg-FQ-BG1"/>
                 <outlet property="titleLabel" destination="PiL-8P-xAE" id="xAN-1F-Bdm"/>
             </connections>
-            <point key="canvasLocation" x="390.5" y="364.5"/>
+            <point key="canvasLocation" x="448.5" y="346.5"/>
         </tableViewCell>
     </objects>
 </document>
