@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface ViewController : UIViewController
+@interface PGBBookPageViewController : UIViewController
 
+@property (strong, nonatomic) NSString *ebookIndex;
 
 @end
 

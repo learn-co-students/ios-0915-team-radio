@@ -6,29 +6,31 @@
 //  Copyright © 2015 FIS. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "PGBBookPageViewController.h"
 #import "PGBDownloadHelper.h"
 
-@interface ViewController ()
+@interface PGBBookPageViewController ()
 
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
 @property UIDocumentInteractionController *docController;
 
 @end
 
-@implementation ViewController
+@implementation PGBBookPageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    NSURL *URL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/50470.epub.images"];
+    
+    self.ebookIndex = @"4028.epub.images";
+    
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.gutenberg.org/ebooks/%@", self.ebookIndex]];
     self.downloadHelper = [[PGBDownloadHelper alloc] init];
     [self.downloadHelper download:URL];
     
 }
 - (IBAction)readButtonTapped:(id)sender
 {
-    NSString *litFileName = @"pg50470-images.epub";
+    NSString *litFileName = [NSString stringWithFormat:@"pg%@", self.ebookIndex];
     NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];
     NSURL *targetURL = [NSURL fileURLWithPath:filePath];
 

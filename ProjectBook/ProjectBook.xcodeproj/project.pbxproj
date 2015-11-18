@@ -25,9 +25,10 @@
 		A77A09131BFBE7B800CA62F8 /* bookInformationSet14.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09051BFBE7B800CA62F8 /* bookInformationSet14.txt */; };
 		A77A09141BFBE7B800CA62F8 /* bookInformationSet15.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */; };
 		A77A09151BFBE7B800CA62F8 /* bookInformationSet16.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */; };
+		CBF2C6161BFCF96700BCBCDD /* PGBHomePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C6151BFCF96700BCBCDD /* PGBHomePageTableViewController.m */; };
 		CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5A1BFBA076002CE0A4 /* main.m */; };
 		CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */; };
-		CBFD3F611BFBA076002CE0A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F601BFBA076002CE0A4 /* ViewController.m */; };
+		CBFD3F611BFBA076002CE0A4 /* PGBBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F601BFBA076002CE0A4 /* PGBBookPageViewController.m */; };
 		CBFD3F641BFBA076002CE0A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBFD3F621BFBA076002CE0A4 /* Main.storyboard */; };
 		CBFD3F671BFBA076002CE0A4 /* ProjectBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F651BFBA076002CE0A4 /* ProjectBook.xcdatamodeld */; };
 		CBFD3F691BFBA077002CE0A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBFD3F681BFBA077002CE0A4 /* Assets.xcassets */; };
@@ -76,12 +77,14 @@
 		A77A09051BFBE7B800CA62F8 /* bookInformationSet14.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet14.txt; sourceTree = "<group>"; };
 		A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet15.txt; sourceTree = "<group>"; };
 		A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet16.txt; sourceTree = "<group>"; };
+		CBF2C6141BFCF96700BCBCDD /* PGBHomePageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBHomePageTableViewController.h; sourceTree = "<group>"; };
+		CBF2C6151BFCF96700BCBCDD /* PGBHomePageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBHomePageTableViewController.m; sourceTree = "<group>"; };
 		CBFD3F561BFBA076002CE0A4 /* ProjectBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFD3F5A1BFBA076002CE0A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CBFD3F5F1BFBA076002CE0A4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CBFD3F601BFBA076002CE0A4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CBFD3F5F1BFBA076002CE0A4 /* PGBBookPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGBBookPageViewController.h; sourceTree = "<group>"; };
+		CBFD3F601BFBA076002CE0A4 /* PGBBookPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PGBBookPageViewController.m; sourceTree = "<group>"; };
 		CBFD3F631BFBA076002CE0A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CBFD3F661BFBA076002CE0A4 /* ProjectBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProjectBook.xcdatamodel; sourceTree = "<group>"; };
 		CBFD3F681BFBA077002CE0A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -195,8 +198,10 @@
 				A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */,
 				CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */,
 				CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */,
-				CBFD3F5F1BFBA076002CE0A4 /* ViewController.h */,
-				CBFD3F601BFBA076002CE0A4 /* ViewController.m */,
+				CBF2C6141BFCF96700BCBCDD /* PGBHomePageTableViewController.h */,
+				CBF2C6151BFCF96700BCBCDD /* PGBHomePageTableViewController.m */,
+				CBFD3F5F1BFBA076002CE0A4 /* PGBBookPageViewController.h */,
+				CBFD3F601BFBA076002CE0A4 /* PGBBookPageViewController.m */,
 				A77A08F71BFBE78700CA62F8 /* PGBparsingThroughText.h */,
 				A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */,
 				CBFD3F621BFBA076002CE0A4 /* Main.storyboard */,
@@ -435,7 +440,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBFD3F611BFBA076002CE0A4 /* ViewController.m in Sources */,
+				CBFD3F611BFBA076002CE0A4 /* PGBBookPageViewController.m in Sources */,
+				CBF2C6161BFCF96700BCBCDD /* PGBHomePageTableViewController.m in Sources */,
 				CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */,
 				CBFD3F911BFBB250002CE0A4 /* PGBDownloadHelper.m in Sources */,
 				4C9597AB1BFBEB2000BBD558 /* PGBRealmUser.m in Sources */,
