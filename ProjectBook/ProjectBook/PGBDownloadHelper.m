@@ -15,7 +15,7 @@
 -(void)download:(NSURL *)url
 {
     //using AFNetworking to download file
-    NSLog(@"download method is called");
+    NSLog(@"download method is called & book downloaded");
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
 

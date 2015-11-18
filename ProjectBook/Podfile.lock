@@ -28,6 +28,7 @@ PODS:
   - Bolts/AppLinks (1.5.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.5.0)
+<<<<<<< HEAD
   - FBSDKCoreKit (4.8.0):
     - Bolts (~> 1.1)
     - FBSDKCoreKit/arc (= 4.8.0)
@@ -39,6 +40,9 @@ PODS:
     - FBSDKCoreKit/arc
   - FBSDKLoginKit (4.8.0):
     - FBSDKCoreKit
+=======
+  - Masonry (0.6.3)
+>>>>>>> initialViews
   - Parse (1.9.1):
     - Bolts/Tasks (>= 1.4.0)
   - ParseFacebookUtilsV4 (1.9.1):
@@ -53,7 +57,11 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - AFOAuth2Manager
+<<<<<<< HEAD
   - FBSDKLoginKit
+=======
+  - Masonry
+>>>>>>> initialViews
   - Parse
   - ParseFacebookUtilsV4
   - Realm
@@ -62,8 +70,12 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AFOAuth2Manager: 952eb62e8fd8022971e64c6e8fe28b9e999224af
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
+<<<<<<< HEAD
   FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8
   FBSDKLoginKit: d893fcbb98d854496925e9ff73c67b896982d3c4
+=======
+  Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
+>>>>>>> initialViews
   Parse: 54a965c8c19a6dde90284ab654dbcc77ef8c001b
   ParseFacebookUtilsV4: eab9b4ade12f0800b4d30f6b808bca55ce17a0e9
   Realm: 3ce8448151c571e90b85002d984d7f93f54fc8a3

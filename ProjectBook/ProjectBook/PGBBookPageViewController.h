@@ -10,8 +10,10 @@
 #import <Parse/Parse.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-@interface ViewController : UIViewController
 
+@interface PGBBookPageViewController : UIViewController
+
+@property (strong, nonatomic) NSString *ebookNumber;
 
 @end
 
