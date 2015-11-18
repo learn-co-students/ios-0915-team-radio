@@ -14,10 +14,7 @@
 @property (strong, nonatomic)NSString *genre;
 @property (strong, nonatomic)NSDate *yearPublished;
 @property (assign, nonatomic)NSInteger rating;
-@property (strong, nonatomic)NSData *bookFile;
 @property (assign, nonatomic)BOOL isDownloaded;
-
-
 
 - (instancetype)init;
 - (instancetype)initWithTitle:(NSString *)title;
