@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "PGBDownloadHelper.h"
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 
 @interface ViewController ()
 
@@ -25,9 +26,40 @@
     self.downloadHelper = [[PGBDownloadHelper alloc] init];
     [self.downloadHelper download:URL];
     
+    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    loginButton.center = self.view.center;
+    [self.view addSubview:loginButton];
+    
+    
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+
+    if (![ PFUser currentUser]) {
+        // do something
+    }
+    else{
+        // we have a user! do somethin..
+    }
+//    NSArray *permissions = @[@"public_profile"];
+//
+//    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissions block:^(PFUser *user, NSError *error) {
+//
+//        if (!user) {
+//            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+//        } else if (user.isNew) {
+//            NSLog(@"User signed up and logged in through Facebook!");
+//        } else {
+//            NSLog(@"User logged in through Facebook!");
+//        }
+//    }];
+    
+}
+
 - (IBAction)readButtonTapped:(id)sender
 {
+    
     NSString *litFileName = @"pg50470-images.epub";
     NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];
     NSURL *targetURL = [NSURL fileURLWithPath:filePath];
