@@ -9,7 +9,8 @@ pod 'Realm'
 pod 'Parse'
 pod 'AFNetworking'
 pod 'AFOAuth2Manager'
-
+pod 'FBSDKLoginKit'
+pod 'ParseFacebookUtilsV4'
 end
 
 target 'ProjectBookTests' do

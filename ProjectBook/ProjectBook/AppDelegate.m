@@ -11,7 +11,7 @@
 #import "PGBDownloadHelper.h"
 #import "PGBRealmUser.h"
 #import "PGBRealmBook.h"
-
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 @interface AppDelegate ()
 
 @end
@@ -26,14 +26,18 @@
     // https://parse.com/docs/ios_guide#localdatastore/iOS
     [Parse enableLocalDatastore];
     
+    
     // Initialize Parse.
     [Parse setApplicationId:@"VADP3uGjgBGfaYax1jbKoDlKzhCYyilh8I83XfmI"
                   clientKey:@"XFszBVoY8vDT5MUqM82ACP0lfqKeOv9er01VC3NM"];
     
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    return YES;
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -51,7 +55,9 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+   
+    [FBSDKAppEvents activateApp];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -138,6 +144,13 @@
             abort();
         }
     }
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
 }
 
 @end

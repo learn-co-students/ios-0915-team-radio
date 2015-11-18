@@ -59,6 +59,7 @@
 		4C9597A81BFBEB2000BBD558 /* PGBRealmUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBRealmUser.m; sourceTree = "<group>"; };
 		4C9597A91BFBEB2000BBD558 /* PGBRealmBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBRealmBook.h; sourceTree = "<group>"; };
 		4C9597AA1BFBEB2000BBD558 /* PGBRealmBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBRealmBook.m; sourceTree = "<group>"; };
+		89DF0C4F1BFCDF1500E0096F /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../Desktop/parse-library-1.9.1 (2)/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook.release.xcconfig"; sourceTree = "<group>"; };
 		A77A08F71BFBE78700CA62F8 /* PGBparsingThroughText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBparsingThroughText.h; sourceTree = "<group>"; };
 		A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBparsingThroughText.m; sourceTree = "<group>"; };
@@ -148,6 +149,7 @@
 		67D9EF55715E7EB36B72C5A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				89DF0C4F1BFCDF1500E0096F /* ParseFacebookUtils.framework */,
 				CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */,
 			);
 			name = Frameworks;
