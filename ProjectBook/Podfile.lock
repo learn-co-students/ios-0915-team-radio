@@ -28,7 +28,6 @@ PODS:
   - Bolts/AppLinks (1.5.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.5.0)
-<<<<<<< HEAD
   - FBSDKCoreKit (4.8.0):
     - Bolts (~> 1.1)
     - FBSDKCoreKit/arc (= 4.8.0)
@@ -40,9 +39,7 @@ PODS:
     - FBSDKCoreKit/arc
   - FBSDKLoginKit (4.8.0):
     - FBSDKCoreKit
-=======
   - Masonry (0.6.3)
->>>>>>> initialViews
   - Parse (1.9.1):
     - Bolts/Tasks (>= 1.4.0)
   - ParseFacebookUtilsV4 (1.9.1):

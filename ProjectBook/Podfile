@@ -9,13 +9,10 @@ pod 'Realm'
 pod 'Parse'
 pod 'AFNetworking'
 pod 'AFOAuth2Manager'
-<<<<<<< HEAD
 pod 'FBSDKLoginKit'
 pod 'ParseFacebookUtilsV4'
-=======
 pod 'Masonry'
 
->>>>>>> initialViews
 end
 
 target 'ProjectBookTests' do
