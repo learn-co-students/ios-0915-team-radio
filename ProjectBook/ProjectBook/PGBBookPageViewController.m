@@ -8,29 +8,42 @@
 
 #import "PGBBookPageViewController.h"
 #import "PGBDownloadHelper.h"
+#import <Masonry/Masonry.h>
 
 @interface PGBBookPageViewController ()
 
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
 @property UIDocumentInteractionController *docController;
+@property (weak, nonatomic) IBOutlet UIButton *downloadButton;
+@property (weak, nonatomic) IBOutlet UIButton *iBooksButton;
 
 @end
 
 @implementation PGBBookPageViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
-    self.ebookIndex = @"4028.epub.images";
-    
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.gutenberg.org/ebooks/%@", self.ebookIndex]];
+
+    NSLog(@"view loaded");
+}
+
+- (IBAction)downloadButtonTapped:(id)sender
+{
+    NSURL *URL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
     self.downloadHelper = [[PGBDownloadHelper alloc] init];
     [self.downloadHelper download:URL];
     
 }
+
+
 - (IBAction)readButtonTapped:(id)sender
 {
-    NSString *litFileName = [NSString stringWithFormat:@"pg%@", self.ebookIndex];
+//    self.ebookNumber = @"4028.epub.images";
+    
+    NSString *litFileName = @"pg4028-images.epub";
+    
+//    NSString *litFileName = [NSString stringWithFormat:@"pg%@", self.ebookIndex];
     NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];
     NSURL *targetURL = [NSURL fileURLWithPath:filePath];
 
@@ -39,6 +52,9 @@
     if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"itms-books:"]]) {
         
         [self.docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+        
+//        [self.docController presentOpenInMenuFromRect:_openInIBooksButton.bounds inView:self.openInIBooksButton animated:YES];
+
         NSLog(@"iBooks installed");
         
     } else {

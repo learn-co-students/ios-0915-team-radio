@@ -14,11 +14,6 @@
 @property (strong, nonatomic) NSMutableArray *parsedText;
 @property (strong, nonatomic) NSMutableArray *arrayOfEverything;
 
-
-
-
-
-
 -(NSMutableArray *)parseATextFile;
 
 

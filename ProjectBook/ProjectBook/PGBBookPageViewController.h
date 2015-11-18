@@ -11,7 +11,7 @@
 
 @interface PGBBookPageViewController : UIViewController
 
-@property (strong, nonatomic) NSString *ebookIndex;
+@property (strong, nonatomic) NSString *ebookNumber;
 
 @end
 

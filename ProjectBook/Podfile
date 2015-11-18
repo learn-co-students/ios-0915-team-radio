@@ -9,6 +9,7 @@ pod 'Realm'
 pod 'Parse'
 pod 'AFNetworking'
 pod 'AFOAuth2Manager'
+pod 'Masonry'
 
 end
 

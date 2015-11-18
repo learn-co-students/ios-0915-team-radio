@@ -26,6 +26,9 @@
 		A77A09141BFBE7B800CA62F8 /* bookInformationSet15.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */; };
 		A77A09151BFBE7B800CA62F8 /* bookInformationSet16.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */; };
 		CBF2C6161BFCF96700BCBCDD /* PGBHomePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C6151BFCF96700BCBCDD /* PGBHomePageTableViewController.m */; };
+		CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */; };
+		CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */; };
+		CBF2C61F1BFD1FF300BCBCDD /* PGBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */; };
 		CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5A1BFBA076002CE0A4 /* main.m */; };
 		CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */; };
 		CBFD3F611BFBA076002CE0A4 /* PGBBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F601BFBA076002CE0A4 /* PGBBookPageViewController.m */; };
@@ -79,6 +82,11 @@
 		A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet16.txt; sourceTree = "<group>"; };
 		CBF2C6141BFCF96700BCBCDD /* PGBHomePageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBHomePageTableViewController.h; sourceTree = "<group>"; };
 		CBF2C6151BFCF96700BCBCDD /* PGBHomePageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBHomePageTableViewController.m; sourceTree = "<group>"; };
+		CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBBookCustomTableCell.h; sourceTree = "<group>"; };
+		CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBBookCustomTableCell.m; sourceTree = "<group>"; };
+		CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBBookCustomTableCell.xib; sourceTree = "<group>"; };
+		CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBHomeViewController.h; sourceTree = "<group>"; };
+		CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBHomeViewController.m; sourceTree = "<group>"; };
 		CBFD3F561BFBA076002CE0A4 /* ProjectBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFD3F5A1BFBA076002CE0A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -156,6 +164,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CBF2C6171BFD0D8B00BCBCDD /* bookInformationSet */ = {
+			isa = PBXGroup;
+			children = (
+				A77A08FA1BFBE7B800CA62F8 /* bookInformationSet1.txt */,
+				A77A08FB1BFBE7B800CA62F8 /* bookInformationSet2.txt */,
+				A77A08FC1BFBE7B800CA62F8 /* bookInformationSet3.txt */,
+				A77A08FD1BFBE7B800CA62F8 /* bookInformationSet4.txt */,
+				A77A08FE1BFBE7B800CA62F8 /* bookInformationSet6.txt */,
+				A77A08FF1BFBE7B800CA62F8 /* bookInformationSet7.txt */,
+				A77A09001BFBE7B800CA62F8 /* bookInformationSet8.txt */,
+				A77A09011BFBE7B800CA62F8 /* bookInformationSet10.txt */,
+				A77A09021BFBE7B800CA62F8 /* bookInformationSet11.txt */,
+				A77A09031BFBE7B800CA62F8 /* bookInformationSet12.txt */,
+				A77A09041BFBE7B800CA62F8 /* bookInformationSet13.txt */,
+				A77A09051BFBE7B800CA62F8 /* bookInformationSet14.txt */,
+				A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */,
+				A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */,
+			);
+			name = bookInformationSet;
+			sourceTree = "<group>";
+		};
 		CBFD3F4D1BFBA076002CE0A4 = {
 			isa = PBXGroup;
 			children = (
@@ -181,30 +210,22 @@
 		CBFD3F581BFBA076002CE0A4 /* ProjectBook */ = {
 			isa = PBXGroup;
 			children = (
+				CBF2C6171BFD0D8B00BCBCDD /* bookInformationSet */,
 				4C9597AD1BFBEB2600BBD558 /* Model */,
-				A77A08FA1BFBE7B800CA62F8 /* bookInformationSet1.txt */,
-				A77A08FB1BFBE7B800CA62F8 /* bookInformationSet2.txt */,
-				A77A08FC1BFBE7B800CA62F8 /* bookInformationSet3.txt */,
-				A77A08FD1BFBE7B800CA62F8 /* bookInformationSet4.txt */,
-				A77A08FE1BFBE7B800CA62F8 /* bookInformationSet6.txt */,
-				A77A08FF1BFBE7B800CA62F8 /* bookInformationSet7.txt */,
-				A77A09001BFBE7B800CA62F8 /* bookInformationSet8.txt */,
-				A77A09011BFBE7B800CA62F8 /* bookInformationSet10.txt */,
-				A77A09021BFBE7B800CA62F8 /* bookInformationSet11.txt */,
-				A77A09031BFBE7B800CA62F8 /* bookInformationSet12.txt */,
-				A77A09041BFBE7B800CA62F8 /* bookInformationSet13.txt */,
-				A77A09051BFBE7B800CA62F8 /* bookInformationSet14.txt */,
-				A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */,
-				A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */,
 				CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */,
 				CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */,
 				CBF2C6141BFCF96700BCBCDD /* PGBHomePageTableViewController.h */,
 				CBF2C6151BFCF96700BCBCDD /* PGBHomePageTableViewController.m */,
+				CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */,
+				CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */,
+				CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */,
+				CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */,
+				CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */,
+				CBFD3F621BFBA076002CE0A4 /* Main.storyboard */,
 				CBFD3F5F1BFBA076002CE0A4 /* PGBBookPageViewController.h */,
 				CBFD3F601BFBA076002CE0A4 /* PGBBookPageViewController.m */,
 				A77A08F71BFBE78700CA62F8 /* PGBparsingThroughText.h */,
 				A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */,
-				CBFD3F621BFBA076002CE0A4 /* Main.storyboard */,
 				CBFD3F681BFBA077002CE0A4 /* Assets.xcassets */,
 				CBFD3F6A1BFBA077002CE0A4 /* LaunchScreen.storyboard */,
 				CBFD3F6D1BFBA077002CE0A4 /* Info.plist */,
@@ -353,6 +374,7 @@
 			files = (
 				A77A090C1BFBE7B800CA62F8 /* bookInformationSet6.txt in Resources */,
 				A77A09101BFBE7B800CA62F8 /* bookInformationSet11.txt in Resources */,
+				CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */,
 				CBFD3F6C1BFBA077002CE0A4 /* LaunchScreen.storyboard in Resources */,
 				A77A090E1BFBE7B800CA62F8 /* bookInformationSet8.txt in Resources */,
 				CBFD3F691BFBA077002CE0A4 /* Assets.xcassets in Resources */,
@@ -440,6 +462,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBF2C61F1BFD1FF300BCBCDD /* PGBHomeViewController.m in Sources */,
+				CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */,
 				CBFD3F611BFBA076002CE0A4 /* PGBBookPageViewController.m in Sources */,
 				CBF2C6161BFCF96700BCBCDD /* PGBHomePageTableViewController.m in Sources */,
 				CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */,
@@ -594,6 +618,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.learn-co-students.ios-0915-team-radio.ProjectBook";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -606,6 +631,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.learn-co-students.ios-0915-team-radio.ProjectBook";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
