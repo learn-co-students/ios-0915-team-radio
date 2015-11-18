@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "PGBDownloadHelper.h"
+#import "PGBRealmUser.h"
+#import "PGBRealmBook.h"
 
 @interface AppDelegate ()
 
@@ -32,6 +34,7 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
 
+    
     
     return YES;
 }

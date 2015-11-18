@@ -24,7 +24,7 @@
 }
 
 
-+ (void)storeUserProbileDataWith:(PGBRealmUser *)user{
++ (void)storeUserProbileDataWithUser:(PGBRealmUser *)user{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
@@ -32,15 +32,24 @@
     [realm commitWriteTransaction];
 }
 
-+ (PGBRealmUser *)getUserProfileData{
-    PGBRealmUser *user = [[PGBRealmUser allObjects]firstObject];
++ (void)deleteUserProfileDataForUser:(PGBRealmUser *)user{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    [realm beginWriteTransaction];
+    [realm deleteObject:user];
+    [realm commitWriteTransaction];
+}
+
++ (RLMResults *)getUserProfileData{
+    RLMResults *user = (RLMResults *)[[PGBRealmUser allObjects]firstObject];
     return user;
 }
+
 
 //// books should presist in the phone, one to many relationship is not really needed
 //- (void)storeUserBookDataWith:(PGBRealmBook *)book{
 //    RLMRealm *realm = [RLMRealm defaultRealm];
-//    
+//
 //    [realm beginWriteTransaction];
 //   // PGBRealmBook *newBook = [[PGBRealmBook alloc]initWithTitle:@"Hunger Games"];
 //    [realm addObject:book];

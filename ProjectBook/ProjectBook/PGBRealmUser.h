@@ -21,7 +21,8 @@
 
 - (instancetype)init;
 - (instancetype)initWithUsername:(NSString *)username;
-+ (void)storeUserProbileDataWith:(PGBRealmUser *)user;
++ (void)storeUserProbileDataWithUser:(PGBRealmUser *)user;
++ (void)deleteUserProfileDataForUser:(PGBRealmUser *)user;
 + (PGBRealmUser *)getUserProfileData;
 
 @end

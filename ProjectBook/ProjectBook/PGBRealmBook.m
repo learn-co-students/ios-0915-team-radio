@@ -37,11 +37,19 @@
     return self;
 }
 
-+ (void)storeUserBookDataWith:(PGBRealmBook *)book{
++ (void)storeUserBookDataWithBook:(PGBRealmBook *)book{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
     [realm addObject:book];
+    [realm commitWriteTransaction];
+}
+
++ (void)deleteUserBookDataForBook:(PGBRealmBook *)book{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    [realm beginWriteTransaction];
+    [realm deleteObject:book];
     [realm commitWriteTransaction];
 }
 

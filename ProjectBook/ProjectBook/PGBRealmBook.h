@@ -14,12 +14,15 @@
 @property (strong, nonatomic)NSString *genre;
 @property (strong, nonatomic)NSDate *yearPublished;
 @property (assign, nonatomic)NSInteger rating;
-//@property (assign, nonatomic)BOOL isDownloaded;
+@property (strong, nonatomic)NSData *bookFile;
+@property (assign, nonatomic)BOOL isDownloaded;
+
 
 
 - (instancetype)init;
 - (instancetype)initWithTitle:(NSString *)title;
-+ (void)storeUserBookDataWith:(PGBRealmBook *)book;
++ (void)storeUserBookDataWithBook:(PGBRealmBook *)book;
++ (void)deleteUserBookDataForBook:(PGBRealmBook *)book;
 + (RLMResults *)getUserBookData;
 
 @end
