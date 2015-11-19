@@ -42,7 +42,6 @@
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     
     self.bookTableView.rowHeight = 70;
-    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -63,19 +62,17 @@
     cell.authorLabel.text = [self.authors objectAtIndex:indexPath.row];
     cell.genreLabel.text = [self.genres objectAtIndex:indexPath.row];
 
-    
     return cell;
 }
-
 
 /*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+-
+(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 */
-
 @end

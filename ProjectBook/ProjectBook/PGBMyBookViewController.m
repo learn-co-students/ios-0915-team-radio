@@ -7,8 +7,13 @@
 //
 
 #import "PGBMyBookViewController.h"
+#import "PGBBookCustomTableCell.h"
 
 @interface PGBMyBookViewController ()
+
+@property (strong, nonatomic) NSMutableArray *titles;
+@property (strong, nonatomic) NSMutableArray *authors;
+@property (strong, nonatomic) NSMutableArray *genres;
 
 @end
 
@@ -20,6 +25,24 @@
     
     [self.myBookListTableView setDelegate:self];
     [self.myBookListTableView setDataSource:self];
+    
+    self.titles = [[NSMutableArray alloc]init];
+    self.authors = [[NSMutableArray alloc]init];
+    self.genres = [[NSMutableArray alloc]init];
+    
+    [self.titles addObject:@"Norwegian Wood"];
+    [self.titles addObject:@"Kafka on the Shore"];
+    
+    [self.authors addObject:@"Haruki Murakami"];
+    [self.authors addObject:@"Haruki Murakami"];
+    
+    [self.genres addObject:@"Fiction"];
+    [self.genres addObject:@"Fiction"];
+    
+    [self.myBookListTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
+    
+    self.myBookListTableView.rowHeight = 70;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,21 +57,16 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+   return self.titles.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
-//    
-//    cell.titleLabel.text = [self.titles objectAtIndex:indexPath.row];
-//    cell.authorLabel.text = [self.authors objectAtIndex:indexPath.row];
-//    cell.genreLabel.text = [self.genres objectAtIndex:indexPath.row];
+    PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
     
-//    return cell;
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookCell" forIndexPath:indexPath];
-    cell.textLabel.text = @"test1";
+    cell.titleLabel.text = [self.titles objectAtIndex:indexPath.row];
+    cell.authorLabel.text = [self.authors objectAtIndex:indexPath.row];
+    cell.genreLabel.text = [self.genres objectAtIndex:indexPath.row];
     
     return cell;
 }

@@ -38,8 +38,6 @@
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     loginButton.center = self.view.center;
     [self.view addSubview:loginButton];
-    
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
