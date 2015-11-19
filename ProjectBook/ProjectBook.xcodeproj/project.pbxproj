@@ -220,6 +220,8 @@
 				CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */,
 				CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */,
 				CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */,
+				CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */,
+				CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */,
 				CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */,
 				CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */,
 				CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */,
@@ -236,8 +238,6 @@
 				4C5D947C1BFE389A0086DB5F /* PGBMyBookViewController.h */,
 				4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */,
 				CBFD3F591BFBA076002CE0A4 /* Supporting Files */,
-				CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */,
-				CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */,
 			);
 			path = ProjectBook;
 			sourceTree = "<group>";
