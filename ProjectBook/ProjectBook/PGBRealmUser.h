@@ -13,16 +13,21 @@
 @interface PGBRealmUser : RLMObject
 
 @property (strong, nonatomic)NSString *username;
-@property (strong, nonatomic)NSString *firstName;
-@property (strong, nonatomic)NSString *lastName;
+@property (strong, nonatomic)NSString *firstname;
+@property (strong, nonatomic)NSString *lastname;
 @property (strong, nonatomic)NSString *location;
-@property (strong, nonatomic)NSString *gender;
+@property (strong, nonatomic)NSString *email;
 //@property RLMArray<PGBRealmBook *><PGBRealmBook> *books;
 
 - (instancetype)init;
-- (instancetype)initWithUsername:(NSString *)username;
+- (instancetype)initWithUsername:(NSString *)username
+                       firstname:(NSString *)firstname
+                        lastname:(NSString *)lastname
+                        location:(NSString *)location
+                           email:(NSString *)email;
 + (void)storeUserProbileDataWithUser:(PGBRealmUser *)user;
 + (void)deleteUserProfileDataForUser:(PGBRealmUser *)user;
++ (void)deleteAllUserProfileData;
 + (PGBRealmUser *)getUserProfileData;
 
 @end

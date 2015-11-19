@@ -25,14 +25,28 @@
 //}
 
 - (instancetype)init{
-    self = [self initWithTitle:@""];
+    self = [self initWithTitle:@"" author:@"" genre:@"" language:@"" downloadURL:@"" bookDescription:@"" datePublished:[NSDate date] ebookID:0];
     return self;
 }
 
-- (instancetype)initWithTitle:(NSString *)title{
+- (instancetype)initWithTitle:(NSString *)title
+                       author:(NSString *)author
+                        genre:(NSString *)genre
+                     language:(NSString *)language
+                  downloadURL:(NSString *)downloadURL
+              bookDescription:(NSString *)bookDescription
+                datePublished:(NSDate *)datePublished
+                      ebookID:(NSInteger)ebookID{
     self = [super init];
     if (self) {
         _title = title;
+        _author = author;
+        _genre = genre;
+        _language = language;
+        _downloadURL = downloadURL;
+        _bookDescription = bookDescription;
+        _datePublished = datePublished;
+        _ebookID = ebookID;
     }
     return self;
 }
@@ -50,6 +64,14 @@
     
     [realm beginWriteTransaction];
     [realm deleteObject:book];
+    [realm commitWriteTransaction];
+}
+
++ (void)deleteAllUserBookData{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    [realm beginWriteTransaction];
+    [realm deleteAllObjects];
     [realm commitWriteTransaction];
 }
 
