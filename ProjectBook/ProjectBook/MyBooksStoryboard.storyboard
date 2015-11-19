@@ -54,6 +54,9 @@
                                             <segment title="Downloaded"/>
                                             <segment title="Bookmarked"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="bookSegmentedControlSelected:" destination="yKG-OF-Y8Y" eventType="valueChanged" id="n2S-ke-hcd"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <animations/>
