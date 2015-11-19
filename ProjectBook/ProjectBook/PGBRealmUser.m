@@ -11,14 +11,22 @@
 @implementation PGBRealmUser
 
 - (instancetype)init{
-    self = [self initWithUsername:@""];
+    self = [self initWithUsername:@"" firstname:@"" lastname:@"" location:@"" email:@""];
     return self;
 }
 
-- (instancetype)initWithUsername:(NSString *)username{
+- (instancetype)initWithUsername:(NSString *)username
+                       firstname:(NSString *)firstname
+                        lastname:(NSString *)lastname
+                        location:(NSString *)location
+                           email:(NSString *)email{
     self = [super init];
     if (self) {
         _username = username;
+        _firstname = firstname;
+        _lastname = lastname;
+        _location = location;
+        _email = email;
     }
     return self;
 }
@@ -37,6 +45,14 @@
     
     [realm beginWriteTransaction];
     [realm deleteObject:user];
+    [realm commitWriteTransaction];
+}
+
++ (void)deleteAllUserProfileData{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    [realm beginWriteTransaction];
+    [realm deleteAllObjects];
     [realm commitWriteTransaction];
 }
 
