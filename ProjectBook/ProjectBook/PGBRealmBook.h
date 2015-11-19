@@ -33,6 +33,7 @@
 + (void)deleteUserBookDataForBook:(PGBRealmBook *)book;
 + (void)deleteAllUserBookData;
 + (RLMResults *)getUserBookData;
++ (NSArray *)getUserBookDataInArray;
 
 @end
 

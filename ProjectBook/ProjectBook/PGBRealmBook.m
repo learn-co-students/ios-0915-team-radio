@@ -80,5 +80,14 @@
     return books;
 }
 
++ (NSArray *)getUserBookDataInArray{
+    RLMResults *books = [PGBRealmBook allObjects];
+    
+    NSMutableArray *result = [[NSMutableArray alloc]init];
+    for (PGBRealmBook *book in books) {
+        [result addObject:book];
+    }
+    return result;
+}
 
 @end

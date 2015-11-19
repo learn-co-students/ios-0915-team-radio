@@ -10,6 +10,4 @@
 
 @interface PGBMyBookViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *myBookListTableView;
-
 @end
