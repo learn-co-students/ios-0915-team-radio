@@ -8,12 +8,15 @@
 
 #import "PGBHomeViewController.h"
 #import "PGBBookCustomTableCell.h"
+#import "PGBDownloadHelper.h"
+#import "PGBBookPageViewController.h"
 
 @interface PGBHomeViewController ()
 
 @property (strong, nonatomic) NSMutableArray *titles;
 @property (strong, nonatomic) NSMutableArray *authors;
 @property (strong, nonatomic) NSMutableArray *genres;
+@property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
 
 @end
 
@@ -77,12 +80,31 @@
     
     if (cell && [cell isKindOfClass:[PGBBookCustomTableCell class]]){
         NSLog(@"selected book is: %@; URL: %@", cell.titleLabel.text, cell.bookURL);
+        
+        NSURL *URL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
+        self.downloadHelper = [[PGBDownloadHelper alloc] init];
+        [self.downloadHelper download:URL];
     }
     else {
         NSLog(@"Didn't get a cell, I fucked UP");
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"bookInfoSegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+//    PGBBookPageViewController *bookPageVC = segue.destinationViewController;
+//    
+//    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
+//    FISLocation *locationAtIndex = self.bookTableView[selectedIndexPath.row];
+//    
+//    
+//    bookPageVC.triviaDetails = locationAtIndex.trivia;
+}
 
 /*
 #pragma mark - Navigation
