@@ -35,6 +35,8 @@
 + (RLMResults *)getUserBookData;
 + (NSArray *)getUserBookDataInArray;
 
++ (void)generateTestBookData;
+
 @end
 
 // This protocol enables typed collections. i.e.:

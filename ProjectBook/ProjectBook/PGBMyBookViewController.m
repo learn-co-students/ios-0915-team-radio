@@ -34,16 +34,9 @@
     
     //begin test data
     //only run this once!
-//    PGBRealmBook *book1 = [[PGBRealmBook alloc]initWithTitle:@"Norwegian" author:@"Hariku Murakami" genre:@"Fiction" language:@"English" downloadURL:@"" bookDescription:@"" datePublished:[NSDate date] ebookID:0];
-//    [PGBRealmBook storeUserBookDataWithBook:book1];
-//    
-//    PGBRealmBook *book2 = [[PGBRealmBook alloc]initWithTitle:@"Kafka on the Shore" author:@"Hariku Murakami" genre:@"Fiction" language:@"English" downloadURL:@"" bookDescription:@"" datePublished:[NSDate date] ebookID:0];
-//    [PGBRealmBook storeUserBookDataWithBook:book2];
-//    
-//    PGBRealmBook *book3 = [[PGBRealmBook alloc]initWithTitle:@"Sup" author:@"Leo" genre:@"Fiction" language:@"English" downloadURL:@"" bookDescription:@"" datePublished:[NSDate date] ebookID:0];
-//    [PGBRealmBook storeUserBookDataWithBook:book3];
-    
-    self.books = @[[PGBRealmBook getUserBookDataInArray][0]];
+    [PGBRealmBook generateTestBookData];
+    NSArray *books = [PGBRealmBook getUserBookDataInArray];
+    self.books = @[books[0]];
     //end test data
     
     [self.myBookListTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];

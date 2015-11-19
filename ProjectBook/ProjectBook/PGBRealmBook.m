@@ -90,4 +90,17 @@
     return result;
 }
 
++(void)generateTestBookData{
+    if (![PGBRealmBook getUserBookDataInArray].count) {
+        PGBRealmBook *book1 = [[PGBRealmBook alloc]initWithTitle:@"Norwegian" author:@"Hariku Murakami" genre:@"Fiction" language:@"English" downloadURL:@"" bookDescription:@"" datePublished:[NSDate date] ebookID:0];
+        [PGBRealmBook storeUserBookDataWithBook:book1];
+        
+        PGBRealmBook *book2 = [[PGBRealmBook alloc]initWithTitle:@"Kafka on the Shore" author:@"Hariku Murakami" genre:@"Fiction" language:@"English" downloadURL:@"" bookDescription:@"" datePublished:[NSDate date] ebookID:0];
+        [PGBRealmBook storeUserBookDataWithBook:book2];
+        
+        PGBRealmBook *book3 = [[PGBRealmBook alloc]initWithTitle:@"Sup" author:@"Leo" genre:@"Fiction" language:@"English" downloadURL:@"" bookDescription:@"" datePublished:[NSDate date] ebookID:0];
+        [PGBRealmBook storeUserBookDataWithBook:book3];
+    }
+}
+
 @end

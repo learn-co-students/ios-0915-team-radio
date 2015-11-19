@@ -338,7 +338,7 @@
 				TargetAttributes = {
 					CBFD3F551BFBA076002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 652FKRA3R9;
+						DevelopmentTeam = 9YUT5P277S;
 					};
 					CBFD3F711BFBA077002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
@@ -620,10 +620,13 @@
 			baseConfigurationReference = F6D5D825C0751CEEFFC1E7B5 /* Pods-ProjectBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ProjectBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.learn-co-students.ios-0915-team-radio.ProjectBook";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github-wojunfeng.learn-co-students.ios-0915-team-radio.ProjectBook";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -633,10 +636,13 @@
 			baseConfigurationReference = 9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ProjectBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.learn-co-students.ios-0915-team-radio.ProjectBook";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github-wojunfeng.learn-co-students.ios-0915-team-radio.ProjectBook";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
