@@ -1,15 +1,15 @@
 //
-//  PGBHomeViewController.m
+//  PGBMyBookViewController.m
 //  ProjectBook
 //
-//  Created by Olivia Lim on 11/18/15.
+//  Created by Wo Jun Feng on 11/19/15.
 //  Copyright © 2015 FIS. All rights reserved.
 //
 
-#import "PGBHomeViewController.h"
+#import "PGBMyBookViewController.h"
 #import "PGBBookCustomTableCell.h"
 
-@interface PGBHomeViewController ()
+@interface PGBMyBookViewController ()
 
 @property (strong, nonatomic) NSMutableArray *titles;
 @property (strong, nonatomic) NSMutableArray *authors;
@@ -17,15 +17,15 @@
 
 @end
 
-@implementation PGBHomeViewController
+@implementation PGBMyBookViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.bookTableView setDelegate:self];
-    [self.bookTableView setDataSource:self];
-   
+    [self.myBookListTableView setDelegate:self];
+    [self.myBookListTableView setDataSource:self];
+    
     self.titles = [[NSMutableArray alloc]init];
     self.authors = [[NSMutableArray alloc]init];
     self.genres = [[NSMutableArray alloc]init];
@@ -39,9 +39,15 @@
     [self.genres addObject:@"Fiction"];
     [self.genres addObject:@"Fiction"];
     
-    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
+    [self.myBookListTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     
-    self.bookTableView.rowHeight = 70;
+    self.myBookListTableView.rowHeight = 70;
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -51,7 +57,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.titles.count;
+   return self.titles.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,18 +67,7 @@
     cell.titleLabel.text = [self.titles objectAtIndex:indexPath.row];
     cell.authorLabel.text = [self.authors objectAtIndex:indexPath.row];
     cell.genreLabel.text = [self.genres objectAtIndex:indexPath.row];
-
+    
     return cell;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
--
-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 @end
