@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *genreLabel;
 @property (weak, nonatomic) IBOutlet UIButton *downloadButton;
+@property (strong, nonatomic) NSURL *bookURL;
 
 @end

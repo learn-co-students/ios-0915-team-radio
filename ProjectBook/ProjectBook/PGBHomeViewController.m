@@ -41,7 +41,7 @@
     
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     
-    self.bookTableView.rowHeight = 70;
+    self.bookTableView.rowHeight = 80;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -59,11 +59,30 @@
     PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
     
     cell.titleLabel.text = [self.titles objectAtIndex:indexPath.row];
+//        cell.titleLabel.text = @"whatuppppppweawjnadjlandlkawndasSKJanskjBSNasjhbjansjhBSawa";
     cell.authorLabel.text = [self.authors objectAtIndex:indexPath.row];
     cell.genreLabel.text = [self.genres objectAtIndex:indexPath.row];
-
+//        cell.genreLabel.text = @"lakjsdlf;ajwleralksjdflajwelkrajsdlfjalwejrlajsdfjlakwerlsal;er";
+    [cell.downloadButton addTarget:self action:@selector(cellDownloadButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
+    
     return cell;
 }
+
+-(void) cellDownloadButtonTapped:(UIButton*) button
+{
+    button.enabled = NO; // FIXME: re-enable button after download succeeds/fails
+    // THIS IS A LIL HACKY — will change if you change the view heirarchy of the cell
+    PGBBookCustomTableCell *cell = (PGBBookCustomTableCell*)[[[button superview] superview] superview];
+    
+    if (cell && [cell isKindOfClass:[PGBBookCustomTableCell class]]){
+        NSLog(@"selected book is: %@; URL: %@", cell.titleLabel.text, cell.bookURL);
+    }
+    else {
+        NSLog(@"Didn't get a cell, I fucked UP");
+    }
+}
+
 
 /*
 #pragma mark - Navigation
