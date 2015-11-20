@@ -130,9 +130,12 @@
 //- (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
 //    NSLog(@"update search result!");
 //}
-//- (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
-//    NSLog(@"update search result");
-//}
+
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+     NSLog(@"editing search bar- text :%@", searchText);
+
+}
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     NSLog(@"search bar cancel button");
@@ -163,5 +166,5 @@
     [self.bookSearchBar resignFirstResponder];
 }
 
--
+
 @end
