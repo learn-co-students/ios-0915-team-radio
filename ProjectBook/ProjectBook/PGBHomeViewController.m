@@ -109,6 +109,14 @@
         // Create the sign up view controller
         PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
         [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+        [logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
+        [logInViewController setFields:PFLogInFieldsUsernameAndPassword
+         | PFLogInFieldsLogInButton
+         | PFLogInFieldsPasswordForgotten
+         | PFLogInFieldsFacebook
+         | PFLogInFieldsSignUpButton
+         | PFLogInFieldsDismissButton];
+
         
         // Assign our sign up controller to be displayed from the login controller
         [logInViewController setSignUpController:signUpViewController];
