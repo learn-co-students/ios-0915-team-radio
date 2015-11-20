@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSMutableArray *authors;
 @property (strong, nonatomic) NSMutableArray *genres;
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
 
 @end
 

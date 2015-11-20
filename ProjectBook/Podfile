@@ -12,6 +12,7 @@ pod 'AFOAuth2Manager'
 pod 'FBSDKLoginKit'
 pod 'ParseFacebookUtilsV4'
 pod 'Masonry'
+pod 'ParseUI'
 
 end
 
