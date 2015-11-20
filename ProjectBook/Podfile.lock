@@ -40,8 +40,8 @@ PODS:
   - FBSDKLoginKit (4.8.0):
     - FBSDKCoreKit
   - Masonry (0.6.3)
-  - Parse (1.9.1):
-    - Bolts/Tasks (>= 1.4.0)
+  - Parse (1.10.0):
+    - Bolts/Tasks (~> 1.5)
   - ParseFacebookUtilsV4 (1.9.1):
     - Bolts/Tasks (>= 1.5)
     - FBSDKCoreKit (~> 4.8)
@@ -71,7 +71,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8
   FBSDKLoginKit: d893fcbb98d854496925e9ff73c67b896982d3c4
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
-  Parse: 54a965c8c19a6dde90284ab654dbcc77ef8c001b
+  Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
   ParseFacebookUtilsV4: eab9b4ade12f0800b4d30f6b808bca55ce17a0e9
   ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b
   Realm: 3ce8448151c571e90b85002d984d7f93f54fc8a3
