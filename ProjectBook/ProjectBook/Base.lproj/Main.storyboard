@@ -107,25 +107,6 @@
             </objects>
             <point key="canvasLocation" x="4784" y="379"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Nqz-Bf-Fwd">
-            <objects>
-                <viewController id="caU-hI-abK" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wCu-gj-i3U"/>
-                        <viewControllerLayoutGuide type="bottom" id="vJa-7R-nNt"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vIw-ku-DBe">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Sqv-J8-xmD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4842" y="-466"/>
-        </scene>
         <!--Book Info-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -138,38 +119,136 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3T-ST-jq8">
-                                <rect key="frame" x="249" y="168" width="103" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Open in iBooks"/>
-                                <connections>
-                                    <action selector="readButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ip7-i2-Zk4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDV-LX-cw0">
-                                <rect key="frame" x="266" y="130" width="69" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Download"/>
-                                <connections>
-                                    <action selector="downloadButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CLE-G2-1jf"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="91fJxgs69QL._SL1500_" translatesAutoresizingMaskIntoConstraints="NO" id="go3-ih-tNa" userLabel="BookCover">
+                                <rect key="frame" x="0.0" y="64" width="240" height="275"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wAv-da-FUx" userLabel="Book Info">
+                                <rect key="frame" x="240" y="64" width="360" height="275"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="SO8-st-1f3">
+                                        <rect key="frame" x="18" y="14" width="324" height="247"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f27-z1-o1N">
+                                                <rect key="frame" x="0.0" y="0.0" width="324" height="46"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA5-0Q-GKZ">
+                                                <rect key="frame" x="0.0" y="49" width="324" height="45"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt5-uI-cnf">
+                                                <rect key="frame" x="0.0" y="97" width="324" height="39"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year Published" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tB4-vL-ZbJ">
+                                                <rect key="frame" x="0.0" y="139" width="324" height="46"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX6-mt-LxQ">
+                                                <rect key="frame" x="0.0" y="188" width="324" height="59"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.8980392157" green="0.3411764706" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="SO8-st-1f3" firstAttribute="width" secondItem="wAv-da-FUx" secondAttribute="width" multiplier="9/10" id="7Ii-je-fkw"/>
+                                    <constraint firstItem="SO8-st-1f3" firstAttribute="centerX" secondItem="wAv-da-FUx" secondAttribute="centerX" id="SAI-nu-kAY"/>
+                                    <constraint firstItem="SO8-st-1f3" firstAttribute="height" secondItem="wAv-da-FUx" secondAttribute="height" multiplier="0.9" id="bbo-nh-EYe"/>
+                                    <constraint firstItem="SO8-st-1f3" firstAttribute="centerY" secondItem="wAv-da-FUx" secondAttribute="centerY" id="yzC-xn-kNY"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fcU-hx-NGB">
+                                <rect key="frame" x="0.0" y="389" width="600" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XkE-X9-fZs" userLabel="Links">
+                                <rect key="frame" x="0.0" y="339" width="600" height="50"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MKH-ap-Wlz">
+                                        <rect key="frame" x="30" y="10" width="540" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDV-LX-cw0">
+                                                <rect key="frame" x="0.0" y="0.0" width="270" height="30"/>
+                                                <animations/>
+                                                <state key="normal" title="Download"/>
+                                                <connections>
+                                                    <action selector="downloadButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CLE-G2-1jf"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3T-ST-jq8">
+                                                <rect key="frame" x="270" y="0.0" width="270" height="30"/>
+                                                <animations/>
+                                                <state key="normal" title="Open in iBooks"/>
+                                                <connections>
+                                                    <action selector="readButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ip7-i2-Zk4"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="YDV-LX-cw0" firstAttribute="width" secondItem="MKH-ap-Wlz" secondAttribute="width" multiplier="1/2" id="evr-UY-29i"/>
+                                            <constraint firstItem="S3T-ST-jq8" firstAttribute="width" secondItem="MKH-ap-Wlz" secondAttribute="width" multiplier="1/2" id="wVQ-rA-syi"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.73717619243421051" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="MKH-ap-Wlz" firstAttribute="centerY" secondItem="XkE-X9-fZs" secondAttribute="centerY" id="Bhd-z1-zOX"/>
+                                    <constraint firstItem="MKH-ap-Wlz" firstAttribute="width" secondItem="XkE-X9-fZs" secondAttribute="width" multiplier="9/10" id="VCv-qx-brB"/>
+                                    <constraint firstItem="MKH-ap-Wlz" firstAttribute="centerX" secondItem="XkE-X9-fZs" secondAttribute="centerX" id="pvK-BY-bpy"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="S3T-ST-jq8" firstAttribute="centerX" secondItem="YDV-LX-cw0" secondAttribute="centerX" id="IBX-wI-dxX"/>
-                            <constraint firstItem="YDV-LX-cw0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nVU-W8-dxs"/>
+                            <constraint firstItem="wAv-da-FUx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="3/5" id="46L-dy-pzM"/>
+                            <constraint firstItem="fcU-hx-NGB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7ZJ-jD-ZYs"/>
+                            <constraint firstItem="go3-ih-tNa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="9Ii-RT-SfI"/>
+                            <constraint firstItem="XkE-X9-fZs" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="DsV-U6-HrR"/>
+                            <constraint firstItem="wAv-da-FUx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="11/24" id="Ksw-0A-A6q"/>
+                            <constraint firstItem="go3-ih-tNa" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="11/24" id="L2l-Wj-Wbv"/>
+                            <constraint firstItem="wAv-da-FUx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="OED-tT-Qtt"/>
+                            <constraint firstItem="fcU-hx-NGB" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="P6c-QD-dlO"/>
+                            <constraint firstItem="XkE-X9-fZs" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="1/12" id="Qrp-9G-aiM"/>
+                            <constraint firstItem="go3-ih-tNa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="S6U-vY-AB8"/>
+                            <constraint firstItem="wAv-da-FUx" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="WdC-o5-Aqo"/>
+                            <constraint firstItem="XkE-X9-fZs" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="ayo-zK-g0V"/>
+                            <constraint firstItem="fcU-hx-NGB" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="b8u-gH-dWB"/>
+                            <constraint firstItem="XkE-X9-fZs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cTd-tI-98g"/>
+                            <constraint firstItem="go3-ih-tNa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="2/5" id="f7N-eS-QYt"/>
+                            <constraint firstItem="XkE-X9-fZs" firstAttribute="top" secondItem="wAv-da-FUx" secondAttribute="bottom" id="gKq-zc-Inp"/>
+                            <constraint firstItem="XkE-X9-fZs" firstAttribute="bottom" secondItem="fcU-hx-NGB" secondAttribute="top" id="yzE-I9-dS7"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="authorLabel" destination="OA5-0Q-GKZ" id="cDd-ni-fOf"/>
+                        <outlet property="bookDescriptionTV" destination="fcU-hx-NGB" id="noY-ys-jFB"/>
                         <outlet property="downloadButton" destination="YDV-LX-cw0" id="ZwV-dT-SiP"/>
+                        <outlet property="genreLabel" destination="qt5-uI-cnf" id="E8e-LZ-Jgk"/>
                         <outlet property="iBooksButton" destination="S3T-ST-jq8" id="vhc-fJ-4wx"/>
+                        <outlet property="languageLabel" destination="lX6-mt-LxQ" id="sjZ-Cj-JEf"/>
+                        <outlet property="titleLabel" destination="f27-z1-o1N" id="Dba-ah-c6u"/>
+                        <outlet property="yearLabel" destination="tB4-vL-ZbJ" id="rIx-My-HnK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5760" y="395"/>
+            <point key="canvasLocation" x="5698" y="379"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="xjl-Hl-bhT">
@@ -221,4 +300,7 @@
             <point key="canvasLocation" x="4009" y="379"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="91fJxgs69QL._SL1500_" width="971" height="1500"/>
+    </resources>
 </document>

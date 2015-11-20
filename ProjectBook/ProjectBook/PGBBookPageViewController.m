@@ -18,6 +18,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *downloadButton;
 @property (weak, nonatomic) IBOutlet UIButton *iBooksButton;
 
+@property (weak, nonatomic) IBOutlet UITextView *bookDescriptionTV;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *genreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yearLabel;
+@property (weak, nonatomic) IBOutlet UILabel *languageLabel;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIScrollView *bookDescriptionSV;
+
+
 @end
 
 @implementation PGBBookPageViewController
@@ -26,7 +36,30 @@
 {
     [super viewDidLoad];
 
-    NSLog(@"view loaded");
+//    NSLog(@"view loaded");
+    
+    [PGBRealmBook generateTestBookData];
+    NSArray *books = [PGBRealmBook getUserBookDataInArray];
+    self.books = @[books[0], books[1], books[2]];
+    
+    self.bookDescriptionTV.editable = NO;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    NSString *datePublished = [dateFormatter stringFromDate:[NSDate date]];
+    
+    self.titleLabel.text = self.titleBook;
+    self.authorLabel.text = self.author;
+    self.genreLabel.text = self.genre;
+    self.yearLabel.text = datePublished;
+    self.languageLabel.text = self.language;
+    self.bookDescriptionTV.text = self.bookDescription;
+    
+    
+//    //dynamic bookDescriptionTV height
+//    CGRect rect = self.bookDescriptionTV.frame;
+//    rect.size.height = self.bookDescriptionTV.contentSize.height;
+//    self.bookDescriptionTV.frame = rect;
+    
 }
 
 - (IBAction)downloadButtonTapped:(id)sender
@@ -35,14 +68,11 @@
     self.downloadHelper = [[PGBDownloadHelper alloc] init];
     [self.downloadHelper download:URL];
     
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    loginButton.center = self.view.center;
-    [self.view addSubview:loginButton];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-
+    
     if (![ PFUser currentUser]) {
         // do something
     }
