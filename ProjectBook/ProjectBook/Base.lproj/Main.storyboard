@@ -91,7 +91,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="NOVEL" id="lYG-Rt-OR9">
-                        <barButtonItem key="rightBarButtonItem" title="Login" id="cXi-sA-yTG"/>
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="cXi-sA-yTG">
+                            <connections>
+                                <action selector="loginButtonTouched:" destination="yQ5-Zj-1vL" id="Lil-JE-g7f"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bookTableView" destination="Nvv-5i-OGd" id="eWL-f4-gUR"/>
