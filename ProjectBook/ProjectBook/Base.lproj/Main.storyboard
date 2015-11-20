@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EtB-Vp-Xzm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EtB-Vp-Xzm">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -65,7 +65,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a4w-ua-gG9" id="OIu-z5-m81">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                             <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -98,9 +98,16 @@
                             <constraint firstItem="U1Y-Pf-EIo" firstAttribute="bottom" secondItem="bG3-i2-RbI" secondAttribute="top" id="vTu-pS-ilS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="NOVEL" id="lYG-Rt-OR9"/>
+                    <navigationItem key="navigationItem" title="NOVEL" id="lYG-Rt-OR9">
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="cXi-sA-yTG">
+                            <connections>
+                                <action selector="loginButtonTouched:" destination="yQ5-Zj-1vL" id="Lil-JE-g7f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bookTableView" destination="Nvv-5i-OGd" id="eWL-f4-gUR"/>
+                        <outlet property="loginButton" destination="cXi-sA-yTG" id="ZTq-IQ-dsU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qR3-M7-lRC" userLabel="First Responder" sceneMemberID="firstResponder"/>
