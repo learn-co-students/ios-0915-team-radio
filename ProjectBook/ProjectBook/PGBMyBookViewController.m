@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *bookSearchBar;
 //@property (strong, nonatomic) IBOutlet UISearchController *bookSearchController;
 @property (strong, nonatomic) IBOutlet UISearchController *bookSearchController;
+@property (strong, nonatomic) NSPredicate *searchFilter;
 
 
 @property (strong, nonatomic)NSArray *books;
@@ -26,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     //begin test data
     [PGBRealmBook generateTestBookData];
     NSArray *books = [PGBRealmBook getUserBookDataInArray];
@@ -49,7 +50,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-//    NSLog(@"view did appear!!");
+    //    NSLog(@"view did appear!!");
 }
 
 - (IBAction)bookSegmentedControlSelected:(UISegmentedControl *)sender {
@@ -82,7 +83,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   return self.books.count;
+    return self.books.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -98,13 +99,13 @@
         
         return cell;
     }
-
+    
     return [[UITableViewCell alloc]init];
 }
 
 //-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
 //    // Tells the table data source to reload when text changes
-//    
+//
 ////    [self filterContentForSearchText:searchString scope:
 ////     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
 //    // Return YES to cause the search result table view to be reloaded.
@@ -133,12 +134,18 @@
 
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-     NSLog(@"editing search bar- text :%@", searchText);
-
+    NSLog(@"editing search bar- text :%@", searchText);
+    
+    self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS %@",
+                              searchText];
+    
+    self.books = [self.books filteredArrayUsingPredicate:self.searchFilter];
+    [self.myBookListTableView reloadData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     NSLog(@"search bar cancel button");
+    
     
     [self dismissSearchBar];
 }
