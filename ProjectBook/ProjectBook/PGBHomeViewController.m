@@ -10,12 +10,11 @@
 #import "PGBBookCustomTableCell.h"
 #import "PGBDownloadHelper.h"
 #import "PGBBookPageViewController.h"
+#import "PGBRealmBook.h"
 
 @interface PGBHomeViewController ()
 
-@property (strong, nonatomic) NSMutableArray *titles;
-@property (strong, nonatomic) NSMutableArray *authors;
-@property (strong, nonatomic) NSMutableArray *genres;
+@property (strong, nonatomic) NSArray *books;
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
 
@@ -29,19 +28,10 @@
     
     [self.bookTableView setDelegate:self];
     [self.bookTableView setDataSource:self];
-   
-    self.titles = [[NSMutableArray alloc]init];
-    self.authors = [[NSMutableArray alloc]init];
-    self.genres = [[NSMutableArray alloc]init];
     
-    [self.titles addObject:@"Norwegian Wood"];
-    [self.titles addObject:@"Kafka on the Shore"];
-    
-    [self.authors addObject:@"Haruki Murakami"];
-    [self.authors addObject:@"Haruki Murakami"];
-    
-    [self.genres addObject:@"Fiction"];
-    [self.genres addObject:@"Fiction"];
+    [PGBRealmBook generateTestBookData];
+    self.books = [PGBRealmBook getUserBookDataInArray];
+    self.books = @[self.books[0], self.books[1], self.books[2]];
     
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     
@@ -55,18 +45,18 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.titles.count;
+    return self.books.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
     
-    cell.titleLabel.text = [self.titles objectAtIndex:indexPath.row];
-//        cell.titleLabel.text = @"whatuppppppweawjnadjlandlkawndasSKJanskjBSNasjhbjansjhBSawa";
-    cell.authorLabel.text = [self.authors objectAtIndex:indexPath.row];
-    cell.genreLabel.text = [self.genres objectAtIndex:indexPath.row];
-//        cell.genreLabel.text = @"lakjsdlf;ajwleralksjdflajwelkrajsdlfjalwejrlajsdfjlakwerlsal;er";
+    PGBRealmBook *book = self.books[indexPath.row];
+    cell.titleLabel.text = book.title;
+    cell.authorLabel.text = book.author;
+    cell.genreLabel.text = book.genre;
+    
     [cell.downloadButton addTarget:self action:@selector(cellDownloadButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
     
@@ -96,9 +86,7 @@
     [self performSegueWithIdentifier:@"bookInfoSegue" sender:self];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
-}
 - (IBAction)loginButtonTouched:(id)sender {
     
     if (![PFUser currentUser]) { // No user logged in
@@ -125,10 +113,10 @@
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
-        //    } else {
-//        self.loginButton.title = @"Log out";
-//        
-//    }
+    //    } else {
+    //        self.loginButton.title = @"Log out";
+    //
+    //    }
 }
 
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -184,8 +172,24 @@
                           cancelButtonTitle:@"ok"
                           otherButtonTitles:nil] show];
     }
-    
     return informationComplete;
+    
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    PGBBookPageViewController *bookPageVC = segue.destinationViewController;
+    
+    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
+    PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
+    
+    bookPageVC.titleBook = bookAtIndexPath.title;
+    bookPageVC.author = bookAtIndexPath.author;
+    bookPageVC.genre = bookAtIndexPath.genre;
+    bookPageVC.language = bookAtIndexPath.language;
+    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
+    bookPageVC.ebookID = bookAtIndexPath.ebookID;
+    bookPageVC.books = bookPageVC.books;
+    
 }
 
 // Sent to the delegate when a PFUser is signed up.
