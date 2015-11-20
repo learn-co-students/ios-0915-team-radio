@@ -102,13 +102,11 @@
 - (IBAction)loginButtonTouched:(id)sender {
     
     if (![PFUser currentUser]) { // No user logged in
+        self.loginButton.title = @"Login";
         // Create the log in view controller
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
-        [logInViewController setDelegate:self]; // Set ourselves as the delegate
         
-        // Create the sign up view controller
-        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
-        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+        [logInViewController setDelegate:self]; // Set ourselves as the delegate
         [logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
         [logInViewController setFields:PFLogInFieldsUsernameAndPassword
          | PFLogInFieldsLogInButton
@@ -116,7 +114,10 @@
          | PFLogInFieldsFacebook
          | PFLogInFieldsSignUpButton
          | PFLogInFieldsDismissButton];
-
+        // Create the sign up view controller
+        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+        
         
         // Assign our sign up controller to be displayed from the login controller
         [logInViewController setSignUpController:signUpViewController];
@@ -124,6 +125,10 @@
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
+        //    } else {
+//        self.loginButton.title = @"Log out";
+//        
+//    }
 }
 
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -143,6 +148,9 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
+    self.loginButton.title = @"Log out";
+    [PFUser logOut];
+    PFUser *currentUser = [PFUser currentUser];
 }
 
 // Sent to the delegate when the log in attempt fails.
