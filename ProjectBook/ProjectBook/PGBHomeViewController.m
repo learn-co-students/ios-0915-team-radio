@@ -86,9 +86,7 @@
     [self performSegueWithIdentifier:@"bookInfoSegue" sender:self];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
-}
 - (IBAction)loginButtonTouched:(id)sender {
     
     if (![PFUser currentUser]) { // No user logged in
@@ -115,10 +113,10 @@
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
-        //    } else {
-//        self.loginButton.title = @"Log out";
-//        
-//    }
+    //    } else {
+    //        self.loginButton.title = @"Log out";
+    //
+    //    }
 }
 
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -174,7 +172,11 @@
                           cancelButtonTitle:@"ok"
                           otherButtonTitles:nil] show];
     }
+    return informationComplete;
     
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     PGBBookPageViewController *bookPageVC = segue.destinationViewController;
     
     NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
@@ -187,8 +189,7 @@
     bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
     bookPageVC.ebookID = bookAtIndexPath.ebookID;
     bookPageVC.books = bookPageVC.books;
-;
-    return informationComplete;
+    
 }
 
 // Sent to the delegate when a PFUser is signed up.
