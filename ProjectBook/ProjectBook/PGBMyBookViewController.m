@@ -10,15 +10,14 @@
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
 
-@interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
 @property (weak, nonatomic) IBOutlet UITableView *myBookListTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *bookSearchBar;
+//@property (strong, nonatomic) IBOutlet UISearchController *bookSearchController;
+@property (strong, nonatomic) IBOutlet UISearchController *bookSearchController;
 
-//@property (strong, nonatomic) NSMutableArray *titles;
-//@property (strong, nonatomic) NSMutableArray *authors;
-//@property (strong, nonatomic) NSMutableArray *genres;
-//@property (strong, nonatomic)NSArray *books;
+
 @property (strong, nonatomic)NSArray *books;
 
 @end
@@ -29,7 +28,6 @@
     [super viewDidLoad];
 
     //begin test data
-    //only run this once!
     [PGBRealmBook generateTestBookData];
     NSArray *books = [PGBRealmBook getUserBookDataInArray];
     self.books = @[books[0]];
@@ -41,6 +39,7 @@
     self.myBookListTableView.delegate = self;
     self.myBookListTableView.dataSource = self;
     self.bookSearchBar.delegate = self;
+    self.bookSearchController.delegate = self;
     
 }
 
@@ -50,6 +49,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+//    NSLog(@"view did appear!!");
 }
 
 - (IBAction)bookSegmentedControlSelected:(UISegmentedControl *)sender {
@@ -102,21 +102,66 @@
     return [[UITableViewCell alloc]init];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    // Tells the table data source to reload when text changes
+//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+//    // Tells the table data source to reload when text changes
+//    
+////    [self filterContentForSearchText:searchString scope:
+////     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+//    // Return YES to cause the search result table view to be reloaded.
+//    return YES;
+//}
+//
+//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+//    // Tells the table data source to reload when scope bar selection changes
+////    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:
+////     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+//    // Return YES to cause the search result table view to be reloaded.
+//    return YES;
+//}
+//- (void)didDismissSearchController:(UISearchController *)searchController{
+//    self.bookSearchBar.hidden = YES;
+//}
+//
+//- (void)willDismissSearchController:(UISearchController *)searchController{
+//    self.bookSearchBar.hidden = YES;
+//        NSLog(@"dismiss seach contrlle");
+//}
+//
+//- (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
+//    NSLog(@"update search result!");
+//}
+//- (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
+//    NSLog(@"update search result");
+//}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    NSLog(@"search bar cancel button");
     
-//    [self filterContentForSearchText:searchString scope:
-//     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    // Return YES to cause the search result table view to be reloaded.
+    [self dismissSearchBar];
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
+    NSLog(@"search bar should end edit");
+    
+    [self dismissSearchBar];
+    
     return YES;
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
-    // Tells the table data source to reload when scope bar selection changes
-//    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:
-//     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
-    // Return YES to cause the search result table view to be reloaded.
-    return YES;
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [self dismissSearchBar];
 }
 
+- (void)dismissSearchBar{
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.2;
+    [self.bookSearchBar.layer addAnimation:animation forKey:nil];
+    
+    self.bookSearchBar.hidden = YES;
+    
+    [self.bookSearchBar resignFirstResponder];
+}
+
+-
 @end

@@ -21,10 +21,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eF-kU-RgM" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="20" width="600" height="40.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REH-Ll-jjC">
-                                        <rect key="frame" x="263" y="10" width="75" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="LIBRARY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REH-Ll-jjC">
+                                        <rect key="frame" x="266.5" y="10" width="69" height="20.5"/>
                                         <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -36,8 +36,8 @@
                                             <action selector="searchButtonTapped:" destination="yKG-OF-Y8Y" eventType="touchUpInside" id="nK5-41-hEQ"/>
                                         </connections>
                                     </button>
-                                    <searchBar hidden="YES" contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="ZO8-da-rlE">
-                                        <rect key="frame" x="0.0" y="-1.5" width="600" height="44"/>
+                                    <searchBar hidden="YES" contentMode="redraw" text="" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZO8-da-rlE">
+                                        <rect key="frame" x="0.0" y="-2" width="600" height="44"/>
                                         <animations/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -121,19 +121,9 @@
                     <connections>
                         <outlet property="bookSearchBar" destination="ZO8-da-rlE" id="kQl-Av-Bel"/>
                         <outlet property="myBookListTableView" destination="nxV-qy-BJq" id="67j-DM-S1v"/>
-                        <outlet property="searchDisplayController" destination="Gnw-jr-ocb" id="gCe-mO-XmV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcr-WQ-e5m" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Gnw-jr-ocb">
-                    <connections>
-                        <outlet property="delegate" destination="yKG-OF-Y8Y" id="Jmg-AE-O4f"/>
-                        <outlet property="searchBar" destination="ZO8-da-rlE" id="Rgt-Nm-lNq"/>
-                        <outlet property="searchContentsController" destination="yKG-OF-Y8Y" id="b90-Bs-Zgu"/>
-                        <outlet property="searchResultsDataSource" destination="yKG-OF-Y8Y" id="QTL-kI-XpT"/>
-                        <outlet property="searchResultsDelegate" destination="yKG-OF-Y8Y" id="Y3f-Ws-lXH"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1181" y="182"/>
         </scene>
