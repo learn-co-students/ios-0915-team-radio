@@ -32,16 +32,30 @@
                                         <rect key="frame" x="544" y="5" width="48" height="30"/>
                                         <animations/>
                                         <state key="normal" title="Search"/>
+                                        <connections>
+                                            <action selector="searchButtonTapped:" destination="yKG-OF-Y8Y" eventType="touchUpInside" id="nK5-41-hEQ"/>
+                                        </connections>
                                     </button>
+                                    <searchBar hidden="YES" contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="ZO8-da-rlE">
+                                        <rect key="frame" x="0.0" y="-1.5" width="600" height="44"/>
+                                        <animations/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="yKG-OF-Y8Y" id="TXi-NS-mff"/>
+                                        </connections>
+                                    </searchBar>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="ZO8-da-rlE" firstAttribute="trailing" secondItem="4eF-kU-RgM" secondAttribute="trailing" id="63C-gk-Ma0"/>
                                     <constraint firstAttribute="height" secondItem="REH-Ll-jjC" secondAttribute="height" constant="20" id="AIy-6d-UpX"/>
                                     <constraint firstItem="kax-dL-Apr" firstAttribute="trailing" secondItem="4eF-kU-RgM" secondAttribute="trailingMargin" id="EmA-Sc-gd5"/>
                                     <constraint firstItem="kax-dL-Apr" firstAttribute="centerY" secondItem="4eF-kU-RgM" secondAttribute="centerY" id="H0u-dG-AbQ"/>
+                                    <constraint firstItem="ZO8-da-rlE" firstAttribute="leading" secondItem="4eF-kU-RgM" secondAttribute="leading" id="eHq-Ru-ZzX"/>
                                     <constraint firstItem="REH-Ll-jjC" firstAttribute="centerY" secondItem="4eF-kU-RgM" secondAttribute="centerY" id="ngp-sX-OWE"/>
                                     <constraint firstItem="REH-Ll-jjC" firstAttribute="centerX" secondItem="4eF-kU-RgM" secondAttribute="centerX" id="pxZ-L6-PSJ"/>
+                                    <constraint firstItem="ZO8-da-rlE" firstAttribute="centerY" secondItem="4eF-kU-RgM" secondAttribute="centerY" id="x0E-lS-RQC"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fs1-4i-Ga1" userLabel="Segment View">
@@ -105,10 +119,21 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="Vzk-z3-8q6"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="bookSearchBar" destination="ZO8-da-rlE" id="kQl-Av-Bel"/>
                         <outlet property="myBookListTableView" destination="nxV-qy-BJq" id="67j-DM-S1v"/>
+                        <outlet property="searchDisplayController" destination="Gnw-jr-ocb" id="gCe-mO-XmV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcr-WQ-e5m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Gnw-jr-ocb">
+                    <connections>
+                        <outlet property="delegate" destination="yKG-OF-Y8Y" id="Jmg-AE-O4f"/>
+                        <outlet property="searchBar" destination="ZO8-da-rlE" id="Rgt-Nm-lNq"/>
+                        <outlet property="searchContentsController" destination="yKG-OF-Y8Y" id="b90-Bs-Zgu"/>
+                        <outlet property="searchResultsDataSource" destination="yKG-OF-Y8Y" id="QTL-kI-XpT"/>
+                        <outlet property="searchResultsDelegate" destination="yKG-OF-Y8Y" id="Y3f-Ws-lXH"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1181" y="182"/>
         </scene>

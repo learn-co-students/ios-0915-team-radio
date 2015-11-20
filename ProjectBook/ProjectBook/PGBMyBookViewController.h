@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PGBMyBookViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface PGBMyBookViewController : UIViewController 
 
 @end

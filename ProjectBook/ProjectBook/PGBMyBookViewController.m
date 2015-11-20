@@ -10,14 +10,14 @@
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
 
-@interface PGBMyBookViewController ()
+@interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *myBookListTableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *bookSearchBar;
 
-@property (strong, nonatomic) NSMutableArray *titles;
-@property (strong, nonatomic) NSMutableArray *authors;
-@property (strong, nonatomic) NSMutableArray *genres;
-
+//@property (strong, nonatomic) NSMutableArray *titles;
+//@property (strong, nonatomic) NSMutableArray *authors;
+//@property (strong, nonatomic) NSMutableArray *genres;
 //@property (strong, nonatomic)NSArray *books;
 @property (strong, nonatomic)NSArray *books;
 
@@ -27,11 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    [self.myBookListTableView setDelegate:self];
-    [self.myBookListTableView setDataSource:self];
-    
+
     //begin test data
     //only run this once!
     [PGBRealmBook generateTestBookData];
@@ -40,11 +36,24 @@
     //end test data
     
     [self.myBookListTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
-    
     self.myBookListTableView.rowHeight = 70;
+    
+    self.myBookListTableView.delegate = self;
+    self.myBookListTableView.dataSource = self;
+    self.bookSearchBar.delegate = self;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 - (IBAction)bookSegmentedControlSelected:(UISegmentedControl *)sender {
+    
     NSInteger selectedSegment = sender.selectedSegmentIndex;
     
     NSArray *books = [PGBRealmBook getUserBookDataInArray];
@@ -61,26 +70,53 @@
     [self.myBookListTableView reloadData];
 }
 
+- (IBAction)searchButtonTapped:(id)sender {
+    self.bookSearchBar.hidden = NO;
+    [self.bookSearchBar becomeFirstResponder];
+}
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+
+#pragma mark - Delegate Methods
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
    return self.books.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
-
-    PGBRealmBook *book = self.books[indexPath.row];
-    cell.titleLabel.text = book.title;
-    cell.authorLabel.text = book.author;
-    cell.genreLabel.text = book.genre;
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return cell;
+    if (tableView == self.myBookListTableView) {
+        
+        PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
+        
+        PGBRealmBook *book = self.books[indexPath.row];
+        cell.titleLabel.text = book.title;
+        cell.authorLabel.text = book.author;
+        cell.genreLabel.text = book.genre;
+        
+        return cell;
+    }
+
+    return [[UITableViewCell alloc]init];
 }
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    // Tells the table data source to reload when text changes
+    
+//    [self filterContentForSearchText:searchString scope:
+//     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+    // Tells the table data source to reload when scope bar selection changes
+//    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:
+//     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
 @end
