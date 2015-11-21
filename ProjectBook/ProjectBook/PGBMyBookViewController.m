@@ -75,10 +75,13 @@
 }
 
 - (IBAction)searchButtonTapped:(id)sender {
-//    [self.bookTableView setContentOffset:CGPointMake(0.0f, -50.0f) animated:YES];
+    [self.bookTableView setContentOffset:CGPointZero animated:YES];
     [self.bookSearchBar becomeFirstResponder];
 }
 
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    [self.bookSearchBar becomeFirstResponder];
+}
 
 #pragma mark - Delegate Methods
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
