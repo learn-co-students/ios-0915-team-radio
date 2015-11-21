@@ -75,6 +75,7 @@
 }
 
 - (IBAction)searchButtonTapped:(id)sender {
+//    [self.bookTableView setContentOffset:CGPointMake(0.0f, -50.0f) animated:YES];
     [self.bookSearchBar becomeFirstResponder];
 }
 
@@ -134,57 +135,5 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.bookSearchBar resignFirstResponder];
 }
-
-//- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-//    [self dismissSearchBar];
-//}
-//
-//- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
-//    [self dismissSearchBar];
-//
-//    return YES;
-//}
-//
-//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-//    [self dismissSearchBar];
-//}
-
-//- (void)dismissSearchBar{
-//    CATransition *animation = [CATransition animation];
-//    animation.type = kCATransitionFade;
-//    animation.duration = 0.2;
-//    [self.bookSearchBar.layer addAnimation:animation forKey:nil];
-//
-//    self.bookSearchBar.text = @"";
-////    self.bookSearchBar.hidden = YES;
-//
-//    [self.bookSearchBar resignFirstResponder];
-//
-//    if (self.selectedSegment == 0) {
-//        NSLog(@"selected segment index = 0");
-//
-//        if ([self.bookSearchBar.text isEqualToString:@""]) {
-//            self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == 1 "];
-//        } else {
-//            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == 1", self.bookSearchBar.text];
-//        }
-//
-//        self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
-//    }
-//    else if (self.selectedSegment == 1) {
-//        NSLog(@"selected segment index = 1");
-//
-//        if ([self.bookSearchBar.text isEqualToString:@""]) {
-//            self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == 1 "];
-//        } else {
-//            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == 1", self.bookSearchBar.text];
-//        }
-//
-//        self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
-//    }
-//
-//    [self.bookTableView reloadData];
-//}
-
 
 @end
