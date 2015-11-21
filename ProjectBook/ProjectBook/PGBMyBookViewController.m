@@ -12,15 +12,14 @@
 
 @interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *myBookListTableView;
-//@property (weak, nonatomic) IBOutlet UISearchBar *bookSearchBar;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *bookSegmentControl;
+@property (weak, nonatomic) IBOutlet UITableView *bookTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *bookSearchBar;
 
 @property (strong, nonatomic) NSPredicate *searchFilter;
 
 @property (strong, nonatomic)NSArray *books;
 @property (strong, nonatomic)NSArray *booksDisplayed;
-@property (assign, nonatomic)NSInteger selectedSegment;
 
 @end
 
@@ -29,11 +28,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.myBookListTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
-    self.myBookListTableView.rowHeight = 70;
+    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
+    self.bookTableView.rowHeight = 70;
     
-    self.myBookListTableView.delegate = self;
-    self.myBookListTableView.dataSource = self;
+    self.bookTableView.delegate = self;
+    self.bookTableView.dataSource = self;
     self.bookSearchBar.delegate = self;
 }
 
@@ -49,13 +48,9 @@
     self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
 }
 
-
 - (IBAction)bookSegmentedControlSelected:(UISegmentedControl *)sender {
     
-    self.selectedSegment = sender.selectedSegmentIndex;
-    
-    if (self.selectedSegment == 0) {
-        NSLog(@"selected segment index = 0");
+    if (self.bookSegmentControl.selectedSegmentIndex == 0) {
         
         if ([self.bookSearchBar.text isEqualToString:@""]) {
             self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == 1 "];
@@ -65,8 +60,7 @@
         
         self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
     }
-    else if (self.selectedSegment == 1) {
-        NSLog(@"selected segment index = 1");
+    else if (self.bookSegmentControl.selectedSegmentIndex == 1) {
         
         if ([self.bookSearchBar.text isEqualToString:@""]) {
             self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == 1 "];
@@ -77,11 +71,10 @@
         self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
     }
     
-    [self.myBookListTableView reloadData];
+    [self.bookTableView reloadData];
 }
 
 - (IBAction)searchButtonTapped:(id)sender {
-//    self.bookSearchBar.hidden = NO;
     [self.bookSearchBar becomeFirstResponder];
 }
 
@@ -97,7 +90,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (tableView == self.myBookListTableView) {
+    if (tableView == self.bookTableView) {
         
         PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
         
@@ -113,30 +106,29 @@
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    NSLog(@"editing search bar- text :%@", searchText);
     
     if (![searchText isEqualToString:@""]) {
-        if (self.selectedSegment == 0) {
+        if (self.bookSegmentControl.selectedSegmentIndex == 0) {
             self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == 1", searchText];
             self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
-        } else if (self.selectedSegment == 1){
+        } else if (self.bookSegmentControl.selectedSegmentIndex == 1){
             self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == 1", searchText];
             self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
         }
     } else {
-        if (self.selectedSegment == 0) {
+        if (self.bookSegmentControl.selectedSegmentIndex == 0) {
             NSLog(@"selected segment index = 0");
             self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == 1"];
             self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
         }
-        else if (self.selectedSegment == 1) {
+        else if (self.bookSegmentControl.selectedSegmentIndex == 1) {
             NSLog(@"selected segment index = 1");
             self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == 1"];
             self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
         }
     }
-
-    [self.myBookListTableView reloadData];
+    
+    [self.bookTableView reloadData];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -162,36 +154,36 @@
 //    animation.type = kCATransitionFade;
 //    animation.duration = 0.2;
 //    [self.bookSearchBar.layer addAnimation:animation forKey:nil];
-//    
+//
 //    self.bookSearchBar.text = @"";
 ////    self.bookSearchBar.hidden = YES;
-//    
+//
 //    [self.bookSearchBar resignFirstResponder];
-//    
+//
 //    if (self.selectedSegment == 0) {
 //        NSLog(@"selected segment index = 0");
-//        
+//
 //        if ([self.bookSearchBar.text isEqualToString:@""]) {
 //            self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == 1 "];
 //        } else {
 //            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == 1", self.bookSearchBar.text];
 //        }
-//        
+//
 //        self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
 //    }
 //    else if (self.selectedSegment == 1) {
 //        NSLog(@"selected segment index = 1");
-//        
+//
 //        if ([self.bookSearchBar.text isEqualToString:@""]) {
 //            self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == 1 "];
 //        } else {
 //            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == 1", self.bookSearchBar.text];
 //        }
-//        
+//
 //        self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
 //    }
-//    
-//    [self.myBookListTableView reloadData];
+//
+//    [self.bookTableView reloadData];
 //}
 
 
