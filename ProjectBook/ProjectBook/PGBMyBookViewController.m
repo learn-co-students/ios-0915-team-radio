@@ -38,6 +38,12 @@
     
 
 //    self.bookTableView.tableHeaderView.heightAnchor
+    [self.bookTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(superview.mas_top).with.offset(padding.top); //with is an optional semantic filler
+//        make.left.equalTo(superview.mas_left).with.offset(padding.left);
+//        make.bottom.equalTo(superview.mas_bottom).with.offset(-padding.bottom);
+//        make.right.equalTo(superview.mas_right).with.offset(-padding.right);
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
