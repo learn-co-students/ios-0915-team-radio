@@ -9,6 +9,7 @@
 #import "PGBMyBookViewController.h"
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
+#import <Masonry/Masonry.h>
 
 @interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -34,6 +35,9 @@
     self.bookTableView.delegate = self;
     self.bookTableView.dataSource = self;
     self.bookSearchBar.delegate = self;
+    
+
+//    self.bookTableView.tableHeaderView.heightAnchor
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -75,12 +79,12 @@
 }
 
 - (IBAction)searchButtonTapped:(id)sender {
-    [self.bookTableView setContentOffset:CGPointZero animated:YES];
-    [self.bookSearchBar becomeFirstResponder];
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
-    [self.bookSearchBar becomeFirstResponder];
+    
+    [UITableView animateWithDuration:0.2 animations:^{
+        [self.bookTableView setContentOffset:CGPointZero];
+    } completion:^(BOOL finished) {
+        [self.bookSearchBar becomeFirstResponder];
+    }];
 }
 
 #pragma mark - Delegate Methods
@@ -99,6 +103,7 @@
         PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
         
         PGBRealmBook *book = self.booksDisplayed[indexPath.row];
+
         cell.titleLabel.text = book.title;
         cell.authorLabel.text = book.author;
         cell.genreLabel.text = book.genre;
