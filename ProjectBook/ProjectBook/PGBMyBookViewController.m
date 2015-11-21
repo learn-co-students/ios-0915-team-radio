@@ -13,6 +13,7 @@
 @interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *myBookListTableView;
+//@property (weak, nonatomic) IBOutlet UISearchBar *bookSearchBar;
 @property (weak, nonatomic) IBOutlet UISearchBar *bookSearchBar;
 
 @property (strong, nonatomic) NSPredicate *searchFilter;
@@ -80,7 +81,7 @@
 }
 
 - (IBAction)searchButtonTapped:(id)sender {
-    self.bookSearchBar.hidden = NO;
+//    self.bookSearchBar.hidden = NO;
     [self.bookSearchBar becomeFirstResponder];
 }
 
@@ -138,59 +139,60 @@
     [self.myBookListTableView reloadData];
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    [self dismissSearchBar];
-}
-
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
-    [self dismissSearchBar];
-
-    return YES;
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [self dismissSearchBar];
-}
-
-- (void)dismissSearchBar{
-    CATransition *animation = [CATransition animation];
-    animation.type = kCATransitionFade;
-    animation.duration = 0.2;
-    [self.bookSearchBar.layer addAnimation:animation forKey:nil];
-    
-    self.bookSearchBar.text = @"";
-    self.bookSearchBar.hidden = YES;
-    
-    [self.bookSearchBar resignFirstResponder];
-    
-    if (self.selectedSegment == 0) {
-        NSLog(@"selected segment index = 0");
-        
-        if ([self.bookSearchBar.text isEqualToString:@""]) {
-            self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == 1 "];
-        } else {
-            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == 1", self.bookSearchBar.text];
-        }
-        
-        self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
-    }
-    else if (self.selectedSegment == 1) {
-        NSLog(@"selected segment index = 1");
-        
-        if ([self.bookSearchBar.text isEqualToString:@""]) {
-            self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == 1 "];
-        } else {
-            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == 1", self.bookSearchBar.text];
-        }
-        
-        self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
-    }
-    
-    [self.myBookListTableView reloadData];
-}
-
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.bookSearchBar resignFirstResponder];
 }
+
+//- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+//    [self dismissSearchBar];
+//}
+//
+//- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
+//    [self dismissSearchBar];
+//
+//    return YES;
+//}
+//
+//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+//    [self dismissSearchBar];
+//}
+
+//- (void)dismissSearchBar{
+//    CATransition *animation = [CATransition animation];
+//    animation.type = kCATransitionFade;
+//    animation.duration = 0.2;
+//    [self.bookSearchBar.layer addAnimation:animation forKey:nil];
+//    
+//    self.bookSearchBar.text = @"";
+////    self.bookSearchBar.hidden = YES;
+//    
+//    [self.bookSearchBar resignFirstResponder];
+//    
+//    if (self.selectedSegment == 0) {
+//        NSLog(@"selected segment index = 0");
+//        
+//        if ([self.bookSearchBar.text isEqualToString:@""]) {
+//            self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == 1 "];
+//        } else {
+//            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == 1", self.bookSearchBar.text];
+//        }
+//        
+//        self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+//    }
+//    else if (self.selectedSegment == 1) {
+//        NSLog(@"selected segment index = 1");
+//        
+//        if ([self.bookSearchBar.text isEqualToString:@""]) {
+//            self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == 1 "];
+//        } else {
+//            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == 1", self.bookSearchBar.text];
+//        }
+//        
+//        self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+//    }
+//    
+//    [self.myBookListTableView reloadData];
+//}
+
 
 @end
