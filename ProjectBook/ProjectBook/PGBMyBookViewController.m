@@ -9,7 +9,6 @@
 #import "PGBMyBookViewController.h"
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
-#import <Masonry/Masonry.h>
 
 @interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -35,15 +34,6 @@
     self.bookTableView.delegate = self;
     self.bookTableView.dataSource = self;
     self.bookSearchBar.delegate = self;
-    
-
-//    self.bookTableView.tableHeaderView.heightAnchor
-    [self.bookTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(superview.mas_top).with.offset(padding.top); //with is an optional semantic filler
-//        make.left.equalTo(superview.mas_left).with.offset(padding.left);
-//        make.bottom.equalTo(superview.mas_bottom).with.offset(-padding.bottom);
-//        make.right.equalTo(superview.mas_right).with.offset(-padding.right);
-    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -54,8 +44,21 @@
     self.books = [PGBRealmBook getUserBookDataInArray];
     //end test data
     
-    self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == 1 "];
+    [self loadDefaultContent];
+}
+
+- (void)loadDefaultContent{
+    self.bookSegmentControl.selectedSegmentIndex = 0;
+    self.bookSearchBar.text = @"";
+    self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
     self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+    [self.bookTableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [self.bookTableView setContentOffset:CGPointMake(0, 44) animated:NO];
 }
 
 - (IBAction)bookSegmentedControlSelected:(UISegmentedControl *)sender {
@@ -63,9 +66,9 @@
     if (self.bookSegmentControl.selectedSegmentIndex == 0) {
         
         if ([self.bookSearchBar.text isEqualToString:@""]) {
-            self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == 1 "];
+            self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
         } else {
-            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == 1", self.bookSearchBar.text];
+            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == YES", self.bookSearchBar.text];
         }
         
         self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
@@ -73,9 +76,9 @@
     else if (self.bookSegmentControl.selectedSegmentIndex == 1) {
         
         if ([self.bookSearchBar.text isEqualToString:@""]) {
-            self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == 1 "];
+            self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == YES"];
         } else {
-            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == 1", self.bookSearchBar.text];
+            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == YES", self.bookSearchBar.text];
         }
         
         self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
@@ -124,21 +127,21 @@
     
     if (![searchText isEqualToString:@""]) {
         if (self.bookSegmentControl.selectedSegmentIndex == 0) {
-            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == 1", searchText];
+            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == YES", searchText];
             self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
         } else if (self.bookSegmentControl.selectedSegmentIndex == 1){
-            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == 1", searchText];
+            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == YES", searchText];
             self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
         }
     } else {
         if (self.bookSegmentControl.selectedSegmentIndex == 0) {
             NSLog(@"selected segment index = 0");
-            self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == 1"];
+            self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
             self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
         }
         else if (self.bookSegmentControl.selectedSegmentIndex == 1) {
             NSLog(@"selected segment index = 1");
-            self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == 1"];
+            self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == YES"];
             self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
         }
     }
