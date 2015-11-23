@@ -16,8 +16,6 @@
 @end
 
 
-
-
 @implementation PGBparsingThroughText
 
 -(instancetype)init {
@@ -98,7 +96,7 @@
     
 }
 
--(NSDictionary *)cleanUpArrays {
+-(NSArray *)cleanUpArrays {
     
     [self informationFromAllBooks];
     

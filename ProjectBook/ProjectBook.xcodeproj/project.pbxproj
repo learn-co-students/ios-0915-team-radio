@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C25FFA11C03A9F000B5C8E3 /* WriteBooksDictionaryFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFA01C03A9F000B5C8E3 /* WriteBooksDictionaryFile.m */; };
+		4C25FFA61C03B7E200B5C8E3 /* Book+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFA31C03B7E200B5C8E3 /* Book+CoreDataProperties.m */; };
+		4C25FFA71C03B7E200B5C8E3 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFA51C03B7E200B5C8E3 /* Book.m */; };
+		4C25FFAB1C03B83B00B5C8E3 /* PGBDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFAA1C03B83B00B5C8E3 /* PGBDataStore.m */; };
 		4C5D94791BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */; };
 		4C5D947E1BFE389A0086DB5F /* PGBMyBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */; };
 		4C9597AB1BFBEB2000BBD558 /* PGBRealmUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9597A81BFBEB2000BBD558 /* PGBRealmUser.m */; };
@@ -67,6 +71,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C25FF9F1C03A9F000B5C8E3 /* WriteBooksDictionaryFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteBooksDictionaryFile.h; sourceTree = "<group>"; };
+		4C25FFA01C03A9F000B5C8E3 /* WriteBooksDictionaryFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteBooksDictionaryFile.m; sourceTree = "<group>"; };
+		4C25FFA21C03B7E200B5C8E3 /* Book+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Book+CoreDataProperties.h"; sourceTree = "<group>"; };
+		4C25FFA31C03B7E200B5C8E3 /* Book+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Book+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4C25FFA41C03B7E200B5C8E3 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		4C25FFA51C03B7E200B5C8E3 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		4C25FFA91C03B83B00B5C8E3 /* PGBDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBDataStore.h; sourceTree = "<group>"; };
+		4C25FFAA1C03B83B00B5C8E3 /* PGBDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBDataStore.m; sourceTree = "<group>"; };
 		4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyBooksStoryboard.storyboard; sourceTree = "<group>"; };
 		4C5D947C1BFE389A0086DB5F /* PGBMyBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBMyBookViewController.h; sourceTree = "<group>"; };
 		4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBMyBookViewController.m; sourceTree = "<group>"; };
@@ -163,6 +175,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4C25FFA81C03B7FF00B5C8E3 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C25FFA21C03B7E200B5C8E3 /* Book+CoreDataProperties.h */,
+				4C25FFA31C03B7E200B5C8E3 /* Book+CoreDataProperties.m */,
+				4C25FFA41C03B7E200B5C8E3 /* Book.h */,
+				4C25FFA51C03B7E200B5C8E3 /* Book.m */,
+				CBFD3F651BFBA076002CE0A4 /* ProjectBook.xcdatamodeld */,
+				4C25FFA91C03B83B00B5C8E3 /* PGBDataStore.h */,
+				4C25FFAA1C03B83B00B5C8E3 /* PGBDataStore.m */,
+			);
+			name = CoreDataModel;
+			sourceTree = "<group>";
+		};
 		4C9597AD1BFBEB2600BBD558 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +261,7 @@
 		CBFD3F581BFBA076002CE0A4 /* ProjectBook */ = {
 			isa = PBXGroup;
 			children = (
+				4C25FFA81C03B7FF00B5C8E3 /* CoreDataModel */,
 				CBF2C6171BFD0D8B00BCBCDD /* bookInformationSet */,
 				4C9597AD1BFBEB2600BBD558 /* Model */,
 				CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */,
@@ -256,11 +283,12 @@
 				CBFD3F681BFBA077002CE0A4 /* Assets.xcassets */,
 				CBFD3F6A1BFBA077002CE0A4 /* LaunchScreen.storyboard */,
 				CBFD3F6D1BFBA077002CE0A4 /* Info.plist */,
-				CBFD3F651BFBA076002CE0A4 /* ProjectBook.xcdatamodeld */,
 				4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */,
 				4C5D947C1BFE389A0086DB5F /* PGBMyBookViewController.h */,
 				4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */,
 				CBFD3F591BFBA076002CE0A4 /* Supporting Files */,
+				4C25FF9F1C03A9F000B5C8E3 /* WriteBooksDictionaryFile.h */,
+				4C25FFA01C03A9F000B5C8E3 /* WriteBooksDictionaryFile.m */,
 			);
 			path = ProjectBook;
 			sourceTree = "<group>";
@@ -506,9 +534,13 @@
 				4C9597AB1BFBEB2000BBD558 /* PGBRealmUser.m in Sources */,
 				89DF0C661BFEA3A900E0096F /* PGMLoginViewController.m in Sources */,
 				A77A08F91BFBE78700CA62F8 /* PGBparsingThroughText.m in Sources */,
+				4C25FFAB1C03B83B00B5C8E3 /* PGBDataStore.m in Sources */,
+				4C25FFA11C03A9F000B5C8E3 /* WriteBooksDictionaryFile.m in Sources */,
 				CBFD3F671BFBA076002CE0A4 /* ProjectBook.xcdatamodeld in Sources */,
+				4C25FFA71C03B7E200B5C8E3 /* Book.m in Sources */,
 				4C9597AC1BFBEB2000BBD558 /* PGBRealmBook.m in Sources */,
 				CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */,
+				4C25FFA61C03B7E200B5C8E3 /* Book+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
