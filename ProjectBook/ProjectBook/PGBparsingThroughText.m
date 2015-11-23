@@ -50,10 +50,7 @@
 
 -(void)informationFromAllBooks {
     
-    [self.nestedArrayOfAllInformation addObject:[self parseATextFile:@"bookInformationSet1"]];
-    
-    
-    
+    //[self.nestedArrayOfAllInformation addObject:[self parseATextFile:@"bookInformationSet1"]];
     
     NSArray *informationArray1 = [self parseATextFile:@"bookInformationSet1"];
     
@@ -207,6 +204,18 @@
     
 }
 
+
+
+
+
+/*
+ 
+ 
+ ------------------------Helper Functions----------------------------------------
+ 
+ 
+ */
+
 -(NSDictionary *)turnStringsIntoArrayOfDictionaryWithEBookNumbers:(NSString *)eBookNumbers
                                                       eBookTitles:(NSString *)eBookTitles
                                                      eBookAuthors:(NSString *)eBookAuthors
@@ -226,15 +235,6 @@
     return newDictionary;
 }
 
-
-
-/*
- 
- 
- ------------------------Helper Functions----------------------------------------
- 
- 
- */
 -(NSArray *)makeNestedArraysFromAnArrayOfStrings:(NSArray *)array AtASpecificCharater:(NSString *)string {
     //NSLog(@"starting");
     NSMutableArray *mutableCopy = [array mutableCopy];
@@ -323,7 +323,8 @@
 //
 //        [resultingNestedArray addObject:[self makeNestedArraysFromAnArrayOfStrings:lines AtASpecificCharater:@""]];
 //        NSLog(@"%@", resultingNestedArray);
-//        
+//
 //    }
 //    return resultingNestedArray;
 //}
+

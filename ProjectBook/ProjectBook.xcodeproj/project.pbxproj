@@ -14,20 +14,26 @@
 		7AA794A04ED5426536CC6469 /* libPods-ProjectBook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */; };
 		89DF0C661BFEA3A900E0096F /* PGMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DF0C651BFEA3A900E0096F /* PGMLoginViewController.m */; };
 		A77A08F91BFBE78700CA62F8 /* PGBparsingThroughText.m in Sources */ = {isa = PBXBuildFile; fileRef = A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */; };
-		A77A09081BFBE7B800CA62F8 /* bookInformationSet1.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A08FA1BFBE7B800CA62F8 /* bookInformationSet1.txt */; };
-		A77A09091BFBE7B800CA62F8 /* bookInformationSet2.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A08FB1BFBE7B800CA62F8 /* bookInformationSet2.txt */; };
-		A77A090A1BFBE7B800CA62F8 /* bookInformationSet3.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A08FC1BFBE7B800CA62F8 /* bookInformationSet3.txt */; };
-		A77A090B1BFBE7B800CA62F8 /* bookInformationSet4.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A08FD1BFBE7B800CA62F8 /* bookInformationSet4.txt */; };
-		A77A090C1BFBE7B800CA62F8 /* bookInformationSet6.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A08FE1BFBE7B800CA62F8 /* bookInformationSet6.txt */; };
-		A77A090D1BFBE7B800CA62F8 /* bookInformationSet7.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A08FF1BFBE7B800CA62F8 /* bookInformationSet7.txt */; };
-		A77A090E1BFBE7B800CA62F8 /* bookInformationSet8.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09001BFBE7B800CA62F8 /* bookInformationSet8.txt */; };
-		A77A090F1BFBE7B800CA62F8 /* bookInformationSet10.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09011BFBE7B800CA62F8 /* bookInformationSet10.txt */; };
-		A77A09101BFBE7B800CA62F8 /* bookInformationSet11.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09021BFBE7B800CA62F8 /* bookInformationSet11.txt */; };
-		A77A09111BFBE7B800CA62F8 /* bookInformationSet12.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09031BFBE7B800CA62F8 /* bookInformationSet12.txt */; };
-		A77A09121BFBE7B800CA62F8 /* bookInformationSet13.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09041BFBE7B800CA62F8 /* bookInformationSet13.txt */; };
-		A77A09131BFBE7B800CA62F8 /* bookInformationSet14.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09051BFBE7B800CA62F8 /* bookInformationSet14.txt */; };
-		A77A09141BFBE7B800CA62F8 /* bookInformationSet15.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */; };
-		A77A09151BFBE7B800CA62F8 /* bookInformationSet16.txt in Resources */ = {isa = PBXBuildFile; fileRef = A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */; };
+		A7DD3FFB1C03717100D13A4B /* bookInformationSet1.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FE71C03717100D13A4B /* bookInformationSet1.txt */; };
+		A7DD3FFC1C03717100D13A4B /* bookInformationSet2.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FE81C03717100D13A4B /* bookInformationSet2.txt */; };
+		A7DD3FFD1C03717100D13A4B /* bookInformationSet3.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FE91C03717100D13A4B /* bookInformationSet3.txt */; };
+		A7DD3FFE1C03717100D13A4B /* bookInformationSet4.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FEA1C03717100D13A4B /* bookInformationSet4.txt */; };
+		A7DD3FFF1C03717100D13A4B /* bookInformationSet5.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FEB1C03717100D13A4B /* bookInformationSet5.txt */; };
+		A7DD40001C03717100D13A4B /* bookInformationSet6.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FEC1C03717100D13A4B /* bookInformationSet6.txt */; };
+		A7DD40011C03717100D13A4B /* bookInformationSet7.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FED1C03717100D13A4B /* bookInformationSet7.txt */; };
+		A7DD40021C03717100D13A4B /* bookInformationSet8.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FEE1C03717100D13A4B /* bookInformationSet8.txt */; };
+		A7DD40031C03717100D13A4B /* bookInformationSet9.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FEF1C03717100D13A4B /* bookInformationSet9.txt */; };
+		A7DD40041C03717100D13A4B /* bookInformationSet10.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FF01C03717100D13A4B /* bookInformationSet10.txt */; };
+		A7DD40051C03717100D13A4B /* bookInformationSet11.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FF11C03717100D13A4B /* bookInformationSet11.txt */; };
+		A7DD40061C03717100D13A4B /* bookInformationSet12.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FF21C03717100D13A4B /* bookInformationSet12.txt */; };
+		A7DD40071C03717100D13A4B /* bookInformationSet13.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FF31C03717100D13A4B /* bookInformationSet13.txt */; };
+		A7DD40081C03717100D13A4B /* bookInformationSet14.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FF41C03717100D13A4B /* bookInformationSet14.txt */; };
+		A7DD40091C03717100D13A4B /* bookInformationSet15.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FF51C03717100D13A4B /* bookInformationSet15.txt */; };
+		A7DD400A1C03717100D13A4B /* bookInformationSet16.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FF61C03717100D13A4B /* bookInformationSet16.txt */; };
+		A7DD400B1C03717100D13A4B /* bookInformationSet17.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FF71C03717100D13A4B /* bookInformationSet17.txt */; };
+		A7DD400C1C03717100D13A4B /* bookInformationSet18.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FF81C03717100D13A4B /* bookInformationSet18.txt */; };
+		A7DD400D1C03717100D13A4B /* bookInformationSet19.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FF91C03717100D13A4B /* bookInformationSet19.txt */; };
+		A7DD400E1C03717100D13A4B /* bookInformationSet20.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FFA1C03717100D13A4B /* bookInformationSet20.txt */; };
 		CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */; };
 		CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */; };
 		CBF2C61F1BFD1FF300BCBCDD /* PGBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */; };
@@ -74,20 +80,26 @@
 		9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook.release.xcconfig"; sourceTree = "<group>"; };
 		A77A08F71BFBE78700CA62F8 /* PGBparsingThroughText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBparsingThroughText.h; sourceTree = "<group>"; };
 		A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBparsingThroughText.m; sourceTree = "<group>"; };
-		A77A08FA1BFBE7B800CA62F8 /* bookInformationSet1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet1.txt; sourceTree = "<group>"; };
-		A77A08FB1BFBE7B800CA62F8 /* bookInformationSet2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet2.txt; sourceTree = "<group>"; };
-		A77A08FC1BFBE7B800CA62F8 /* bookInformationSet3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet3.txt; sourceTree = "<group>"; };
-		A77A08FD1BFBE7B800CA62F8 /* bookInformationSet4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet4.txt; sourceTree = "<group>"; };
-		A77A08FE1BFBE7B800CA62F8 /* bookInformationSet6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet6.txt; sourceTree = "<group>"; };
-		A77A08FF1BFBE7B800CA62F8 /* bookInformationSet7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet7.txt; sourceTree = "<group>"; };
-		A77A09001BFBE7B800CA62F8 /* bookInformationSet8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet8.txt; sourceTree = "<group>"; };
-		A77A09011BFBE7B800CA62F8 /* bookInformationSet10.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet10.txt; sourceTree = "<group>"; };
-		A77A09021BFBE7B800CA62F8 /* bookInformationSet11.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet11.txt; sourceTree = "<group>"; };
-		A77A09031BFBE7B800CA62F8 /* bookInformationSet12.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet12.txt; sourceTree = "<group>"; };
-		A77A09041BFBE7B800CA62F8 /* bookInformationSet13.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet13.txt; sourceTree = "<group>"; };
-		A77A09051BFBE7B800CA62F8 /* bookInformationSet14.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet14.txt; sourceTree = "<group>"; };
-		A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet15.txt; sourceTree = "<group>"; };
-		A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet16.txt; sourceTree = "<group>"; };
+		A7DD3FE71C03717100D13A4B /* bookInformationSet1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet1.txt; sourceTree = "<group>"; };
+		A7DD3FE81C03717100D13A4B /* bookInformationSet2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet2.txt; sourceTree = "<group>"; };
+		A7DD3FE91C03717100D13A4B /* bookInformationSet3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet3.txt; sourceTree = "<group>"; };
+		A7DD3FEA1C03717100D13A4B /* bookInformationSet4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet4.txt; sourceTree = "<group>"; };
+		A7DD3FEB1C03717100D13A4B /* bookInformationSet5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet5.txt; sourceTree = "<group>"; };
+		A7DD3FEC1C03717100D13A4B /* bookInformationSet6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet6.txt; sourceTree = "<group>"; };
+		A7DD3FED1C03717100D13A4B /* bookInformationSet7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet7.txt; sourceTree = "<group>"; };
+		A7DD3FEE1C03717100D13A4B /* bookInformationSet8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet8.txt; sourceTree = "<group>"; };
+		A7DD3FEF1C03717100D13A4B /* bookInformationSet9.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet9.txt; sourceTree = "<group>"; };
+		A7DD3FF01C03717100D13A4B /* bookInformationSet10.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet10.txt; sourceTree = "<group>"; };
+		A7DD3FF11C03717100D13A4B /* bookInformationSet11.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet11.txt; sourceTree = "<group>"; };
+		A7DD3FF21C03717100D13A4B /* bookInformationSet12.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet12.txt; sourceTree = "<group>"; };
+		A7DD3FF31C03717100D13A4B /* bookInformationSet13.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet13.txt; sourceTree = "<group>"; };
+		A7DD3FF41C03717100D13A4B /* bookInformationSet14.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet14.txt; sourceTree = "<group>"; };
+		A7DD3FF51C03717100D13A4B /* bookInformationSet15.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet15.txt; sourceTree = "<group>"; };
+		A7DD3FF61C03717100D13A4B /* bookInformationSet16.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet16.txt; sourceTree = "<group>"; };
+		A7DD3FF71C03717100D13A4B /* bookInformationSet17.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet17.txt; sourceTree = "<group>"; };
+		A7DD3FF81C03717100D13A4B /* bookInformationSet18.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet18.txt; sourceTree = "<group>"; };
+		A7DD3FF91C03717100D13A4B /* bookInformationSet19.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet19.txt; sourceTree = "<group>"; };
+		A7DD3FFA1C03717100D13A4B /* bookInformationSet20.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet20.txt; sourceTree = "<group>"; };
 		CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBBookCustomTableCell.h; sourceTree = "<group>"; };
 		CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBBookCustomTableCell.m; sourceTree = "<group>"; };
 		CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBBookCustomTableCell.xib; sourceTree = "<group>"; };
@@ -174,20 +186,26 @@
 		CBF2C6171BFD0D8B00BCBCDD /* bookInformationSet */ = {
 			isa = PBXGroup;
 			children = (
-				A77A08FA1BFBE7B800CA62F8 /* bookInformationSet1.txt */,
-				A77A08FB1BFBE7B800CA62F8 /* bookInformationSet2.txt */,
-				A77A08FC1BFBE7B800CA62F8 /* bookInformationSet3.txt */,
-				A77A08FD1BFBE7B800CA62F8 /* bookInformationSet4.txt */,
-				A77A08FE1BFBE7B800CA62F8 /* bookInformationSet6.txt */,
-				A77A08FF1BFBE7B800CA62F8 /* bookInformationSet7.txt */,
-				A77A09001BFBE7B800CA62F8 /* bookInformationSet8.txt */,
-				A77A09011BFBE7B800CA62F8 /* bookInformationSet10.txt */,
-				A77A09021BFBE7B800CA62F8 /* bookInformationSet11.txt */,
-				A77A09031BFBE7B800CA62F8 /* bookInformationSet12.txt */,
-				A77A09041BFBE7B800CA62F8 /* bookInformationSet13.txt */,
-				A77A09051BFBE7B800CA62F8 /* bookInformationSet14.txt */,
-				A77A09061BFBE7B800CA62F8 /* bookInformationSet15.txt */,
-				A77A09071BFBE7B800CA62F8 /* bookInformationSet16.txt */,
+				A7DD3FE71C03717100D13A4B /* bookInformationSet1.txt */,
+				A7DD3FE81C03717100D13A4B /* bookInformationSet2.txt */,
+				A7DD3FE91C03717100D13A4B /* bookInformationSet3.txt */,
+				A7DD3FEA1C03717100D13A4B /* bookInformationSet4.txt */,
+				A7DD3FEB1C03717100D13A4B /* bookInformationSet5.txt */,
+				A7DD3FEC1C03717100D13A4B /* bookInformationSet6.txt */,
+				A7DD3FED1C03717100D13A4B /* bookInformationSet7.txt */,
+				A7DD3FEE1C03717100D13A4B /* bookInformationSet8.txt */,
+				A7DD3FEF1C03717100D13A4B /* bookInformationSet9.txt */,
+				A7DD3FF01C03717100D13A4B /* bookInformationSet10.txt */,
+				A7DD3FF11C03717100D13A4B /* bookInformationSet11.txt */,
+				A7DD3FF21C03717100D13A4B /* bookInformationSet12.txt */,
+				A7DD3FF31C03717100D13A4B /* bookInformationSet13.txt */,
+				A7DD3FF41C03717100D13A4B /* bookInformationSet14.txt */,
+				A7DD3FF51C03717100D13A4B /* bookInformationSet15.txt */,
+				A7DD3FF61C03717100D13A4B /* bookInformationSet16.txt */,
+				A7DD3FF71C03717100D13A4B /* bookInformationSet17.txt */,
+				A7DD3FF81C03717100D13A4B /* bookInformationSet18.txt */,
+				A7DD3FF91C03717100D13A4B /* bookInformationSet19.txt */,
+				A7DD3FFA1C03717100D13A4B /* bookInformationSet20.txt */,
 			);
 			name = bookInformationSet;
 			sourceTree = "<group>";
@@ -382,25 +400,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A77A090C1BFBE7B800CA62F8 /* bookInformationSet6.txt in Resources */,
-				A77A09101BFBE7B800CA62F8 /* bookInformationSet11.txt in Resources */,
 				CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */,
+				A7DD400A1C03717100D13A4B /* bookInformationSet16.txt in Resources */,
+				A7DD40071C03717100D13A4B /* bookInformationSet13.txt in Resources */,
 				CBFD3F6C1BFBA077002CE0A4 /* LaunchScreen.storyboard in Resources */,
-				A77A090E1BFBE7B800CA62F8 /* bookInformationSet8.txt in Resources */,
 				CBFD3F691BFBA077002CE0A4 /* Assets.xcassets in Resources */,
+				A7DD40001C03717100D13A4B /* bookInformationSet6.txt in Resources */,
 				CBFD3F641BFBA076002CE0A4 /* Main.storyboard in Resources */,
-				A77A090B1BFBE7B800CA62F8 /* bookInformationSet4.txt in Resources */,
-				A77A09151BFBE7B800CA62F8 /* bookInformationSet16.txt in Resources */,
-				A77A09091BFBE7B800CA62F8 /* bookInformationSet2.txt in Resources */,
-				A77A09081BFBE7B800CA62F8 /* bookInformationSet1.txt in Resources */,
-				A77A09141BFBE7B800CA62F8 /* bookInformationSet15.txt in Resources */,
-				A77A090F1BFBE7B800CA62F8 /* bookInformationSet10.txt in Resources */,
-				A77A090A1BFBE7B800CA62F8 /* bookInformationSet3.txt in Resources */,
-				A77A090D1BFBE7B800CA62F8 /* bookInformationSet7.txt in Resources */,
-				A77A09111BFBE7B800CA62F8 /* bookInformationSet12.txt in Resources */,
-				A77A09131BFBE7B800CA62F8 /* bookInformationSet14.txt in Resources */,
+				A7DD40051C03717100D13A4B /* bookInformationSet11.txt in Resources */,
+				A7DD40061C03717100D13A4B /* bookInformationSet12.txt in Resources */,
+				A7DD40011C03717100D13A4B /* bookInformationSet7.txt in Resources */,
+				A7DD3FFC1C03717100D13A4B /* bookInformationSet2.txt in Resources */,
+				A7DD400C1C03717100D13A4B /* bookInformationSet18.txt in Resources */,
+				A7DD40081C03717100D13A4B /* bookInformationSet14.txt in Resources */,
+				A7DD400D1C03717100D13A4B /* bookInformationSet19.txt in Resources */,
+				A7DD3FFF1C03717100D13A4B /* bookInformationSet5.txt in Resources */,
+				A7DD3FFD1C03717100D13A4B /* bookInformationSet3.txt in Resources */,
+				A7DD40091C03717100D13A4B /* bookInformationSet15.txt in Resources */,
 				4C5D94791BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard in Resources */,
-				A77A09121BFBE7B800CA62F8 /* bookInformationSet13.txt in Resources */,
+				A7DD400E1C03717100D13A4B /* bookInformationSet20.txt in Resources */,
+				A7DD40021C03717100D13A4B /* bookInformationSet8.txt in Resources */,
+				A7DD40031C03717100D13A4B /* bookInformationSet9.txt in Resources */,
+				A7DD3FFB1C03717100D13A4B /* bookInformationSet1.txt in Resources */,
+				A7DD40041C03717100D13A4B /* bookInformationSet10.txt in Resources */,
+				A7DD3FFE1C03717100D13A4B /* bookInformationSet4.txt in Resources */,
+				A7DD400B1C03717100D13A4B /* bookInformationSet17.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
