@@ -31,11 +31,19 @@
 //    NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
 //    
 //    NSLog(@"Begin store to core data");
-//    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
+    
+//    NSLog(@"documents directory: %@", [self applicationDocumentsDirectory]);
+    
+    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
 //    [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
-//    NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
-//    
-//    NSLog(@"End store to core data");
+    [dataStore fetchData];
+    NSPredicate *filter = [NSPredicate predicateWithFormat:@"eBookAuthors CONTAINS 'Hakluyt'"];
+    NSArray *result = [dataStore.managedBookObjects filteredArrayUsingPredicate:filter];
+    NSLog(@"%@",result);
+    
+    NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
+    
+    NSLog(@"End store to core data");
     //end test
     
     // Override point for customization after application launch.
@@ -116,6 +124,7 @@
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"ProjectBook.sqlite"];
+    
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {

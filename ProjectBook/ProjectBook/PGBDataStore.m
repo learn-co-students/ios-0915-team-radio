@@ -42,8 +42,8 @@
         return _managedObjectContext;
     }
     
-    
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"objcCMR.sqlite"];
+//    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"objcCMR.sqlite"];
+    NSURL *storeURL = [[NSBundle mainBundle] URLForResource:@"ProjectBook" withExtension:@"sqlite"];
     
     NSError *error = nil;
     
