@@ -19,7 +19,7 @@
 @property (strong, nonatomic)NSString *downloadURL;
 @property (strong, nonatomic)NSString *bookDescription;
 @property (strong, nonatomic)NSDate *datePublished;
-@property (assign, nonatomic)NSInteger ebookID;
+@property (assign, nonatomic)NSString *ebookID;
 @property (assign, nonatomic)BOOL isDownloaded;
 @property (assign, nonatomic)BOOL isBookmarked;
 
@@ -31,7 +31,7 @@
                   downloadURL:(NSString *)downloadURL
               bookDescription:(NSString *)bookDescription
                 datePublished:(NSDate *)datePublished
-                      ebookID:(NSInteger)ebookID
+                      ebookID:(NSString *)ebookID
                  isDownloaded:(BOOL)isDownloaded
                  isBookmarked:(BOOL)isBookmarked;
 + (void)storeUserBookDataWithBook:(PGBRealmBook *)book;

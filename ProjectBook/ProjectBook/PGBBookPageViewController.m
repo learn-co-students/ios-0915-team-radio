@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  PGBBookPageViewController.m
 //  ProjectBook
 //
 //  Created by Olivia Lim on 11/17/15.
@@ -38,9 +38,9 @@
 
 //    NSLog(@"view loaded");
     
-    [PGBRealmBook generateTestBookData];
-    NSArray *books = [PGBRealmBook getUserBookDataInArray];
-    self.books = @[books[0], books[1], books[2]];
+//    [PGBRealmBook generateTestBookData];
+//    NSArray *books = [PGBRealmBook getUserBookDataInArray];
+//    self.books = @[books[0], books[1], books[2]];
     
     self.bookDescriptionTV.editable = NO;
     
@@ -60,7 +60,11 @@
 
 - (IBAction)downloadButtonTapped:(id)sender
 {
-    NSURL *URL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
+    NSString *parsedEbookID = [self.ebookID substringFromIndex:5];
+    
+    NSString *idURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", parsedEbookID];
+    
+    NSURL *URL = [NSURL URLWithString:idURL];
     self.downloadHelper = [[PGBDownloadHelper alloc] init];
     [self.downloadHelper download:URL];
     
@@ -92,9 +96,9 @@
 
 - (IBAction)readButtonTapped:(id)sender
 {
-//    self.ebookNumber = @"4028.epub.images";
+    NSString *parsedEbookID = [self.ebookID substringFromIndex:5];
     
-    NSString *litFileName = @"pg4028-images.epub";
+    NSString *litFileName = [NSString stringWithFormat:@"pg%@-images.epub", parsedEbookID];
     
 //    NSString *litFileName = [NSString stringWithFormat:@"pg%@", self.ebookIndex];
     NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];

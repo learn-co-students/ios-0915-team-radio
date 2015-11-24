@@ -20,7 +20,7 @@
 @property (strong, nonatomic)NSString *language;
 @property (strong, nonatomic)NSString *bookDescription;
 @property (strong, nonatomic)NSDate *datePublished;
-@property (assign, nonatomic)NSInteger ebookID;
+@property (assign, nonatomic)NSString *ebookID;
 @property (strong, nonatomic)NSArray *books;
 
 @end

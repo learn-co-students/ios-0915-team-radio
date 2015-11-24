@@ -64,9 +64,9 @@
     
     //coreData
     //commented by leo
-//    [PGBRealmBook generateTestBookData];
-//    self.books = [PGBRealmBook getUserBookDataInArray];
-//    self.books = @[self.books[0], self.books[1], self.books[2]];
+    //    [PGBRealmBook generateTestBookData];
+    //    self.books = [PGBRealmBook getUserBookDataInArray];
+    //    self.books = @[self.books[0], self.books[1], self.books[2]];
     self.books = [[NSMutableArray alloc]init];
     self.bookCovers = [[NSMutableArray alloc]init];
     [self getRandomBooks];
@@ -81,6 +81,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    //goodreads user login
     
     [GROAuth loginWithGoodreadsWithCompletion:^(NSDictionary *authParams, NSError *error) {
         if (error) {
@@ -119,6 +121,7 @@
             realmBook.author = coreDataBook.eBookAuthors;
             realmBook.title = coreDataBook.eBookTitles;
             realmBook.genre = coreDataBook.eBookGenres;
+            realmBook.ebookID = coreDataBook.eBookNumbers;
             UIImage *newImage =[self getBookCoverImageWithEBooknumber:coreDataBook.eBookNumbers];
             if (!newImage) {
                 newImage = [UIImage imageNamed:@"91fJxgs69QL._SL1500_"];
@@ -139,6 +142,45 @@
     [bgQueue addOperation:fetchBookOperation];
 }
 
+- (UIImage *)getBookCoverImageWithEBooknumber:(NSString *)eBookNumber{
+    NSLog(@"get image from URL");
+    
+    NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
+    NSString *bookCoverURL = [NSString stringWithFormat:@"https://www.gutenberg.org/cache/epub/%@/pg%@.cover.medium.jpg", eBookNumberParsed, eBookNumberParsed];
+    
+    NSURL *url = [NSURL URLWithString:bookCoverURL];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *img = [[UIImage alloc]initWithData:data];
+    //    CGSize size = img.size;
+    return img;
+}
+
+-(void) cellDownloadButtonTapped:(UIButton*) button
+{
+    //create modal view to show when downloading, show view once downloaded
+    
+    button.enabled = NO; // FIXME: re-enable button after download succeeds/fails
+    // THIS IS A LIL HACKY — will change if you change the view heirarchy of the cell
+    PGBBookCustomTableCell *cell = (PGBBookCustomTableCell*)[[[button superview] superview] superview];
+    
+    PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
+    realmBook = self.books[self.bookTableView.indexPathForSelectedRow.row];
+    
+    realmBook.ebookID = [realmBook.ebookID substringFromIndex:5];
+    
+    if (cell && [cell isKindOfClass:[PGBBookCustomTableCell class]]){
+        NSLog(@"selected book is: %@; URL: %@", cell.titleLabel.text, cell.bookURL);
+        
+        NSString *downloadURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", realmBook.ebookID];
+        
+        NSURL *URL = [NSURL URLWithString:downloadURL];
+        self.downloadHelper = [[PGBDownloadHelper alloc] init];
+        [self.downloadHelper download:URL];
+    }
+    else {
+        NSLog(@"Didn't get a cell, I fucked UP");
+    }
+}
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -155,7 +197,7 @@
     PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
     
     PGBRealmBook *book = self.books[indexPath.row];
-//    Book *book = self.books[indexPath.row];
+    //    Book *book = self.books[indexPath.row];
     
     cell.titleLabel.text = book.title;
     cell.authorLabel.text = book.author;
@@ -168,43 +210,32 @@
     return cell;
 }
 
-- (UIImage *)getBookCoverImageWithEBooknumber:(NSString *)eBookNumber{
-    NSLog(@"get image from URL");
-    
-    NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
-    NSString *bookCoverURL = [NSString stringWithFormat:@"https://www.gutenberg.org/cache/epub/%@/pg%@.cover.medium.jpg", eBookNumberParsed, eBookNumberParsed];
-    
-    NSURL *url = [NSURL URLWithString:bookCoverURL];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *img = [[UIImage alloc]initWithData:data];
-    //    CGSize size = img.size;
-    return img;
-}
-
--(void) cellDownloadButtonTapped:(UIButton*) button
-{
-    button.enabled = NO; // FIXME: re-enable button after download succeeds/fails
-    // THIS IS A LIL HACKY — will change if you change the view heirarchy of the cell
-    PGBBookCustomTableCell *cell = (PGBBookCustomTableCell*)[[[button superview] superview] superview];
-    
-    if (cell && [cell isKindOfClass:[PGBBookCustomTableCell class]]){
-        NSLog(@"selected book is: %@; URL: %@", cell.titleLabel.text, cell.bookURL);
-        
-        NSURL *URL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
-        self.downloadHelper = [[PGBDownloadHelper alloc] init];
-        [self.downloadHelper download:URL];
-    }
-    else {
-        NSLog(@"Didn't get a cell, I fucked UP");
-    }
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"bookInfoSegue" sender:self];
 }
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    PGBBookPageViewController *bookPageVC = segue.destinationViewController;
+    
+    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
+    PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
+//    Book *bookAtIndexPath = self.books[selectedIndexPath.row];
+    
+    bookPageVC.titleBook = bookAtIndexPath.title;
+    bookPageVC.author = bookAtIndexPath.author;
+    bookPageVC.genre = bookAtIndexPath.genre;
+    bookPageVC.language = bookAtIndexPath.language;
+    bookPageVC.ebookID = bookAtIndexPath.ebookID;
+    
+    //    bookPageVC.ebookID = bookAtIndexPath.eBookNumbers;
+    //    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
+//    bookPageVC.books = bookPageVC.books;
+    
+}
+                         
+//login info
 - (IBAction)loginButtonTouched:(id)sender {
     
     if (![PFUser currentUser]) { // No user logged in
@@ -291,24 +322,6 @@
                           otherButtonTitles:nil] show];
     }
     return informationComplete;
-    
-}
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    PGBBookPageViewController *bookPageVC = segue.destinationViewController;
-    
-    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
-//    PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
-    Book *bookAtIndexPath = self.books[selectedIndexPath.row];
-    
-    bookPageVC.titleBook = bookAtIndexPath.eBookTitles;
-    bookPageVC.author = bookAtIndexPath.eBookAuthors;
-    bookPageVC.genre = bookAtIndexPath.eBookGenres;
-    bookPageVC.language = bookAtIndexPath.eBookLanguages;
-
-//    bookPageVC.ebookID = bookAtIndexPath.eBookNumbers;
-//    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
-    bookPageVC.books = bookPageVC.books;
     
 }
 
