@@ -16,8 +16,6 @@
 -(NSArray *)parseATextFile:(NSString *)file;
 
 -(void)informationFromAllBooks;
--(NSDictionary *)cleanUpArrays;
-
-
+-(NSArray *)cleanUpArrays;
 
 @end

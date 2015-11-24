@@ -8,6 +8,7 @@
 
 #import <Realm/Realm.h>
 #import "PGBRealmUser.h"
+#import <UIKit/UIKit.h>
 
 @interface PGBRealmBook : RLMObject
 
@@ -19,6 +20,8 @@
 @property (strong, nonatomic)NSString *bookDescription;
 @property (strong, nonatomic)NSDate *datePublished;
 @property (assign, nonatomic)NSInteger ebookID;
+@property (assign, nonatomic)BOOL isDownloaded;
+@property (assign, nonatomic)BOOL isBookmarked;
 
 - (instancetype)init;
 - (instancetype)initWithTitle:(NSString *)title
@@ -28,7 +31,9 @@
                   downloadURL:(NSString *)downloadURL
               bookDescription:(NSString *)bookDescription
                 datePublished:(NSDate *)datePublished
-                      ebookID:(NSInteger)ebookID;
+                      ebookID:(NSInteger)ebookID
+                 isDownloaded:(BOOL)isDownloaded
+                 isBookmarked:(BOOL)isBookmarked;
 + (void)storeUserBookDataWithBook:(PGBRealmBook *)book;
 + (void)deleteUserBookDataForBook:(PGBRealmBook *)book;
 + (void)deleteAllUserBookData;

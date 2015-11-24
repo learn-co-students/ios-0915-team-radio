@@ -9,16 +9,19 @@
 #import "PGBMyBookViewController.h"
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
+#import "PGBBookPageViewController.h"
 
-@interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
+@interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *myBookListTableView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *bookSegmentControl;
+@property (weak, nonatomic) IBOutlet UITableView *bookTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *bookSearchBar;
-//@property (strong, nonatomic) IBOutlet UISearchController *bookSearchController;
-@property (strong, nonatomic) IBOutlet UISearchController *bookSearchController;
 
+@property (strong, nonatomic) NSPredicate *searchFilter;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *bookSearchButton;
 
 @property (strong, nonatomic)NSArray *books;
+@property (strong, nonatomic)NSArray *booksDisplayed;
 
 @end
 
@@ -26,55 +29,76 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
+    self.bookTableView.rowHeight = 70;
+    
+    self.bookTableView.delegate = self;
+    self.bookTableView.dataSource = self;
+    self.bookSearchBar.delegate = self;
+    
     //begin test data
     [PGBRealmBook generateTestBookData];
-    NSArray *books = [PGBRealmBook getUserBookDataInArray];
-    self.books = @[books[0]];
+    self.books = [PGBRealmBook getUserBookDataInArray];
     //end test data
     
-    [self.myBookListTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
-    self.myBookListTableView.rowHeight = 70;
-    
-    self.myBookListTableView.delegate = self;
-    self.myBookListTableView.dataSource = self;
-    self.bookSearchBar.delegate = self;
-    self.bookSearchController.delegate = self;
-    
+    [self loadDefaultContent];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
 
+- (void)loadDefaultContent{
+    self.bookSegmentControl.selectedSegmentIndex = 0;
+    self.bookSearchBar.text = @"";
+    self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
+    self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+    [self.bookTableView reloadData];
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-//    NSLog(@"view did appear!!");
+    
+//    [self.bookTableView setContentOffset:CGPointMake(0, 44) animated:NO];
+//    [self.bookTableView setContentOffset:CGPointZero animated:YES];
 }
 
 - (IBAction)bookSegmentedControlSelected:(UISegmentedControl *)sender {
     
-    NSInteger selectedSegment = sender.selectedSegmentIndex;
-    
-    NSArray *books = [PGBRealmBook getUserBookDataInArray];
-    
-    if (selectedSegment == 0) {
-        NSLog(@"selected segment index = 0");
-        self.books = @[books[0]];
+    if (self.bookSegmentControl.selectedSegmentIndex == 0) {
+        
+        if ([self.bookSearchBar.text isEqualToString:@""]) {
+            self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
+        } else {
+            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == YES", self.bookSearchBar.text];
+        }
+        
+        self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
     }
-    else{
-        NSLog(@"selected segment index = 1");
-        self.books = @[books[1], books[2]];
+    else if (self.bookSegmentControl.selectedSegmentIndex == 1) {
+        
+        if ([self.bookSearchBar.text isEqualToString:@""]) {
+            self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == YES"];
+        } else {
+            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == YES", self.bookSearchBar.text];
+        }
+        
+        self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
     }
     
-    [self.myBookListTableView reloadData];
+    [self.bookTableView reloadData];
+    
 }
 
 - (IBAction)searchButtonTapped:(id)sender {
-    self.bookSearchBar.hidden = NO;
-    [self.bookSearchBar becomeFirstResponder];
+    
+    [UITableView animateWithDuration:0.2 animations:^{
+        [self.bookTableView setContentOffset:CGPointZero];
+    } completion:^(BOOL finished) {
+        [self.bookSearchBar becomeFirstResponder];
+    }];
 }
-
 
 #pragma mark - Delegate Methods
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -82,89 +106,82 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   return self.books.count;
+    return self.booksDisplayed.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (tableView == self.myBookListTableView) {
+    if (tableView == self.bookTableView) {
         
         PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
         
-        PGBRealmBook *book = self.books[indexPath.row];
+        PGBRealmBook *book = self.booksDisplayed[indexPath.row];
+
         cell.titleLabel.text = book.title;
         cell.authorLabel.text = book.author;
         cell.genreLabel.text = book.genre;
         
         return cell;
     }
-
+    
     return [[UITableViewCell alloc]init];
 }
 
-//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-//    // Tells the table data source to reload when text changes
-//    
-////    [self filterContentForSearchText:searchString scope:
-////     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-//    // Return YES to cause the search result table view to be reloaded.
-//    return YES;
-//}
-//
-//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
-//    // Tells the table data source to reload when scope bar selection changes
-////    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:
-////     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
-//    // Return YES to cause the search result table view to be reloaded.
-//    return YES;
-//}
-//- (void)didDismissSearchController:(UISearchController *)searchController{
-//    self.bookSearchBar.hidden = YES;
-//}
-//
-//- (void)willDismissSearchController:(UISearchController *)searchController{
-//    self.bookSearchBar.hidden = YES;
-//        NSLog(@"dismiss seach contrlle");
-//}
-//
-//- (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
-//    NSLog(@"update search result!");
-//}
-
-
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-     NSLog(@"editing search bar- text :%@", searchText);
+    
+    if (![searchText isEqualToString:@""]) {
+        if (self.bookSegmentControl.selectedSegmentIndex == 0) {
+            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == YES", searchText];
+            self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+        } else if (self.bookSegmentControl.selectedSegmentIndex == 1){
+            self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == YES", searchText];
+            self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+        }
+    } else {
+        if (self.bookSegmentControl.selectedSegmentIndex == 0) {
+            NSLog(@"selected segment index = 0");
+            self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
+            self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+        }
+        else if (self.bookSegmentControl.selectedSegmentIndex == 1) {
+            NSLog(@"selected segment index = 1");
+            self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == YES"];
+            self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+        }
+    }
+    
+    [self.bookTableView reloadData];
+    
+    if (![searchText isEqualToString:@""]) {
+        self.navigationItem.title = @"Searching...";
+    } else {
+        self.navigationItem.title = @"LIBRARY";
+    }
 
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"search bar cancel button");
-    
-    [self dismissSearchBar];
-}
-
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
-    NSLog(@"search bar should end edit");
-    
-    [self dismissSearchBar];
-    
-    return YES;
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [self dismissSearchBar];
-}
-
-- (void)dismissSearchBar{
-    CATransition *animation = [CATransition animation];
-    animation.type = kCATransitionFade;
-    animation.duration = 0.2;
-    [self.bookSearchBar.layer addAnimation:animation forKey:nil];
-    
-    self.bookSearchBar.hidden = YES;
-    
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.bookSearchBar resignFirstResponder];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSLog(@"selected row");
+    [self performSegueWithIdentifier:@"bookDetailSegue" sender:nil];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    PGBBookPageViewController *bookPageVC = segue.destinationViewController;
+    
+    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
+    PGBRealmBook *bookAtIndexPath = self.booksDisplayed[selectedIndexPath.row];
+    
+    bookPageVC.titleBook = bookAtIndexPath.title;
+    bookPageVC.author = bookAtIndexPath.author;
+    bookPageVC.genre = bookAtIndexPath.genre;
+    bookPageVC.language = bookAtIndexPath.language;
+    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
+    bookPageVC.ebookID = bookAtIndexPath.ebookID;
+    bookPageVC.books = bookPageVC.books;
+}
 
 @end
