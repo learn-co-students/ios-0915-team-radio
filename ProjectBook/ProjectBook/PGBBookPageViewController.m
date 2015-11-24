@@ -54,11 +54,7 @@
     self.languageLabel.text = self.language;
     self.bookDescriptionTV.text = self.bookDescription;
     
-    
-//    //dynamic bookDescriptionTV height
-//    CGRect rect = self.bookDescriptionTV.frame;
-//    rect.size.height = self.bookDescriptionTV.contentSize.height;
-//    self.bookDescriptionTV.frame = rect;
+    [self.bookDescriptionTV setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
     
 }
 

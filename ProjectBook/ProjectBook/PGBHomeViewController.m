@@ -12,11 +12,20 @@
 #import "PGBBookPageViewController.h"
 #import "PGBRealmBook.h"
 
+#import <QuartzCore/QuartzCore.h>
+//#import "SVViewController.h"
+#import "SVPullToRefresh.h"
+
 @interface PGBHomeViewController ()
 
 @property (strong, nonatomic) NSArray *books;
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
+@property (nonatomic, assign) int currentList;
+@property (nonatomic, assign) int initialPage;
+@property (strong, nonatomic) NSMutableArray *list;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
+//@property (nonatomic, readwrite) SVPullToRefreshPosition position;
+
 
 @end
 
@@ -29,13 +38,28 @@
     [self.bookTableView setDelegate:self];
     [self.bookTableView setDataSource:self];
     
+//    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NOVEL_Logo_small"]];
+//    logo.contentMode = UIViewContentModeScaleAspectFit;
+//    
+//    CGRect frame = logo.frame;
+//    frame.size.width = 30;
+//    logo.frame = frame;
+    
+    UIImage *logo = [UIImage imageNamed:@"NOVEL_Logo_small"];
+        
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
+    [self.navigationItem.titleView sizeToFit];
+    
+    //coreData
     [PGBRealmBook generateTestBookData];
     self.books = [PGBRealmBook getUserBookDataInArray];
-    self.books = @[self.books[0], self.books[1], self.books[2]];
+    self.books = @[self.books[0], self.books[1], self.books[2], self.books[3]];
     
+    //xib
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     
     self.bookTableView.rowHeight = 80;
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

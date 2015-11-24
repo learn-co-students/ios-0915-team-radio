@@ -13,6 +13,7 @@ pod 'FBSDKLoginKit'
 pod 'ParseFacebookUtilsV4'
 pod 'Masonry'
 pod 'ParseUI'
+pod 'SVPullToRefresh'
 
 end
 
