@@ -9,6 +9,7 @@
 #import "PGBMyBookViewController.h"
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
+#import "PGBBookPageViewController.h"
 
 @interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *bookSearchBar;
 
 @property (strong, nonatomic) NSPredicate *searchFilter;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *bookSearchButton;
 
 @property (strong, nonatomic)NSArray *books;
 @property (strong, nonatomic)NSArray *booksDisplayed;
@@ -34,10 +36,6 @@
     self.bookTableView.delegate = self;
     self.bookTableView.dataSource = self;
     self.bookSearchBar.delegate = self;
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
     
     //begin test data
     [PGBRealmBook generateTestBookData];
@@ -45,6 +43,10 @@
     //end test data
     
     [self loadDefaultContent];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
 }
 
 - (void)loadDefaultContent{
@@ -58,7 +60,8 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    [self.bookTableView setContentOffset:CGPointMake(0, 44) animated:NO];
+//    [self.bookTableView setContentOffset:CGPointMake(0, 44) animated:NO];
+//    [self.bookTableView setContentOffset:CGPointZero animated:YES];
 }
 
 - (IBAction)bookSegmentedControlSelected:(UISegmentedControl *)sender {
@@ -85,6 +88,7 @@
     }
     
     [self.bookTableView reloadData];
+    
 }
 
 - (IBAction)searchButtonTapped:(id)sender {
@@ -147,10 +151,37 @@
     }
     
     [self.bookTableView reloadData];
+    
+    if (![searchText isEqualToString:@""]) {
+        self.navigationItem.title = @"Searching...";
+    } else {
+        self.navigationItem.title = @"LIBRARY";
+    }
+
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.bookSearchBar resignFirstResponder];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSLog(@"selected row");
+    [self performSegueWithIdentifier:@"bookDetailSegue" sender:nil];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    PGBBookPageViewController *bookPageVC = segue.destinationViewController;
+    
+    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
+    PGBRealmBook *bookAtIndexPath = self.booksDisplayed[selectedIndexPath.row];
+    
+    bookPageVC.titleBook = bookAtIndexPath.title;
+    bookPageVC.author = bookAtIndexPath.author;
+    bookPageVC.genre = bookAtIndexPath.genre;
+    bookPageVC.language = bookAtIndexPath.language;
+    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
+    bookPageVC.ebookID = bookAtIndexPath.ebookID;
+    bookPageVC.books = bookPageVC.books;
 }
 
 @end

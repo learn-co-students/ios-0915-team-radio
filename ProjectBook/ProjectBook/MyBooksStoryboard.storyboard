@@ -64,7 +64,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="vqI-HQ-kYV" kind="show" id="JSa-dU-FRj"/>
+                                            <segue destination="vqI-HQ-kYV" kind="show" identifier="bookDetailSegue" id="JSa-dU-FRj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -91,6 +91,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bookSearchBar" destination="WXW-eF-Ucu" id="RFK-md-DK4"/>
+                        <outlet property="bookSearchButton" destination="Vzk-z3-8q6" id="3tx-rQ-SHG"/>
                         <outlet property="bookSegmentControl" destination="lvs-9m-7Sf" id="hbo-1n-774"/>
                         <outlet property="bookTableView" destination="nxV-qy-BJq" id="5xQ-KS-fhY"/>
                     </connections>
@@ -131,11 +132,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="91fJxgs69QL._SL1500_" translatesAutoresizingMaskIntoConstraints="NO" id="7YQ-RK-UAb" userLabel="BookCover">
-                                <rect key="frame" x="0.0" y="20" width="240" height="275"/>
+                                <rect key="frame" x="0.0" y="64" width="240" height="275"/>
                                 <animations/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95f-wc-WJo" userLabel="Book Info">
-                                <rect key="frame" x="240" y="20" width="360" height="275"/>
+                                <rect key="frame" x="240" y="64" width="360" height="275"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="R0B-8o-CfC">
                                         <rect key="frame" x="18" y="14" width="324" height="247"/>
@@ -189,7 +190,7 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dXB-BY-yXv">
-                                <rect key="frame" x="0.0" y="345" width="600" height="255"/>
+                                <rect key="frame" x="0.0" y="389" width="600" height="211"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -197,7 +198,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSk-cg-ZO5" userLabel="Links">
-                                <rect key="frame" x="0.0" y="295" width="600" height="50"/>
+                                <rect key="frame" x="0.0" y="339" width="600" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TDX-T0-qZs">
                                         <rect key="frame" x="30" y="10" width="540" height="30"/>
