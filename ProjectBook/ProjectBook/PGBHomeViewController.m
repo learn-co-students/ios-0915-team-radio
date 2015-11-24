@@ -11,12 +11,19 @@
 #import "PGBDownloadHelper.h"
 #import "PGBBookPageViewController.h"
 #import "PGBRealmBook.h"
+#import "PGBDataStore.h"
+#import "Book.h"
+#import <AFNetworking/AFNetworking.h>
+#import <Availability.h>
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @interface PGBHomeViewController ()
 
-@property (strong, nonatomic) NSArray *books;
+@property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
+@property (strong, nonatomic) NSMutableArray *bookCovers;
 
 @end
 
@@ -28,15 +35,57 @@
     
     [self.bookTableView setDelegate:self];
     [self.bookTableView setDataSource:self];
-    
-    [PGBRealmBook generateTestBookData];
-    self.books = [PGBRealmBook getUserBookDataInArray];
-    self.books = @[self.books[0], self.books[1], self.books[2]];
+
+    //commented by leo
+//    [PGBRealmBook generateTestBookData];
+//    self.books = [PGBRealmBook getUserBookDataInArray];
+//    self.books = @[self.books[0], self.books[1], self.books[2]];
+    self.books = [[NSMutableArray alloc]init];
+    self.bookCovers = [[NSMutableArray alloc]init];
+    [self getRandomBooks];
     
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     
     self.bookTableView.rowHeight = 80;
 }
+
+- (void)getRandomBooks{
+    
+    NSOperationQueue *bgQueue = [[NSOperationQueue alloc] init];
+    
+    NSOperation *fetchBookOperation = [NSBlockOperation blockOperationWithBlock:^{
+        PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
+        [dataStore fetchData];
+        
+        for (NSUInteger i = 0; i < 10; i++) {
+            NSUInteger randomNumber = arc4random_uniform((u_int32_t)dataStore.managedBookObjects.count);
+            
+            PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
+            Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
+            
+            realmBook.author = coreDataBook.eBookAuthors;
+            realmBook.title = coreDataBook.eBookTitles;
+            realmBook.genre = coreDataBook.eBookGenres;
+            UIImage *newImage =[self getBookCoverImageWithEBooknumber:coreDataBook.eBookNumbers];
+            if (!newImage) {
+                newImage = [UIImage imageNamed:@"91fJxgs69QL._SL1500_"];
+                [self.bookCovers addObject:newImage];
+            }
+            [self.bookCovers addObject:newImage];
+            
+            [self.books addObject:realmBook];
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.bookTableView reloadData];
+            }];
+            
+        }
+        
+    }];
+    
+    [bgQueue addOperation:fetchBookOperation];
+}
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -53,14 +102,30 @@
     PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
     
     PGBRealmBook *book = self.books[indexPath.row];
+//    Book *book = self.books[indexPath.row];
+    
     cell.titleLabel.text = book.title;
     cell.authorLabel.text = book.author;
     cell.genreLabel.text = book.genre;
+    cell.bookCover.image = self.bookCovers[indexPath.row];
     
     [cell.downloadButton addTarget:self action:@selector(cellDownloadButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
     
     return cell;
+}
+
+- (UIImage *)getBookCoverImageWithEBooknumber:(NSString *)eBookNumber{
+    NSLog(@"get image from URL");
+    
+    NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
+    NSString *bookCoverURL = [NSString stringWithFormat:@"https://www.gutenberg.org/cache/epub/%@/pg%@.cover.medium.jpg", eBookNumberParsed, eBookNumberParsed];
+    
+    NSURL *url = [NSURL URLWithString:bookCoverURL];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *img = [[UIImage alloc]initWithData:data];
+    //    CGSize size = img.size;
+    return img;
 }
 
 -(void) cellDownloadButtonTapped:(UIButton*) button
@@ -180,14 +245,16 @@
     PGBBookPageViewController *bookPageVC = segue.destinationViewController;
     
     NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
-    PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
+//    PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
+    Book *bookAtIndexPath = self.books[selectedIndexPath.row];
     
-    bookPageVC.titleBook = bookAtIndexPath.title;
-    bookPageVC.author = bookAtIndexPath.author;
-    bookPageVC.genre = bookAtIndexPath.genre;
-    bookPageVC.language = bookAtIndexPath.language;
-    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
-    bookPageVC.ebookID = bookAtIndexPath.ebookID;
+    bookPageVC.titleBook = bookAtIndexPath.eBookTitles;
+    bookPageVC.author = bookAtIndexPath.eBookAuthors;
+    bookPageVC.genre = bookAtIndexPath.eBookGenres;
+    bookPageVC.language = bookAtIndexPath.eBookLanguages;
+
+//    bookPageVC.ebookID = bookAtIndexPath.eBookNumbers;
+//    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
     bookPageVC.books = bookPageVC.books;
     
 }

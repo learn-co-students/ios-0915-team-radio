@@ -8,6 +8,7 @@
 
 #import <Realm/Realm.h>
 #import "PGBRealmUser.h"
+#import <UIKit/UIKit.h>
 
 @interface PGBRealmBook : RLMObject
 
