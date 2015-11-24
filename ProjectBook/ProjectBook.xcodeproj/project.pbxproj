@@ -189,7 +189,7 @@
 			name = CoreDataModel;
 			sourceTree = "<group>";
 		};
-		4C9597AD1BFBEB2600BBD558 /* Model */ = {
+		4C9597AD1BFBEB2600BBD558 /* RealmModel */ = {
 			isa = PBXGroup;
 			children = (
 				4C9597A71BFBEB2000BBD558 /* PGBRealmUser.h */,
@@ -197,7 +197,7 @@
 				4C9597A91BFBEB2000BBD558 /* PGBRealmBook.h */,
 				4C9597AA1BFBEB2000BBD558 /* PGBRealmBook.m */,
 			);
-			name = Model;
+			name = RealmModel;
 			sourceTree = "<group>";
 		};
 		67D9EF55715E7EB36B72C5A3 /* Frameworks */ = {
@@ -263,7 +263,7 @@
 			children = (
 				4C25FFA81C03B7FF00B5C8E3 /* CoreDataModel */,
 				CBF2C6171BFD0D8B00BCBCDD /* bookInformationSet */,
-				4C9597AD1BFBEB2600BBD558 /* Model */,
+				4C9597AD1BFBEB2600BBD558 /* RealmModel */,
 				CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */,
 				CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */,
 				CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */,
