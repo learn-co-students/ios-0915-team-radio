@@ -96,25 +96,7 @@
 //                                  @"eBookTitles" : @"",
 //                                  }
 //                              ];
-//
-//    Book *bookOne = [NSEntityDescription insertNewObjectForEntityForName:@"Book" inManagedObjectContext:self.managedObjectContext];
-//    
-//    bookOne.eBookAuthors = testArray[0][@"eBookAuthors"];
-//    bookOne.eBookFriendlyTitles = testArray[0][@"eBookFriendlyTitles"];
-//    bookOne.eBookGenres = testArray[0][@"eBookGenres"];
-//    bookOne.eBookLanguages = testArray[0][@"eBookLanguages"];
-//    bookOne.eBookNumbers = testArray[0][@"eBookNumbers"];
-//    bookOne.eBookTitles = testArray[0][@"eBookTitles"];
-//    
-//    Book *bookTwo = [NSEntityDescription insertNewObjectForEntityForName:@"Book" inManagedObjectContext:self.managedObjectContext];
-//
-//    bookTwo.eBookAuthors = testArray[1][@"eBookAuthors"];
-//    bookTwo.eBookFriendlyTitles = testArray[1][@"eBookFriendlyTitles"];
-//    bookTwo.eBookGenres = testArray[1][@"eBookGenres"];
-//    bookTwo.eBookLanguages = testArray[1][@"eBookLanguages"];
-//    bookTwo.eBookNumbers = testArray[1][@"eBookNumbers"];
-//    bookTwo.eBookTitles = testArray[1][@"eBookTitles"];
-//    
+    
     for (NSDictionary *book in arrayOfDictioanries) {
         Book *newBook = [NSEntityDescription insertNewObjectForEntityForName:@"Book" inManagedObjectContext:self.managedObjectContext];
         newBook.eBookAuthors = book[@"eBookAuthors"];

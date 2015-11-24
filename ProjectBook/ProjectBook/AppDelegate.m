@@ -33,12 +33,9 @@
     NSLog(@"Begin store to core data");
     PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
     [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
-//    [dataStore fetchData];
     NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
     
     NSLog(@"End store to core data");
-    
-    
     //end test
     
     // Override point for customization after application launch.
