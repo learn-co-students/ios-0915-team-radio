@@ -37,6 +37,8 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
 //@property (nonatomic, readwrite) SVPullToRefreshPosition position;
 
+@property (strong, nonatomic) PGBBookCustomTableCell *customCell;
+
 @property (strong, nonatomic) NSMutableArray *bookCovers;
 
 @end
@@ -122,6 +124,11 @@
             realmBook.title = coreDataBook.eBookTitles;
             realmBook.genre = coreDataBook.eBookGenres;
             realmBook.ebookID = coreDataBook.eBookNumbers;
+            
+            if ([realmBook.ebookID isEqualToString:@""]) {
+                NSLog (@"this is an empty string");
+            }
+            
             UIImage *newImage =[self getBookCoverImageWithEBooknumber:coreDataBook.eBookNumbers];
             if (!newImage) {
                 newImage = [UIImage imageNamed:@"91fJxgs69QL._SL1500_"];
@@ -166,16 +173,34 @@
     PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
     realmBook = self.books[self.bookTableView.indexPathForSelectedRow.row];
     
-    realmBook.ebookID = [realmBook.ebookID substringFromIndex:5];
+    NSString *neweBookID = [realmBook.ebookID substringFromIndex:5];
     
     if (cell && [cell isKindOfClass:[PGBBookCustomTableCell class]]){
         NSLog(@"selected book is: %@; URL: %@", cell.titleLabel.text, cell.bookURL);
         
-        NSString *downloadURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", realmBook.ebookID];
+        NSString *downloadURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", neweBookID];
         
         NSURL *URL = [NSURL URLWithString:downloadURL];
         self.downloadHelper = [[PGBDownloadHelper alloc] init];
         [self.downloadHelper download:URL];
+        
+        
+        //during download
+        UIAlertController *downloadComplete = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * _Nonnull action) {
+                                                   }];
+        
+        [downloadComplete addAction:ok];
+        [self presentViewController:downloadComplete animated:YES completion:nil];
+        
+        
+        //when download, disable button
+        self.customCell.downloadButton.enabled = NO;
+        
     }
     else {
         NSLog(@"Didn't get a cell, I fucked UP");

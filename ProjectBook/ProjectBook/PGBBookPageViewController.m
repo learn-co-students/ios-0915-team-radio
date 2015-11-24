@@ -24,8 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *genreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel;
 @property (weak, nonatomic) IBOutlet UILabel *languageLabel;
-@property (weak, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UIScrollView *bookDescriptionSV;
 
 
 @end
@@ -52,10 +50,9 @@
     self.genreLabel.text = self.genre;
     self.yearLabel.text = datePublished;
     self.languageLabel.text = self.language;
-    self.bookDescriptionTV.text = self.bookDescription;
+    self.bookDescriptionTV.text = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     
-    [self.bookDescriptionTV setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
-    
+    [self.bookDescriptionTV scrollRangeToVisible:NSMakeRange(0, 1)];
 }
 
 - (IBAction)downloadButtonTapped:(id)sender
@@ -67,6 +64,20 @@
     NSURL *URL = [NSURL URLWithString:idURL];
     self.downloadHelper = [[PGBDownloadHelper alloc] init];
     [self.downloadHelper download:URL];
+    
+    //during download
+    UIAlertController *downloadComplete = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction * _Nonnull action) {
+                                               }];
+    
+    [downloadComplete addAction:ok];
+    [self presentViewController:downloadComplete animated:YES completion:nil];
+    
+    self.downloadButton.enabled = NO;
     
 }
 
