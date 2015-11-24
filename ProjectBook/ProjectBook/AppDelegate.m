@@ -12,6 +12,8 @@
 #import "PGBRealmUser.h"
 #import "PGBRealmBook.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <GROAuth.h>
+
 @interface AppDelegate ()
 
 @end
@@ -35,6 +37,9 @@
 
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    [GROAuth setGoodreadsOAuthWithConsumerKey:@"AckMqnduhbH8xQdja2Nw"
+                                       secret:@"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno"];
     
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];

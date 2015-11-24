@@ -11,10 +11,12 @@
 #import "PGBDownloadHelper.h"
 #import "PGBBookPageViewController.h"
 #import "PGBRealmBook.h"
-
+#import <XMLDictionary.h>
 #import <QuartzCore/QuartzCore.h>
 //#import "SVViewController.h"
 #import "SVPullToRefresh.h"
+
+#import <GROAuth.h>
 
 @interface PGBHomeViewController ()
 
@@ -38,15 +40,15 @@
     [self.bookTableView setDelegate:self];
     [self.bookTableView setDataSource:self];
     
-//    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NOVEL_Logo_small"]];
-//    logo.contentMode = UIViewContentModeScaleAspectFit;
-//    
-//    CGRect frame = logo.frame;
-//    frame.size.width = 30;
-//    logo.frame = frame;
+    //    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NOVEL_Logo_small"]];
+    //    logo.contentMode = UIViewContentModeScaleAspectFit;
+    //
+    //    CGRect frame = logo.frame;
+    //    frame.size.width = 30;
+    //    logo.frame = frame;
     
     UIImage *logo = [UIImage imageNamed:@"NOVEL_Logo_small"];
-        
+    
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     [self.navigationItem.titleView sizeToFit];
     
@@ -60,6 +62,30 @@
     
     self.bookTableView.rowHeight = 80;
     
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [GROAuth loginWithGoodreadsWithCompletion:^(NSDictionary *authParams, NSError *error) {
+        if (error) {
+            NSLog(@"Error logging in: %@", [error.userInfo objectForKey:@"userInfo"]);
+        } else {
+            NSURLRequest *userIDRequest = [GROAuth goodreadsRequestForOAuthPath:@"api/auth_user" parameters:nil HTTPmethod:@"GET"];
+            
+            NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:userIDRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                NSLog(@"user request is back!");
+                NSLog(@"error: %@", error);
+                NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                
+                NSDictionary *dictionary = [NSDictionary dictionaryWithXMLString:dataString];
+                
+                NSLog(@"%@", dictionary);
+            }];
+            [task resume];
+        }
+    }];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
