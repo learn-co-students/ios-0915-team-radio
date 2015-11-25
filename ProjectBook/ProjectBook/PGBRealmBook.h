@@ -22,8 +22,9 @@
 @property (assign, nonatomic)NSString *ebookID;
 @property (assign, nonatomic)BOOL isDownloaded;
 @property (assign, nonatomic)BOOL isBookmarked;
+@property (strong, nonatomic)NSData *bookCoverData;
 
-- (instancetype)init;
+//- (instancetype)init;
 - (instancetype)initWithTitle:(NSString *)title
                        author:(NSString *)author
                         genre:(NSString *)genre
@@ -33,7 +34,8 @@
                 datePublished:(NSDate *)datePublished
                       ebookID:(NSString *)ebookID
                  isDownloaded:(BOOL)isDownloaded
-                 isBookmarked:(BOOL)isBookmarked;
+                 isBookmarked:(BOOL)isBookmarked
+                bookCoverData:(NSData *)bookCoverData;
 + (void)storeUserBookDataWithBook:(PGBRealmBook *)book;
 + (void)deleteUserBookDataForBook:(PGBRealmBook *)book;
 + (void)deleteAllUserBookData;

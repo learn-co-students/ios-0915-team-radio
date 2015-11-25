@@ -10,24 +10,10 @@
 
 @implementation PGBRealmBook
 
-// Specify default values for properties
-
-//+ (NSDictionary *)defaultPropertyValues
-//{
-//    return @{};
+//- (instancetype)init{
+//    self = [self initWithTitle:@"" author:@"" genre:@"" language:@"" downloadURL:@"" bookDescription:@"" datePublished:[NSDate date] ebookID:@"" isDownloaded:NO isBookmarked:NO bookCoverData:nil];
+//    return self;
 //}
-
-// Specify properties to ignore (Realm won't persist these)
-
-//+ (NSArray *)ignoredProperties
-//{
-//    return @[];
-//}
-
-- (instancetype)init{
-    self = [self initWithTitle:@"" author:@"" genre:@"" language:@"" downloadURL:@"" bookDescription:@"" datePublished:[NSDate date] ebookID:@"" isDownloaded:NO isBookmarked:NO];
-    return self;
-}
 
 - (instancetype)initWithTitle:(NSString *)title
                        author:(NSString *)author
@@ -38,7 +24,8 @@
                 datePublished:(NSDate *)datePublished
                       ebookID:(NSString *)ebookID
                  isDownloaded:(BOOL)isDownloaded
-                 isBookmarked:(BOOL)isBookmarked{
+                 isBookmarked:(BOOL)isBookmarked
+                bookCoverData:(NSData *)bookCoverData {
 
     self = [super init];
     if (self) {
@@ -52,6 +39,7 @@
         _ebookID = ebookID;
         _isDownloaded = isDownloaded;
         _isBookmarked = isBookmarked;
+        _bookCoverData = [[NSData alloc]init];
     }
     return self;
 }

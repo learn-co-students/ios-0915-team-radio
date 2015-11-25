@@ -86,6 +86,7 @@
     
     //goodreads user login
     
+    //NOTE - this is causing the page to load even after user is logged in, this needs to moved somewhere or add in a login check to not load it if user already logged in
     [GROAuth loginWithGoodreadsWithCompletion:^(NSDictionary *authParams, NSError *error) {
         if (error) {
             NSLog(@"Error logging in: %@", [error.userInfo objectForKey:@"userInfo"]);
@@ -114,7 +115,7 @@
         PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
         [dataStore fetchData];
         
-        for (NSUInteger i = 0; i < 10; i++) {
+        for (NSUInteger i = 0; i < 100; i++) {
             NSUInteger randomNumber = arc4random_uniform((u_int32_t)dataStore.managedBookObjects.count);
             
             PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
@@ -124,42 +125,32 @@
             realmBook.title = coreDataBook.eBookTitles;
             realmBook.genre = coreDataBook.eBookGenres;
             realmBook.ebookID = coreDataBook.eBookNumbers;
-            
-            if ([realmBook.ebookID isEqualToString:@""]) {
-                NSLog (@"this is an empty string");
-            }
-            
-            UIImage *newImage =[self getBookCoverImageWithEBooknumber:coreDataBook.eBookNumbers];
-            if (!newImage) {
-                newImage = [UIImage imageNamed:@"91fJxgs69QL._SL1500_"];
-                [self.bookCovers addObject:newImage];
-            }
-            [self.bookCovers addObject:newImage];
+    
+            NSData *bookCoverData = [NSData dataWithContentsOfURL:[self createBookCoverULR:coreDataBook.eBookNumbers]];
+            realmBook.bookCoverData = bookCoverData;
             
             [self.books addObject:realmBook];
             
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.bookTableView reloadData];
-            }];
-            
+            if (!realmBook.bookCoverData) {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.bookTableView reloadData];
+                }];
+            }
         }
-        
     }];
     
     [bgQueue addOperation:fetchBookOperation];
 }
 
-- (UIImage *)getBookCoverImageWithEBooknumber:(NSString *)eBookNumber{
-    NSLog(@"get image from URL");
-    
+- (NSURL *)createBookCoverULR:(NSString *)eBookNumber{
     NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
     NSString *bookCoverURL = [NSString stringWithFormat:@"https://www.gutenberg.org/cache/epub/%@/pg%@.cover.medium.jpg", eBookNumberParsed, eBookNumberParsed];
     
     NSURL *url = [NSURL URLWithString:bookCoverURL];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *img = [[UIImage alloc]initWithData:data];
+//    NSData *data = [NSData dataWithContentsOfURL:url];
+//    UIImage *img = [[UIImage alloc]initWithData:data];
     //    CGSize size = img.size;
-    return img;
+    return url;
 }
 
 -(void) cellDownloadButtonTapped:(UIButton*) button
@@ -227,7 +218,13 @@
     cell.titleLabel.text = book.title;
     cell.authorLabel.text = book.author;
     cell.genreLabel.text = book.genre;
-    cell.bookCover.image = self.bookCovers[indexPath.row];
+//    cell.bookCover.image = self.bookCovers[indexPath.row];
+    UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+    if (!bookCoverImage) {
+        bookCoverImage = [UIImage imageNamed:@"91fJxgs69QL._SL1500_"];
+    }
+    
+    cell.bookCover.image = bookCoverImage;
     
     [cell.downloadButton addTarget:self action:@selector(cellDownloadButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
