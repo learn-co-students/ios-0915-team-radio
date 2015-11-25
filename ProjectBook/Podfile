@@ -15,6 +15,7 @@ pod 'Masonry'
 pod 'ParseUI'
 pod 'SVPullToRefresh'
 pod 'Goodreads-Oauth'
+pod 'YYWebImage'
 
 end
 
