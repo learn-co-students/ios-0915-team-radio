@@ -28,8 +28,8 @@
     [super viewDidLoad];
     
     //begin test data
-    [PGBRealmBook generateTestBookData];
-    self.books = [PGBRealmBook getUserBookDataInArray];
+//    [PGBRealmBook generateTestBookData];
+//    self.books = [PGBRealmBook getUserBookDataInArray];
     //end test data
     
     
