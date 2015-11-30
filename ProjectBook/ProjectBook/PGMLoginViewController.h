@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ParseUI/ParseUI.h>
+@interface PGMLoginViewController : PFLogInViewController;
 
-@interface PGMLoginViewController : UIViewController
+
 
 @end
