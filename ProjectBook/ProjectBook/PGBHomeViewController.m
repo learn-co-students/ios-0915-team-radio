@@ -285,10 +285,14 @@
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
-    //    } else {
-    //        self.loginButton.title = @"Log out";
-    //
-    //    }
+    else {
+        // User logged in; go to profile
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"fjkladsjf" bundle:nil];
+        UIViewController *vc = [storyboard instantiateInitialViewController];
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -308,9 +312,8 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
-    self.loginButton.title = @"Log out";
-    [PFUser logOut];
-    PFUser *currentUser = [PFUser currentUser];
+    self.loginButton.title = @"👤";
+    
 }
 
 // Sent to the delegate when the log in attempt fails.
