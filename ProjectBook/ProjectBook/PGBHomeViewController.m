@@ -16,7 +16,6 @@
 
 #import <XMLDictionary.h>
 #import <QuartzCore/QuartzCore.h>
-//#import "SVViewController.h"
 #import "SVPullToRefresh.h"
 
 #import <GROAuth.h>

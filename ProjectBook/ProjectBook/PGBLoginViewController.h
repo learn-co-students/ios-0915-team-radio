@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <ParseUI/ParseUI.h>
+#import <QuartzCore/QuartzCore.h>
 @interface PGBLoginViewController : PFLogInViewController;
 
 @end
