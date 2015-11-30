@@ -79,7 +79,7 @@
     // CGRectMake(x, y, width, height)
     // Set frame for elements
     
-    [self.logInView.dismissButton setFrame:CGRectMake(10.0f, 15.0f, 30.5f, 30.5f)];
+    [self.logInView.dismissButton setFrame:CGRectMake(15.0f, 25.0f, 30.5f, 30.5f)];
     
     [self.logInView.logo setFrame:CGRectMake(width * 1/5, height * 1/8, width * 3/5, 58.5f)];
     
