@@ -35,15 +35,13 @@
 //    NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
 //    
 //    NSLog(@"Begin store to core data");
-    
+//    
 //    NSLog(@"documents directory: %@", [self applicationDocumentsDirectory]);
     
 //    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
 ////    [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
 //    [dataStore fetchData];
-//    NSPredicate *filter = [NSPredicate predicateWithFormat:@"eBookAuthors CONTAINS 'Hakluyt'"];
-//    NSArray *result = [dataStore.managedBookObjects filteredArrayUsingPredicate:filter];
-//    NSLog(@"%@",result);
+//
 //    
 //    NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
 //    

@@ -44,7 +44,7 @@
     
 //    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"objcCMR.sqlite"];
     NSURL *appBundleStoreURL = [[NSBundle mainBundle] URLForResource:@"ProjectBook" withExtension:@"sqlite"];
-    
+
     NSURL *documentsStoreURL = [[self applicationDocumentsDirectory]URLByAppendingPathComponent:@"ProjectBook.sqlite"];
     
     if(![documentsStoreURL checkResourceIsReachableAndReturnError:nil]) {
@@ -59,6 +59,7 @@
     NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
     
     [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:documentsStoreURL options:nil error:&error];
+//    [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
     if (coordinator != nil) {
         _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];

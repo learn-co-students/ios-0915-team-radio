@@ -122,11 +122,69 @@
             PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
             Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
             
-            realmBook.author = coreDataBook.eBookAuthors;
-            realmBook.title = coreDataBook.eBookTitles;
-            realmBook.genre = coreDataBook.eBookGenres;
             realmBook.ebookID = coreDataBook.eBookNumbers;
-    
+            if ([coreDataBook.eBookNumbers isEqualToString:@""]) {
+                continue;
+            }
+            
+            realmBook.author = coreDataBook.eBookAuthors;
+            if ([coreDataBook.eBookAuthors isEqualToString:@""])
+            {
+                if (![coreDataBook.eBookFriendlyTitles isEqualToString:@""])
+                {
+                    
+                    NSArray *stringToArray = [coreDataBook.eBookFriendlyTitles componentsSeparatedByString:@" "];
+                    
+                    if ([stringToArray containsObject:@"by"])
+                    {
+                        NSMutableArray *mutableStringToArray = [stringToArray mutableCopy];
+                        NSUInteger indexOfStringBy = [mutableStringToArray indexOfObject:@"by"];
+                        [mutableStringToArray removeObjectsInRange:NSMakeRange(0, indexOfStringBy)];
+                        
+                        NSMutableString *authorName = [NSMutableString new];
+                        
+                        for (NSString *element in mutableStringToArray)
+                        {
+                            [authorName appendString:element];
+                            [authorName appendString:@" "];
+                        }
+                        [authorName substringToIndex:authorName.length-1];
+                        realmBook.author = authorName;
+                    }
+                }
+                else if ([coreDataBook.eBookAuthors isEqualToString:@""]) {
+                    realmBook.author = @"";
+                }
+            }
+        
+            realmBook.title = coreDataBook.eBookTitles;
+            if ([coreDataBook.eBookTitles isEqualToString:@""]) {
+                if (![coreDataBook.eBookFriendlyTitles isEqualToString:@""]) {
+                    
+                    NSArray *stringToArray = [coreDataBook.eBookFriendlyTitles componentsSeparatedByString:@" "];
+                    NSMutableArray *mutableStringToArray = [stringToArray mutableCopy];
+                    
+                    if ([mutableStringToArray containsObject:@"by"]) {
+                        NSUInteger indexOfStringBy = [mutableStringToArray indexOfObject:@"by"];
+                        [mutableStringToArray removeObjectsInRange:NSMakeRange(indexOfStringBy, mutableStringToArray.count-indexOfStringBy)];
+                        
+                        NSMutableString *title = [NSMutableString new];
+                        
+                        for (NSString *string in mutableStringToArray) {
+                            [title appendString:string];
+                            [title appendString:@" "];
+                        }
+                        [title substringToIndex:title.length-1];
+                        realmBook.title = title;
+                    }
+                }
+                else if ([coreDataBook.eBookFriendlyTitles isEqualToString:@""]) {
+                    realmBook.title = @"";
+                }
+            }
+            
+            realmBook.genre = coreDataBook.eBookGenres;
+            
             NSData *bookCoverData = [NSData dataWithContentsOfURL:[self createBookCoverULR:coreDataBook.eBookNumbers]];
             realmBook.bookCoverData = bookCoverData;
             
