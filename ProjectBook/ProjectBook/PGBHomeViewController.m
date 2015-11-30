@@ -279,6 +279,7 @@
         [signUpViewController setDelegate:self]; // Set ourselves as the delegate
         
         
+        
         // Assign our sign up controller to be displayed from the login controller
         [logInViewController setSignUpController:signUpViewController];
         
@@ -288,7 +289,7 @@
     else {
         // User logged in; go to profile
         
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"fjkladsjf" bundle:nil];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"profile" bundle:nil];
         UIViewController *vc = [storyboard instantiateInitialViewController];
         
         [self.navigationController pushViewController:vc animated:YES];

@@ -19,6 +19,8 @@
 		7AA794A04ED5426536CC6469 /* libPods-ProjectBook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */; };
 		8902002D1C0CA900001A1ECF /* PGBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8902002C1C0CA900001A1ECF /* PGBLoginViewController.m */; };
 		890200301C0CAA10001A1ECF /* PGBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8902002F1C0CAA10001A1ECF /* PGBSignUpViewController.m */; };
+		890200321C0CF4EB001A1ECF /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 890200311C0CF4EB001A1ECF /* profile.storyboard */; };
+		890200351C0CFD08001A1ECF /* PGBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890200341C0CFD08001A1ECF /* PGBProfileViewController.m */; };
 		A75AD6391C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A75AD6381C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf */; };
 		A77A08F91BFBE78700CA62F8 /* PGBparsingThroughText.m in Sources */ = {isa = PBXBuildFile; fileRef = A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */; };
 		A7DD3FFB1C03717100D13A4B /* bookInformationSet1.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FE71C03717100D13A4B /* bookInformationSet1.txt */; };
@@ -99,6 +101,9 @@
 		8902002C1C0CA900001A1ECF /* PGBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBLoginViewController.m; sourceTree = "<group>"; };
 		8902002E1C0CAA10001A1ECF /* PGBSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBSignUpViewController.h; sourceTree = "<group>"; };
 		8902002F1C0CAA10001A1ECF /* PGBSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBSignUpViewController.m; sourceTree = "<group>"; };
+		890200311C0CF4EB001A1ECF /* profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
+		890200331C0CFD08001A1ECF /* PGBProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBProfileViewController.h; sourceTree = "<group>"; };
+		890200341C0CFD08001A1ECF /* PGBProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBProfileViewController.m; sourceTree = "<group>"; };
 		89DF0C4F1BFCDF1500E0096F /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../Desktop/parse-library-1.9.1 (2)/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook.release.xcconfig"; sourceTree = "<group>"; };
 		A75AD6381C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DictionaryOfBooksFinal.rtf; sourceTree = "<group>"; };
@@ -299,6 +304,9 @@
 				8902002C1C0CA900001A1ECF /* PGBLoginViewController.m */,
 				8902002E1C0CAA10001A1ECF /* PGBSignUpViewController.h */,
 				8902002F1C0CAA10001A1ECF /* PGBSignUpViewController.m */,
+				890200311C0CF4EB001A1ECF /* profile.storyboard */,
+				890200331C0CFD08001A1ECF /* PGBProfileViewController.h */,
+				890200341C0CFD08001A1ECF /* PGBProfileViewController.m */,
 				CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */,
 				CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */,
 				CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */,
@@ -462,6 +470,7 @@
 				A7DD40071C03717100D13A4B /* bookInformationSet13.txt in Resources */,
 				CBFD3F6C1BFBA077002CE0A4 /* LaunchScreen.storyboard in Resources */,
 				CBFD3F691BFBA077002CE0A4 /* Assets.xcassets in Resources */,
+				890200321C0CF4EB001A1ECF /* profile.storyboard in Resources */,
 				A7DD40001C03717100D13A4B /* bookInformationSet6.txt in Resources */,
 				CBFD3F641BFBA076002CE0A4 /* Main.storyboard in Resources */,
 				A7DD40051C03717100D13A4B /* bookInformationSet11.txt in Resources */,
@@ -558,6 +567,7 @@
 				4C25FFA71C03B7E200B5C8E3 /* Book.m in Sources */,
 				CB3C07A01C05063A00235D78 /* PGBIntroViewController.m in Sources */,
 				4C9597AC1BFBEB2000BBD558 /* PGBRealmBook.m in Sources */,
+				890200351C0CFD08001A1ECF /* PGBProfileViewController.m in Sources */,
 				CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */,
 				890200301C0CAA10001A1ECF /* PGBSignUpViewController.m in Sources */,
 				CB3C079F1C05063A00235D78 /* PGBGoodreadsAPIClient.m in Sources */,
