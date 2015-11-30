@@ -15,6 +15,8 @@
 		4C5D947E1BFE389A0086DB5F /* PGBMyBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */; };
 		4C9597AB1BFBEB2000BBD558 /* PGBRealmUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9597A81BFBEB2000BBD558 /* PGBRealmUser.m */; };
 		4C9597AC1BFBEB2000BBD558 /* PGBRealmBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9597AA1BFBEB2000BBD558 /* PGBRealmBook.m */; };
+		4C9D16631C0CF04800DBF989 /* PGBSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */; };
+		4C9D16651C0CF07600DBF989 /* SearchStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9D16641C0CF07600DBF989 /* SearchStoryboard.storyboard */; };
 		7AA794A04ED5426536CC6469 /* libPods-ProjectBook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */; };
 		89DF0C661BFEA3A900E0096F /* PGMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DF0C651BFEA3A900E0096F /* PGMLoginViewController.m */; };
 		A75AD6391C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A75AD6381C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf */; };
@@ -93,6 +95,9 @@
 		4C9597A81BFBEB2000BBD558 /* PGBRealmUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBRealmUser.m; sourceTree = "<group>"; };
 		4C9597A91BFBEB2000BBD558 /* PGBRealmBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBRealmBook.h; sourceTree = "<group>"; };
 		4C9597AA1BFBEB2000BBD558 /* PGBRealmBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBRealmBook.m; sourceTree = "<group>"; };
+		4C9D16611C0CF04800DBF989 /* PGBSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBSearchViewController.h; sourceTree = "<group>"; };
+		4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBSearchViewController.m; sourceTree = "<group>"; };
+		4C9D16641C0CF07600DBF989 /* SearchStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchStoryboard.storyboard; sourceTree = "<group>"; };
 		89DF0C4F1BFCDF1500E0096F /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../Desktop/parse-library-1.9.1 (2)/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		89DF0C641BFEA3A900E0096F /* PGMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGMLoginViewController.h; sourceTree = "<group>"; };
 		89DF0C651BFEA3A900E0096F /* PGMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGMLoginViewController.m; sourceTree = "<group>"; };
@@ -310,6 +315,9 @@
 				4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */,
 				4C5D947C1BFE389A0086DB5F /* PGBMyBookViewController.h */,
 				4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */,
+				4C9D16641C0CF07600DBF989 /* SearchStoryboard.storyboard */,
+				4C9D16611C0CF04800DBF989 /* PGBSearchViewController.h */,
+				4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */,
 				CBFD3F591BFBA076002CE0A4 /* Supporting Files */,
 				4C25FF9F1C03A9F000B5C8E3 /* WriteBooksDictionaryFile.h */,
 				4C25FFA01C03A9F000B5C8E3 /* WriteBooksDictionaryFile.m */,
@@ -454,6 +462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */,
+				4C9D16651C0CF07600DBF989 /* SearchStoryboard.storyboard in Resources */,
 				A7DD400A1C03717100D13A4B /* bookInformationSet16.txt in Resources */,
 				A7DD40071C03717100D13A4B /* bookInformationSet13.txt in Resources */,
 				CBFD3F6C1BFBA077002CE0A4 /* LaunchScreen.storyboard in Resources */,
@@ -556,6 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBF2C61F1BFD1FF300BCBCDD /* PGBHomeViewController.m in Sources */,
+				4C9D16631C0CF04800DBF989 /* PGBSearchViewController.m in Sources */,
 				CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */,
 				CBFD3F611BFBA076002CE0A4 /* PGBBookPageViewController.m in Sources */,
 				4C5D947E1BFE389A0086DB5F /* PGBMyBookViewController.m in Sources */,
