@@ -14,11 +14,12 @@
 @interface PGBSearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *bookTableView;
-@property (strong, nonatomic)UISearchBar *bookSearchBar;
-@property (strong, nonatomic)UISearchController *searchController;
-@property (strong, nonatomic)NSArray *books;
+@property (strong, nonatomic) UISearchBar *bookSearchBar;
+@property (strong, nonatomic) UISearchController *searchController;
+@property (strong, nonatomic) NSArray *books;
+@property (strong, nonatomic) NSArray *booksDisplayed;
 @property (strong, nonatomic) IBOutlet UIView *contentView;
-@property (strong, nonatomic)UIView *defaultContentView;
+@property (strong, nonatomic) UIView *defaultContentView;
 
 @end
 
@@ -43,19 +44,19 @@
     }];
     
     
-//    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-//    self.searchController.searchResultsUpdater = self;
-//    self.searchController.dimsBackgroundDuringPresentation = NO;
-//    self.searchController.searchBar.scopeButtonTitles = @[NSLocalizedString(@"ScopeButtonCountry",@"Country"), NSLocalizedString(@"ScopeButtonCapital",@"Capital")];
-//
-//    self.searchController.searchBar.delegate = self;
-//    self.searchController.searchResultsUpdater = self;
+    //    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    //    self.searchController.searchResultsUpdater = self;
+    //    self.searchController.dimsBackgroundDuringPresentation = NO;
+    //    self.searchController.searchBar.scopeButtonTitles = @[NSLocalizedString(@"ScopeButtonCountry",@"Country"), NSLocalizedString(@"ScopeButtonCapital",@"Capital")];
+    //
+    //    self.searchController.searchBar.delegate = self;
+    //    self.searchController.searchResultsUpdater = self;
     
-//        self.tableView.tableHeaderView = self.searchController.searchBar;
+    //        self.tableView.tableHeaderView = self.searchController.searchBar;
     
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     self.bookTableView.rowHeight = 70;
-
+    
     self.bookTableView.delegate = self;
     self.bookTableView.dataSource = self;
     
@@ -63,7 +64,7 @@
     self.defaultContentView = [[UIView alloc]initWithFrame:[self.bookTableView bounds]];
     self.defaultContentView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.defaultContentView];
-
+    
     [self.defaultContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
@@ -71,7 +72,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-
+    
 }
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController{
@@ -83,7 +84,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.books.count;
+    return self.booksDisplayed.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -92,7 +93,7 @@
         
         PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
         
-        PGBRealmBook *book = self.books[indexPath.row];
+        PGBRealmBook *book = self.booksDisplayed[indexPath.row];
         
         cell.titleLabel.text = book.title;
         cell.authorLabel.text = book.author;
@@ -114,14 +115,19 @@
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     NSLog(@"%@",searchText);
-
+    
+    NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@", searchText];
+    self.booksDisplayed = [self.books filteredArrayUsingPredicate:searchFilter];
+    
+    [self.bookTableView reloadData];
+    
     if ([searchText length] == 0) {
         [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:self.bookSearchBar afterDelay:0];
     }
 }
 
 - (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar {
-        self.defaultContentView.hidden = NO;
+    self.defaultContentView.hidden = NO;
     [searchBar resignFirstResponder];
 }
 
