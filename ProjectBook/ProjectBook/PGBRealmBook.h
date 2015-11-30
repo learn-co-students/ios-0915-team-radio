@@ -16,6 +16,7 @@
 @property (strong, nonatomic)NSString *author;
 @property (strong, nonatomic)NSString *genre;
 @property (strong, nonatomic)NSString *language;
+@property (strong, nonatomic)NSString *friendlyTitle;
 @property (strong, nonatomic)NSString *downloadURL;
 @property (strong, nonatomic)NSString *bookDescription;
 @property (strong, nonatomic)NSDate *datePublished;
@@ -29,6 +30,7 @@
                        author:(NSString *)author
                         genre:(NSString *)genre
                      language:(NSString *)language
+                friendlyTitle:(NSString *)friendlyTitle
                   downloadURL:(NSString *)downloadURL
               bookDescription:(NSString *)bookDescription
                 datePublished:(NSDate *)datePublished

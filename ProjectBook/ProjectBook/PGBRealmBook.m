@@ -19,6 +19,7 @@
                        author:(NSString *)author
                         genre:(NSString *)genre
                      language:(NSString *)language
+                friendlyTitle:(NSString *)friendlyTitle
                   downloadURL:(NSString *)downloadURL
               bookDescription:(NSString *)bookDescription
                 datePublished:(NSDate *)datePublished
@@ -33,6 +34,7 @@
         _author = author;
         _genre = genre;
         _language = language;
+        _friendlyTitle = friendlyTitle;
         _downloadURL = downloadURL;
         _bookDescription = bookDescription;
         _datePublished = datePublished;
