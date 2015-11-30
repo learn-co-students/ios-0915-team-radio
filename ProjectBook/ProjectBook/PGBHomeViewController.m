@@ -11,6 +11,8 @@
 #import "PGBDownloadHelper.h"
 #import "PGBBookPageViewController.h"
 #import "PGBRealmBook.h"
+#import "PGBLoginViewController.h"
+#import "PGBSignUpViewController.h"
 
 #import <XMLDictionary.h>
 #import <QuartzCore/QuartzCore.h>
@@ -263,7 +265,7 @@
     if (![PFUser currentUser]) { // No user logged in
         self.loginButton.title = @"Login";
         // Create the log in view controller
-        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        PGBLoginViewController *logInViewController = [[PGBLoginViewController alloc] init];
         
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
         [logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
@@ -323,7 +325,7 @@
 }
 
 // Sent to the delegate to determine whether the sign up request should be submitted to the server.
-- (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
+- (BOOL)signUpViewController:(PGBSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
     BOOL informationComplete = YES;
     
     // loop through all of the submitted data
