@@ -75,7 +75,7 @@
     CGFloat rightMargin = width * 3/4;
     
     CGFloat widthOfBottomButtons = 30.0f;
-
+    
     // CGRectMake(x, y, width, height)
     // Set frame for elements
     

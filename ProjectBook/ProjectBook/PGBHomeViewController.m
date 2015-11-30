@@ -275,9 +275,9 @@
          | PFLogInFieldsSignUpButton
          | PFLogInFieldsDismissButton];
         // Create the sign up view controller
-        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+        PGBSignUpViewController *signUpViewController = [[PGBSignUpViewController alloc] init];
         [signUpViewController setDelegate:self]; // Set ourselves as the delegate
-        
+        [signUpViewController setFields:PFSignUpFieldsDefault | PFSignUpFieldsAdditional];
         
         
         // Assign our sign up controller to be displayed from the login controller

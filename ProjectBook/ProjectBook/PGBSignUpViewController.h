@@ -11,6 +11,4 @@
 
 @interface PGBSignUpViewController : PFSignUpViewController;
 
-
-
 @end
