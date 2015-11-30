@@ -43,6 +43,7 @@
     
     
     NSArray *newArray = [self makeNestedArraysFromAnArrayOfStrings:lines AtASpecificCharater:@""];
+    
     return newArray;
 }
 
@@ -96,16 +97,16 @@
     
 }
 
--(NSArray *)cleanUpArrays {
+-(NSDictionary *)cleanUpArrays {
     
     [self informationFromAllBooks];
     
-    NSLog(@"Starting--------------");
+    //NSLog(@"Starting--------------");
     
     NSMutableArray *mutableNestedArray = [self.nestedArrayOfAllInformation mutableCopy];
     NSMutableArray *arrayOfDictionaries = [[NSMutableArray alloc] init];
     
-    NSLog(@"Starting First For Loop");
+    //NSLog(@"Starting First For Loop");
     
     
     for (NSUInteger i = 0; i < mutableNestedArray.count; i++) {
@@ -113,7 +114,7 @@
         
         //NSLog(@"Logging the mutableArray %@", mutableNestedArray);
         
-        NSLog(@"Starting second for loop");
+        //NSLog(@"Starting second for loop");
         
         for (NSUInteger j = 0; j < informationArray.count; j++) {
             NSMutableArray *arrayBeingLookedAt = informationArray[j]; //contains NSStrings
@@ -127,7 +128,7 @@
             NSString *eBookLanguage = @"";
             NSString *eBookGenre = @"";
             
-            NSLog(@"starting for in loop");
+            //NSLog(@"starting for in loop");
             
             for (NSString *string in arrayBeingLookedAt) {
                 
@@ -137,26 +138,31 @@
                     ebookNumbers = string;
                     NSString *eBookNumbersWithOutBeginning = [self getASubStringOfAString:ebookNumbers fromTheFirstCharacterOfACertainCharacter:@"\""];
                     ebookNumbers = [self getASubStringOfAString:eBookNumbersWithOutBeginning toTheFirstCharacterOfACertainCharacter:@"\""];
+                    //ebookNumbers = [ebookNumbers stringByAppendingString:@"Priyansh"];
                     
                 }
                 else if ([string hasPrefix:@"  <dc:title"]) {
                     eBookTitles = string;
                     
                     NSString *eBookTitlesAfterFirstQuotationMark = [self getASubStringOfAString:eBookTitles fromTheFirstCharacterOfACertainCharacter:@"\""];
-                    NSString *eBookTitlesAfterSecondQuoationMark = [self getASubStringOfAString:eBookTitlesAfterFirstQuotationMark fromTheFirstCharacterOfACertainCharacter:@"\""];
+                    NSString *eBookTitlesAfterSecondQuoationMark = [self getASubStringOfAString:eBookTitlesAfterFirstQuotationMark fromTheFirstCharacterOfACertainCharacter:@">"];
                     eBookTitles = [self getASubStringOfAString:eBookTitlesAfterSecondQuoationMark toTheFirstCharacterOfACertainCharacter:@"<"];
+                    //eBookTitles = [eBookTitles stringByAppendingString:@"Priyansh"];
+                    
                 }
                 
                 else if ([string hasPrefix:@"  <dc:creator"]) {
                     ebookAuthors = string;
                     NSString *gettingRidOfPrefix = [self getASubStringOfAString:ebookAuthors fromTheFirstCharacterOfACertainCharacter:@">"];
                     ebookAuthors = [self getASubStringOfAString:gettingRidOfPrefix toTheFirstCharacterOfACertainCharacter:@"<"];
+                    //ebookAuthors = [ebookAuthors stringByAppendingString:@"Priyansh"];
                 }
                 
                 else if ([string hasPrefix:@"  <pgterms:friendlytitle"]) {
                     eBookFriendlyTitle = string;
                     NSString *gettingRidOfPrefix = [self getASubStringOfAString:eBookFriendlyTitle fromTheFirstCharacterOfACertainCharacter:@">"];
                     eBookFriendlyTitle = [self getASubStringOfAString:gettingRidOfPrefix toTheFirstCharacterOfACertainCharacter:@"<"];
+                    //eBookFriendlyTitle = [eBookFriendlyTitle stringByAppendingString:@"Priyansh"];
                     
                 }
                 else if ([string hasPrefix:@"  <dc:language>"]) {
@@ -169,6 +175,7 @@
                     NSString *getRidOfRDFValue = [self getASubStringOfAString:getRidOfISONumber fromTheFirstCharacterOfACertainCharacter:@">"];
                     
                     eBookLanguage = [self getASubStringOfAString:getRidOfRDFValue toTheFirstCharacterOfACertainCharacter:@"<"];
+                    //eBookLanguage = [eBookLanguage stringByAppendingString:@"Priyansh"];
                     
                     
                     
@@ -180,28 +187,28 @@
                     NSString *getRidOfSecondGreaterThanSign = [self getASubStringOfAString:getRidOfFirstGreaterThanSign fromTheFirstCharacterOfACertainCharacter:@">"];
                     NSString *getRidOfThirdGreaterThanSign = [self getASubStringOfAString:getRidOfSecondGreaterThanSign fromTheFirstCharacterOfACertainCharacter:@">"];
                     eBookGenre = [self getASubStringOfAString:getRidOfThirdGreaterThanSign toTheFirstCharacterOfACertainCharacter:@"<"];
+                    //eBookGenre = [eBookGenre stringByAppendingString:@"Priyansh"];
                     
                 }
                 
                 
             }
             
-            NSLog(@"Ending for in Loop");
+            //NSLog(@"Ending for in Loop");
             
             NSDictionary *newDict = [self turnStringsIntoArrayOfDictionaryWithEBookNumbers:ebookNumbers eBookTitles:eBookTitles eBookAuthors:ebookAuthors eBookFriendlyTitles:eBookFriendlyTitle eBookLanguages:eBookLanguage eBookGenres:eBookGenre];
             
             [arrayOfDictionaries addObject:newDict];
             
-        } NSLog(@"Ending Second For Loop");
+        } //NSLog(@"Ending Second For Loop");
         
-    } NSLog(@"Ending First For Loop");
+    } //NSLog(@"Ending First For Loop");
     
-    NSLog(@"Done with Loops");
+    //NSLog(@"Done with Loops");
     return [arrayOfDictionaries copy];
     
     
 }
-
 
 
 
