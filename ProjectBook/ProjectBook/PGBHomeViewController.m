@@ -11,10 +11,11 @@
 #import "PGBDownloadHelper.h"
 #import "PGBBookPageViewController.h"
 #import "PGBRealmBook.h"
+#import "PGBLoginViewController.h"
+#import "PGBSignUpViewController.h"
 
 #import <XMLDictionary.h>
 #import <QuartzCore/QuartzCore.h>
-//#import "SVViewController.h"
 #import "SVPullToRefresh.h"
 
 #import <GROAuth.h>
@@ -366,7 +367,7 @@
     if (![PFUser currentUser]) { // No user logged in
         self.loginButton.title = @"Login";
         // Create the log in view controller
-        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        PGBLoginViewController *logInViewController = [[PGBLoginViewController alloc] init];
         
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
         [logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
@@ -377,8 +378,9 @@
          | PFLogInFieldsSignUpButton
          | PFLogInFieldsDismissButton];
         // Create the sign up view controller
-        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+        PGBSignUpViewController *signUpViewController = [[PGBSignUpViewController alloc] init];
         [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+        [signUpViewController setFields:PFSignUpFieldsDefault | PFSignUpFieldsAdditional];
         
         
         // Assign our sign up controller to be displayed from the login controller
@@ -387,10 +389,14 @@
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
-    //    } else {
-    //        self.loginButton.title = @"Log out";
-    //
-    //    }
+    else {
+        // User logged in; go to profile
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"profile" bundle:nil];
+        UIViewController *vc = [storyboard instantiateInitialViewController];
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -410,9 +416,8 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
-    self.loginButton.title = @"Log out";
-    [PFUser logOut];
-    PFUser *currentUser = [PFUser currentUser];
+    self.loginButton.title = @"👤";
+    
 }
 
 // Sent to the delegate when the log in attempt fails.
@@ -426,7 +431,7 @@
 }
 
 // Sent to the delegate to determine whether the sign up request should be submitted to the server.
-- (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
+- (BOOL)signUpViewController:(PGBSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
     BOOL informationComplete = YES;
     
     // loop through all of the submitted data
