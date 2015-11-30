@@ -11,6 +11,15 @@
 #import <XMLDictionary.h>
 #import <AFNetworking/AFNetworking.h>
 
+#import "PGBRealmBook.h"
+#import "Book.h"
+#import "PGBDataStore.h"
+
+@interface PGBGoodreadsAPIClient ()
+
+@property (strong, nonatomic) PGBDataStore *dataStore;
+
+@end
 
 @implementation PGBGoodreadsAPIClient
 NSString *const GOODREADS_KEY = @"AckMqnduhbH8xQdja2Nw";
@@ -18,11 +27,41 @@ NSString *const GOODREADS_SECRET = @"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno"
 NSString *const GOODREADS_API_URL = @"www.goodreads.com/";
 
 
-+(void)getReviewsWithCompletion:(void (^)(NSArray *))completionBlock
++(void)getReviewsWithCompletion:(NSString *)author bookTitle:(NSString *)bookTitle completion:(void (^)(NSArray *))completionBlock
 {
     
+//    PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
+//    Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
+    author = @"apples and stuff";
+    
+    NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSLog (@"%@", authorWithPluses);
+    
+    NSString *titleWithPluses = @"";
+    
+    NSString *goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?author=%@&key=%@&title=%@", GOODREADS_API_URL, authorWithPluses, GOODREADS_KEY, titleWithPluses];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    [manager GET:goodreadsURL parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        completionBlock(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Fail: %@",error.localizedDescription);
+    }];
 }
 
+
+-(NSArray *)parseATextFile
+{
+    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"file_name" withExtension:@"txt"];
+    
+    NSString *fileContents = [NSString stringWithContentsOfURL:fileURL encoding:NSUTF8StringEncoding error:nil];
+    
+    NSCharacterSet *newlineSet = [NSCharacterSet newlineCharacterSet];
+    NSArray *lines = [fileContents componentsSeparatedByCharactersInSet:newlineSet];
+    
+    return lines;
+}
 
 -(void)dummyLoginMethod {
     //goodreads user login -- in viewDidAppear

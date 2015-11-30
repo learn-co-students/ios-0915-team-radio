@@ -11,6 +11,7 @@
 #import "PGBDownloadHelper.h"
 #import "PGBBookPageViewController.h"
 #import "PGBRealmBook.h"
+#import "PGBGoodreadsAPIClient.h"
 
 #import <XMLDictionary.h>
 #import <QuartzCore/QuartzCore.h>
@@ -77,6 +78,10 @@
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     
     self.bookTableView.rowHeight = 80;
+    
+    [PGBGoodreadsAPIClient getReviewsWithCompletion:@"Haruki Murakami" bookTitle:"Kafka on the Shore" completion:^(NSArray *reviews) {
+        for (
+    }]
     
 }
 
