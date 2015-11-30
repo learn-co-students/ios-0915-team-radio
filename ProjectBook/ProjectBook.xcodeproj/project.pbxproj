@@ -275,6 +275,9 @@
 		CBFD3F581BFBA076002CE0A4 /* ProjectBook */ = {
 			isa = PBXGroup;
 			children = (
+				4C25FFA81C03B7FF00B5C8E3 /* CoreDataModel */,
+				CBF2C6171BFD0D8B00BCBCDD /* bookInformationSet */,
+				4C9597AD1BFBEB2600BBD558 /* RealmModel */,
 				CB3C07951C05063A00235D78 /* book.gif */,
 				CB3C07961C05063A00235D78 /* hopper.gif */,
 				CB3C07971C05063A00235D78 /* hoppers.gif */,
@@ -282,9 +285,6 @@
 				CB3C07991C05063A00235D78 /* PGBGoodreadsAPIClient.m */,
 				CB3C079A1C05063A00235D78 /* PGBIntroViewController.h */,
 				CB3C079B1C05063A00235D78 /* PGBIntroViewController.m */,
-				4C25FFA81C03B7FF00B5C8E3 /* CoreDataModel */,
-				CBF2C6171BFD0D8B00BCBCDD /* bookInformationSet */,
-				4C9597AD1BFBEB2600BBD558 /* RealmModel */,
 				CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */,
 				CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */,
 				CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */,
@@ -353,6 +353,7 @@
 				CBFD3F531BFBA076002CE0A4 /* Frameworks */,
 				CBFD3F541BFBA076002CE0A4 /* Resources */,
 				EDBC7E4402A43EC4D3D5591E /* Copy Pods Resources */,
+				115E1B39F7AA6B1060F0BA55 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -498,6 +499,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		115E1B39F7AA6B1060F0BA55 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		46C146BD0D81A8587F41E81D /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

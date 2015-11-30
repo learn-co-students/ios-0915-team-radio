@@ -65,6 +65,10 @@
     self.downloadHelper = [[PGBDownloadHelper alloc] init];
     [self.downloadHelper download:URL];
     
+    do {
+        //modal view
+    }
+    
     //during download
     UIAlertController *downloadComplete = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
     

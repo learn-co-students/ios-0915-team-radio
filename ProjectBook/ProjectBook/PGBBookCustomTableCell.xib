@@ -67,11 +67,11 @@
                         <rect key="frame" x="495" y="0.0" width="71" height="126"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J36-Fo-MZv">
-                                <rect key="frame" x="22" y="50" width="27" height="27"/>
+                                <rect key="frame" x="13" y="40" width="45" height="45"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="27" id="ay4-no-V42"/>
-                                    <constraint firstAttribute="height" constant="27" id="uxz-hP-dh7"/>
+                                    <constraint firstAttribute="width" constant="45" id="ay4-no-V42"/>
+                                    <constraint firstAttribute="height" constant="45" id="uxz-hP-dh7"/>
                                 </constraints>
                                 <state key="normal" image="downloadButton"/>
                             </button>

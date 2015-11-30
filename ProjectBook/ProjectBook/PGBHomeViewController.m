@@ -80,33 +80,6 @@
     
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    //goodreads user login
-    
-    //NOTE - this is causing the page to load even after user is logged in, this needs to moved somewhere or add in a login check to not load it if user already logged in
-    [GROAuth loginWithGoodreadsWithCompletion:^(NSDictionary *authParams, NSError *error) {
-        if (error) {
-            NSLog(@"Error logging in: %@", [error.userInfo objectForKey:@"userInfo"]);
-        } else {
-            NSURLRequest *userIDRequest = [GROAuth goodreadsRequestForOAuthPath:@"api/auth_user" parameters:nil HTTPmethod:@"GET"];
-            
-            NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:userIDRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                NSLog(@"user request is back!");
-                NSLog(@"error: %@", error);
-                NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                
-                NSDictionary *dictionary = [NSDictionary dictionaryWithXMLString:dataString];
-                
-                NSLog(@"%@", dictionary);
-            }];
-            [task resume];
-        }
-    }];
-}
-
 - (void)getRandomBooks{
     
     NSOperationQueue *bgQueue = [[NSOperationQueue alloc] init];
@@ -126,7 +99,7 @@
             realmBook.genre = coreDataBook.eBookGenres;
             realmBook.ebookID = coreDataBook.eBookNumbers;
     
-            NSData *bookCoverData = [NSData dataWithContentsOfURL:[self createBookCoverULR:coreDataBook.eBookNumbers]];
+            NSData *bookCoverData = [NSData dataWithContentsOfURL:[self createBookCoverURL:coreDataBook.eBookNumbers]];
             realmBook.bookCoverData = bookCoverData;
             
             [self.books addObject:realmBook];
@@ -142,7 +115,7 @@
     [bgQueue addOperation:fetchBookOperation];
 }
 
-- (NSURL *)createBookCoverULR:(NSString *)eBookNumber{
+- (NSURL *)createBookCoverURL:(NSString *)eBookNumber{
     NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
     NSString *bookCoverURL = [NSString stringWithFormat:@"https://www.gutenberg.org/cache/epub/%@/pg%@.cover.medium.jpg", eBookNumberParsed, eBookNumberParsed];
     
