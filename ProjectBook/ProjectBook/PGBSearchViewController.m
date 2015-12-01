@@ -11,14 +11,14 @@
 #import "PGBRealmBook.h"
 #import <Masonry/Masonry.h>
 
-@interface PGBSearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface PGBSearchViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *bookTableView;
+@property (strong, nonatomic) IBOutlet UIView *contentView;
+
 @property (strong, nonatomic) UISearchBar *bookSearchBar;
-@property (strong, nonatomic) UISearchController *searchController;
 @property (strong, nonatomic) NSArray *books;
 @property (strong, nonatomic) NSArray *booksDisplayed;
-@property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) UIView *defaultContentView;
 
 @end
@@ -28,8 +28,8 @@
     [super viewDidLoad];
     
     //begin test data
-//    [PGBRealmBook generateTestBookData];
-//    self.books = [PGBRealmBook getUserBookDataInArray];
+    [PGBRealmBook generateTestBookData];
+    self.books = [PGBRealmBook getUserBookDataInArray];
     //end test data
     
     
@@ -75,10 +75,6 @@
     
 }
 
--(void)updateSearchResultsForSearchController:(UISearchController *)searchController{
-    NSLog(@"search controller protocol!!");
-}
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -105,8 +101,14 @@
     return [[UITableViewCell alloc]init];
 }
 
--(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     self.defaultContentView.hidden = YES;
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    if ([self.bookSearchBar.text length] == 0) {
+        self.defaultContentView.hidden = NO;
+    }
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
