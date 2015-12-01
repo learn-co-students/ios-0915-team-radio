@@ -27,11 +27,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //begin test data
-    [PGBRealmBook generateTestBookData];
-    self.books = [PGBRealmBook getUserBookDataInArray];
-    //end test data
-    
     //create search bar
     self.bookSearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 10, self.navigationController.navigationBar.bounds.size.width, self.navigationController.navigationBar.bounds.size.height/2)];
     self.bookSearchBar.searchBarStyle = UISearchBarStyleMinimal;
@@ -91,6 +86,11 @@
     [genreButtonStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.defaultContentView);
     }];
+    
+    //begin test data
+    [PGBRealmBook generateTestBookData];
+    self.books = [PGBRealmBook getUserBookDataInArray];
+    //end test data
 }
 
 -(void)fictionButtonTapped:(UIButton *)sender {
