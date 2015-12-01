@@ -85,6 +85,10 @@
 {
     [super viewDidAppear:animated];
     
+    if ([PFUser currentUser]) {
+        [self changeLoginButtonToProfileIcon];
+    }
+    
     //goodreads user login
     
     //NOTE - this is causing the page to load even after user is logged in, this needs to moved somewhere or add in a login check to not load it if user already logged in
@@ -315,7 +319,7 @@
     //    bookPageVC.books = bookPageVC.books;
     
 }
-                         
+
 //login info
 - (IBAction)loginButtonTouched:(id)sender {
     
@@ -371,8 +375,7 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
-    self.loginButton.title = @"👤";
-    
+    [self changeLoginButtonToProfileIcon];
 }
 
 // Sent to the delegate when the log in attempt fails.
@@ -423,6 +426,10 @@
 // Sent to the delegate when the sign up screen is dismissed.
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
     NSLog(@"User dismissed the signUpViewController");
+}
+
+-(void) changeLoginButtonToProfileIcon{
+    self.loginButton.title = @"👤";
 }
 
 @end

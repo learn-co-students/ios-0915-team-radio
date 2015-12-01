@@ -58,6 +58,16 @@
                     <view key="view" contentMode="scaleToFill" id="2Dz-3O-p0A">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="12u-eJ-X4e">
+                                <rect key="frame" x="20" y="20" width="38" height="37"/>
+                                <animations/>
+                                <state key="normal" title="Back" image="backButton"/>
+                                <connections>
+                                    <action selector="backButtonTouched:" destination="m0Y-jw-ys0" eventType="touchUpInside" id="Mg9-9V-5R0"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -70,5 +80,6 @@
     </scenes>
     <resources>
         <image name="91fJxgs69QL._SL1500_" width="971" height="1500"/>
+        <image name="backButton" width="50" height="49"/>
     </resources>
 </document>
