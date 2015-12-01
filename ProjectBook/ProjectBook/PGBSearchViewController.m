@@ -32,8 +32,9 @@
     self.books = [PGBRealmBook getUserBookDataInArray];
     //end test data
     
-    
+    //create search bar
     self.bookSearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 10, self.navigationController.navigationBar.bounds.size.width, self.navigationController.navigationBar.bounds.size.height/2)];
+    self.bookSearchBar.searchBarStyle = UISearchBarStyleMinimal;
     self.bookSearchBar.placeholder = @"Search";
     self.bookSearchBar.delegate = self;
     
@@ -43,24 +44,14 @@
         make.edges.mas_equalTo(UIEdgeInsetsMake(0, 10, 0, 10));
     }];
     
-    
-    //    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    //    self.searchController.searchResultsUpdater = self;
-    //    self.searchController.dimsBackgroundDuringPresentation = NO;
-    //    self.searchController.searchBar.scopeButtonTitles = @[NSLocalizedString(@"ScopeButtonCountry",@"Country"), NSLocalizedString(@"ScopeButtonCapital",@"Capital")];
-    //
-    //    self.searchController.searchBar.delegate = self;
-    //    self.searchController.searchResultsUpdater = self;
-    
-    //        self.tableView.tableHeaderView = self.searchController.searchBar;
-    
+    //create table view custom cell
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     self.bookTableView.rowHeight = 70;
     
     self.bookTableView.delegate = self;
     self.bookTableView.dataSource = self;
     
-    //default content view to show book genres
+    //create default content view to show book genres
     self.defaultContentView = [[UIView alloc]initWithFrame:[self.bookTableView bounds]];
     self.defaultContentView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.defaultContentView];
@@ -68,6 +59,46 @@
     [self.defaultContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
+    
+    //create book genre buttons into stack view
+    UIButton *fictionButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [fictionButton addTarget:self
+               action:@selector(fictionButtonTapped:)
+     forControlEvents:UIControlEventTouchUpInside];
+    [fictionButton setTitle:@"Fiction" forState:UIControlStateNormal];
+    fictionButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    
+    UIButton *romanceButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [romanceButton addTarget:self
+                      action:@selector(romanceButtonTapped:)
+            forControlEvents:UIControlEventTouchUpInside];
+    [romanceButton setTitle:@"Romance" forState:UIControlStateNormal];
+    romanceButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    
+    //adding buttons to stack view
+    UIStackView *genreButtonStackView = [[UIStackView alloc]init];
+    genreButtonStackView.axis = UILayoutConstraintAxisVertical;
+    genreButtonStackView.distribution = UIStackViewDistributionFillEqually;
+    genreButtonStackView.alignment = UIStackViewAlignmentCenter;
+    genreButtonStackView.spacing = 0;
+    
+    [genreButtonStackView addArrangedSubview:fictionButton];
+    [genreButtonStackView addArrangedSubview:romanceButton];
+    
+    genreButtonStackView.translatesAutoresizingMaskIntoConstraints = false;
+    [self.defaultContentView addSubview:genreButtonStackView];
+    
+    [genreButtonStackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.defaultContentView);
+    }];
+}
+
+-(void)fictionButtonTapped:(UIButton *)sender {
+    NSLog(@"fiction button Tapped!");
+}
+
+-(void)romanceButtonTapped:(UIButton *)sender {
+    NSLog(@"romance button tapped!");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
