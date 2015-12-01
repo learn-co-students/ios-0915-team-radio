@@ -428,7 +428,7 @@
     NSLog(@"User dismissed the signUpViewController");
 }
 
--(void) changeLoginButtonToProfileIcon{
+- (void) changeLoginButtonToProfileIcon {
     self.loginButton.title = @"👤";
 }
 

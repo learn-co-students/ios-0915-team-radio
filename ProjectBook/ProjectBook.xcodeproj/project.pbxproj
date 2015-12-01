@@ -22,7 +22,7 @@
 		890200301C0CAA10001A1ECF /* PGBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8902002F1C0CAA10001A1ECF /* PGBSignUpViewController.m */; };
 		890200321C0CF4EB001A1ECF /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 890200311C0CF4EB001A1ECF /* profile.storyboard */; };
 		890200351C0CFD08001A1ECF /* PGBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890200341C0CFD08001A1ECF /* PGBProfileViewController.m */; };
-		898425311C0E1FA500699F2B /* PGBSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898425301C0E1FA500699F2B /* PGBSettingsViewController.m */; };
+		898425311C0E1FA500699F2B /* PGBSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898425301C0E1FA500699F2B /* PGBSettingsTableViewController.m */; };
 		A75AD6391C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A75AD6381C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf */; };
 		A77A08F91BFBE78700CA62F8 /* PGBparsingThroughText.m in Sources */ = {isa = PBXBuildFile; fileRef = A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */; };
 		A7CCEBBA1C0CBF8E00CD9B8D /* ProjectBook.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = A7CCEBB91C0CBF8E00CD9B8D /* ProjectBook.sqlite */; };
@@ -109,8 +109,8 @@
 		890200311C0CF4EB001A1ECF /* profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
 		890200331C0CFD08001A1ECF /* PGBProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBProfileViewController.h; sourceTree = "<group>"; };
 		890200341C0CFD08001A1ECF /* PGBProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBProfileViewController.m; sourceTree = "<group>"; };
-		8984252F1C0E1FA500699F2B /* PGBSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBSettingsViewController.h; sourceTree = "<group>"; };
-		898425301C0E1FA500699F2B /* PGBSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBSettingsViewController.m; sourceTree = "<group>"; };
+		8984252F1C0E1FA500699F2B /* PGBSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBSettingsTableViewController.h; sourceTree = "<group>"; };
+		898425301C0E1FA500699F2B /* PGBSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBSettingsTableViewController.m; sourceTree = "<group>"; };
 		89DF0C4F1BFCDF1500E0096F /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../Desktop/parse-library-1.9.1 (2)/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook.release.xcconfig"; sourceTree = "<group>"; };
 		A75AD6381C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DictionaryOfBooksFinal.rtf; sourceTree = "<group>"; };
@@ -313,8 +313,8 @@
 				8902002E1C0CAA10001A1ECF /* PGBSignUpViewController.h */,
 				8902002F1C0CAA10001A1ECF /* PGBSignUpViewController.m */,
 				890200311C0CF4EB001A1ECF /* profile.storyboard */,
-				8984252F1C0E1FA500699F2B /* PGBSettingsViewController.h */,
-				898425301C0E1FA500699F2B /* PGBSettingsViewController.m */,
+				8984252F1C0E1FA500699F2B /* PGBSettingsTableViewController.h */,
+				898425301C0E1FA500699F2B /* PGBSettingsTableViewController.m */,
 				890200331C0CFD08001A1ECF /* PGBProfileViewController.h */,
 				890200341C0CFD08001A1ECF /* PGBProfileViewController.m */,
 				CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */,
@@ -604,7 +604,7 @@
 				CB3C079F1C05063A00235D78 /* PGBGoodreadsAPIClient.m in Sources */,
 				8902002D1C0CA900001A1ECF /* PGBLoginViewController.m in Sources */,
 				4C25FFA61C03B7E200B5C8E3 /* Book+CoreDataProperties.m in Sources */,
-				898425311C0E1FA500699F2B /* PGBSettingsViewController.m in Sources */,
+				898425311C0E1FA500699F2B /* PGBSettingsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

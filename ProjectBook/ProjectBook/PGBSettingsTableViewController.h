@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PGBSettingsViewController : UIViewController
+@interface PGBSettingsTableViewController : UITableViewController
 
 @end
