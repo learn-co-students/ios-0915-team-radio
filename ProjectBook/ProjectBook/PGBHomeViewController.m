@@ -125,7 +125,7 @@
             Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
             
             
-            [booksGeneratedSoFar addObject:coreDataBook];
+            
         
             //if a book has already been shown, itll be added into the mutable array
             //if the same book is called again, then i is lowered by 1, the for loops starts again, and so i is increased by 1
@@ -246,6 +246,7 @@
             realmBook.bookCoverData = bookCoverData;
             
             [self.books addObject:realmBook];
+            [booksGeneratedSoFar addObject:coreDataBook]; //add to list of shown books
             
             if (!realmBook.bookCoverData) {
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
