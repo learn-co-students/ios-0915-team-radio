@@ -312,7 +312,7 @@
     
     //    bookPageVC.ebookID = bookAtIndexPath.eBookNumbers;
     //    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
-//    bookPageVC.books = bookPageVC.books;
+    //    bookPageVC.books = bookPageVC.books;
     
 }
                          
