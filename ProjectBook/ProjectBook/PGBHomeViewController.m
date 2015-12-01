@@ -115,20 +115,32 @@
     NSOperation *fetchBookOperation = [NSBlockOperation blockOperationWithBlock:^{
         PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
         [dataStore fetchData];
+    
+    NSMutableArray *booksGeneratedSoFar = [NSMutableArray new];
         
         for (NSUInteger i = 0; i < 100; i++) {
             NSUInteger randomNumber = arc4random_uniform((u_int32_t)dataStore.managedBookObjects.count);
             
             PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
             Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
+            
+            
+            [booksGeneratedSoFar addObject:coreDataBook];
+        
+            //if a book has already been shown, itll be added into the mutable array
+            //if the same book is called again, then i is lowered by 1, the for loops starts again, and so i is increased by 1
+            //this makes sure that there will always be 100 random numbers to check
+            if ([booksGeneratedSoFar containsObject:coreDataBook]) {
+                i -= 1;
+                continue;
+            }
         
             //first need to check if a book has an eBookNumber, if not, then it should not be shown
             realmBook.ebookID = coreDataBook.eBookNumbers;
+            
             if ([coreDataBook.eBookNumbers isEqualToString:@""]) {
                 continue;
             }
-            
-            
             
             /*
              A book has a title, and author; and a book's friendly title is of the format
