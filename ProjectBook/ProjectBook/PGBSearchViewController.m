@@ -9,6 +9,8 @@
 #import "PGBSearchViewController.h"
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
+#import "PGBDataStore.h"
+#import "Book.h"
 #import <Masonry/Masonry.h>
 
 @interface PGBSearchViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource>
@@ -17,9 +19,10 @@
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 
 @property (strong, nonatomic) UISearchBar *bookSearchBar;
+@property (strong, nonatomic) UIView *defaultContentView;
 @property (strong, nonatomic) NSArray *books;
 @property (strong, nonatomic) NSArray *booksDisplayed;
-@property (strong, nonatomic) UIView *defaultContentView;
+@property (strong, nonatomic) PGBDataStore *dataStore;
 
 @end
 
@@ -88,8 +91,11 @@
     }];
     
     //begin test data
-    [PGBRealmBook generateTestBookData];
-    self.books = [PGBRealmBook getUserBookDataInArray];
+//    [PGBRealmBook generateTestBookData];
+//    self.books = [PGBRealmBook getUserBookDataInArray];
+    
+    self.dataStore = [PGBDataStore sharedDataStore];
+    [self.dataStore fetchData];
     //end test data
 }
 
@@ -120,11 +126,11 @@
         
         PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
         
-        PGBRealmBook *book = self.booksDisplayed[indexPath.row];
+        Book *book = self.booksDisplayed[indexPath.row];
         
-        cell.titleLabel.text = book.title;
-        cell.authorLabel.text = book.author;
-        cell.genreLabel.text = book.genre;
+        cell.titleLabel.text = book.eBookTitles;
+        cell.authorLabel.text = book.eBookAuthors;
+        cell.genreLabel.text = book.eBookGenres;
         
         return cell;
     }
@@ -147,10 +153,8 @@
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"%@",searchText);
-    
-    NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@", searchText];
-    self.booksDisplayed = [self.books filteredArrayUsingPredicate:searchFilter];
+    NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"eBookTitles CONTAINS[c] %@", searchText];
+    self.booksDisplayed = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
     
     [self.bookTableView reloadData];
     
@@ -163,8 +167,5 @@
     self.defaultContentView.hidden = NO;
     [searchBar resignFirstResponder];
 }
-
-
-
 
 @end
