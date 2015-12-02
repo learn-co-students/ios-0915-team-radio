@@ -28,24 +28,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //test array of books
-//    PGBparsingThroughText *newTask = [[PGBparsingThroughText alloc]init];
-//    NSArray *finalArrayOfDictionary = [newTask cleanUpArrays];
-//    
-//    NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
-//    
+    PGBparsingThroughText *newTask = [[PGBparsingThroughText alloc]init];
+    NSArray *finalArrayOfDictionary = [newTask cleanUpArrays];
+
+    NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
+
 //    NSLog(@"Begin store to core data");
-//    
+
 //    NSLog(@"documents directory: %@", [self applicationDocumentsDirectory]);
     
 //    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
-////    [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
+//    [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
 //    [dataStore fetchData];
-//
-//    
+
 //    NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
-//    
 //    NSLog(@"End store to core data");
-    //end test
+//    end test
     
     // Override point for customization after application launch.
     

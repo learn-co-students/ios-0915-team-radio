@@ -24,6 +24,7 @@
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) PGBDataStore *dataStore;
 
+
 @end
 
 @implementation PGBSearchViewController
@@ -122,11 +123,14 @@
     
 }
 
+
+#pragma UITableView DataSource Method ::
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return self.books.count;
 }
 
@@ -136,14 +140,15 @@
         
         PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
         
+        //pagination
         PGBRealmBook *realmBook = self.books[indexPath.row];
-
+        
         if (realmBook.title.length != 0) {
             cell.titleLabel.text = realmBook.title;
         } else {
             cell.titleLabel.text = realmBook.friendlyTitle;
         }
-
+        
         cell.authorLabel.text = realmBook.author;
         cell.genreLabel.text = realmBook.genre;
         
@@ -184,7 +189,7 @@
     bookPageVC.books = bookPageVC.books;
 }
 
-
+#pragma UISearchBar Method::
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     
     self.defaultContentView.hidden = YES;
@@ -197,35 +202,31 @@
     }
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    [self.bookSearchBar resignFirstResponder];
-}
-
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
-        //  this is causing some UI lag/FIX ME
-        NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"(eBookTitles CONTAINS[c] %@) OR (eBookFriendlyTitles CONTAINS[c] %@)", searchText, searchText];
-        //    NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"(eBookTitles CONTAINS[c] %@) ", searchText];
-        NSArray *coreDataBooks = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
-        
-        //convert core data book object into PGBRealmBook object
-        [self.books removeAllObjects];
-        
-        for (Book *coreDataBook in coreDataBooks) {
-            PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
-            realmBook.title = coreDataBook.eBookTitles;
-            realmBook.friendlyTitle = coreDataBook.eBookFriendlyTitles;
-            realmBook.author = coreDataBook.eBookAuthors;
-            realmBook.genre = coreDataBook.eBookGenres;
-            realmBook.language = coreDataBook.eBookLanguages;
-            realmBook.ebookID  = coreDataBook.eBookNumbers;
-            //not getting book cover images here
-            [self.books addObject:realmBook];
-        }
+    NSString *lowercaseAndUnaccentedSearchText = [searchText stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
     
-        [self.bookTableView reloadData];
+    NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"eBookSearchTerms CONTAINS %@", lowercaseAndUnaccentedSearchText];
 
+    NSArray *coreDataBooks = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
+    
+    //convert core data book object into PGBRealmBook object
+    [self.books removeAllObjects];
+    
+    for (Book *coreDataBook in coreDataBooks) {
+        PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
+        realmBook.title = coreDataBook.eBookTitles;
+        realmBook.friendlyTitle = coreDataBook.eBookFriendlyTitles;
+        realmBook.author = coreDataBook.eBookAuthors;
+        realmBook.genre = coreDataBook.eBookGenres;
+        realmBook.language = coreDataBook.eBookLanguages;
+        realmBook.ebookID  = coreDataBook.eBookNumbers;
+        //not getting book cover images here
+        [self.books addObject:realmBook];
+    }
+
+    [self.bookTableView reloadData];
+    
     if ([searchText length] == 0) {
         [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:self.bookSearchBar afterDelay:0];
     }
@@ -236,5 +237,15 @@
     self.defaultContentView.hidden = NO;
     [searchBar resignFirstResponder];
 }
+
+#pragma UIScroll View Method::
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    [self.bookSearchBar resignFirstResponder];
+}
+
+
+
+
 
 @end
