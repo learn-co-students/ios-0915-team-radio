@@ -165,7 +165,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    NSLog(@"selected row");
     [self performSegueWithIdentifier:@"bookDetailSegue" sender:nil];
 }
 
