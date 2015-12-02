@@ -21,24 +21,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)backButtonTouched:(id)sender {
-    
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
-
-}
 - (IBAction)backButtonTapped:(id)sender {
 
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 
 }
 - (IBAction)logoutButtonTapped:(id)sender {

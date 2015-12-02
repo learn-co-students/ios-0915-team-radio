@@ -72,7 +72,7 @@
     [self.signUpView.emailField setFrame:CGRectMake(leftMargin, height * 2.4/8 + 100, rightMargin, 50.0f)];
   
     
-    [self.signUpView.additionalField setPlaceholder:@"Phone Number"];
+    [self.signUpView.additionalField setPlaceholder:@"Name"];
     [self.signUpView.additionalField setFrame:CGRectMake(leftMargin, height * 2.4/8 + 150, rightMargin, 50.0f)];
     
     [self.signUpView.signUpButton setFrame:CGRectMake(leftMargin + 20, height * 2.4/8 + 230, width * 3/4 - 40, 50.0f)];

@@ -34,6 +34,13 @@
                                     <segue destination="jPs-tA-AjL" kind="show" id="gf0-ge-hht"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBB-ur-w1D">
+                                <rect key="frame" x="64" y="200" width="97" height="30"/>
+                                <state key="normal" title="back to books"/>
+                                <connections>
+                                    <action selector="backToBooksTapped:" destination="B1G-TE-m3Q" eventType="touchUpInside" id="mUs-O1-Uc8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -145,7 +152,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="OfK-fh-4p4">
-                        <barButtonItem key="leftBarButtonItem" title="back" image="backButton" id="PVo-ps-TNz">
+                        <barButtonItem key="leftBarButtonItem" title="back" id="PVo-ps-TNz">
                             <connections>
                                 <action selector="backButtonTapped:" destination="jPs-tA-AjL" id="H5A-gl-tST"/>
                             </connections>
@@ -178,6 +185,5 @@
     </scenes>
     <resources>
         <image name="91fJxgs69QL._SL1500_" width="971" height="1500"/>
-        <image name="backButton" width="50" height="49"/>
     </resources>
 </document>
