@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
-    <entity name="Book" representedClassName="Book" syncable="YES">
+    <entity name="Book" representedClassName="Book" versionHashModifier="8" syncable="YES">
         <attribute name="eBookAuthors" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eBookFriendlyTitles" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eBookGenres" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eBookLanguages" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eBookNumbers" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eBookTitles" optional="YES" attributeType="String" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="eBookTitles"/>
+                <index value="eBookFriendlyTitles"/>
+                <index value="eBookAuthors"/>
+                <index value="eBookGenres"/>
+            </compoundIndex>
+        </compoundIndexes>
     </entity>
     <elements>
         <element name="Book" positionX="-54" positionY="-9" width="128" height="135"/>
