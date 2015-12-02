@@ -1,9 +1,9 @@
 //
 //  Book+CoreDataProperties.m
-//  ProjectBook
+//  
 //
-//  Created by Wo Jun Feng on 11/23/15.
-//  Copyright © 2015 FIS. All rights reserved.
+//  Created by Wo Jun Feng on 12/2/15.
+//
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
@@ -19,5 +19,6 @@
 @dynamic eBookLanguages;
 @dynamic eBookNumbers;
 @dynamic eBookTitles;
+@dynamic eBookSearchTerms;
 
 @end

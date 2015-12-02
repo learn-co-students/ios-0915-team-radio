@@ -14,7 +14,11 @@
 #import "PGBBookPageViewController.h"
 #import <Masonry/Masonry.h>
 
-@interface PGBSearchViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource>
+@interface PGBSearchViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource> {
+    //pagination
+    UIActivityIndicatorView *spinner;
+    
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *bookTableView;
 @property (strong, nonatomic) IBOutlet UIView *contentView;
@@ -23,6 +27,11 @@
 @property (strong, nonatomic) UIView *defaultContentView;
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) PGBDataStore *dataStore;
+
+//pagination
+@property (strong, nonatomic) NSMutableArray *dataArray;
+@property (nonatomic) BOOL noMoreResultsAvail;
+@property (nonatomic) BOOL loading;
 
 @end
 
@@ -99,6 +108,7 @@
     [self.dataStore fetchData];
     
     self.books = [[NSMutableArray alloc]init];
+    self.noMoreResultsAvail =NO;
     //end test data
 }
 
@@ -122,12 +132,22 @@
     
 }
 
+
+#pragma UITableView DataSource Method ::
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.books.count;
+//    return self.books.count;
+    
+    //pagination
+    if([ self.books count] ==0){
+        return 0;
+    }
+    else {
+        return [self.books count]+1;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -136,16 +156,59 @@
         
         PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
         
-        PGBRealmBook *realmBook = self.books[indexPath.row];
+        //pagination
+//        PGBRealmBook *realmBook = self.books[indexPath.row];
 
-        if (realmBook.title.length != 0) {
-            cell.titleLabel.text = realmBook.title;
-        } else {
-            cell.titleLabel.text = realmBook.friendlyTitle;
+        
+        //pagination
+        if (self.books.count != 0) {
+            if(indexPath.row <[self.books count]){
+                
+//                cell.textLabel.text =[self.dataArray objectAtIndex:indexPath.row];
+                PGBRealmBook *realmBook = self.books[indexPath.row];
+                
+                if (realmBook.title.length != 0) {
+                    cell.titleLabel.text = realmBook.title;
+                } else {
+                    cell.titleLabel.text = realmBook.friendlyTitle;
+                }
+                
+                cell.authorLabel.text = realmBook.author;
+                cell.genreLabel.text = realmBook.genre;
+            }
+            else{
+                if (!self.noMoreResultsAvail) {
+                    spinner.hidden =NO;
+                    cell.textLabel.text=nil;
+                    
+                    
+                    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                    spinner.frame = CGRectMake(150, 10, 24, 50);
+                    [cell addSubview:spinner];
+                    if ([self.dataArray count] >= 10) {
+                        [spinner startAnimating];
+                    }
+                }
+                
+                else{
+                    [spinner stopAnimating];
+                    spinner.hidden=YES;
+                    
+                    cell.textLabel.text=nil;
+                    
+                    UILabel* loadingLabel = [[UILabel alloc]init];
+                    loadingLabel.font=[UIFont boldSystemFontOfSize:14.0f];
+                    loadingLabel.textAlignment = UITextAlignmentLeft;
+                    loadingLabel.textColor = [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0];
+                    loadingLabel.numberOfLines = 0;
+                    loadingLabel.text=@"No More data Available";
+                    loadingLabel.frame=CGRectMake(85,20, 302,25);
+                    [cell addSubview:loadingLabel];
+                }
+                
+            }
         }
 
-        cell.authorLabel.text = realmBook.author;
-        cell.genreLabel.text = realmBook.genre;
         
         return cell;
     }
@@ -184,7 +247,7 @@
     bookPageVC.books = bookPageVC.books;
 }
 
-
+#pragma UISearchBar Method::
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     
     self.defaultContentView.hidden = YES;
@@ -197,35 +260,39 @@
     }
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    [self.bookSearchBar resignFirstResponder];
-}
-
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
-        //  this is causing some UI lag/FIX ME
-        NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"(eBookTitles CONTAINS[c] %@) OR (eBookFriendlyTitles CONTAINS[c] %@)", searchText, searchText];
-        //    NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"(eBookTitles CONTAINS[c] %@) ", searchText];
-        NSArray *coreDataBooks = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
-        
-        //convert core data book object into PGBRealmBook object
-        [self.books removeAllObjects];
-        
-        for (Book *coreDataBook in coreDataBooks) {
-            PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
-            realmBook.title = coreDataBook.eBookTitles;
-            realmBook.friendlyTitle = coreDataBook.eBookFriendlyTitles;
-            realmBook.author = coreDataBook.eBookAuthors;
-            realmBook.genre = coreDataBook.eBookGenres;
-            realmBook.language = coreDataBook.eBookLanguages;
-            realmBook.ebookID  = coreDataBook.eBookNumbers;
-            //not getting book cover images here
-            [self.books addObject:realmBook];
-        }
     
-        [self.bookTableView reloadData];
+    //  this is causing some UI lag/FIX ME
+    NSString *lowercaseAndUnaccentedSearchText = [searchText stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
+    NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"eBookSearchTerms CONTAINS %@", lowercaseAndUnaccentedSearchText];
+//    NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"(eBookTitles CONTAINS[c] %@) OR (eBookFriendlyTitles CONTAINS[c] %@)", searchText, searchText];
+    //    NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"(eBookTitles CONTAINS[c] %@) ", searchText];
+    NSArray *coreDataBooks = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
+    
+    //convert core data book object into PGBRealmBook object
+    [self.books removeAllObjects];
+    
+    for (Book *coreDataBook in coreDataBooks) {
+        PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
+        realmBook.title = coreDataBook.eBookTitles;
+        realmBook.friendlyTitle = coreDataBook.eBookFriendlyTitles;
+        realmBook.author = coreDataBook.eBookAuthors;
+        realmBook.genre = coreDataBook.eBookGenres;
+        realmBook.language = coreDataBook.eBookLanguages;
+        realmBook.ebookID  = coreDataBook.eBookNumbers;
+        //not getting book cover images here
+        [self.books addObject:realmBook];
+    }
+    
+    //pagination
+    self.dataArray = [self.books mutableCopy];
+//     NSArray *itemsForView = [completeArray subarrayWithRange: NSMakeRange( startIndex, count )];
+    self.books = [[self.dataArray subarrayWithRange:NSMakeRange(0, 9)] mutableCopy];
+    [self.dataArray removeObjectsInRange:NSMakeRange(0, 9)];
 
+    [self.bookTableView reloadData];
+    
     if ([searchText length] == 0) {
         [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:self.bookSearchBar afterDelay:0];
     }
@@ -236,5 +303,43 @@
     self.defaultContentView.hidden = NO;
     [searchBar resignFirstResponder];
 }
+
+#pragma UIScroll View Method::
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    [self.bookSearchBar resignFirstResponder];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"scroll view did end decelarting");
+    if (!self.loading) {
+        float endScrolling = scrollView.contentOffset.y + scrollView.frame.size.height;
+        if (endScrolling >= scrollView.contentSize.height)
+        {
+            [self performSelector:@selector(loadDataDelayed) withObject:nil afterDelay:0.2];
+            
+        }
+    }
+}
+
+#pragma UserDefined Method for generating data which are show in Table :::
+-(void)loadDataDelayed{
+//    
+//    NSMutableArray *array = [NSMutableArray arrayWithCapacity:10];
+//    for (int i=1; i<=10 ; i++) {
+//        
+//        PGBRealmBook *newBook = [[PGBRealmBook alloc]init];
+//        newBook.title = [NSString stringWithFormat:@"%lu",i];
+//        [array addObject:newBook];
+//    }
+//    NSArray *newArray = [self.dataArray subarrayWithRange:NSMakeRange(10, 19)];
+    NSArray *newArray = [self.dataArray subarrayWithRange:NSMakeRange(0, 9)];
+    [self.dataArray removeObjectsInRange:NSMakeRange(0, 9)];
+    [self.books addObjectsFromArray:newArray];
+    
+    [self.bookTableView reloadData];
+}
+
 
 @end
