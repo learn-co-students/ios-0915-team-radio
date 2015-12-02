@@ -221,6 +221,16 @@
             </objects>
             <point key="canvasLocation" x="4715" y="1210"/>
         </scene>
+        <!--SearchStoryboard-->
+        <scene sceneID="gKE-V5-QRK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SearchStoryboard" id="qyr-2M-mSD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Srl-S7-tbN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0qD-tS-ts8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3562" y="951"/>
+        </scene>
         <!--Book Info-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -370,7 +380,6 @@
                     </view>
                     <connections>
                         <outlet property="authorLabel" destination="OA5-0Q-GKZ" id="cDd-ni-fOf"/>
-                        <outlet property="bookCoverIV" destination="go3-ih-tNa" id="lqO-bG-Hmk"/>
                         <outlet property="bookDescriptionTV" destination="fcU-hx-NGB" id="noY-ys-jFB"/>
                         <outlet property="downloadButton" destination="YDV-LX-cw0" id="ZwV-dT-SiP"/>
                         <outlet property="genreLabel" destination="qt5-uI-cnf" id="E8e-LZ-Jgk"/>
@@ -397,6 +406,7 @@
                     <connections>
                         <segue destination="oFE-1N-4Me" kind="relationship" relationship="viewControllers" id="7D3-tX-F79"/>
                         <segue destination="E2z-KQ-fOa" kind="relationship" relationship="viewControllers" id="3vp-1b-aee"/>
+                        <segue destination="qyr-2M-mSD" kind="relationship" relationship="viewControllers" id="cYF-wp-n2A"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lb6-5v-GJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -411,7 +421,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nw4-Fh-Pvw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3590" y="822"/>
+            <point key="canvasLocation" x="3279.5" y="951"/>
         </scene>
         <!--Item-->
         <scene sceneID="zLM-EI-SJa">
