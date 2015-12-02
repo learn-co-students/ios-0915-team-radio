@@ -370,6 +370,7 @@
                     </view>
                     <connections>
                         <outlet property="authorLabel" destination="OA5-0Q-GKZ" id="cDd-ni-fOf"/>
+                        <outlet property="bookCoverIV" destination="go3-ih-tNa" id="lqO-bG-Hmk"/>
                         <outlet property="bookDescriptionTV" destination="fcU-hx-NGB" id="noY-ys-jFB"/>
                         <outlet property="downloadButton" destination="YDV-LX-cw0" id="ZwV-dT-SiP"/>
                         <outlet property="genreLabel" destination="qt5-uI-cnf" id="E8e-LZ-Jgk"/>

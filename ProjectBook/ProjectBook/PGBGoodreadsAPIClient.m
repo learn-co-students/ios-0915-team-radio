@@ -32,14 +32,15 @@ NSString *const GOODREADS_API_URL = @"www.goodreads.com/";
     
 //    PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
 //    Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
-    author = @"apples and stuff";
+    NSString *titleWithPluses = [bookTitle stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *goodreadsURL = [[NSMutableString alloc]init];
     
-    NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSLog (@"%@", authorWithPluses);
-    
-    NSString *titleWithPluses = @"";
-    
-    NSString *goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?author=%@&key=%@&title=%@", GOODREADS_API_URL, authorWithPluses, GOODREADS_KEY, titleWithPluses];
+    if (author && bookTitle) {
+        NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?author=%@&key=%@&title=%@", GOODREADS_API_URL, authorWithPluses, GOODREADS_KEY, titleWithPluses];
+    } else {
+        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
+    }
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -48,6 +49,7 @@ NSString *const GOODREADS_API_URL = @"www.goodreads.com/";
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Fail: %@",error.localizedDescription);
     }];
+
 }
 
 
