@@ -55,13 +55,6 @@
     [self.bookTableView setDelegate:self];
     [self.bookTableView setDataSource:self];
 
-    //    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NOVEL_Logo_small"]];
-    //    logo.contentMode = UIViewContentModeScaleAspectFit;
-    //
-    //    CGRect frame = logo.frame;
-    //    frame.size.width = 30;
-    //    logo.frame = frame;
-
     UIImage *logo = [UIImage imageNamed:@"NOVEL_Logo_small"];
 
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
@@ -91,30 +84,6 @@
     if ([PFUser currentUser]) {
         [self changeLoginButtonToProfileIcon];
     }
-
-    //goodreads user login
-
-    //NOTE - this is causing the page to load even after user is logged in, this needs to moved somewhere or add in a login check to not load it if user already logged in
-//    [GROAuth loginWithGoodreadsWithCompletion:^(NSDictionary *authParams, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error logging in: %@", [error.userInfo objectForKey:@"userInfo"]);
-//        } else {
-//            NSURLRequest *userIDRequest = [GROAuth goodreadsRequestForOAuthPath:@"api/auth_user" parameters:nil HTTPmethod:@"GET"];
-//
-//            NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:userIDRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//                NSLog(@"user request is back!");
-//                NSLog(@"error: %@", error);
-//                NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//
-//                NSDictionary *dictionary = [NSDictionary dictionaryWithXMLString:dataString];
-//
-//                NSLog(@"%@", dictionary);
-//            }];
-//            [task resume];
-//        }
-//    }];
-
-
 }
 
 - (void)getRandomBooks{
@@ -412,8 +381,10 @@
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
+    
     else {
-        // User logged in; go to profile
+        
+        // user logged in; go to profile...
 
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"profile" bundle:nil];
         UIViewController *vc = [storyboard instantiateInitialViewController];
@@ -479,7 +450,7 @@
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    [self dismissModalViewControllerAnimated:YES]; // Dismiss the PFSignUpViewController
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // Sent to the delegate when the sign up attempt fails.

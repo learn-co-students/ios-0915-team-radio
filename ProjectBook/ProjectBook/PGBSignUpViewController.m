@@ -61,8 +61,6 @@
     CGFloat leftMargin = width * 1/8;
     CGFloat rightMargin = width * 3/4;
     
-    CGFloat widthOfBottomButtons = 30.0f;
-
     [self.signUpView.dismissButton setFrame:CGRectMake(15.0f, 25.0f, 30.5f, 30.5f)];
     [self.signUpView.logo setFrame:CGRectMake(width * 1/5, height * 1/7, width * 3/5, 58.5f)];
     
