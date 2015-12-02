@@ -44,6 +44,8 @@
 
 @property (strong, nonatomic) NSMutableArray *bookCovers;
 
+
+
 @end
 
 @implementation PGBHomeViewController
@@ -54,13 +56,6 @@
 
     [self.bookTableView setDelegate:self];
     [self.bookTableView setDataSource:self];
-
-    //    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NOVEL_Logo_small"]];
-    //    logo.contentMode = UIViewContentModeScaleAspectFit;
-    //
-    //    CGRect frame = logo.frame;
-    //    frame.size.width = 30;
-    //    logo.frame = frame;
 
     UIImage *logo = [UIImage imageNamed:@"NOVEL_Logo_small"];
 
@@ -81,40 +76,18 @@
 
     self.bookTableView.rowHeight = 80;
 
-
 }
 
--(void)viewDidAppear:(BOOL)animated
+
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
 
-    if ([PFUser currentUser]) {
+    if ([PFUser currentUser] && ![self.loginButton.title isEqual: @"👤"]) {
         [self changeLoginButtonToProfileIcon];
+    } else if (![PFUser currentUser] && ![self.loginButton.title isEqual: @"Login"]){
+        [self.loginButton setTitle:@"Login"];
     }
-
-    //goodreads user login
-
-    //NOTE - this is causing the page to load even after user is logged in, this needs to moved somewhere or add in a login check to not load it if user already logged in
-//    [GROAuth loginWithGoodreadsWithCompletion:^(NSDictionary *authParams, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error logging in: %@", [error.userInfo objectForKey:@"userInfo"]);
-//        } else {
-//            NSURLRequest *userIDRequest = [GROAuth goodreadsRequestForOAuthPath:@"api/auth_user" parameters:nil HTTPmethod:@"GET"];
-//
-//            NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:userIDRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//                NSLog(@"user request is back!");
-//                NSLog(@"error: %@", error);
-//                NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//
-//                NSDictionary *dictionary = [NSDictionary dictionaryWithXMLString:dataString];
-//
-//                NSLog(@"%@", dictionary);
-//            }];
-//            [task resume];
-//        }
-//    }];
-
-
 }
 
 - (void)getRandomBooks{
@@ -146,7 +119,6 @@
 
             //first need to check if a book has an eBookNumber, if not, then it should not be shown
             realmBook.ebookID = coreDataBook.eBookNumbers;
-
             if ([coreDataBook.eBookNumbers isEqualToString:@""]) {
                 continue;
             }
@@ -250,7 +222,7 @@
             }
 
             realmBook.genre = coreDataBook.eBookGenres;
-            realmBook.ebookID = coreDataBook.eBookNumbers;
+            //realmBook.ebookID = coreDataBook.eBookNumbers;
 
             NSData *bookCoverData = [NSData dataWithContentsOfURL:[self createBookCoverURL:coreDataBook.eBookNumbers]];
             realmBook.bookCoverData = bookCoverData;
@@ -268,6 +240,142 @@
 
     [bgQueue addOperation:fetchBookOperation];
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - (NSURL *)createBookCoverURL:(NSString *)eBookNumber{
     NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
@@ -324,6 +432,38 @@
         NSLog(@"Didn't get a cell, I fucked UP");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -412,13 +552,15 @@
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
+    
     else {
-        // User logged in; go to profile
+        
+        // user logged in; go to profile...
 
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"profile" bundle:nil];
         UIViewController *vc = [storyboard instantiateInitialViewController];
 
-        [self.navigationController pushViewController:vc animated:YES];
+        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 
@@ -479,7 +621,7 @@
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    [self dismissModalViewControllerAnimated:YES]; // Dismiss the PFSignUpViewController
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // Sent to the delegate when the sign up attempt fails.

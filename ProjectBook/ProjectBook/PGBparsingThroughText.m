@@ -21,10 +21,7 @@
 -(instancetype)init {
     
     self = [super init];
-    
     _nestedArrayOfAllInformation = [[NSMutableArray alloc] init];
-    
-    
     
     return self;
 }
