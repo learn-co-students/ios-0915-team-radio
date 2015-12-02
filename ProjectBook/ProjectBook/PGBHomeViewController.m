@@ -44,6 +44,8 @@
 
 @property (strong, nonatomic) NSMutableArray *bookCovers;
 
+
+
 @end
 
 @implementation PGBHomeViewController
@@ -74,15 +76,17 @@
 
     self.bookTableView.rowHeight = 80;
 
-
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
 
-    if ([PFUser currentUser]) {
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    if ([PFUser currentUser] && ![self.loginButton.title isEqual: @"👤"]) {
         [self changeLoginButtonToProfileIcon];
+    } else if (![PFUser currentUser] && ![self.loginButton.title isEqual: @"Login"]){
+        [self.loginButton setTitle:@"Login"];
     }
 }
 
@@ -389,7 +393,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"profile" bundle:nil];
         UIViewController *vc = [storyboard instantiateInitialViewController];
 
-        [self.navigationController pushViewController:vc animated:YES];
+        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 
