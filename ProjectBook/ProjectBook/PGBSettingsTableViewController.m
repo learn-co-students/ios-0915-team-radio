@@ -43,7 +43,7 @@
 - (IBAction)logoutButtonTapped:(id)sender {
 
     [PFUser logOut];
-//    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 
 }
