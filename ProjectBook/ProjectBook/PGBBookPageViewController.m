@@ -16,6 +16,9 @@
 
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
 @property UIDocumentInteractionController *docController;
+
+@property (strong, nonatomic) NSMutableString *htmlString;
+
 @property (weak, nonatomic) IBOutlet UIButton *downloadButton;
 @property (weak, nonatomic) IBOutlet UIButton *iBooksButton;
 
@@ -25,7 +28,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *genreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel;
 @property (weak, nonatomic) IBOutlet UILabel *languageLabel;
+@property (weak, nonatomic) IBOutlet UIView *linkView;
 
+//@property (weak, nonatomic) IBOutlet UIView *webview;
 
 @end
 
@@ -41,6 +46,7 @@
 //    NSArray *books = [PGBRealmBook getUserBookDataInArray];
 //    self.books = @[books[0], books[1], books[2]];
     
+    
     self.bookDescriptionTV.editable = NO;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
@@ -55,8 +61,33 @@
     
     [self.bookDescriptionTV scrollRangeToVisible:NSMakeRange(0, 1)];
     
-    [PGBGoodreadsAPIClient getReviewsWithCompletion:@"Haruki Murakami" bookTitle:@"Kafka on the Shore" completion:^(NSArray *reviews) {
-        
+    self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 300, 300, 300)];
+    [self.view addSubview:self.webView];
+    
+//    self.webView.UIDelegate = self;
+    //self.webview = self.webView;
+    
+//    [self.webView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
+//    [self.webView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
+//    [self.webView.topAnchor constraintEqualToAnchor:self.linkView.bottomAnchor].active = YES;
+//    [self.webView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+   
+    [self getReviewswithCompletion:^(BOOL success) {
+        success = YES;
+    }];
+
+}
+
+-(void)getReviewswithCompletion:(void (^)(BOOL))completionBlock
+{
+    [PGBGoodreadsAPIClient getReviewsWithCompletion:self.author bookTitle:self.titleBook completion:^(NSDictionary *reviewDict) {
+        {
+            self.htmlString = reviewDict[@"reviews_widget"];
+            NSData *htmlData = [self.htmlString dataUsingEncoding:NSUTF8StringEncoding];
+            NSURL *baseURL = [NSURL URLWithString:@"https://www.goodreads.com"];
+            [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
+        }
+        completionBlock(YES);
     }];
 }
 
@@ -139,6 +170,7 @@
         NSLog(@"iBooks not installed");
     }
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

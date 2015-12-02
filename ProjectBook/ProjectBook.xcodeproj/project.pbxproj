@@ -49,6 +49,7 @@
 		CB3C079E1C05063A00235D78 /* hoppers.gif in Resources */ = {isa = PBXBuildFile; fileRef = CB3C07971C05063A00235D78 /* hoppers.gif */; };
 		CB3C079F1C05063A00235D78 /* PGBGoodreadsAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3C07991C05063A00235D78 /* PGBGoodreadsAPIClient.m */; };
 		CB3C07A01C05063A00235D78 /* PGBIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3C079B1C05063A00235D78 /* PGBIntroViewController.m */; };
+		CBA58BEB1C0F4BD9003CF9BC /* ReviewsiFrame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBA58BEA1C0F4BD9003CF9BC /* ReviewsiFrame.storyboard */; };
 		CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */; };
 		CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */; };
 		CBF2C61F1BFD1FF300BCBCDD /* PGBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */; };
@@ -138,6 +139,7 @@
 		CB3C07991C05063A00235D78 /* PGBGoodreadsAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBGoodreadsAPIClient.m; sourceTree = "<group>"; };
 		CB3C079A1C05063A00235D78 /* PGBIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBIntroViewController.h; sourceTree = "<group>"; };
 		CB3C079B1C05063A00235D78 /* PGBIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBIntroViewController.m; sourceTree = "<group>"; };
+		CBA58BEA1C0F4BD9003CF9BC /* ReviewsiFrame.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReviewsiFrame.storyboard; sourceTree = "<group>"; };
 		CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBBookCustomTableCell.h; sourceTree = "<group>"; };
 		CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBBookCustomTableCell.m; sourceTree = "<group>"; };
 		CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBBookCustomTableCell.xib; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				8902002C1C0CA900001A1ECF /* PGBLoginViewController.m */,
 				8902002E1C0CAA10001A1ECF /* PGBSignUpViewController.h */,
 				8902002F1C0CAA10001A1ECF /* PGBSignUpViewController.m */,
+				CBA58BEA1C0F4BD9003CF9BC /* ReviewsiFrame.storyboard */,
 				890200311C0CF4EB001A1ECF /* profile.storyboard */,
 				890200331C0CFD08001A1ECF /* PGBProfileViewController.h */,
 				890200341C0CFD08001A1ECF /* PGBProfileViewController.m */,
@@ -472,6 +475,7 @@
 				CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */,
 				4C9D16651C0CF07600DBF989 /* SearchStoryboard.storyboard in Resources */,
 				A7DD400A1C03717100D13A4B /* bookInformationSet16.txt in Resources */,
+				CBA58BEB1C0F4BD9003CF9BC /* ReviewsiFrame.storyboard in Resources */,
 				A7DD40071C03717100D13A4B /* bookInformationSet13.txt in Resources */,
 				CBFD3F6C1BFBA077002CE0A4 /* LaunchScreen.storyboard in Resources */,
 				CBFD3F691BFBA077002CE0A4 /* Assets.xcassets in Resources */,

@@ -11,8 +11,9 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "PGBRealmBook.h"
+#import <WebKit/WebKit.h>
 
-@interface PGBBookPageViewController : UIViewController
+@interface PGBBookPageViewController : UIViewController <WKUIDelegate, WKNavigationDelegate>
 
 @property (strong, nonatomic)NSString *titleBook;
 @property (strong, nonatomic)NSString *author;
@@ -22,6 +23,9 @@
 @property (strong, nonatomic)NSDate *datePublished;
 @property (assign, nonatomic)NSString *ebookID;
 @property (strong, nonatomic)NSArray *books;
+
+@property (strong, nonatomic) WKWebView *webView;
+@property (strong, nonatomic) NSString *productURL;
 
 @end
 

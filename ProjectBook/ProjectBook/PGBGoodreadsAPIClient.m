@@ -24,22 +24,27 @@
 @implementation PGBGoodreadsAPIClient
 NSString *const GOODREADS_KEY = @"AckMqnduhbH8xQdja2Nw";
 NSString *const GOODREADS_SECRET = @"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno";
-NSString *const GOODREADS_API_URL = @"www.goodreads.com/";
+NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 
 
-+(void)getReviewsWithCompletion:(NSString *)author bookTitle:(NSString *)bookTitle completion:(void (^)(NSArray *))completionBlock
++(void)getReviewsWithCompletion:(NSString *)author bookTitle:(NSString *)bookTitle completion:(void (^)(NSDictionary *))completionBlock
 {
     
-//    PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
-//    Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
+//    bookTitle = @"Norwegian Wood";
+//    author = @"Haruki Murakami";
     NSString *titleWithPluses = [bookTitle stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *goodreadsURL = [[NSMutableString alloc]init];
     
-    if (author && bookTitle) {
-        NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?author=%@&key=%@&title=%@", GOODREADS_API_URL, authorWithPluses, GOODREADS_KEY, titleWithPluses];
-    } else {
+    
+//    if (author && bookTitle) {
+//        NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+//        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses, authorWithPluses];
+//    } else
+//        
+        if (bookTitle) {
         goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
+    } else {
+        NSLog (@"didn't work!!");
     }
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];

@@ -385,6 +385,7 @@
                         <outlet property="genreLabel" destination="qt5-uI-cnf" id="E8e-LZ-Jgk"/>
                         <outlet property="iBooksButton" destination="S3T-ST-jq8" id="vhc-fJ-4wx"/>
                         <outlet property="languageLabel" destination="lX6-mt-LxQ" id="sjZ-Cj-JEf"/>
+                        <outlet property="linkView" destination="XkE-X9-fZs" id="lEn-vZ-x0C"/>
                         <outlet property="titleLabel" destination="f27-z1-o1N" id="Dba-ah-c6u"/>
                         <outlet property="yearLabel" destination="tB4-vL-ZbJ" id="rIx-My-HnK"/>
                     </connections>
