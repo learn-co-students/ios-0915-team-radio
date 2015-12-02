@@ -28,11 +28,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //test array of books
-//    PGBparsingThroughText *newTask = [[PGBparsingThroughText alloc]init];
-//    NSArray *finalArrayOfDictionary = [newTask cleanUpArrays];
-//
-//    NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
-//
+    PGBparsingThroughText *newTask = [[PGBparsingThroughText alloc]init];
+    NSArray *finalArrayOfDictionary = [newTask cleanUpArrays];
+
+    NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
+
 //    NSLog(@"Begin store to core data");
 //
 //    NSLog(@"documents directory: %@", [self applicationDocumentsDirectory]);
