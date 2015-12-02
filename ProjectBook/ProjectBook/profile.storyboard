@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="B1G-TE-m3Q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9527.1" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rZq-d8-kap">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9525.1"/>
     </dependencies>
     <scenes>
         <!--Profile View Controller-->
@@ -19,33 +19,37 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is the profile ayyyyyye" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLh-UL-LR1">
                                 <rect key="frame" x="84" y="323" width="207" height="21"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="91fJxgs69QL._SL1500_" translatesAutoresizingMaskIntoConstraints="NO" id="JmV-L1-1bM">
                                 <rect key="frame" x="0.0" y="20" width="375" height="128"/>
-                                <animations/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEX-Iz-TeW">
                                 <rect key="frame" x="270" y="200" width="55" height="30"/>
-                                <animations/>
                                 <state key="normal" title="settings"/>
                                 <connections>
-                                    <segue destination="pkq-Ny-3lt" kind="presentation" id="GVA-fC-D5M"/>
+                                    <segue destination="jPs-tA-AjL" kind="show" id="gf0-ge-hht"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBB-ur-w1D">
+                                <rect key="frame" x="64" y="200" width="97" height="30"/>
+                                <state key="normal" title="back to books"/>
+                                <connections>
+                                    <action selector="backToBooksTapped:" destination="B1G-TE-m3Q" eventType="touchUpInside" id="mUs-O1-Uc8"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="BPe-6L-me2"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cSu-MI-no6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="452.5" y="381.5"/>
+            <point key="canvasLocation" x="1453.5" y="392.5"/>
         </scene>
         <!--Settings-->
         <scene sceneID="77u-5B-2w6">
@@ -54,8 +58,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Rgq-LV-dqO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Example Settings 1" footerTitle="These are settings that do things!!" id="oXP-xx-JiD">
                                 <cells>
@@ -65,9 +68,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pI4-ho-q42" id="iNa-bx-uIJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FOt-Ts-3a5">
                                         <rect key="frame" x="0.0" y="157.5" width="375" height="44"/>
@@ -75,9 +76,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FOt-Ts-3a5" id="scN-Uu-mR3">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Rcb-XM-CSZ">
                                         <rect key="frame" x="0.0" y="201.5" width="375" height="44"/>
@@ -85,9 +84,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rcb-XM-CSZ" id="lJh-wq-daE">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -99,9 +96,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t6d-2P-J0p" id="EHL-yz-jcX">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WLV-fd-2eJ">
                                         <rect key="frame" x="0.0" y="356" width="375" height="44"/>
@@ -109,9 +104,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WLV-fd-2eJ" id="W1H-M6-OKk">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="A6j-xg-AUt">
                                         <rect key="frame" x="0.0" y="400" width="375" height="44"/>
@@ -119,9 +112,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A6j-xg-AUt" id="SWj-MM-oTP">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZDc-yY-UeW">
                                         <rect key="frame" x="0.0" y="444" width="375" height="44"/>
@@ -129,9 +120,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZDc-yY-UeW" id="5Dk-bt-Uyg">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -146,16 +135,13 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r45-Lb-Pbc">
                                                     <rect key="frame" x="41" y="7" width="56" height="30"/>
-                                                    <animations/>
                                                     <state key="normal" title="Log out "/>
                                                     <connections>
                                                         <action selector="logoutButtonTapped:" destination="jPs-tA-AjL" eventType="touchUpInside" id="C2P-Ky-siN"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -166,7 +152,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="OfK-fh-4p4">
-                        <barButtonItem key="leftBarButtonItem" title="back" image="backButton" id="PVo-ps-TNz">
+                        <barButtonItem key="leftBarButtonItem" title="back" id="PVo-ps-TNz">
                             <connections>
                                 <action selector="backButtonTapped:" destination="jPs-tA-AjL" id="H5A-gl-tST"/>
                             </connections>
@@ -176,30 +162,28 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpW-ZF-UDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1574.5" y="381.5"/>
+            <point key="canvasLocation" x="1945.5" y="392.5"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="QJH-KI-78Z">
+        <scene sceneID="74g-8b-v1g">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pkq-Ny-3lt" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rZq-d8-kap" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rNS-ph-ZLq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O1r-dB-aRE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="jPs-tA-AjL" kind="relationship" relationship="rootViewController" id="6C0-jo-Que"/>
+                        <segue destination="B1G-TE-m3Q" kind="relationship" relationship="rootViewController" id="7mk-PX-bXG"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a9A-Pv-apD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C2P-aH-C44" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1015.5" y="208.5"/>
+            <point key="canvasLocation" x="452" y="381"/>
         </scene>
     </scenes>
     <resources>
         <image name="91fJxgs69QL._SL1500_" width="971" height="1500"/>
-        <image name="backButton" width="50" height="49"/>
     </resources>
 </document>
