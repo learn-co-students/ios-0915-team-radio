@@ -180,14 +180,7 @@
     
     realmBook.genre = book.eBookGenres;
     
-    PGBHomeViewController *homeViewController = [[PGBHomeViewController alloc] init];
-    
-    if (!realmBook.bookCoverData) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [homeViewController.bookTableView reloadData];
-        }];
-    }
-    return realmBook;
+        return realmBook;
 }
 
 @end
