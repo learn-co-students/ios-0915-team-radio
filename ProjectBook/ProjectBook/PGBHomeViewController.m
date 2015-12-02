@@ -12,6 +12,7 @@
 #import "PGBBookPageViewController.h"
 #import "PGBRealmBook.h"
 #import "PGBGoodreadsAPIClient.h"
+
 #import "PGBLoginViewController.h"
 #import "PGBSignUpViewController.h"
 
@@ -216,9 +217,8 @@
             
             realmBook.genre = coreDataBook.eBookGenres;
             realmBook.ebookID = coreDataBook.eBookNumbers;
-    
-            
-            NSData *bookCoverData = [NSData dataWithContentsOfURL:[self createBookCoverURL:coreDataBook.eBookNumbers]];
+
+            NSData *bookCoverData = [NSData dataWithContentsOfURL:[self createBookCoverULR:coreDataBook.eBookNumbers]];
             realmBook.bookCoverData = bookCoverData;
             
             [self.books addObject:realmBook];
