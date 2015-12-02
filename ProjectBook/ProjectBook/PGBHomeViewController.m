@@ -146,7 +146,6 @@
 
             //first need to check if a book has an eBookNumber, if not, then it should not be shown
             realmBook.ebookID = coreDataBook.eBookNumbers;
-
             if ([coreDataBook.eBookNumbers isEqualToString:@""]) {
                 continue;
             }
@@ -250,7 +249,7 @@
             }
 
             realmBook.genre = coreDataBook.eBookGenres;
-            realmBook.ebookID = coreDataBook.eBookNumbers;
+            //realmBook.ebookID = coreDataBook.eBookNumbers;
 
             NSData *bookCoverData = [NSData dataWithContentsOfURL:[self createBookCoverURL:coreDataBook.eBookNumbers]];
             realmBook.bookCoverData = bookCoverData;
@@ -268,6 +267,142 @@
 
     [bgQueue addOperation:fetchBookOperation];
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - (NSURL *)createBookCoverURL:(NSString *)eBookNumber{
     NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
@@ -324,6 +459,38 @@
         NSLog(@"Didn't get a cell, I fucked UP");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
