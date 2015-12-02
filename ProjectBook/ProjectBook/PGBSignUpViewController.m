@@ -61,8 +61,6 @@
     CGFloat leftMargin = width * 1/8;
     CGFloat rightMargin = width * 3/4;
     
-    CGFloat widthOfBottomButtons = 30.0f;
-
     [self.signUpView.dismissButton setFrame:CGRectMake(15.0f, 25.0f, 30.5f, 30.5f)];
     [self.signUpView.logo setFrame:CGRectMake(width * 1/5, height * 1/7, width * 3/5, 58.5f)];
     
@@ -74,7 +72,7 @@
     [self.signUpView.emailField setFrame:CGRectMake(leftMargin, height * 2.4/8 + 100, rightMargin, 50.0f)];
   
     
-    [self.signUpView.additionalField setPlaceholder:@"Phone Number"];
+    [self.signUpView.additionalField setPlaceholder:@"Name"];
     [self.signUpView.additionalField setFrame:CGRectMake(leftMargin, height * 2.4/8 + 150, rightMargin, 50.0f)];
     
     [self.signUpView.signUpButton setFrame:CGRectMake(leftMargin + 20, height * 2.4/8 + 230, width * 3/4 - 40, 50.0f)];

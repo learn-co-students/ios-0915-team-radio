@@ -113,6 +113,12 @@
         newBook.eBookLanguages = book[@"eBookLanguages"];
         newBook.eBookNumbers = book[@"eBookNumbers"];
         newBook.eBookTitles = book[@"eBookTitles"];
+        
+        NSString *lowerCaseTitles = [newBook.eBookTitles stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
+        
+        NSString *lowerCaseFriendlyTitles = [newBook.eBookFriendlyTitles stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
+        
+        newBook.eBookSearchTerms = [NSString stringWithFormat:@"%@ %@", lowerCaseTitles, lowerCaseFriendlyTitles];
     }
     
     // save and refetch

@@ -6,6 +6,7 @@
         <attribute name="eBookGenres" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eBookLanguages" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eBookNumbers" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eBookSearchTerms" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="eBookTitles" optional="YES" attributeType="String" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
@@ -17,6 +18,6 @@
         </compoundIndexes>
     </entity>
     <elements>
-        <element name="Book" positionX="-54" positionY="-9" width="128" height="135"/>
+        <element name="Book" positionX="-54" positionY="-9" width="128" height="150"/>
     </elements>
 </model>
