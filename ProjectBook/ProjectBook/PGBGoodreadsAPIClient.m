@@ -57,19 +57,6 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 
 }
 
-
--(NSArray *)parseATextFile
-{
-    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"file_name" withExtension:@"txt"];
-    
-    NSString *fileContents = [NSString stringWithContentsOfURL:fileURL encoding:NSUTF8StringEncoding error:nil];
-    
-    NSCharacterSet *newlineSet = [NSCharacterSet newlineCharacterSet];
-    NSArray *lines = [fileContents componentsSeparatedByCharactersInSet:newlineSet];
-    
-    return lines;
-}
-
 -(void)dummyLoginMethod {
     //goodreads user login -- in viewDidAppear
     

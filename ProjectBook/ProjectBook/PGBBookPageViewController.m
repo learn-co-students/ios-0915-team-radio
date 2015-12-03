@@ -61,14 +61,14 @@
     
     [self.bookDescriptionTV scrollRangeToVisible:NSMakeRange(0, 1)];
     
-    self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 500, 300, 300)];
+    self.webView = [[WKWebView alloc]init];
     [self.view addSubview:self.webView];
     
 //    self.webView.UIDelegate = self;
     //self.webview = self.webView;
     
-//    [self.webView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
-//    [self.webView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
+    [self.webView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
+    [self.webView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
 //    [self.webView.topAnchor constraintEqualToAnchor:self.linkView.bottomAnchor].active = YES;
 //    [self.webView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
    
