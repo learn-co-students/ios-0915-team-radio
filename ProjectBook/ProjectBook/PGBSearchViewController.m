@@ -186,7 +186,7 @@
     bookPageVC.language = bookAtIndexPath.language;
     bookPageVC.bookDescription = @"No description yet";
     bookPageVC.ebookID = bookAtIndexPath.ebookID;
-    bookPageVC.books = bookPageVC.books;
+//    bookPageVC.books = bookPageVC.books;
 }
 
 #pragma UISearchBar Method::

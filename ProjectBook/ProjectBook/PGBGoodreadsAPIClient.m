@@ -24,25 +24,29 @@
 @implementation PGBGoodreadsAPIClient
 NSString *const GOODREADS_KEY = @"AckMqnduhbH8xQdja2Nw";
 NSString *const GOODREADS_SECRET = @"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno";
-NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
+NSString *const GOODREADS_API_URL = @"https://www.goodreads.com";
 
 
 +(void)getReviewsWithCompletion:(NSString *)author bookTitle:(NSString *)bookTitle completion:(void (^)(NSDictionary *))completionBlock
 {
     
-//    bookTitle = @"Norwegian Wood";
-//    author = @"Haruki Murakami";
+    //    bookTitle = @"Norwegian Wood";
+    //    author = @"Haruki Murakami";
     NSString *titleWithPluses = [bookTitle stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *goodreadsURL = [[NSMutableString alloc]init];
     
     
-//    if (author && bookTitle) {
-//        NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-//        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses, authorWithPluses];
-//    } else
-//        
-        if (bookTitle) {
+    //    if (author && bookTitle) {
+    //        NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    //        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses, authorWithPluses];
+    //    } else
+    //
+    if (bookTitle) {
         goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
+        
+        //LEO bug fix here - URL string can't contain accent cahracters - example for failure:https://www.goodreads.com/book/title.json?key=AckMqnduhbH8xQdja2Nw&title=The+Ancien+Régime
+        goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
+        
     } else {
         NSLog (@"didn't work!!");
     }
