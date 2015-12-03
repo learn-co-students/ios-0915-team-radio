@@ -51,6 +51,8 @@
 @property (nonatomic) BOOL noMoreResultsAvail;
 @property (nonatomic) BOOL loading;
 
+@property (nonatomic, strong)NSOperationQueue *bgQueue;
+@property (nonatomic, strong)NSOperationQueue *bookCoverBgQueue;
 
 
 @end
@@ -81,6 +83,7 @@
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
 
     self.bookTableView.rowHeight = 80;
+    
 
 }
 
@@ -94,16 +97,18 @@
     } else if (![PFUser currentUser] && ![self.loginButton.title isEqual: @"Login"]){
         [self.loginButton setTitle:@"Login"];
     }
+    
+
 }
 
 - (void)generateRandomBookByCount:(NSInteger)count{
+    //bg Queue
+    self.bgQueue = [[NSOperationQueue alloc]init];
+    self.bookCoverBgQueue = [[NSOperationQueue alloc]init];
     
-    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
-    NSOperationQueue *bookCoverBgQueue = [[NSOperationQueue alloc]init];
-    
-    bgQueue.maxConcurrentOperationCount = 1;
-    bookCoverBgQueue.maxConcurrentOperationCount = 5;
-    
+    self.bgQueue.maxConcurrentOperationCount = 1;
+    self.bookCoverBgQueue.maxConcurrentOperationCount = 5;
+
     NSOperation *fetchBookOperation = [NSBlockOperation blockOperationWithBlock:^{
         PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
         [dataStore fetchData];
@@ -152,7 +157,7 @@
                     
                     [self.bookTableView reloadData];
                     
-                    [bookCoverBgQueue addOperation:fetchBookCoverOperation];
+                    [self.bookCoverBgQueue addOperation:fetchBookCoverOperation];
                 }];
             } else {
                 
@@ -163,7 +168,7 @@
         }
     }];
     
-    [bgQueue addOperation:fetchBookOperation];
+    [self.bgQueue addOperation:fetchBookOperation];
 }
 
 -(void) cellDownloadButtonTapped:(UIButton*) button
@@ -325,6 +330,11 @@
 
 #pragma UserDefined Method for generating data which are show in Table :::
 -(void)loadDataDelayed{
+    
+    //cancel operations first to avoid too much background jobs running
+    [self.bgQueue cancelAllOperations];
+    [self.bookCoverBgQueue cancelAllOperations];
+    
     if (self.books.count >= 100) {
         
         NSLog(@"before: %lu",[self.books count]);
@@ -333,7 +343,7 @@
         NSLog(@"after remove: %lu",[self.books count]);
     }
     
-    [self generateRandomBookByCount:self.books.count/4];
+    [self generateRandomBookByCount:(self.books.count/4)+1];
     
     NSLog(@"number of books in array %lu",self.books.count);
     [self.bookTableView reloadData];
