@@ -227,9 +227,9 @@
 
     [self.bookTableView reloadData];
     
-    if ([searchText length] == 0) {
-        [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:self.bookSearchBar afterDelay:0];
-    }
+//    if ([searchText length] == 0) {
+//        [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:self.bookSearchBar afterDelay:0];
+//    }
 }
 
 - (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar {
