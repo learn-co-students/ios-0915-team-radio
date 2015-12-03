@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="566" height="126"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="91fJxgs69QL._SL1500_" translatesAutoresizingMaskIntoConstraints="NO" id="TaM-gH-GAi">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_book_cover" translatesAutoresizingMaskIntoConstraints="NO" id="TaM-gH-GAi">
                         <rect key="frame" x="0.0" y="0.0" width="113" height="126"/>
                         <animations/>
                     </imageView>
@@ -89,6 +89,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="91fJxgs69QL._SL1500_" width="971" height="1500"/>
+        <image name="no_book_cover" width="1600" height="2400"/>
     </resources>
 </document>

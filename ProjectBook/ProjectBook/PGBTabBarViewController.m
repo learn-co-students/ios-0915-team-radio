@@ -7,8 +7,7 @@
 //
 
 #import "PGBTabBarViewController.h"
-#import <ionicons/IonIcons.h>
-
+#import <IonIcons.h>
 
 @interface PGBTabBarViewController ()
 //@property (weak, nonatomic) IBOutlet UITabBar *tabBar;

@@ -433,38 +433,6 @@
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -488,7 +456,7 @@
 //    cell.bookCover.image = self.bookCovers[indexPath.row];
     UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
     if (!bookCoverImage) {
-        bookCoverImage = [UIImage imageNamed:@"91fJxgs69QL._SL1500_"];
+        bookCoverImage = [UIImage imageNamed:@"no_book_cover"];
     }
 
     cell.bookCover.image = bookCoverImage;
