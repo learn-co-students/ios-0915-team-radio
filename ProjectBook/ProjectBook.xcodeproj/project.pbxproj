@@ -27,6 +27,7 @@
 		899A4CFB1C0FA09200D499C4 /* PGBEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899A4CFA1C0FA09200D499C4 /* PGBEditProfileViewController.m */; };
 		899A4CFE1C0FA42B00D499C4 /* PGBMainSocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899A4CFD1C0FA42B00D499C4 /* PGBMainSocialViewController.m */; };
 		899A4D001C0FA43A00D499C4 /* social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 899A4CFF1C0FA43A00D499C4 /* social.storyboard */; };
+		899A4D071C10A77200D499C4 /* PGBChatMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */; };
 		A75AD6391C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A75AD6381C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf */; };
 		A77A08F91BFBE78700CA62F8 /* PGBparsingThroughText.m in Sources */ = {isa = PBXBuildFile; fileRef = A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */; };
 		A7DD3FFB1C03717100D13A4B /* bookInformationSet1.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FE71C03717100D13A4B /* bookInformationSet1.txt */; };
@@ -131,6 +132,8 @@
 		899A4CFC1C0FA42B00D499C4 /* PGBMainSocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBMainSocialViewController.h; sourceTree = "<group>"; };
 		899A4CFD1C0FA42B00D499C4 /* PGBMainSocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBMainSocialViewController.m; sourceTree = "<group>"; };
 		899A4CFF1C0FA43A00D499C4 /* social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = social.storyboard; sourceTree = "<group>"; };
+		899A4D051C10A77200D499C4 /* PGBChatMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBChatMessageVC.h; sourceTree = "<group>"; };
+		899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBChatMessageVC.m; sourceTree = "<group>"; };
 		89DF0C4F1BFCDF1500E0096F /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../Desktop/parse-library-1.9.1 (2)/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook.release.xcconfig"; sourceTree = "<group>"; };
 		A75AD6381C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DictionaryOfBooksFinal.rtf; sourceTree = "<group>"; };
@@ -369,15 +372,17 @@
 				8902002E1C0CAA10001A1ECF /* PGBSignUpViewController.h */,
 				8902002F1C0CAA10001A1ECF /* PGBSignUpViewController.m */,
 				890200311C0CF4EB001A1ECF /* profile.storyboard */,
-				899A4CF31C0F660200D499C4 /* PGBSettingsTableViewController.h */,
-				899A4CF41C0F660200D499C4 /* PGBSettingsTableViewController.m */,
 				890200331C0CFD08001A1ECF /* PGBProfileViewController.h */,
 				890200341C0CFD08001A1ECF /* PGBProfileViewController.m */,
+				899A4CF31C0F660200D499C4 /* PGBSettingsTableViewController.h */,
+				899A4CF41C0F660200D499C4 /* PGBSettingsTableViewController.m */,
 				899A4CF91C0FA09200D499C4 /* PGBEditProfileViewController.h */,
 				899A4CFA1C0FA09200D499C4 /* PGBEditProfileViewController.m */,
 				899A4CFF1C0FA43A00D499C4 /* social.storyboard */,
 				899A4CFC1C0FA42B00D499C4 /* PGBMainSocialViewController.h */,
 				899A4CFD1C0FA42B00D499C4 /* PGBMainSocialViewController.m */,
+				899A4D051C10A77200D499C4 /* PGBChatMessageVC.h */,
+				899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */,
 				CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */,
 				CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */,
 				CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */,
@@ -502,7 +507,7 @@
 				TargetAttributes = {
 					CBFD3F551BFBA076002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 9YUT5P277S;
+						DevelopmentTeam = Q37944AWTY;
 					};
 					CBFD3F711BFBA077002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
@@ -668,6 +673,7 @@
 				4C3FDE911C0FD95F00F5B8FA /* PGBTabBarViewController.m in Sources */,
 				A77A08F91BFBE78700CA62F8 /* PGBparsingThroughText.m in Sources */,
 				4C25FFAB1C03B83B00B5C8E3 /* PGBDataStore.m in Sources */,
+				899A4D071C10A77200D499C4 /* PGBChatMessageVC.m in Sources */,
 				899A4CFB1C0FA09200D499C4 /* PGBEditProfileViewController.m in Sources */,
 				899A4CFE1C0FA42B00D499C4 /* PGBMainSocialViewController.m in Sources */,
 				CBFD3F671BFBA076002CE0A4 /* ProjectBook.xcdatamodeld in Sources */,
