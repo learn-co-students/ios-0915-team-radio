@@ -91,301 +91,69 @@
 }
 
 - (void)getRandomBooks{
-
-    NSOperationQueue *bgQueue = [[NSOperationQueue alloc] init];
-
+    
+    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+    NSOperationQueue *bookCoverBgQueue = [[NSOperationQueue alloc]init];
+    
+    bgQueue.maxConcurrentOperationCount = 1;
+    bookCoverBgQueue.maxConcurrentOperationCount = 5;
+    
     NSOperation *fetchBookOperation = [NSBlockOperation blockOperationWithBlock:^{
         PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
         [dataStore fetchData];
-
-    NSMutableArray *booksGeneratedSoFar = [NSMutableArray new];
-
-        for (NSUInteger i = 0; i < 100; i++) {
-            NSUInteger randomNumber = arc4random_uniform((u_int32_t)dataStore.managedBookObjects.count);
-
-            PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
+        
+        NSMutableArray *booksGeneratedSoFar = [NSMutableArray new];
+        
+        for (NSInteger i = 0; i < 20; i++) {
+            NSInteger randomNumber = arc4random_uniform((u_int32_t)dataStore.managedBookObjects.count);
+            
             Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
-
-
-
-
+            
             //if a book has already been shown, itll be added into the mutable array
             //if the same book is called again, then i is lowered by 1, the for loops starts again, and so i is increased by 1
             //this makes sure that there will always be 100 random numbers to check
             if ([booksGeneratedSoFar containsObject:coreDataBook]) {
-                i -= 1;
+                i--;
                 continue;
             }
-
-            //first need to check if a book has an eBookNumber, if not, then it should not be shown
-            realmBook.ebookID = coreDataBook.eBookNumbers;
-            if ([coreDataBook.eBookNumbers isEqualToString:@""]) {
-                continue;
-            }
-
-            /*
-             A book has a title, and author; and a book's friendly title is of the format
-             "Book Title by Author" for example "Harry Potter by J.K. Rowling"
-
-             if a book is missing its title, or its author, but has its friendly title, then
-             the friendly title's information should be used to fill in the missing information
-             */
-
-
-            //first need to check if said ebook is missing the authors information
-            realmBook.author = coreDataBook.eBookAuthors;
-            if ([coreDataBook.eBookAuthors isEqualToString:@""])
-            {
-                //if the author information is missing, check to see if friendly title information is present
-                if (![coreDataBook.eBookFriendlyTitles isEqualToString:@""])
-                {
-
-                    /*
-
-                     if friendly title information is present, check to see its of the correct format (Book Title by Author)
-                     to check it has all three components ("book title", the word "by", and "book author") turn the friendly title into an array
-
-                     Example:
-                     Original Friendly Title as String: "Harry Potter by J.K. Rowling"
-                     New Format as an Array: @[@"Harry", @"Potter", @"by", @"J.K.", @"Rowling"];
-
-                     Everything before the string "by", is the title, everything after, is the author's name
-
-                     */
-
-
-                    //next step, check if the array contains the string "by"
-                    //if it does, friendly title has the correct format, if not, then it doesn't
-                    NSArray *stringToArray = [coreDataBook.eBookFriendlyTitles componentsSeparatedByString:@" "];
-
-                    if ([stringToArray containsObject:@"by"])
-                    {
-                        //here, the friendly title does contain the string "by", and so is of the correct format
-                        //next step is to get the author of the book without the title
-                        //this means we must get all the strings after the word "by"
-                        NSMutableArray *mutableStringToArray = [stringToArray mutableCopy];
-
-                        //we find the index of element "by", and then append every element after that index to a string, in order to get the book title
-                        NSUInteger indexOfStringBy = [mutableStringToArray indexOfObject:@"by"];
-
-                        //here we remove by, and everything before it, now the array is just the authors name
-                        [mutableStringToArray removeObjectsInRange:NSMakeRange(0, indexOfStringBy)];
-
-                        NSMutableString *authorName = [NSMutableString new];
-
-                        //append the array elements (authors name) to a string
-                        for (NSString *element in mutableStringToArray)
-                        {
-                            [authorName appendString:element];
-
-                            //add a space so the name isn't one word
-                            //this also adds a space to the end of the last word
-                            [authorName appendString:@" "];
-                        }
-
-                        //need to remove the last character in the string which is just a space
-                        [authorName substringToIndex:authorName.length-1];
-                        realmBook.author = authorName;
-                    }
-                } //if there is no book author, or friendly title, then it remains empty
-                else if ([coreDataBook.eBookAuthors isEqualToString:@""]) {
-                    realmBook.author = @"";
-                }
-            }
-
-
-            //here we do the same thing as above, but with the book title, which is all the words before the string "by"
-            realmBook.title = coreDataBook.eBookTitles;
-            if ([coreDataBook.eBookTitles isEqualToString:@""]) {
-                if (![coreDataBook.eBookFriendlyTitles isEqualToString:@""]) {
-
-                    NSArray *stringToArray = [coreDataBook.eBookFriendlyTitles componentsSeparatedByString:@" "];
-                    NSMutableArray *mutableStringToArray = [stringToArray mutableCopy];
-
-                    if ([mutableStringToArray containsObject:@"by"]) {
-                        NSUInteger indexOfStringBy = [mutableStringToArray indexOfObject:@"by"];
-                        [mutableStringToArray removeObjectsInRange:NSMakeRange(indexOfStringBy, mutableStringToArray.count-indexOfStringBy)];
-
-                        NSMutableString *title = [NSMutableString new];
-
-                        for (NSString *string in mutableStringToArray) {
-                            [title appendString:string];
-                            [title appendString:@" "];
-                        }
-                        [title substringToIndex:title.length-1];
-                        realmBook.title = title;
-                    }
-                }
-                else if ([coreDataBook.eBookFriendlyTitles isEqualToString:@""]) {
-                    realmBook.title = @"";
-                }
-            }
-
-            realmBook.genre = coreDataBook.eBookGenres;
-            //realmBook.ebookID = coreDataBook.eBookNumbers;
-
-            NSData *bookCoverData = [NSData dataWithContentsOfURL:[self createBookCoverURL:coreDataBook.eBookNumbers]];
-            realmBook.bookCoverData = bookCoverData;
-
-            [self.books addObject:realmBook];
-            [booksGeneratedSoFar addObject:coreDataBook]; //add to list of shown books
-
-            if (!realmBook.bookCoverData) {
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    [self.bookTableView reloadData];
+            
+            PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
+            
+            if (realmBook) {
+                
+                NSOperation *fetchBookCoverOperation = [NSBlockOperation blockOperationWithBlock:^{
+                    
+                    NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:coreDataBook.eBookNumbers]];
+                    realmBook.bookCoverData = bookCoverData;
+                    
+                    PGBRealmBook *realmBook = self.books[i];
+                    realmBook.bookCoverData = bookCoverData;
+                    
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        [self.bookTableView reloadData];
+                    }];
                 }];
+                
+                
+                [self.books addObject:realmBook];
+                [booksGeneratedSoFar addObject:coreDataBook]; //add to list of shown books
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    
+                    [self.bookTableView reloadData];
+                    
+                    [bookCoverBgQueue addOperation:fetchBookCoverOperation];
+                }];
+            } else {
+                
+                //Didn't find a book that we should display to user, resetting counter down by 1
+                i--;
             }
+            
         }
     }];
-
+    
     [bgQueue addOperation:fetchBookOperation];
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- (NSURL *)createBookCoverURL:(NSString *)eBookNumber{
-    NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
-    NSString *bookCoverURL = [NSString stringWithFormat:@"https://www.gutenberg.org/cache/epub/%@/pg%@.cover.medium.jpg", eBookNumberParsed, eBookNumberParsed];
-
-    NSURL *url = [NSURL URLWithString:bookCoverURL];
-//    NSData *data = [NSData dataWithContentsOfURL:url];
-//    UIImage *img = [[UIImage alloc]initWithData:data];
-    //    CGSize size = img.size;
-    return url;
 }
 
 -(void) cellDownloadButtonTapped:(UIButton*) button
@@ -433,38 +201,6 @@
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -488,7 +224,7 @@
 //    cell.bookCover.image = self.bookCovers[indexPath.row];
     UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
     if (!bookCoverImage) {
-        bookCoverImage = [UIImage imageNamed:@"91fJxgs69QL._SL1500_"];
+        bookCoverImage = [UIImage imageNamed:@"no_book_cover"];
     }
 
     cell.bookCover.image = bookCoverImage;

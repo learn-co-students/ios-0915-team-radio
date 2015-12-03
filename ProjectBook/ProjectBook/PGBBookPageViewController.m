@@ -61,7 +61,7 @@
     
     [self.bookDescriptionTV scrollRangeToVisible:NSMakeRange(0, 1)];
     
-    self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 300, 300, 300)];
+    self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 500, 300, 300)];
     [self.view addSubview:self.webView];
     
 //    self.webView.UIDelegate = self;
