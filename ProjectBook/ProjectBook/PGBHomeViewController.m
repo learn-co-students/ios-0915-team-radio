@@ -74,8 +74,8 @@
     //    [PGBRealmBook generateTestBookData];
     //    self.books = [PGBRealmBook getUserBookDataInArray];
     //    self.books = @[self.books[0], self.books[1], self.books[2]];
-    self.books = [[NSMutableArray alloc]init];
-    [self getRandomBooks];
+    self.books = [NSMutableArray arrayWithCapacity:100];
+    [self generateRandomBookByCount:100];
 
     //xib
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
@@ -96,7 +96,7 @@
     }
 }
 
-- (void)getRandomBooks{
+- (void)generateRandomBookByCount:(NSInteger)count{
     
     NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
     NSOperationQueue *bookCoverBgQueue = [[NSOperationQueue alloc]init];
@@ -110,7 +110,7 @@
         
         NSMutableArray *booksGeneratedSoFar = [NSMutableArray new];
         
-        for (NSInteger i = 0; i < 20; i++) {
+        for (NSInteger i = 0; i < count; i++) {
             NSInteger randomNumber = arc4random_uniform((u_int32_t)dataStore.managedBookObjects.count);
             
             Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
@@ -132,12 +132,16 @@
                     NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:coreDataBook.eBookNumbers]];
                     realmBook.bookCoverData = bookCoverData;
                     
-                    PGBRealmBook *realmBook = self.books[i];
-                    realmBook.bookCoverData = bookCoverData;
-                    
-                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                        [self.bookTableView reloadData];
-                    }];
+                    if (self.books[i]) {
+                        
+                        PGBRealmBook *realmBook = self.books[i];
+                        realmBook.bookCoverData = bookCoverData;
+                        
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            [self.bookTableView reloadData];
+                        }];
+                        
+                    }
                 }];
                 
                 
@@ -216,11 +220,11 @@
 {
 //    return self.books.count;
     //pagination
-    if([ self.books count] ==0){
+    if([ self.books count] == 0){
         return 0;
     }
     else {
-        return [self.books count]+1;
+        return [self.books count] + 1;
     }
 }
 
@@ -243,15 +247,12 @@
 //    cell.bookCover.image = bookCoverImage;
 //    cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
     
-    
     //pagination
     if (self.books.count != 0) {
-        if(indexPath.row <[self.books count]){
+        if(indexPath.row < [self.books count]){
             
-//            cell.textLabel.text =[self.books objectAtIndex:indexPath.row];
             PGBRealmBook *book = self.books[indexPath.row];
-            //    Book *book = self.books[indexPath.row];
-            
+        
             cell.titleLabel.text = book.title;
             cell.authorLabel.text = book.author;
             cell.genreLabel.text = book.genre;
@@ -267,7 +268,11 @@
         else{
             if (!self.noMoreResultsAvail) {
                 spinner.hidden =NO;
-                cell.textLabel.text=nil;
+//                cell.textLabel.text=n;
+                cell.titleLabel.text = @"";
+                cell.authorLabel.text = @"";
+                cell.genreLabel.text = @"";
+                cell.bookCover.image = nil;
                 
                 
                 spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -282,7 +287,11 @@
                 [spinner stopAnimating];
                 spinner.hidden=YES;
                 
-                cell.textLabel.text=nil;
+//                cell.textLabel.text=nil;
+                cell.titleLabel.text = @"";
+                cell.authorLabel.text = @"";
+                cell.genreLabel.text = @"";
+                cell.bookCover.image = nil;
                 
                 UILabel* loadingLabel = [[UILabel alloc]init];
                 loadingLabel.font=[UIFont boldSystemFontOfSize:14.0f];
@@ -316,16 +325,21 @@
 
 #pragma UserDefined Method for generating data which are show in Table :::
 -(void)loadDataDelayed{
-    
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:10];
-    for (int i=1; i<=10 ; i++) {
-//        [array addObject:[NSString stringWithFormat:@"Visible Item No ::%d",i]];
-        //generate more data here!!!!
-        array = [self.books mutableCopy];
+    if (self.books.count >= 100) {
+        
+        NSLog(@"before: %lu",[self.books count]);
+        //index range 0-4 , 5 items
+        [self.books removeObjectsInRange:NSMakeRange(0, self.books.count/4)];
+        NSLog(@"after remove: %lu",[self.books count]);
     }
-    [self.books addObjectsFromArray:array];
+    
+    [self generateRandomBookByCount:self.books.count/4];
+    
+    NSLog(@"number of books in array %lu",self.books.count);
     [self.bookTableView reloadData];
+
 }
+
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
