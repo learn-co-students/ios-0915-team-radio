@@ -10,6 +10,7 @@
 		4C25FFA61C03B7E200B5C8E3 /* Book+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFA31C03B7E200B5C8E3 /* Book+CoreDataProperties.m */; };
 		4C25FFA71C03B7E200B5C8E3 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFA51C03B7E200B5C8E3 /* Book.m */; };
 		4C25FFAB1C03B83B00B5C8E3 /* PGBDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFAA1C03B83B00B5C8E3 /* PGBDataStore.m */; };
+		4C3FDE911C0FD95F00F5B8FA /* PGBTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */; };
 		4C5D94791BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */; };
 		4C5D947E1BFE389A0086DB5F /* PGBMyBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */; };
 		4C9597AB1BFBEB2000BBD558 /* PGBRealmUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9597A81BFBEB2000BBD558 /* PGBRealmUser.m */; };
@@ -93,6 +94,8 @@
 		4C25FFA51C03B7E200B5C8E3 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		4C25FFA91C03B83B00B5C8E3 /* PGBDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBDataStore.h; sourceTree = "<group>"; };
 		4C25FFAA1C03B83B00B5C8E3 /* PGBDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBDataStore.m; sourceTree = "<group>"; };
+		4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBTabBarViewController.h; sourceTree = "<group>"; };
+		4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBTabBarViewController.m; sourceTree = "<group>"; };
 		4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyBooksStoryboard.storyboard; sourceTree = "<group>"; };
 		4C5D947C1BFE389A0086DB5F /* PGBMyBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBMyBookViewController.h; sourceTree = "<group>"; };
 		4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBMyBookViewController.m; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 				4C9D16641C0CF07600DBF989 /* SearchStoryboard.storyboard */,
 				4C9D16611C0CF04800DBF989 /* PGBSearchViewController.h */,
 				4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */,
+				4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarViewController.h */,
+				4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */,
 				CBFD3F591BFBA076002CE0A4 /* Supporting Files */,
 			);
 			path = ProjectBook;
@@ -604,6 +609,7 @@
 				CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */,
 				CBFD3F911BFBB250002CE0A4 /* PGBDownloadHelper.m in Sources */,
 				4C9597AB1BFBEB2000BBD558 /* PGBRealmUser.m in Sources */,
+				4C3FDE911C0FD95F00F5B8FA /* PGBTabBarViewController.m in Sources */,
 				A77A08F91BFBE78700CA62F8 /* PGBparsingThroughText.m in Sources */,
 				4C25FFAB1C03B83B00B5C8E3 /* PGBDataStore.m in Sources */,
 				899A4CFB1C0FA09200D499C4 /* PGBEditProfileViewController.m in Sources */,

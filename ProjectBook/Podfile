@@ -17,6 +17,7 @@ pod 'SVPullToRefresh'
 pod 'Goodreads-Oauth'
 pod 'YYWebImage'
 pod 'Ono'
+pod 'ionicons'
 
 end
 
