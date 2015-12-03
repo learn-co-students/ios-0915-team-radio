@@ -30,7 +30,11 @@
 #import <Foundation/Foundation.h>
 
 
-@interface PGBHomeViewController ()
+@interface PGBHomeViewController () {
+    
+    UIActivityIndicatorView *spinner;
+    
+}
 
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
@@ -42,7 +46,10 @@
 
 @property (strong, nonatomic) PGBBookCustomTableCell *customCell;
 
-@property (strong, nonatomic) NSMutableArray *bookCovers;
+//pagination
+//@property (strong, nonatomic) NSMutableArray *dataArray;
+@property (nonatomic) BOOL noMoreResultsAvail;
+@property (nonatomic) BOOL loading;
 
 
 
@@ -68,7 +75,6 @@
     //    self.books = [PGBRealmBook getUserBookDataInArray];
     //    self.books = @[self.books[0], self.books[1], self.books[2]];
     self.books = [[NSMutableArray alloc]init];
-    self.bookCovers = [[NSMutableArray alloc]init];
     [self getRandomBooks];
 
     //xib
@@ -208,32 +214,119 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.books.count;
+//    return self.books.count;
+    //pagination
+    if([ self.books count] ==0){
+        return 0;
+    }
+    else {
+        return [self.books count]+1;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
 
-    PGBRealmBook *book = self.books[indexPath.row];
-    //    Book *book = self.books[indexPath.row];
-
-    cell.titleLabel.text = book.title;
-    cell.authorLabel.text = book.author;
-    cell.genreLabel.text = book.genre;
-//    cell.bookCover.image = self.bookCovers[indexPath.row];
-    UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
-    if (!bookCoverImage) {
-        bookCoverImage = [UIImage imageNamed:@"no_book_cover"];
+//    PGBRealmBook *book = self.books[indexPath.row];
+//    //    Book *book = self.books[indexPath.row];
+//
+//    cell.titleLabel.text = book.title;
+//    cell.authorLabel.text = book.author;
+//    cell.genreLabel.text = book.genre;
+////    cell.bookCover.image = self.bookCovers[indexPath.row];
+//    UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+//    if (!bookCoverImage) {
+//        bookCoverImage = [UIImage imageNamed:@"no_book_cover"];
+//    }
+//
+//    cell.bookCover.image = bookCoverImage;
+//    cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
+    
+    
+    //pagination
+    if (self.books.count != 0) {
+        if(indexPath.row <[self.books count]){
+            
+//            cell.textLabel.text =[self.books objectAtIndex:indexPath.row];
+            PGBRealmBook *book = self.books[indexPath.row];
+            //    Book *book = self.books[indexPath.row];
+            
+            cell.titleLabel.text = book.title;
+            cell.authorLabel.text = book.author;
+            cell.genreLabel.text = book.genre;
+            //    cell.bookCover.image = self.bookCovers[indexPath.row];
+            UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+            if (!bookCoverImage) {
+                bookCoverImage = [UIImage imageNamed:@"no_book_cover"];
+            }
+            
+            cell.bookCover.image = bookCoverImage;
+            cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
+        }
+        else{
+            if (!self.noMoreResultsAvail) {
+                spinner.hidden =NO;
+                cell.textLabel.text=nil;
+                
+                
+                spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                spinner.frame = CGRectMake(150, 10, 24, 50);
+                [cell addSubview:spinner];
+                if ([self.books count] >= 10) {
+                    [spinner startAnimating];
+                }
+            }
+            
+            else{
+                [spinner stopAnimating];
+                spinner.hidden=YES;
+                
+                cell.textLabel.text=nil;
+                
+                UILabel* loadingLabel = [[UILabel alloc]init];
+                loadingLabel.font=[UIFont boldSystemFontOfSize:14.0f];
+                loadingLabel.textAlignment = UITextAlignmentLeft;
+                loadingLabel.textColor = [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0];
+                loadingLabel.numberOfLines = 0;
+                loadingLabel.text=@"No More data Available";
+                loadingLabel.frame=CGRectMake(85,20, 302,25);
+                [cell addSubview:loadingLabel];
+            }
+        }
     }
 
-    cell.bookCover.image = bookCoverImage;
-
-    [cell.downloadButton addTarget:self action:@selector(cellDownloadButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
 
     return cell;
 }
+
+
+#pragma UIScroll View Method::
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (!self.loading) {
+        float endScrolling = scrollView.contentOffset.y + scrollView.frame.size.height;
+        if (endScrolling >= scrollView.contentSize.height)
+        {
+            [self performSelector:@selector(loadDataDelayed) withObject:nil afterDelay:0.2];
+            
+        }
+    }
+}
+
+#pragma UserDefined Method for generating data which are show in Table :::
+-(void)loadDataDelayed{
+    
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:10];
+    for (int i=1; i<=10 ; i++) {
+//        [array addObject:[NSString stringWithFormat:@"Visible Item No ::%d",i]];
+        //generate more data here!!!!
+        array = [self.books mutableCopy];
+    }
+    [self.books addObjectsFromArray:array];
+    [self.bookTableView reloadData];
+}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
