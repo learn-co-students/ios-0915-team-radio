@@ -5,10 +5,10 @@
 //  Created by Wo Jun Feng on 11/17/15.
 //  Copyright © 2015 FIS. All rights reserved.
 //
-
+#import <UIKit/UIKit.h>
 #import <Realm/Realm.h>
 #import "PGBRealmUser.h"
-#import <UIKit/UIKit.h>
+#import "Book.h"
 
 @interface PGBRealmBook : RLMObject
 
@@ -43,6 +43,9 @@
 + (void)deleteAllUserBookData;
 + (RLMResults *)getUserBookData;
 + (NSArray *)getUserBookDataInArray;
++ (PGBRealmBook *)createPGBRealmBookWithBook:(Book *)book;
++ (PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook;
++ (NSURL *)createBookCoverURL:(NSString *)eBookNumber;
 
 + (void)generateTestBookData;
 
