@@ -46,8 +46,9 @@
 //    NSLog(@"End store to core data");
 //    end test
     
-    PGBGoodreadsAPIClient *testGoodReadsAPI = [[PGBGoodreadsAPIClient alloc] init];
-    
+//    PGBGoodreadsAPIClient *testGoodReadsAPI = [[PGBGoodreadsAPIClient alloc] init];
+    NSLog(@"Goodreadsapiclient dummylogin about to be called\n.");
+    [PGBGoodreadsAPIClient dummyLoginMethod];
     
     
     

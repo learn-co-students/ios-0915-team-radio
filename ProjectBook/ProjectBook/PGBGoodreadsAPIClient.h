@@ -13,4 +13,5 @@
 
 +(void)getReviewsWithCompletion:(NSString *)author bookTitle:(NSString *)bookTitle completion:(void (^)(NSDictionary *))completionBlock;
 
++ (void)dummyLoginMethod;
 @end
