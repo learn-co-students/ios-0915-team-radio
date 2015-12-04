@@ -47,11 +47,27 @@
     return self;
 }
 
++ (NSString *)primaryKey {
+    return @"ebookID";
+}
+
++ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    [realm beginWriteTransaction];
+//    [realm addObject:book];
+    PGBRealmBook *book = updateBlock();
+    [realm addOrUpdateObject:book];
+    [realm commitWriteTransaction];
+}
+
 + (void)storeUserBookDataWithBook:(PGBRealmBook *)book{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
     [realm addObject:book];
+    
+    [realm addOrUpdateObject:book];
     [realm commitWriteTransaction];
 }
 

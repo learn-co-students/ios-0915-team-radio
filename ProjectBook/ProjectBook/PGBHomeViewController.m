@@ -387,6 +387,9 @@
     //    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
     //    bookPageVC.books = bookPageVC.books;
     
+    //leo fix
+    bookPageVC.book = bookAtIndexPath;
+    
 }
 
 //login info

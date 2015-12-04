@@ -8,9 +8,10 @@
 
 #import "PGBBookPageViewController.h"
 #import "PGBDownloadHelper.h"
+#import "PGBGoodreadsAPIClient.h"
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Masonry/Masonry.h>
-#import "PGBGoodreadsAPIClient.h"
+
 
 @interface PGBBookPageViewController () <UIScrollViewDelegate>
 
@@ -162,12 +163,13 @@
     
     self.downloadButton.enabled = NO;
     
-}
+    if (self.book.ebookID.length != 0) {
 
-- (IBAction)bookmarkButtonTapped:(id)sender {
-    
-    
-    
+        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+            self.book.isDownloaded = YES;
+            return self.book;
+        }];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -220,6 +222,16 @@
     }
 }
 
+- (IBAction)bookmarkButtonTapped:(id)sender {
+    NSLog(@"bookmark button tapped!");
+    
+    if (self.book.ebookID.length != 0) {
+        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+            self.book.isBookmarked = YES;
+            return self.book;
+        }];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
