@@ -11,7 +11,9 @@
 #import "JSQMessagesBubbleImageFactory.h"
 #import "JSQMessagesTimestampFormatter.h"
 #import "JSQPhotoMediaItem.h"
-//#import "JSQMessageBubbleImageDataSource.h"
+#import "JSQMessagesTypingIndicatorFooterView.h"
+#import "UIImage+JSQMessages.h"
+#import "JSQSystemSoundPlayer+JSQMessages.h"
 
 @interface PGBChatMessageVC ()
 
@@ -38,10 +40,47 @@
     NSString *senderUserName = currentPerson.username;
     self.senderId = senderParseId;
     self.senderDisplayName = senderUserName;
+    SEL selector = @selector(receiveNotification:);
+
     
 
-//    self.inputToolbar.contentView.textView.pasteDelegate = self;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"NewMessage" object:nil];
     
+}
+
+- (void) receiveNotification:(NSNotification *) notification {
+    
+    if ([[notification name] isEqualToString:@"NewMessage"]) {
+        
+        PFQuery *messagesQuery = [PFQuery queryWithClassName:@"bookChat"];
+        
+        // this needs to do the chat's unique id that is created when a new chat is created
+        [messagesQuery whereKey:@"objectId" equalTo:@"R4F0MHrv6R"];
+        self.showTypingIndicator = !self.showTypingIndicator;
+        [self scrollToBottomAnimated:YES];
+        
+        
+        [messagesQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            // this is where youd stop the loading indicator
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                
+                NSDictionary *lastMessage = objects.lastObject;
+                JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:lastMessage[@"senderID"]
+                                                               senderDisplayName:lastMessage[@"senderDisplayName"]
+                                                                            date:lastMessage[@"date"]
+                                                                            text:lastMessage[@"text"]];
+                
+                [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+                [self.messagesInConversation addObject:latestMessage];
+                [self finishReceivingMessageAnimated:YES];
+            }];
+        }];
+    }
+}
+
+- (void)configureWithEllipsisColor:(UIColor *)ellipsisColor messageBubbleColor:(UIColor *)messageBubbleColor shouldDisplayOnLeft:(BOOL)shouldDisplayOnLeft forCollectionView:(UICollectionView *)collectionView {
     
 }
 
@@ -92,15 +131,6 @@
         }];
     }];
     
-//    [bookChat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (succeeded) {
-//            // The object has been saved.
-//            NSLog(@"This object has been saved");
-//        } else {
-//            // There was a problem, check error.description
-//            NSLog(@"This object has NOT been saved");
-//        }
-//    }];
 }
 
 - (NSDictionary *)turnJSQMessageObjectIntoDictionary:(JSQMessage *)message {
@@ -126,14 +156,7 @@
 }
 
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
-    /**
-     *  You may return nil here if you do not want bubbles.
-     *  In this case, you should set the background color of your collection view cell's textView.
-     *
-     *  Otherwise, return your previously created bubble image data objects.
-     */
 
-    
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     
     JSQMessagesBubbleImage *outgoingBubbleImage = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor lightGrayColor]];
@@ -152,6 +175,8 @@
     return incomingBubbleImage;
 }
 
+
+// TODO: set avatars off of users profile picture...
 - (id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
     /**
      *  Return `nil` here if you do not want avatars.
@@ -178,13 +203,7 @@
 }
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath {
-    /**
-     *  This logic should be consistent with what you return from `heightForCellTopLabelAtIndexPath:`
-     *  The other label text delegate methods should follow a similar pattern.
-     *
-     *  Show a timestamp for every 3rd message
-     */
-    if (indexPath.item % 3 == 0) {
+    if (indexPath.item % 4 == 0) {
         JSQMessage *message = [self.messagesInConversation objectAtIndex:indexPath.item];
         return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
     }
@@ -366,23 +385,19 @@
     NSLog(@"Tapped cell at %@!", NSStringFromCGPoint(touchLocation));
 }
 
-#pragma mark - JSQMessagesComposerTextViewPasteDelegate methods
-
-
-- (BOOL)composerTextView:(JSQMessagesComposerTextView *)textView shouldPasteWithSender:(id)sender {
-    if ([UIPasteboard generalPasteboard].image) {
-        // If there's an image in the pasteboard, construct a media item with that image and `send` it.
-        JSQPhotoMediaItem *item = [[JSQPhotoMediaItem alloc] initWithImage:[UIPasteboard generalPasteboard].image];
-        JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.senderId
-                                                 senderDisplayName:self.senderDisplayName
-                                                              date:[NSDate date]
-                                                             media:item];
-        [self.messagesInConversation addObject:message];
-        [self finishSendingMessage];
-        return NO;
-    }
-    return YES;
-}
-
+//- (BOOL)composerTextView:(JSQMessagesComposerTextView *)textView shouldPasteWithSender:(id)sender {
+//    if ([UIPasteboard generalPasteboard].image) {
+//        JSQPhotoMediaItem *item = [[JSQPhotoMediaItem alloc] initWithImage:[UIPasteboard generalPasteboard].image];
+//        JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.senderId
+//                                                 senderDisplayName:self.senderDisplayName
+//                                                              date:[NSDate date]
+//                                                             media:item];
+//        [self.messagesInConversation addObject:message];
+//        [self finishSendingMessage];
+//        return NO;
+//    }
+//    return YES;
+//}
+//
 
 @end
