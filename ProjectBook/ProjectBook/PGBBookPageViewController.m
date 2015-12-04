@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIView *webViewContainer;
 @property (weak, nonatomic) IBOutlet UIView *superContentView;
 @property (weak, nonatomic) IBOutlet UIButton *bookmarkButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *optionsButton;
 
 //@property (weak, nonatomic) IBOutlet UIView *webview;
 
@@ -70,9 +71,9 @@
     for (UIView *view in self.superContentView.subviews)
         if (totalHeight < view.frame.origin.y + view.frame.size.height) totalHeight = view.frame.origin.y + view.frame.size.height;
     
-//    [self getReviewswithCompletion:^(BOOL success) {
-//        success = YES;
-//    }];
+    [self getReviewswithCompletion:^(BOOL success) {
+        success = YES;
+    }];
 
 }
 
@@ -167,6 +168,35 @@
 - (IBAction)bookmarkButtonTapped:(id)sender {
     
     
+    
+}
+
+//-(void)tapOut:(UIGestureRecognizer *)gestureRecognizer {
+//    CGPoint p = [gestureRecognizer locationInView:self.view];
+//    if (p.y < 0 ) {
+//        [self ]
+//    }
+//}
+
+- (IBAction)optionsButtonTapped:(id)sender {
+    
+    
+    
+    UIAlertController *view = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *save = [UIAlertAction actionWithTitle:@"Bookmark" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //bookmarks it
+        [view dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    UIAlertAction *download = [UIAlertAction actionWithTitle:@"Download Book" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self downloadButtonTapped:sender];
+        [view dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [view addAction:download];
+    [view addAction:save];
+    [self presentViewController:view animated:YES completion:nil];
     
 }
 

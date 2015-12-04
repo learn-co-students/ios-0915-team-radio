@@ -13,7 +13,7 @@
 #import "PGBRealmBook.h"
 #import <WebKit/WebKit.h>
 
-@interface PGBBookPageViewController : UIViewController <WKUIDelegate, WKNavigationDelegate>
+@interface PGBBookPageViewController : UIViewController <WKUIDelegate, WKNavigationDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic)NSString *titleBook;
 @property (strong, nonatomic)NSString *author;
