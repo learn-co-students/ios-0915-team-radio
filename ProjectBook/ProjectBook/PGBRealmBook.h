@@ -5,13 +5,14 @@
 //  Created by Wo Jun Feng on 11/17/15.
 //  Copyright © 2015 FIS. All rights reserved.
 //
-
+#import <UIKit/UIKit.h>
 #import <Realm/Realm.h>
 #import "PGBRealmUser.h"
-#import <UIKit/UIKit.h>
+#import "Book.h"
 
 @interface PGBRealmBook : RLMObject
 
+@property (assign, nonatomic)NSInteger id;
 @property (strong, nonatomic)NSString *title;
 @property (strong, nonatomic)NSString *author;
 @property (strong, nonatomic)NSString *genre;
@@ -38,11 +39,19 @@
                  isDownloaded:(BOOL)isDownloaded
                  isBookmarked:(BOOL)isBookmarked
                 bookCoverData:(NSData *)bookCoverData;
+
 + (void)storeUserBookDataWithBook:(PGBRealmBook *)book;
++ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock;
 + (void)deleteUserBookDataForBook:(PGBRealmBook *)book;
 + (void)deleteAllUserBookData;
 + (RLMResults *)getUserBookData;
 + (NSArray *)getUserBookDataInArray;
++ (PGBRealmBook *)createPGBRealmBookWithBook:(Book *)book;
++ (PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook;
++ (NSURL *)createBookCoverURL:(NSString *)eBookNumber;
+
+//override primary key
++ (NSString *)primaryKey;
 
 + (void)generateTestBookData;
 
