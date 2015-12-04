@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIView *linkView;
 @property (weak, nonatomic) IBOutlet UIView *webViewContainer;
 @property (weak, nonatomic) IBOutlet UIView *superContentView;
+@property (weak, nonatomic) IBOutlet UIButton *bookmarkButton;
 
 //@property (weak, nonatomic) IBOutlet UIView *webview;
 
@@ -160,6 +161,12 @@
     [self presentViewController:downloadComplete animated:YES completion:nil];
     
     self.downloadButton.enabled = NO;
+    
+}
+
+- (IBAction)bookmarkButtonTapped:(id)sender {
+    
+    
     
 }
 
