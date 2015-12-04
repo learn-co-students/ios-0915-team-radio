@@ -18,6 +18,7 @@ pod 'Goodreads-Oauth'
 pod 'YYWebImage'
 pod 'Ono'
 pod 'ionicons'
+pod 'JSQMessagesViewController'
 
 end
 
