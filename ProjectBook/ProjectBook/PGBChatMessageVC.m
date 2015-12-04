@@ -15,7 +15,8 @@
 
 @interface PGBChatMessageVC ()
 
-@property (strong, nonatomic) NSMutableArray *messagesInConversation;
+@property(strong, nonatomic) NSMutableArray *messagesInConversation;
+@property (strong, nonatomic) NSDictionary *messageContent;
 
 @end
 
@@ -66,19 +67,53 @@
     
     //create Parse Object or something, and push it up to Parse. TO make sure it's associated with the right user, MAKE SURE The senderID is equal to some unique ID in parse.  Pushing up to parse should be done in a block SO YOU KNOW THE MESSAGE WAS SENT (with completon block)
     
-    PFObject *bookChat = [PFObject objectWithClassName:@"bookChat"];
-    JSQMessage *messageOne = self.messagesInConversation[0];
-    bookChat[@"messagesInConversation"] = @[messageOne.text];
-    [bookChat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            // The object has been saved.
-            NSLog(@"This object has been saved");
-        } else {
-            // There was a problem, check error.description
-            NSLog(@"This object has NOT been saved");
-        }
+//    PFObject *bookChat = [PFObject objectWithClassName:@"bookChat"];
+    [self turnJSQMessageObjectIntoDictionary:message];
+//    [bookChat addObject:self.messageContent forKey:@"messagesInConversation" ];
+//    
+//    
+//    [bookChat saveInBackgroundWithTarget:@"R4F0MHrv6R" selector:nil];
+    
+    
+    PFQuery *newQuery = [PFQuery queryWithClassName:@"bookChat"];
+    
+    [newQuery getObjectInBackgroundWithId:@"R4F0MHrv6R" block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        
+        NSLog(@"What is messageContent: %@", self.messageContent);
+        
+        [object addObject:self.messageContent forKey:@"messagesInConversation"];
+        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            
+            if (succeeded) {
+                
+                NSLog(@"SUCCESSION!!!!!!");
+            }
+            
+        }];
     }];
+    
+//    [bookChat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (succeeded) {
+//            // The object has been saved.
+//            NSLog(@"This object has been saved");
+//        } else {
+//            // There was a problem, check error.description
+//            NSLog(@"This object has NOT been saved");
+//        }
+//    }];
 }
+
+- (NSDictionary *)turnJSQMessageObjectIntoDictionary:(JSQMessage *)message {
+    
+    self.messageContent = [NSDictionary new];
+    self.messageContent = @{ @"senderID" : message.senderId,
+                             @"senderDisplayName" : message.senderDisplayName,
+                             @"date" : message.date,
+                             @"text" : message.text };
+    return self.messageContent;
+}
+
+
 
 #pragma mark - JSQMessages CollectionView DataSource
 
@@ -97,7 +132,7 @@
      *
      *  Otherwise, return your previously created bubble image data objects.
      */
-    
+
     
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     

@@ -1,46 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SGF-0z-q3Z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9527.1" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qNY-ZE-6C7">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9525.1"/>
     </dependencies>
     <scenes>
-        <!--Main Social View Controller-->
-        <scene sceneID="Pt8-2B-Lc7">
+        <!--Active Chats...-->
+        <scene sceneID="DwN-wV-zcl">
             <objects>
-                <viewController id="bTc-U0-5EL" customClass="PGBMainSocialViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wZk-Jc-bSZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="bjp-wm-RXe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cx6-k5-3CM">
+                <tableViewController id="qNY-ZE-6C7" customClass="PGBMainSocialTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Pkx-6t-IDh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="root view of social features" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJQ-6b-9eU">
-                                <rect key="frame" x="84" y="28" width="206" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Oam-u2-9ti">
-                                <rect key="frame" x="67" y="71" width="240" height="200"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">This view controller will show a feed of active/popular chat rooms...  custom tableview with the book title and group topic. User's can create a chat assigned to a book so it doesnt get trashy but books can have muliple chats with different topics.. later on we can implement some sort of sample to show what chats different books have ...  </string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookWithChatCell" id="gvp-QL-d9p">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gvp-QL-d9p" id="6i1-CX-ebh">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="SGF-0z-q3Z" kind="presentation" id="V7g-vp-zJk"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qNY-ZE-6C7" id="Blr-TY-lwU"/>
+                            <outlet property="delegate" destination="qNY-ZE-6C7" id="K0X-dP-aVH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Active Chats..." id="iVi-ZJ-bwv">
+                        <barButtonItem key="rightBarButtonItem" title="newchat" id="UT8-h1-pkh">
+                            <connections>
+                                <segue destination="JjB-Zu-oh6" kind="presentation" id="cbF-oK-qUI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lki-J3-XTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1929.5" y="449.5"/>
+        </scene>
+        <!--New Chat View Controller-->
+        <scene sceneID="uzw-En-uan">
+            <objects>
+                <viewController id="JjB-Zu-oh6" customClass="PGBNewChatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7eF-Ey-4wX"/>
+                        <viewControllerLayoutGuide type="bottom" id="wLJ-l0-SPS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b82-Jj-Erk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fbo-gt-FCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NZI-be-1KI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="292.5" y="434.5"/>
+            <point key="canvasLocation" x="2490.5" y="32.5"/>
         </scene>
         <!--Book Chat-->
         <scene sceneID="XUm-Z6-YLM">
@@ -53,7 +74,6 @@
                     <view key="view" contentMode="scaleToFill" id="foR-Bm-TrR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Book Chat" id="BdY-dG-RTQ"/>
@@ -61,26 +81,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4R4-wb-ube" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1523.5" y="434.5"/>
+            <point key="canvasLocation" x="2490.5" y="737.5"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="zKe-3f-jeG">
+        <scene sceneID="nc2-ZB-jAP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nnk-uE-vIj" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LDB-Fh-Uwx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sUE-p5-Ogm">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2zb-MK-abA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="SGF-0z-q3Z" kind="relationship" relationship="rootViewController" id="LVB-8X-Oih"/>
+                        <segue destination="qNY-ZE-6C7" kind="relationship" relationship="rootViewController" id="i69-gU-YTt"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rFa-cT-Oz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M57-jf-qGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="711" y="434"/>
+            <point key="canvasLocation" x="1166.5" y="449.5"/>
         </scene>
     </scenes>
 </document>

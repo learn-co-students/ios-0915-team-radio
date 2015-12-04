@@ -183,4 +183,9 @@
                                                        annotation:annotation];
 }
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    //send a notification to NSNotificationCenter:
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"NewMessage" object:self];
+}
+
 @end
