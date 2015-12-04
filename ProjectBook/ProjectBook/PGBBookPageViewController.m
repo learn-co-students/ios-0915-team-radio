@@ -69,9 +69,9 @@
     for (UIView *view in self.superContentView.subviews)
         if (totalHeight < view.frame.origin.y + view.frame.size.height) totalHeight = view.frame.origin.y + view.frame.size.height;
     
-    [self getReviewswithCompletion:^(BOOL success) {
-        success = YES;
-    }];
+//    [self getReviewswithCompletion:^(BOOL success) {
+//        success = YES;
+//    }];
 
 }
 
@@ -89,7 +89,7 @@
             
             // make / constrain webview
             
-            CGRect webViewFrame = CGRectMake(10, 0, self.webViewContainer.frame.size.width, self.webViewContainer.frame.size.height);
+            CGRect webViewFrame = CGRectMake(0, 0, self.webViewContainer.frame.size.width, self.webViewContainer.frame.size.height);
             
             self.webView = [[WKWebView alloc]initWithFrame: webViewFrame];
             [self.webViewContainer addSubview:self.webView];
@@ -129,8 +129,8 @@
 {
     NSLog (@"didCommitNavigation");
     
-    [webView.scrollView setZoomScale:0.6 animated:YES];
-    [webView.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    [webView.scrollView setZoomScale:0.6];
+    [webView.scrollView setContentOffset:CGPointMake(0, 0)];
 }
 
 - (IBAction)downloadButtonTapped:(id)sender

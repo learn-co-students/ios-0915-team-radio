@@ -118,6 +118,8 @@
         return nil;
     }
     
+    realmBook.title = coreDataBook.eBookTitles;
+    
     realmBook.author = coreDataBook.eBookAuthors;
     if ([coreDataBook.eBookAuthors isEqualToString:@""])
     {
@@ -178,6 +180,15 @@
     }
     
     realmBook.genre = coreDataBook.eBookGenres;
+    
+    realmBook.language = coreDataBook.eBookLanguages;
+    if ([realmBook.language isEqualToString:@"en"]) {
+        realmBook.language = @"English";
+    } else if ([realmBook.language isEqualToString:@"de"]) {
+        realmBook.language = @"German";
+    } else if ([realmBook.language isEqualToString:@"fr"]) {
+        realmBook.language = @"French";
+    }
     
     return realmBook;
 }
