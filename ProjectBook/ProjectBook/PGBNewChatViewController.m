@@ -1,18 +1,18 @@
 //
-//  PGBMainSocialViewController.m
+//  PGBNewChatViewController.m
 //  ProjectBook
 //
-//  Created by Lauren Reed on 12/2/15.
+//  Created by Lauren Reed on 12/4/15.
 //  Copyright © 2015 FIS. All rights reserved.
 //
 
-#import "PGBMainSocialViewController.h"
+#import "PGBNewChatViewController.h"
 
-@interface PGBMainSocialViewController ()
+@interface PGBNewChatViewController ()
 
 @end
 
-@implementation PGBMainSocialViewController
+@implementation PGBNewChatViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
