@@ -507,6 +507,7 @@
 				TargetAttributes = {
 					CBFD3F551BFBA076002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
+
 						DevelopmentTeam = 9YUT5P277S;
 					};
 					CBFD3F711BFBA077002CE0A4 = {
