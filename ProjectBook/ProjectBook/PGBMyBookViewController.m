@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *bookSearchBar;
 
 @property (strong, nonatomic) NSPredicate *searchFilter;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *bookSearchButton;
 
 @property (strong, nonatomic)NSArray *books;
 @property (strong, nonatomic)NSArray *booksDisplayed;
@@ -30,6 +29,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];;
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
+    
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     self.bookTableView.rowHeight = 70;
     
@@ -40,14 +42,13 @@
     //begin test data
 //    [PGBRealmBook generateTestBookData];
     //end test data
-    
-
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     self.books = [PGBRealmBook getUserBookDataInArray];
+    
     [self loadDefaultContent];
 }
 
@@ -61,7 +62,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
+
 //    [self.bookTableView setContentOffset:CGPointMake(0, 44) animated:NO];
 //    [self.bookTableView setContentOffset:CGPointZero animated:YES];
 }
@@ -123,6 +124,10 @@
         cell.authorLabel.text = book.author;
         cell.genreLabel.text = book.genre;
         
+        if (book.bookCoverData) {
+            cell.bookCover.image = [UIImage imageWithData: book.bookCoverData];
+        }
+        
         return cell;
     }
     
@@ -153,12 +158,6 @@
     }
     
     [self.bookTableView reloadData];
-    
-    if (![searchText isEqualToString:@""]) {
-        self.navigationItem.title = @"Searching...";
-    } else {
-        self.navigationItem.title = @"LIBRARY";
-    }
 
 }
 
