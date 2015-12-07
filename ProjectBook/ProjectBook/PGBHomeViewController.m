@@ -12,6 +12,7 @@
 #import "PGBBookPageViewController.h"
 #import "PGBRealmBook.h"
 #import "PGBGoodreadsAPIClient.h"
+#import "PGBCustomBookCollectionViewCell.h"
 
 #import "PGBLoginViewController.h"
 #import "PGBSignUpViewController.h"
@@ -44,7 +45,9 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
 //@property (nonatomic, readwrite) SVPullToRefreshPosition position;
 
-@property (strong, nonatomic) PGBBookCustomTableCell *customCell;
+//@property (strong, nonatomic) PGBBookCustomTableCell *customCell;
+@property (strong, nonatomic) PGBCustomBookCollectionViewCell *bookCoverCell;
+@property (weak, nonatomic) IBOutlet UICollectionView *bookCollectionView;
 
 //pagination
 //@property (strong, nonatomic) NSMutableArray *dataArray;
@@ -63,8 +66,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.bookTableView setDelegate:self];
-    [self.bookTableView setDataSource:self];
+    [self.bookCollectionView setDelegate:self];
+    [self.bookCollectionView setDataSource:self];
     
     //logo for banner
     
@@ -80,19 +83,21 @@
     [self generateRandomBookByCount:100];
     
     //xib
-    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
+//    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
+
+    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBCustomBookTableCell" bundle:nil] forCellReuseIdentifier:@"BookCustomCell"];
     
     self.bookTableView.rowHeight = 80;
-    
     
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self ch]
     if ([PFUser currentUser] && ![self.loginButton.title isEqual: @"👤"]) {
         [self changeLoginButtonToProfileIcon];
+        
     } else if (![PFUser currentUser] && ![self.loginButton.title isEqual: @"Login"]){
         [self.loginButton setTitle:@"Login"];
     }
@@ -185,7 +190,7 @@
 -(void) cellDownloadButtonTapped:(UIButton*) button
 {
     //create modal view to show when downloading, show view once downloaded
-    
+    NSLog (@"do i even get calllllllledddd");
     button.enabled = NO; // FIXME: re-enable button after download succeeds/fails
     // THIS IS A LIL HACKY — will change if you change the view heirarchy of the cell
     PGBBookCustomTableCell *cell = (PGBBookCustomTableCell*)[[[button superview] superview] superview];
@@ -219,7 +224,7 @@
         
         
         //when download, disable button
-        self.customCell.downloadButton.enabled = NO;
+//        self.customCell.downloadButton.enabled = NO;
         
     }
     else {
@@ -232,21 +237,23 @@
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    //    return self.books.count;
-    //pagination
-    if([ self.books count] == 0){
-        return 0;
-    }
-    else {
-        return [self.books count] + 1;
-    }
-}
+//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    //    return self.books.count;
+//    //pagination
+//    if([ self.books count] == 0){
+//        return 0;
+//    }
+//    else {
+//        return [self.books count] + 1;
+//    }
+//}
+
+-
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
+    PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"BookCustomCell" forIndexPath:indexPath];
     
     //    PGBRealmBook *book = self.books[indexPath.row];
     //    //    Book *book = self.books[indexPath.row];
@@ -275,11 +282,11 @@
             //    cell.bookCover.image = self.bookCovers[indexPath.row];
             UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
             if (!bookCoverImage) {
-                bookCoverImage = [UIImage imageNamed:@"no_book_cover"];
+//                bookCoverImage = [UIImage imageNamed:@"no_book_cover"];
             }
             
             cell.bookCover.image = bookCoverImage;
-            cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
+//            cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
         }
         else{
             if (!self.noMoreResultsAvail) {

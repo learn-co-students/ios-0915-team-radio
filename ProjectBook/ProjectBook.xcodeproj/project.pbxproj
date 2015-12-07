@@ -66,6 +66,11 @@
 		CBC0510F1C109AB200118044 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBC051041C109AB200118044 /* OpenSans-Regular.ttf */; };
 		CBC051101C109AB200118044 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBC051051C109AB200118044 /* OpenSans-Semibold.ttf */; };
 		CBC051111C109AB200118044 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBC051061C109AB200118044 /* OpenSans-SemiboldItalic.ttf */; };
+		CBEFBD021C1606DC00D878AC /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = CBEFBCFF1C1606DC00D878AC /* License.txt */; };
+		CBEFBD031C1606DC00D878AC /* Moon Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CBEFBD001C1606DC00D878AC /* Moon Bold.otf */; };
+		CBEFBD041C1606DC00D878AC /* Moon Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CBEFBD011C1606DC00D878AC /* Moon Light.otf */; };
+		CBEFBD0B1C16192100D878AC /* PGBCustomBookCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEFBD091C16192100D878AC /* PGBCustomBookCollectionViewCell.m */; };
+		CBEFBD0C1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBEFBD0A1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib */; };
 		CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */; };
 		CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */; };
 		CBF2C61F1BFD1FF300BCBCDD /* PGBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */; };
@@ -177,6 +182,12 @@
 		CBC051041C109AB200118044 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		CBC051051C109AB200118044 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		CBC051061C109AB200118044 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		CBEFBCFF1C1606DC00D878AC /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		CBEFBD001C1606DC00D878AC /* Moon Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Bold.otf"; sourceTree = "<group>"; };
+		CBEFBD011C1606DC00D878AC /* Moon Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moon Light.otf"; sourceTree = "<group>"; };
+		CBEFBD081C16192100D878AC /* PGBCustomBookCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBCustomBookCollectionViewCell.h; sourceTree = "<group>"; };
+		CBEFBD091C16192100D878AC /* PGBCustomBookCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBCustomBookCollectionViewCell.m; sourceTree = "<group>"; };
+		CBEFBD0A1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBCustomBookCollectionViewCell.xib; sourceTree = "<group>"; };
 		CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBBookCustomTableCell.h; sourceTree = "<group>"; };
 		CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBBookCustomTableCell.m; sourceTree = "<group>"; };
 		CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBBookCustomTableCell.xib; sourceTree = "<group>"; };
@@ -277,6 +288,7 @@
 		CBC050FA1C109AB200118044 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				CBEFBCFE1C1606DC00D878AC /* MoonTypeface */,
 				CBC050FB1C109AB200118044 /* open-sans */,
 			);
 			path = fonts;
@@ -298,6 +310,17 @@
 				CBC051061C109AB200118044 /* OpenSans-SemiboldItalic.ttf */,
 			);
 			path = "open-sans";
+			sourceTree = "<group>";
+		};
+		CBEFBCFE1C1606DC00D878AC /* MoonTypeface */ = {
+			isa = PBXGroup;
+			children = (
+				CBEFBCFF1C1606DC00D878AC /* License.txt */,
+				CBEFBD001C1606DC00D878AC /* Moon Bold.otf */,
+				CBEFBD011C1606DC00D878AC /* Moon Light.otf */,
+			);
+			name = MoonTypeface;
+			path = "open-sans/MoonTypeface";
 			sourceTree = "<group>";
 		};
 		CBF2C6171BFD0D8B00BCBCDD /* bookInformationSet */ = {
@@ -388,6 +411,9 @@
 				CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */,
 				CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */,
 				CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */,
+				CBEFBD081C16192100D878AC /* PGBCustomBookCollectionViewCell.h */,
+				CBEFBD091C16192100D878AC /* PGBCustomBookCollectionViewCell.m */,
+				CBEFBD0A1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib */,
 				CBFD3F621BFBA076002CE0A4 /* Main.storyboard */,
 				CBFD3F5F1BFBA076002CE0A4 /* PGBBookPageViewController.h */,
 				CBFD3F601BFBA076002CE0A4 /* PGBBookPageViewController.m */,
@@ -507,9 +533,7 @@
 				TargetAttributes = {
 					CBFD3F551BFBA076002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
-
 						DevelopmentTeam = 652FKRA3R9;
-
 					};
 					CBFD3F711BFBA077002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
@@ -550,6 +574,7 @@
 			files = (
 				CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */,
 				4C9D16651C0CF07600DBF989 /* SearchStoryboard.storyboard in Resources */,
+				CBEFBD031C1606DC00D878AC /* Moon Bold.otf in Resources */,
 				A7DD400A1C03717100D13A4B /* bookInformationSet16.txt in Resources */,
 				A7DD40071C03717100D13A4B /* bookInformationSet13.txt in Resources */,
 				CBFD3F6C1BFBA077002CE0A4 /* LaunchScreen.storyboard in Resources */,
@@ -566,8 +591,10 @@
 				A7DD40061C03717100D13A4B /* bookInformationSet12.txt in Resources */,
 				A7DD40011C03717100D13A4B /* bookInformationSet7.txt in Resources */,
 				A7DD3FFC1C03717100D13A4B /* bookInformationSet2.txt in Resources */,
+				CBEFBD0C1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib in Resources */,
 				A7DD400C1C03717100D13A4B /* bookInformationSet18.txt in Resources */,
 				CBC0510D1C109AB200118044 /* OpenSans-Light.ttf in Resources */,
+				CBEFBD041C1606DC00D878AC /* Moon Light.otf in Resources */,
 				A7DD40081C03717100D13A4B /* bookInformationSet14.txt in Resources */,
 				CBC051071C109AB200118044 /* Apache License.txt in Resources */,
 				CBC0510E1C109AB200118044 /* OpenSans-LightItalic.ttf in Resources */,
@@ -585,6 +612,7 @@
 				A7DD400E1C03717100D13A4B /* bookInformationSet20.txt in Resources */,
 				A7DD40021C03717100D13A4B /* bookInformationSet8.txt in Resources */,
 				A7DD40031C03717100D13A4B /* bookInformationSet9.txt in Resources */,
+				CBEFBD021C1606DC00D878AC /* License.txt in Resources */,
 				A7DD3FFB1C03717100D13A4B /* bookInformationSet1.txt in Resources */,
 				A75AD6391C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf in Resources */,
 				A7DD40041C03717100D13A4B /* bookInformationSet10.txt in Resources */,
@@ -668,6 +696,7 @@
 				4C9D16631C0CF04800DBF989 /* PGBSearchViewController.m in Sources */,
 				CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */,
 				899A4D101C11EFC100D499C4 /* PGBNewChatViewController.m in Sources */,
+				CBEFBD0B1C16192100D878AC /* PGBCustomBookCollectionViewCell.m in Sources */,
 				CBFD3F611BFBA076002CE0A4 /* PGBBookPageViewController.m in Sources */,
 				4C5D947E1BFE389A0086DB5F /* PGBMyBookViewController.m in Sources */,
 				CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */,
