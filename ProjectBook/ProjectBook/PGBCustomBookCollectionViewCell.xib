@@ -3,6 +3,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Moon Bold.otf">
@@ -13,54 +16,53 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PGBBookCustomTableCell"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="bookCoverCell" id="gTV-IL-0wX" customClass="PGBCustomBookCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="278" height="402"/>
+            <rect key="frame" x="0.0" y="0.0" width="90" height="140"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="278" height="402"/>
+                <rect key="frame" x="0.0" y="0.0" width="90" height="140"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50B-cf-qXE" userLabel="Title">
-                        <rect key="frame" x="18" y="22" width="243" height="194"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="194" id="h4S-67-eNV"/>
-                            <constraint firstAttribute="width" constant="243" id="uXP-C6-vDE"/>
-                        </constraints>
+                        <rect key="frame" x="8" y="8" width="53" height="75"/>
                         <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="20"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rH2-IQ-PGv" userLabel="Author">
-                        <rect key="frame" x="18" y="280" width="243" height="79"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="243" id="7IC-Xp-3wp"/>
-                            <constraint firstAttribute="height" constant="79" id="Ewn-bs-h3T"/>
-                        </constraints>
+                        <rect key="frame" x="8" y="100" width="53" height="25"/>
                         <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3XR-oV-slS">
-                        <rect key="frame" x="0.0" y="0.0" width="278" height="402"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bear" translatesAutoresizingMaskIntoConstraints="NO" id="3XR-oV-slS">
+                        <rect key="frame" x="0.0" y="0.0" width="90" height="140"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="rH2-IQ-PGv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="18" id="5ha-wR-BW4"/>
-                <constraint firstItem="rH2-IQ-PGv" firstAttribute="top" secondItem="50B-cf-qXE" secondAttribute="bottom" constant="64" id="DXL-Hr-mVQ"/>
-                <constraint firstItem="3XR-oV-slS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="GJx-1E-mhB"/>
-                <constraint firstAttribute="trailing" secondItem="rH2-IQ-PGv" secondAttribute="trailing" constant="17" id="GTQ-T3-HpC"/>
-                <constraint firstAttribute="trailing" secondItem="50B-cf-qXE" secondAttribute="trailing" constant="17" id="LUA-FM-GKm"/>
-                <constraint firstItem="3XR-oV-slS" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="NTY-gX-sIc"/>
-                <constraint firstItem="3XR-oV-slS" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" id="OUV-z1-2fy"/>
-                <constraint firstItem="50B-cf-qXE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="18" id="YrQ-aJ-ij1"/>
-                <constraint firstItem="50B-cf-qXE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="22" id="ibK-aI-9Qz"/>
-                <constraint firstAttribute="bottom" secondItem="rH2-IQ-PGv" secondAttribute="bottom" constant="43" id="liW-IE-mmm"/>
-                <constraint firstItem="3XR-oV-slS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="z2t-Wd-cj4"/>
+                <constraint firstItem="rH2-IQ-PGv" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="1/5" id="43O-pV-s7b"/>
+                <constraint firstItem="3XR-oV-slS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="4g9-A9-f0u"/>
+                <constraint firstItem="rH2-IQ-PGv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="AEA-IF-ReO"/>
+                <constraint firstItem="rH2-IQ-PGv" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailingMargin" id="BUv-Rf-1c9"/>
+                <constraint firstItem="3XR-oV-slS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Bzd-jG-Q8g"/>
+                <constraint firstItem="50B-cf-qXE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="VPB-R7-gNl"/>
+                <constraint firstItem="3XR-oV-slS" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="Wol-VD-3US"/>
+                <constraint firstItem="3XR-oV-slS" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" id="Y4s-uJ-Vet"/>
+                <constraint firstItem="rH2-IQ-PGv" firstAttribute="top" secondItem="50B-cf-qXE" secondAttribute="bottom" multiplier="6/5" id="Ztx-vE-b3B"/>
+                <constraint firstItem="50B-cf-qXE" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="3/5" id="ad5-gc-GG2"/>
+                <constraint firstItem="50B-cf-qXE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="dRL-6M-IZZ"/>
+                <constraint firstItem="50B-cf-qXE" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailingMargin" id="lTS-Nn-9n8"/>
             </constraints>
             <size key="customSize" width="278" height="402"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="50B-cf-qXE"/>
+                    <exclude reference="rH2-IQ-PGv"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="authorLabel" destination="rH2-IQ-PGv" id="HKA-0V-qMg"/>
                 <outlet property="bookCover" destination="3XR-oV-slS" id="7qi-Yy-qx0"/>
@@ -69,4 +71,7 @@
             <point key="canvasLocation" x="559" y="265"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="bear" width="500" height="334"/>
+    </resources>
 </document>
