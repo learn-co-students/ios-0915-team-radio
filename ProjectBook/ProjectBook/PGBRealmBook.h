@@ -49,6 +49,7 @@
 + (PGBRealmBook *)createPGBRealmBookWithBook:(Book *)book;
 + (PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook;
 + (NSURL *)createBookCoverURL:(NSString *)eBookNumber;
++ (BOOL)validateBookDataWithRealmBook:(PGBRealmBook *)realmBook;
 
 //override primary key
 + (NSString *)primaryKey;

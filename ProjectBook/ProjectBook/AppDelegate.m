@@ -36,10 +36,24 @@
 //    NSLog(@"Begin store to core data");
 
 //    NSLog(@"documents directory: %@", [self applicationDocumentsDirectory]);
-    
+//    
 //    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
-//    [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
+////    [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
 //    [dataStore fetchData];
+//    
+//    NSMutableArray *array = [NSMutableArray new];
+//    NSInteger i = 0;
+//    for (Book *book in dataStore.managedBookObjects) {
+//        PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookContainingCoverImageWithBook:book];
+//        if (realmBook) {
+////            [array addObject:realmBook];
+//            NSLog(@"%lu",i+1);
+//            i++;
+//        }
+//
+//    }
+//    
+//    NSLog(@"%lu",array.count);
 
 //    NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
 //    NSLog(@"End store to core data");

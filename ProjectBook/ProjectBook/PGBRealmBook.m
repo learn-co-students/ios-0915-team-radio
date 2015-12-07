@@ -45,6 +45,7 @@
         _bookCoverData = [[NSData alloc]init];
     }
     return self;
+    
 }
 
 + (NSString *)primaryKey {
@@ -125,89 +126,126 @@
 + (PGBRealmBook *)createPGBRealmBookWithBook:(Book *)coreDataBook {
     
     PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
-    
-    //first need to check if a book has an eBookNumber, if not, then it should not be shown
+    //leo here
     realmBook.ebookID = coreDataBook.eBookNumbers;
-    
-    if (coreDataBook.eBookNumbers.length == 0 ||
-        (coreDataBook.eBookTitles.length == 0 && coreDataBook.eBookFriendlyTitles.length == 0)) {
-        return nil;
-    }
-    
-    realmBook.title = coreDataBook.eBookTitles;
-    
-    realmBook.author = coreDataBook.eBookAuthors;
-    if ([coreDataBook.eBookAuthors isEqualToString:@""])
-    {
-        //if the author information is missing, check to see if friendly title information is present
-        if (![coreDataBook.eBookFriendlyTitles isEqualToString:@""])
-        {
-            
-            /*
-             
-             if friendly title information is present, check to see its of the correct format (Book Title by Author)
-             to check it has all three components ("book title", the word "by", and "book author") turn the friendly title into an array
-             
-             Example:
-             Original Friendly Title as String: "Harry Potter by J.K. Rowling"
-             New Format as an Array: @[@"Harry", @"Potter", @"by", @"J.K.", @"Rowling"];
-             
-             Everything before the string "by", is the title, everything after, is the author's name
-             
-             */
-            
-            //next step, check if the array contains the string "by"
-            //if it does, friendly title has the correct format, if not, then it doesn't
-            NSArray *stringToArray = [coreDataBook.eBookFriendlyTitles componentsSeparatedByString:@" "];
-            
-            if ([stringToArray containsObject:@"by"])
-            {
-                //here, the friendly title does contain the string "by", and so is of the correct format
-                //next step is to get the author of the book without the title
-                //this means we must get all the strings after the word "by"
-                NSMutableArray *mutableStringToArray = [stringToArray mutableCopy];
-                
-                //we find the index of element "by", and then append every element after that index to a string, in order to get the book title
-                NSUInteger indexOfStringBy = [mutableStringToArray indexOfObject:@"by"];
-                
-                //here we remove by, and everything before it, now the array is just the authors name
-                [mutableStringToArray removeObjectsInRange:NSMakeRange(0, indexOfStringBy)];
-                
-                NSMutableString *authorName = [NSMutableString new];
-                
-                //append the array elements (authors name) to a string
-                for (NSString *element in mutableStringToArray)
-                {
-                    [authorName appendString:element];
-                    
-                    //add a space so the name isn't one word
-                    //this also adds a space to the end of the last word
-                    [authorName appendString:@" "];
-                }
-                
-                //need to remove the last character in the string which is just a space
-                [authorName substringToIndex:authorName.length-1];
-                realmBook.author = authorName;
-            }
-        } //if there is no book author, or friendly title, then it remains empty
-        else if ([coreDataBook.eBookAuthors isEqualToString:@""]) {
-            realmBook.author = @"";
-        }
-    }
-    
     realmBook.genre = coreDataBook.eBookGenres;
-    
+    realmBook.author = coreDataBook.eBookAuthors;
+    realmBook.title = coreDataBook.eBookTitles;
+    realmBook.friendlyTitle = coreDataBook.eBookFriendlyTitles;
     realmBook.language = coreDataBook.eBookLanguages;
+    
     if ([realmBook.language isEqualToString:@"en"]) {
         realmBook.language = @"English";
     } else if ([realmBook.language isEqualToString:@"de"]) {
         realmBook.language = @"German";
     } else if ([realmBook.language isEqualToString:@"fr"]) {
         realmBook.language = @"French";
+    } else if ([realmBook.language isEqualToString:@"it"]) {
+        realmBook.language = @"Italian";
     }
     
-    return realmBook;
+    if ([self validateBookDataWithRealmBook:realmBook]) {
+  
+        return realmBook;
+        
+    } else {
+        return nil;
+    }
+    
+    
+    //end leo
+    
+    
+    
+////    first need to check if a book has an eBookNumber, if not, then it should not be shown
+////    realmBook.ebookID = coreDataBook.eBookNumbers;
+//    
+//    if (coreDataBook.eBookNumbers.length == 0 ||
+//        (coreDataBook.eBookTitles.length == 0 && coreDataBook.eBookFriendlyTitles.length == 0)) {
+//        return nil;
+//    }
+//    
+//    realmBook.title = coreDataBook.eBookTitles;
+//    
+//    realmBook.author = coreDataBook.eBookAuthors;
+//    if ([coreDataBook.eBookAuthors isEqualToString:@""])
+//    {
+//        //if the author information is missing, check to see if friendly title information is present
+//        if (![coreDataBook.eBookFriendlyTitles isEqualToString:@""])
+//        {
+//            
+//            /*
+//             
+//             if friendly title information is present, check to see its of the correct format (Book Title by Author)
+//             to check it has all three components ("book title", the word "by", and "book author") turn the friendly title into an array
+//             
+//             Example:
+//             Original Friendly Title as String: "Harry Potter by J.K. Rowling"
+//             New Format as an Array: @[@"Harry", @"Potter", @"by", @"J.K.", @"Rowling"];
+//             
+//             Everything before the string "by", is the title, everything after, is the author's name
+//             
+//             */
+//            
+//            //next step, check if the array contains the string "by"
+//            //if it does, friendly title has the correct format, if not, then it doesn't
+//            NSArray *stringToArray = [coreDataBook.eBookFriendlyTitles componentsSeparatedByString:@" "];
+//            
+//            if ([stringToArray containsObject:@"by"])
+//            {
+//                //here, the friendly title does contain the string "by", and so is of the correct format
+//                //next step is to get the author of the book without the title
+//                //this means we must get all the strings after the word "by"
+//                NSMutableArray *mutableStringToArray = [stringToArray mutableCopy];
+//                
+//                //we find the index of element "by", and then append every element after that index to a string, in order to get the book title
+//                NSUInteger indexOfStringBy = [mutableStringToArray indexOfObject:@"by"];
+//                
+//                //here we remove by, and everything before it, now the array is just the authors name
+//                [mutableStringToArray removeObjectsInRange:NSMakeRange(0, indexOfStringBy)];
+//                
+//                NSMutableString *authorName = [NSMutableString new];
+//                
+//                //append the array elements (authors name) to a string
+//                for (NSString *element in mutableStringToArray)
+//                {
+//                    [authorName appendString:element];
+//                    
+//                    //add a space so the name isn't one word
+//                    //this also adds a space to the end of the last word
+//                    [authorName appendString:@" "];
+//                }
+//                
+//                //need to remove the last character in the string which is just a space
+//                [authorName substringToIndex:authorName.length-1];
+//                realmBook.author = authorName;
+//            }
+//        } //if there is no book author, or friendly title, then it remains empty
+//        else if ([coreDataBook.eBookAuthors isEqualToString:@""]) {
+//            realmBook.author = @"";
+//        }
+//    }
+    
+
 }
++(BOOL)validateBookDataWithRealmBook:(PGBRealmBook *)realmBook{
+    
+    if (realmBook.title.length == 0 ||
+        realmBook.author.length == 0 || [realmBook.author isEqualToString:@"Various"] || [realmBook.author isEqualToString:@"Unknown"] || realmBook.ebookID.length == 0) {
+        return NO;
+    }
+    
+    return YES;
+    
+    
+//    if (realmBook.title.length == 0) {
+//        return NO;
+//    } else if (realmBook.author.length == 0) {
+//        return NO;
+//    }
+//    return YES;
+}
+
 
 + (PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook {
     
