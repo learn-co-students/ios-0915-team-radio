@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UIView *superContentView;
 @property (weak, nonatomic) IBOutlet UIButton *bookmarkButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *optionsButton;
+@property (weak, nonatomic) IBOutlet UIImageView *bookCoverImageView;
 
 //@property (weak, nonatomic) IBOutlet UIView *webview;
 
@@ -54,6 +55,9 @@
     self.languageLabel.text = self.book.language;
     self.bookDescriptionTV.text = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     
+
+    
+    
     CGRect rect = self.bookDescriptionTV.frame;
     rect.size.height = self.bookDescriptionTV.contentSize.height;
     self.bookDescriptionTV.frame = rect;
@@ -65,6 +69,12 @@
 //    [self getReviewswithCompletion:^(BOOL success) {
 //        success = YES;
 //    }];
+    
+    
+    //bookmarkstuff
+//    UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
+//    UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
+//    [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
 
 }
 
@@ -195,6 +205,7 @@
     [self presentViewController:view animated:YES completion:nil];
 }
 
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
@@ -217,6 +228,11 @@
 //        }
 //    }];
     
+    //get book cover image
+    NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:self.book.ebookID]];
+    if (bookCoverData) {
+        self.bookCoverImageView.image = [UIImage imageWithData:bookCoverData];
+    }
 }
 
 - (IBAction)readButtonTapped:(id)sender
@@ -254,11 +270,6 @@
             return self.book;
         }];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -419,6 +419,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="authorLabel" destination="OA5-0Q-GKZ" id="cDd-ni-fOf"/>
+                        <outlet property="bookCoverImageView" destination="go3-ih-tNa" id="nHm-75-c1y"/>
                         <outlet property="bookDescriptionTV" destination="fcU-hx-NGB" id="noY-ys-jFB"/>
                         <outlet property="bookmarkButton" destination="znX-98-xBw" id="LSu-7H-0Dx"/>
                         <outlet property="downloadButton" destination="YDV-LX-cw0" id="ZwV-dT-SiP"/>
