@@ -10,6 +10,8 @@
 
 @interface PGBMainSocialTableViewController ()
 
+@property (strong, nonatomic) NSMutableArray *arrayOfOpenBookChats;
+
 @end
 
 @implementation PGBMainSocialTableViewController
@@ -22,6 +24,20 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
+    
+    [query whereKeyExists:@"objectId"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
+            for (PFObject *object in objects) {
+                [self.arrayOfOpenBookChats addObject:object];
+            }
+            [self.tableView reloadData];
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,19 +48,23 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    
-    return 3;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 3;
+    return self.arrayOfOpenBookChats.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
+    
+    NSString *chatId = self.arrayOfOpenBookChats[indexPath.row];
+    
+    PFQuery *quaryForChatData = [PFQuery queryWithClassName:@"bookChat"];
+    [quaryForChatData whereKeyExists:chatId];
+    NSArray *chatData = [quaryForChatData findObjects];
     
     
     

@@ -9,8 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PGBChatTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *bookCover;
-@property (weak, nonatomic) IBOutlet UILabel *bookTitle;
-@property (weak, nonatomic) IBOutlet UILabel *bookChatTopic;
 
 @end
