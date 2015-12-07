@@ -9,6 +9,11 @@
 #import "PGBProfileViewController.h"
 
 @interface PGBProfileViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
+@property (weak, nonatomic) IBOutlet UIImageView *coverPhoto;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *location;
 
 @end
 
@@ -16,6 +21,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    PFQuery *query = [PFUser query];
+    PFUser *currentUser = [PFUser currentUser];
+    self.userNameLabel.text = currentUser.username;
+    //name & current location can be set up after edit profile is
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
