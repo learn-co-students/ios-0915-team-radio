@@ -27,6 +27,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //for banner image
+//    UIImage *image = [[UIImage imageNamed:@"NOVEL_Banner"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
+    
+//    [[UINavigationBar appearance] titlevie
     //test array of books
 //    PGBparsingThroughText *newTask = [[PGBparsingThroughText alloc]init];
 //    NSArray *finalArrayOfDictionary = [newTask cleanUpArrays];
