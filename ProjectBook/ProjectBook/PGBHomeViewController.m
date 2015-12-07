@@ -68,7 +68,7 @@
     
     //logo for banner
     
-    UIImage *logo = [[UIImage imageNamed:@"NOVEL_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];;
+    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     
     //coreData

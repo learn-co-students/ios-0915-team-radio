@@ -92,16 +92,9 @@
                             <constraint firstItem="fs1-4i-Ga1" firstAttribute="leading" secondItem="XEX-2z-shv" secondAttribute="leadingMargin" id="y5G-Jn-asE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="LIBRARY" id="TPD-V7-3RH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="Vzk-z3-8q6">
-                            <connections>
-                                <action selector="searchButtonTapped:" destination="yKG-OF-Y8Y" id="f0m-kP-v98"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="LIBRARY" id="TPD-V7-3RH"/>
                     <connections>
                         <outlet property="bookSearchBar" destination="WXW-eF-Ucu" id="RFK-md-DK4"/>
-                        <outlet property="bookSearchButton" destination="Vzk-z3-8q6" id="3tx-rQ-SHG"/>
                         <outlet property="bookSegmentControl" destination="lvs-9m-7Sf" id="hbo-1n-774"/>
                         <outlet property="bookTableView" destination="nxV-qy-BJq" id="5xQ-KS-fhY"/>
                     </connections>
