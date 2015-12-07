@@ -11,11 +11,15 @@
 #import "JSQMessagesBubbleImageFactory.h"
 #import "JSQMessagesTimestampFormatter.h"
 #import "JSQPhotoMediaItem.h"
-//#import "JSQMessageBubbleImageDataSource.h"
+#import "JSQMessagesTypingIndicatorFooterView.h"
+#import "UIImage+JSQMessages.h"
+#import "JSQSystemSoundPlayer+JSQMessages.h"
+//#import "NSUserDefaults.h"
 
 @interface PGBChatMessageVC ()
 
-@property (strong, nonatomic) NSMutableArray *messagesInConversation;
+@property(strong, nonatomic) NSMutableArray *messagesInConversation;
+@property (strong, nonatomic) NSDictionary *messageContent;
 
 @end
 
@@ -31,23 +35,75 @@
     self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
     self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
     
-    
+
     
     NSString *senderParseId = currentPerson.objectId;
     NSString *senderUserName = currentPerson.username;
     self.senderId = senderParseId;
     self.senderDisplayName = senderUserName;
+    SEL selector = @selector(receiveNotification:);
     
+    
+    //    self.inputToolbar.contentView.textView.pasteDelegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"dGWeFofcrQ" object:nil];
+    
+}
 
-//    self.inputToolbar.contentView.textView.pasteDelegate = self;
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
+- (void) receiveNotification:(NSNotification *) notification {
     
+    if (![[notification name] isEqualToString:@"dGWeFofcrQ"]) {
+        NSLog(@"receiveNotification: error: notification name invalid; name=%@; expected=dGWeFofcrQ", notification.name);
+        // TODO: uncomment below after debugging...
+        //return;
+    }
+    
+    self.showTypingIndicator = !self.showTypingIndicator;
+    [self scrollToBottomAnimated:YES];
+
+    // TODO: get all messages that are *newer* than our last message...
+    
+    // get all messages for bookChatId...
+    
+    PFQuery *messagesQuery = [PFQuery queryWithClassName:@"bookChatMessages"];
+    [messagesQuery whereKey:@"bookChatId" equalTo:@"dGWeFofcrQ"];
+    
+    [messagesQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        // this is where youd stop the loading indicator
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
+            NSDictionary *lastMessage = objects.lastObject;
+            JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:lastMessage[@"senderId"]
+                                                           senderDisplayName:lastMessage[@"senderDisplayName"]
+                                                                        date:lastMessage[@"date"]
+                                                                        text:lastMessage[@"text"]];
+            
+            [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+            [self.messagesInConversation addObject:latestMessage];
+            [self finishReceivingMessageAnimated:YES];
+        }];
+    }];
+}
+
+- (void)pushMainViewController {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController *nc = [sb instantiateInitialViewController];
+    [self.navigationController pushViewController:nc.topViewController animated:YES];
+}
+
+- (void)configureWithEllipsisColor:(UIColor *)ellipsisColor messageBubbleColor:(UIColor *)messageBubbleColor shouldDisplayOnLeft:(BOOL)shouldDisplayOnLeft forCollectionView:(UICollectionView *)collectionView {
     
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    //    self.collectionView.collectionViewLayout.springinessEnabled = [NSUserDefaults springinessSetting];
     
-    
-
 }
 
 -(void)didPressSendButton:(UIButton *)button
@@ -62,25 +118,22 @@
                                                           text:text];
     
     [self.messagesInConversation addObject:message];
-    [self finishSendingMessageAnimated:YES];
-    
-    //create Parse Object or something, and push it up to Parse. TO make sure it's associated with the right user, MAKE SURE The senderID is equal to some unique ID in parse.  Pushing up to parse should be done in a block SO YOU KNOW THE MESSAGE WAS SENT (with completon block)
-    
-    PFObject *bookChat = [PFObject objectWithClassName:@"bookChat"];
-    JSQMessage *messageOne = self.messagesInConversation[0];
-    bookChat[@"messagesInConversation"] = @[messageOne.text];
-    [bookChat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    PFObject *bookChatMessage = [PFObject objectWithClassName:@"bookChatMessages"];
+    bookChatMessage[@"text"] = message.text;
+    bookChatMessage[@"senderId"] = message.senderId;
+    bookChatMessage[@"senderDisplayName"] = message.senderDisplayName;
+    bookChatMessage[@"bookChatId"] = @"dGWeFofcrQ";
+    [bookChatMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             // The object has been saved.
-            NSLog(@"This object has been saved");
+            NSLog(@"bookChatMessage saved");
         } else {
             // There was a problem, check error.description
-            NSLog(@"This object has NOT been saved");
+            NSLog(@"Problem saving: %@", error.description);
         }
     }];
+    [self finishSendingMessageAnimated:YES];
 }
-
-#pragma mark - JSQMessages CollectionView DataSource
 
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self.messagesInConversation objectAtIndex:indexPath.item];
@@ -91,13 +144,6 @@
 }
 
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
-    /**
-     *  You may return nil here if you do not want bubbles.
-     *  In this case, you should set the background color of your collection view cell's textView.
-     *
-     *  Otherwise, return your previously created bubble image data objects.
-     */
-    
     
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     
@@ -105,8 +151,8 @@
     
     
     JSQMessagesBubbleImage *incomingBubbleImage = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor blueColor]];
-
-
+    
+    
     
     JSQMessage *message = [self.messagesInConversation objectAtIndex:indexPath.item];
     
@@ -117,6 +163,8 @@
     return incomingBubbleImage;
 }
 
+
+// TODO: set avatars off of users profile picture...
 - (id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
     /**
      *  Return `nil` here if you do not want avatars.
@@ -143,13 +191,7 @@
 }
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath {
-    /**
-     *  This logic should be consistent with what you return from `heightForCellTopLabelAtIndexPath:`
-     *  The other label text delegate methods should follow a similar pattern.
-     *
-     *  Show a timestamp for every 3rd message
-     */
-    if (indexPath.item % 3 == 0) {
+    if (indexPath.item % 4 == 0) {
         JSQMessage *message = [self.messagesInConversation objectAtIndex:indexPath.item];
         return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
     }
@@ -331,12 +373,8 @@
     NSLog(@"Tapped cell at %@!", NSStringFromCGPoint(touchLocation));
 }
 
-#pragma mark - JSQMessagesComposerTextViewPasteDelegate methods
-
-
 - (BOOL)composerTextView:(JSQMessagesComposerTextView *)textView shouldPasteWithSender:(id)sender {
     if ([UIPasteboard generalPasteboard].image) {
-        // If there's an image in the pasteboard, construct a media item with that image and `send` it.
         JSQPhotoMediaItem *item = [[JSQPhotoMediaItem alloc] initWithImage:[UIPasteboard generalPasteboard].image];
         JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.senderId
                                                  senderDisplayName:self.senderDisplayName

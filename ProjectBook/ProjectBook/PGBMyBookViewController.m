@@ -38,15 +38,17 @@
     self.bookSearchBar.delegate = self;
     
     //begin test data
-    [PGBRealmBook generateTestBookData];
-    self.books = [PGBRealmBook getUserBookDataInArray];
+//    [PGBRealmBook generateTestBookData];
     //end test data
     
-    [self loadDefaultContent];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    self.books = [PGBRealmBook getUserBookDataInArray];
+    [self loadDefaultContent];
 }
 
 - (void)loadDefaultContent{

@@ -9,6 +9,11 @@
 #import "PGBProfileViewController.h"
 
 @interface PGBProfileViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
+@property (weak, nonatomic) IBOutlet UIImageView *coverPhoto;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *location;
 
 @end
 
@@ -16,6 +21,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    PFUser *currentUser = [PFUser currentUser];
+    self.userNameLabel.text = currentUser.username;
+    PFObject *object = [PFUser currentUser];
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"objectID" equalTo:object.objectId];
+    self.name.text = object[@"additional"];
+    self.location.text = object[@"location"];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

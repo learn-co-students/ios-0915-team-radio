@@ -26,7 +26,7 @@
 @implementation PGBGoodreadsAPIClient
 NSString *const GOODREADS_KEY = @"AckMqnduhbH8xQdja2Nw";
 NSString *const GOODREADS_SECRET = @"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno";
-NSString *const GOODREADS_API_URL = @"https://www.goodreads.com";
+NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 
 
 +(void)getReviewsWithCompletion:(NSString *)author bookTitle:(NSString *)bookTitle completion:(void (^)(NSDictionary *))completionBlock
@@ -46,8 +46,12 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com";
     if (bookTitle) {
         goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
         
+<<<<<<< HEAD
         //LEO bug fix here - URL string can't contain accent cahracters - example for failure:https://www.goodreads.com/book/title.json?key=AckMqnduhbH8xQdja2Nw&title=The+Ancien+Régime
         
+=======
+        //LEO bug fix here - URL string can't contain accent characters - example for failure:https://www.goodreads.com/book/title.json?key=AckMqnduhbH8xQdja2Nw&title=The+Ancien+Régime
+>>>>>>> c8b23da8df0d45215c683eb0c3df0819a0ed7fa5
         goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
         NSLog(@"goodReadsURL: %@", goodreadsURL);
         
@@ -65,6 +69,7 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com";
 
 }
 
+<<<<<<< HEAD
 
 -(NSArray *)parseATextFile
 {
@@ -118,6 +123,10 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com";
 {
 NSURL *url = [[NSURL alloc] initWithString:@"http://sites.google.com/site/iphonesdktutorials/xml/Books.xml"];
 NSXMLParser *xmlparser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+=======
+-(void)dummyLoginMethod {
+    //goodreads user login -- in viewDidAppear
+>>>>>>> c8b23da8df0d45215c683eb0c3df0819a0ed7fa5
     
     
     NSLog(@"%@", xmlparser);

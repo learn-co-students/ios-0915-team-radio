@@ -62,15 +62,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
     [self.bookTableView setDelegate:self];
     [self.bookTableView setDataSource:self];
-
+    
     UIImage *logo = [UIImage imageNamed:@"NOVEL_Logo_small"];
-
+    
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     [self.navigationItem.titleView sizeToFit];
-
+    
     //coreData
     //commented by leopoo
     //    [PGBRealmBook generateTestBookData];
@@ -78,27 +78,26 @@
     //    self.books = @[self.books[0], self.books[1], self.books[2]];
     self.books = [NSMutableArray arrayWithCapacity:100];
     [self generateRandomBookByCount:100];
-
+    
     //xib
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
-
+    
     self.bookTableView.rowHeight = 80;
     
-
+    
 }
-
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
     if ([PFUser currentUser] && ![self.loginButton.title isEqual: @"👤"]) {
         [self changeLoginButtonToProfileIcon];
     } else if (![PFUser currentUser] && ![self.loginButton.title isEqual: @"Login"]){
         [self.loginButton setTitle:@"Login"];
     }
     
-
+    
 }
 
 - (void)generateRandomBookByCount:(NSInteger)count{
@@ -108,7 +107,7 @@
     
     self.bgQueue.maxConcurrentOperationCount = 1;
     self.bookCoverBgQueue.maxConcurrentOperationCount = 5;
-
+    
     NSOperation *fetchBookOperation = [NSBlockOperation blockOperationWithBlock:^{
         PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
         [dataStore fetchData];
@@ -137,7 +136,7 @@
                     NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:coreDataBook.eBookNumbers]];
                     realmBook.bookCoverData = bookCoverData;
                     
-                    if (self.books[i]) {
+                     if (i < self.books.count && self.books[i]) {  //fixed a crash bug
                         
                         PGBRealmBook *realmBook = self.books[i];
                         realmBook.bookCoverData = bookCoverData;
@@ -171,45 +170,58 @@
     [self.bgQueue addOperation:fetchBookOperation];
 }
 
+- (NSURL *)createBookCoverURL:(NSString *)eBookNumber{
+    NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
+    NSString *bookCoverURL = [NSString stringWithFormat:@"https://www.gutenberg.org/cache/epub/%@/pg%@.cover.medium.jpg", eBookNumberParsed, eBookNumberParsed];
+    
+    NSURL *url = [NSURL URLWithString:bookCoverURL];
+    //    NSData *data = [NSData dataWithContentsOfURL:url];
+    //    UIImage *img = [[UIImage alloc]initWithData:data];
+    //    CGSize size = img.size;
+    
+    //    [self.bgQueue addOperation:fetchBookOperation];
+    return url;
+}
+
 -(void) cellDownloadButtonTapped:(UIButton*) button
 {
     //create modal view to show when downloading, show view once downloaded
-
+    
     button.enabled = NO; // FIXME: re-enable button after download succeeds/fails
     // THIS IS A LIL HACKY — will change if you change the view heirarchy of the cell
     PGBBookCustomTableCell *cell = (PGBBookCustomTableCell*)[[[button superview] superview] superview];
-
+    
     PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
     realmBook = self.books[self.bookTableView.indexPathForSelectedRow.row];
-
+    
     NSString *neweBookID = [realmBook.ebookID substringFromIndex:5];
-
+    
     if (cell && [cell isKindOfClass:[PGBBookCustomTableCell class]]){
         NSLog(@"selected book is: %@; URL: %@", cell.titleLabel.text, cell.bookURL);
-
+        
         NSString *downloadURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", neweBookID];
-
+        
         NSURL *URL = [NSURL URLWithString:downloadURL];
         self.downloadHelper = [[PGBDownloadHelper alloc] init];
         [self.downloadHelper download:URL];
-
-
+        
+        
         //during download
         UIAlertController *downloadComplete = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
-
-
+        
+        
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                      style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * _Nonnull action) {
                                                    }];
-
+        
         [downloadComplete addAction:ok];
         [self presentViewController:downloadComplete animated:YES completion:nil];
-
-
+        
+        
         //when download, disable button
         self.customCell.downloadButton.enabled = NO;
-
+        
     }
     else {
         NSLog(@"Didn't get a cell, I fucked UP");
@@ -223,7 +235,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return self.books.count;
+    //    return self.books.count;
     //pagination
     if([ self.books count] == 0){
         return 0;
@@ -236,28 +248,28 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
-
-//    PGBRealmBook *book = self.books[indexPath.row];
-//    //    Book *book = self.books[indexPath.row];
-//
-//    cell.titleLabel.text = book.title;
-//    cell.authorLabel.text = book.author;
-//    cell.genreLabel.text = book.genre;
-////    cell.bookCover.image = self.bookCovers[indexPath.row];
-//    UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
-//    if (!bookCoverImage) {
-//        bookCoverImage = [UIImage imageNamed:@"no_book_cover"];
-//    }
-//
-//    cell.bookCover.image = bookCoverImage;
-//    cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
+    
+    //    PGBRealmBook *book = self.books[indexPath.row];
+    //    //    Book *book = self.books[indexPath.row];
+    //
+    //    cell.titleLabel.text = book.title;
+    //    cell.authorLabel.text = book.author;
+    //    cell.genreLabel.text = book.genre;
+    ////    cell.bookCover.image = self.bookCovers[indexPath.row];
+    //    UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+    //    if (!bookCoverImage) {
+    //        bookCoverImage = [UIImage imageNamed:@"no_book_cover"];
+    //    }
+    //
+    //    cell.bookCover.image = bookCoverImage;
+    //    cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
     
     //pagination
     if (self.books.count != 0) {
         if(indexPath.row < [self.books count]){
             
             PGBRealmBook *book = self.books[indexPath.row];
-        
+            
             cell.titleLabel.text = book.title;
             cell.authorLabel.text = book.author;
             cell.genreLabel.text = book.genre;
@@ -273,7 +285,7 @@
         else{
             if (!self.noMoreResultsAvail) {
                 spinner.hidden =NO;
-//                cell.textLabel.text=n;
+                //                cell.textLabel.text=n;
                 cell.titleLabel.text = @"";
                 cell.authorLabel.text = @"";
                 cell.genreLabel.text = @"";
@@ -292,7 +304,7 @@
                 [spinner stopAnimating];
                 spinner.hidden=YES;
                 
-//                cell.textLabel.text=nil;
+                //                cell.textLabel.text=nil;
                 cell.titleLabel.text = @"";
                 cell.authorLabel.text = @"";
                 cell.genreLabel.text = @"";
@@ -309,8 +321,8 @@
             }
         }
     }
-
-
+    
+    
     return cell;
 }
 
@@ -347,7 +359,7 @@
     
     NSLog(@"number of books in array %lu",self.books.count);
     [self.bookTableView reloadData];
-
+    
 }
 
 
@@ -360,31 +372,34 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     PGBBookPageViewController *bookPageVC = segue.destinationViewController;
-
+    
     NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
     PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
-//    Book *bookAtIndexPath = self.books[selectedIndexPath.row];
-
+    //    Book *bookAtIndexPath = self.books[selectedIndexPath.row];
+    
     bookPageVC.titleBook = bookAtIndexPath.title;
     bookPageVC.author = bookAtIndexPath.author;
     bookPageVC.genre = bookAtIndexPath.genre;
     bookPageVC.language = bookAtIndexPath.language;
     bookPageVC.ebookID = bookAtIndexPath.ebookID;
-
+    
     //    bookPageVC.ebookID = bookAtIndexPath.eBookNumbers;
     //    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
     //    bookPageVC.books = bookPageVC.books;
-
+    
+    //leo fix
+    bookPageVC.book = bookAtIndexPath;
+    
 }
 
 //login info
 - (IBAction)loginButtonTouched:(id)sender {
-
+    
     if (![PFUser currentUser]) { // No user logged in
         self.loginButton.title = @"Login";
         // Create the log in view controller
         PGBLoginViewController *logInViewController = [[PGBLoginViewController alloc] init];
-
+        
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
         [logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
         [logInViewController setFields:PFLogInFieldsUsernameAndPassword
@@ -397,11 +412,11 @@
         PGBSignUpViewController *signUpViewController = [[PGBSignUpViewController alloc] init];
         [signUpViewController setDelegate:self]; // Set ourselves as the delegate
         [signUpViewController setFields:PFSignUpFieldsDefault | PFSignUpFieldsAdditional];
-
-
+        
+        
         // Assign our sign up controller to be displayed from the login controller
         [logInViewController setSignUpController:signUpViewController];
-
+        
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
@@ -409,10 +424,10 @@
     else {
         
         // user logged in; go to profile...
-
+        
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"profile" bundle:nil];
         UIViewController *vc = [storyboard instantiateInitialViewController];
-
+        
         [self presentViewController:vc animated:YES completion:nil];
     }
 }
@@ -422,7 +437,7 @@
     if (username && password && username.length != 0 && password.length != 0) {
         return YES; // Begin login process
     }
-
+    
     [[[UIAlertView alloc] initWithTitle:@"Missing Information"
                                 message:@"Make sure you fill out all of the information!"
                                delegate:nil
@@ -450,7 +465,7 @@
 // Sent to the delegate to determine whether the sign up request should be submitted to the server.
 - (BOOL)signUpViewController:(PGBSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
     BOOL informationComplete = YES;
-
+    
     // loop through all of the submitted data
     for (id key in info) {
         NSString *field = [info objectForKey:key];
@@ -459,7 +474,7 @@
             break;
         }
     }
-
+    
     // Display an alert if a field wasn't completed
     if (!informationComplete) {
         [[[UIAlertView alloc] initWithTitle:@"Missing Information"
@@ -469,7 +484,7 @@
                           otherButtonTitles:nil] show];
     }
     return informationComplete;
-
+    
 }
 
 // Sent to the delegate when a PFUser is signed up.

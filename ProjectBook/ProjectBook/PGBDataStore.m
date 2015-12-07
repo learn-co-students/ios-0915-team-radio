@@ -118,7 +118,11 @@
         
         NSString *lowerCaseFriendlyTitles = [newBook.eBookFriendlyTitles stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
         
-        newBook.eBookSearchTerms = [NSString stringWithFormat:@"%@ %@", lowerCaseTitles, lowerCaseFriendlyTitles];
+        NSString *lowerCaseAuthors = [newBook.eBookAuthors stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
+        
+        NSString *lowerCaseGenres = [newBook.eBookGenres stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
+        
+        newBook.eBookSearchTerms = [NSString stringWithFormat:@"%@ %@ %@ %@", lowerCaseTitles, lowerCaseFriendlyTitles, lowerCaseAuthors, lowerCaseGenres];
     }
     
     // save and refetch
