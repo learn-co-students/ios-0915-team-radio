@@ -181,25 +181,28 @@
 //}
 
 - (IBAction)optionsButtonTapped:(id)sender {
-    
-    
-    
-    UIAlertController *view = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction *save = [UIAlertAction actionWithTitle:@"Bookmark" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //bookmarks it
-        [view dismissViewControllerAnimated:YES completion:nil];
-    }];
+    UIAlertController *view = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *download = [UIAlertAction actionWithTitle:@"Download Book" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self downloadButtonTapped:sender];
-        [view dismissViewControllerAnimated:YES completion:nil];
+//        [view dismissViewControllerAnimated:YES completion:nil];
     }];
+    
+    UIAlertAction *save = [UIAlertAction actionWithTitle:@"Bookmark" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //bookmarks it
+        [self bookmarkButtonTapped:sender];
+//        [view dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                             style:UIAlertActionStyleCancel
+                             handler:nil];
     
     [view addAction:download];
     [view addAction:save];
+    [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated{

@@ -30,21 +30,35 @@
     //test array of books
 //    PGBparsingThroughText *newTask = [[PGBparsingThroughText alloc]init];
 //    NSArray *finalArrayOfDictionary = [newTask cleanUpArrays];
-
+//
 //    NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
-
+//
 //    NSLog(@"Begin store to core data");
 
 //    NSLog(@"documents directory: %@", [self applicationDocumentsDirectory]);
-    
+//    
 //    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
-//    [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
+////    [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
 //    [dataStore fetchData];
+//    
+//    NSMutableArray *array = [NSMutableArray new];
+//    NSInteger i = 0;
+//    for (Book *book in dataStore.managedBookObjects) {
+//        PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookContainingCoverImageWithBook:book];
+//        if (realmBook) {
+////            [array addObject:realmBook];
+//            NSLog(@"%lu",i+1);
+//            i++;
+//        }
+//
+//    }
+//    
+//    NSLog(@"%lu",array.count);
 
 //    NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
 //    NSLog(@"End store to core data");
 //    end test
-    
+
     // Override point for customization after application launch.
     
     // [Optional] Power your app with Local Datastore. For more info, go to

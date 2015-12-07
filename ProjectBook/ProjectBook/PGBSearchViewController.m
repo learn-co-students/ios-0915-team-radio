@@ -32,6 +32,26 @@
     
     [super viewDidLoad];
     
+    [self loadDefaultView];
+    
+    //begin test data
+//    [PGBRealmBook generateTestBookData];
+//    self.books = [PGBRealmBook getUserBookDataInArray];
+    
+    self.dataStore = [PGBDataStore sharedDataStore];
+    [self.dataStore fetchData];
+    
+    self.books = [[NSMutableArray alloc]init];
+    //end test data
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    self.bookSearchBar.hidden = NO;
+}
+
+- (void)loadDefaultView{
     //create search bar
     self.bookSearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 10, self.navigationController.navigationBar.bounds.size.width, self.navigationController.navigationBar.bounds.size.height/2)];
     self.bookSearchBar.searchBarStyle = UISearchBarStyleMinimal;
@@ -63,8 +83,8 @@
     //create book genre buttons into stack view
     UIButton *fictionButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [fictionButton addTarget:self
-               action:@selector(fictionButtonTapped:)
-     forControlEvents:UIControlEventTouchUpInside];
+                      action:@selector(fictionButtonTapped:)
+            forControlEvents:UIControlEventTouchUpInside];
     [fictionButton setTitle:@"Fiction" forState:UIControlStateNormal];
     fictionButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
     
@@ -91,38 +111,24 @@
     [genreButtonStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.defaultContentView);
     }];
-    
-    //begin test data
-//    [PGBRealmBook generateTestBookData];
-//    self.books = [PGBRealmBook getUserBookDataInArray];
-    
-    self.dataStore = [PGBDataStore sharedDataStore];
-    [self.dataStore fetchData];
-    
-    self.books = [[NSMutableArray alloc]init];
-    //end test data
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    self.bookSearchBar.hidden = NO;
-}
 
 -(void)fictionButtonTapped:(UIButton *)sender {
     NSLog(@"fiction button Tapped!");
+
+    [self.bookSearchBar becomeFirstResponder];
+    self.bookSearchBar.text = @"fiction";
+    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
 -(void)romanceButtonTapped:(UIButton *)sender {
     NSLog(@"romance button tapped!");
-}
-
--(void)viewDidAppear:(BOOL)animated{
     
-    [super viewDidAppear:animated];
-    
+    [self.bookSearchBar becomeFirstResponder];
+    self.bookSearchBar.text = @"romance";
+    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
-
 
 #pragma UITableView DataSource Method ::
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

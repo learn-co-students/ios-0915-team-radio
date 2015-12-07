@@ -63,8 +63,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-        [self.bookTableView setDelegate:self];
-        [self.bookTableView setDataSource:self];
+    [self.bookTableView setDelegate:self];
+    [self.bookTableView setDataSource:self];
     
     UIImage *logo = [UIImage imageNamed:@"NOVEL_Logo_small"];
     
@@ -136,7 +136,7 @@
                     NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:coreDataBook.eBookNumbers]];
                     realmBook.bookCoverData = bookCoverData;
                     
-                    if (self.books[i]) {
+                     if (i < self.books.count && self.books[i]) {  //fixed a crash bug
                         
                         PGBRealmBook *realmBook = self.books[i];
                         realmBook.bookCoverData = bookCoverData;
