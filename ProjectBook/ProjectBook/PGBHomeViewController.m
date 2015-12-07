@@ -136,7 +136,7 @@
                     NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:coreDataBook.eBookNumbers]];
                     realmBook.bookCoverData = bookCoverData;
                     
-                    if (self.books[i]) {
+                     if (i < self.books.count && self.books[i]) {  //fixed a crash bug
                         
                         PGBRealmBook *realmBook = self.books[i];
                         realmBook.bookCoverData = bookCoverData;
