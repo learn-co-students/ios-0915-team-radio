@@ -21,12 +21,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    PFQuery *query = [PFUser query];
     PFUser *currentUser = [PFUser currentUser];
     self.userNameLabel.text = currentUser.username;
-    //name & current location can be set up after edit profile is
-    
+    PFObject *object = [PFUser currentUser];
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"objectID" equalTo:object.objectId];
+    self.name.text = object[@"additional"];
+    self.location.text = object[@"location"];
     
     
 }

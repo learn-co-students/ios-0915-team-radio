@@ -1,30 +1,27 @@
 //
-//  PGBEditProfileViewController.m
+//  PGBSettingsViewController.m
 //  ProjectBook
 //
-//  Created by Lauren Reed on 12/2/15.
+//  Created by Lauren Reed on 12/7/15.
 //  Copyright © 2015 FIS. All rights reserved.
 //
 
-#import "PGBEditProfileViewController.h"
+#import "PGBSettingsViewController.h"
 
-@interface PGBEditProfileViewController ()
+@interface PGBSettingsViewController ()
 
 @end
 
-@implementation PGBEditProfileViewController
+@implementation PGBSettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)doneButtonTapped:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
@@ -36,5 +33,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)backButtonTapped:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+- (IBAction)logoutButtonTapped:(id)sender {
+    [PFUser logOut];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
