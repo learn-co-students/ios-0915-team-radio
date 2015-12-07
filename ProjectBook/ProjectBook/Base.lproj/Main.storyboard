@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EtB-Vp-Xzm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EtB-Vp-Xzm">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -13,11 +13,10 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
-            <string>OpenSans</string>
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--NOVEL-->
+        <!--Home View Controller-->
         <scene sceneID="dwo-95-zlz">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="yQ5-Zj-1vL" customClass="PGBHomeViewController" sceneMemberID="viewController">
@@ -124,7 +123,7 @@
                             <constraint firstAttribute="trailing" secondItem="bG3-i2-RbI" secondAttribute="trailing" id="xCD-tZ-18t"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="NOVEL" id="lYG-Rt-OR9">
+                    <navigationItem key="navigationItem" id="lYG-Rt-OR9">
                         <barButtonItem key="rightBarButtonItem" title="Login" id="cXi-sA-yTG">
                             <connections>
                                 <action selector="loginButtonTouched:" destination="yQ5-Zj-1vL" id="Lil-JE-g7f"/>
@@ -224,31 +223,25 @@
                                                                 <rect key="frame" x="9" y="5" width="342" height="190"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f27-z1-o1N">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="342" height="41"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="342" height="51"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA5-0Q-GKZ">
-                                                                        <rect key="frame" x="0.0" y="41" width="342" height="41"/>
+                                                                        <rect key="frame" x="0.0" y="51" width="342" height="50"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt5-uI-cnf">
-                                                                        <rect key="frame" x="0.0" y="82" width="342" height="36"/>
+                                                                        <rect key="frame" x="0.0" y="101" width="342" height="45"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Year Published" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tB4-vL-ZbJ">
-                                                                        <rect key="frame" x="0.0" y="118" width="342" height="36"/>
-                                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
-                                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX6-mt-LxQ">
-                                                                        <rect key="frame" x="0.0" y="154" width="342" height="36"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX6-mt-LxQ">
+                                                                        <rect key="frame" x="0.0" y="146" width="342" height="44"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -378,7 +371,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="mld-ec-vQs">
-                        <barButtonItem key="rightBarButtonItem" title=". . ." id="BDr-LZ-ShT" userLabel="Options">
+                        <barButtonItem key="rightBarButtonItem" image="moreOptions" id="BDr-LZ-ShT" userLabel="Options">
                             <connections>
                                 <action selector="optionsButtonTapped:" destination="BYZ-38-t0r" id="FTw-uM-JFa"/>
                             </connections>
@@ -398,7 +391,6 @@
                         <outlet property="superContentView" destination="1zv-Hm-lSE" id="Fgw-YC-ajP"/>
                         <outlet property="titleLabel" destination="f27-z1-o1N" id="Dba-ah-c6u"/>
                         <outlet property="webViewContainer" destination="Eaf-LU-Sm3" id="AmN-jG-Ra9"/>
-                        <outlet property="yearLabel" destination="tB4-vL-ZbJ" id="rIx-My-HnK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -457,6 +449,7 @@
     <resources>
         <image name="NOVEL_Logo_Green" width="1430" height="423"/>
         <image name="hopper.gif" width="455" height="514"/>
+        <image name="moreOptions" width="30" height="7"/>
         <image name="no_book_cover" width="1600" height="2400"/>
     </resources>
 </document>
