@@ -59,21 +59,17 @@
 //    NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
 //    NSLog(@"End store to core data");
 //    end test
-<<<<<<< HEAD
     
 //    PGBGoodreadsAPIClient *testGoodReadsAPI = [[PGBGoodreadsAPIClient alloc] init];
     NSLog(@"Goodreadsapiclient dummylogin about to be called\n.");
     [PGBGoodreadsAPIClient getReviewsWithCompletion:@"Haruki Murakami" bookTitle:@"Norwegian Wood" completion:nil];
     
     PGBGoodreadsAPIClient *testingXMLParsing = [[PGBGoodreadsAPIClient alloc] init];
-   // NSLog(@"%@", [testingXMLParsing methodToGetDescriptions]);
+    NSLog(@"%@", [testingXMLParsing methodToGetDescriptions]);
     
     
     
-    
-=======
 
->>>>>>> c8b23da8df0d45215c683eb0c3df0819a0ed7fa5
     // Override point for customization after application launch.
     
     // [Optional] Power your app with Local Datastore. For more info, go to

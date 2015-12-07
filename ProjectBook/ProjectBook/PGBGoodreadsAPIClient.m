@@ -46,12 +46,8 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     if (bookTitle) {
         goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
         
-<<<<<<< HEAD
         //LEO bug fix here - URL string can't contain accent cahracters - example for failure:https://www.goodreads.com/book/title.json?key=AckMqnduhbH8xQdja2Nw&title=The+Ancien+Régime
-        
-=======
         //LEO bug fix here - URL string can't contain accent characters - example for failure:https://www.goodreads.com/book/title.json?key=AckMqnduhbH8xQdja2Nw&title=The+Ancien+Régime
->>>>>>> c8b23da8df0d45215c683eb0c3df0819a0ed7fa5
         goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
         NSLog(@"goodReadsURL: %@", goodreadsURL);
         
@@ -69,7 +65,6 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 
 }
 
-<<<<<<< HEAD
 
 -(NSArray *)parseATextFile
 {
@@ -85,7 +80,7 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 
 
 
--(void)methodToGetDescriptions
+-(NSDictionary *)methodToGetDescriptions
 //{
 //    NSData *data;
 //    NSError *error;
@@ -119,18 +114,53 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 //ONOXMLDocument *document = [ONOXMLDocument XMLDocumentWithData:data error:&error];
 //for (ONOXMLElement *element in document.rootElement.children) {
 //    NSLog(@"%@: %@", element.tag, element.attributes);
-//}
-{
-NSURL *url = [[NSURL alloc] initWithString:@"http://sites.google.com/site/iphonesdktutorials/xml/Books.xml"];
-NSXMLParser *xmlparser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-=======
--(void)dummyLoginMethod {
-    //goodreads user login -- in viewDidAppear
->>>>>>> c8b23da8df0d45215c683eb0c3df0819a0ed7fa5
-    
-    
-    NSLog(@"%@", xmlparser);
 
+{
+NSURL *url = [[NSURL alloc] initWithString:@"https://www.goodreads.com/book/title.xml?key=AckMqnduhbH8xQdja2Nw&title=Hound+of+the+Baskervilles&author=Arthur+Conan+Doyle"];
+NSXMLParser *xmlparser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+
+    NSString *XMLasString = [NSString stringWithFormat:@"%@", xmlparser.description];
+    
+    NSCharacterSet *newlineSet = [NSCharacterSet newlineCharacterSet];
+    NSArray *lines = [XMLasString componentsSeparatedByCharactersInSet:newlineSet];
+    
+    NSMutableArray *importantLines = [NSMutableArray new];
+    NSMutableArray *imageURL = [NSMutableArray new];
+    
+    NSUInteger indexOfDescriptionStart = [lines indexOfObject:@"        <description>"];
+    NSUInteger indexOfDescriptionEnd  = [lines indexOfObject:@"        </description>"];
+    //NSUInteger difference = indexOfDescriptionEnd-indexOfDescriptionStart;
+
+    for (NSUInteger i = indexOfDescriptionStart; i < indexOfDescriptionEnd; i++)
+    {
+        NSString *element = lines[i];
+        [importantLines addObject:element];
+    }
+    
+    NSString *description = [importantLines componentsJoinedByString:@""];
+    
+    NSUInteger indexOfImageUrlStart= [lines indexOfObject:@"                <image_url nophoto='false'>"];
+    
+    NSUInteger indexOfImageUrlEnd = [lines indexOfObject:@"                </image_url>"];
+    //NSUInteger differenceForImageUrl = indexOfImageUrlEnd-indexOfImageUrlStart;
+
+    
+    for (NSUInteger i = indexOfImageUrlStart; i < indexOfImageUrlEnd; i++)
+    {
+        NSString *element = lines[i];
+        [imageURL addObject:element];
+    }
+    NSString *imageURLAsString = [imageURL componentsJoinedByString:@""];
+    
+    NSDictionary *dictionaryOfDescriptionAndBookURL = @{@"Description":description,
+                                                        @"URL":imageURLAsString};
+    
+    
+    
+    
+    
+    
+    return dictionaryOfDescriptionAndBookURL;
 }
 
 
