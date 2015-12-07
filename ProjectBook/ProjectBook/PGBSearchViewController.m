@@ -230,12 +230,7 @@
         //not getting book cover images here
         [self.books addObject:realmBook];
     }
-
     [self.bookTableView reloadData];
-    
-//    if ([searchText length] == 0) {
-//        [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:self.bookSearchBar afterDelay:0];
-//    }
 }
 
 - (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar {
