@@ -153,10 +153,18 @@
 }
 
 - (IBAction)creatChatTouched:(id)sender {
+  
     if (self.topicTextField.text.length == 0){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Uh oh!" message:@"Please include a topic!" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Uh oh!" message:@"Please include a topic!" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Uh oh!" message:@"Please include a topic!" preferredStyle:UIAlertControllerStyleAlert];
+        // create action
+        UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        // add action
+        [alert addAction:okayAction];
+        // present controller
+        [self presentViewController:alert animated:YES completion:nil];
     } else {
-        PFObject *newChat = [PFObject objectWithClassName:@"bookChat:"];
+        PFObject *newChat = [PFObject objectWithClassName:@"bookChat"];
         newChat[@"topic"] = self.topicTextField.text;
         newChat[@"bookId"] = self.selectedBook.ebookID;
         newChat[@"bookTitle"] = self.selectedBook.title;
