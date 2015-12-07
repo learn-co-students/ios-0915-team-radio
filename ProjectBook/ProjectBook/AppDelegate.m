@@ -48,7 +48,10 @@
     
 //    PGBGoodreadsAPIClient *testGoodReadsAPI = [[PGBGoodreadsAPIClient alloc] init];
     NSLog(@"Goodreadsapiclient dummylogin about to be called\n.");
-    [PGBGoodreadsAPIClient dummyLoginMethod];
+    [PGBGoodreadsAPIClient getReviewsWithCompletion:@"Haruki Murakami" bookTitle:@"Norwegian Wood" completion:nil];
+    
+    PGBGoodreadsAPIClient *testingXMLParsing = [[PGBGoodreadsAPIClient alloc] init];
+   // NSLog(@"%@", [testingXMLParsing methodToGetDescriptions]);
     
     
     

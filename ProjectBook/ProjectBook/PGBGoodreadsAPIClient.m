@@ -10,6 +10,8 @@
 #import <GROAuth.h>
 #import <XMLDictionary.h>
 #import <AFNetworking/AFNetworking.h>
+#import <Ono.h>
+
 
 #import "PGBRealmBook.h"
 #import "Book.h"
@@ -45,7 +47,9 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com";
         goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
         
         //LEO bug fix here - URL string can't contain accent cahracters - example for failure:https://www.goodreads.com/book/title.json?key=AckMqnduhbH8xQdja2Nw&title=The+Ancien+Régime
+        
         goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
+        NSLog(@"goodReadsURL: %@", goodreadsURL);
         
     } else {
         NSLog (@"didn't work!!");
@@ -76,15 +80,49 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com";
 
 
 
-//-(void)methodToGetDescriptions:(NSArray *)array
+-(void)methodToGetDescriptions
 //{
-//    NSUInteger indexOfImageUrlStart = [array indexOfObject:@"                <image_url nophoto='false'>"];
-//    NSUInteger indexOfImageUrlFinish = [array indexOfObject:@"                </image_url>"];
+//    NSData *data;
+//    NSError *error;
 //    
-//    NSUInteger indexOfDescriptionStart = [array indexOfObject:@"                    <description"];
-//    NSUInteger indexOfDescriptionFinish = [array indexOfObject:@"                    </description>"];
+//    ONOXMLDocument *document = [ONOXMLDocument XMLDocumentWithData:data error:&error];
+//    for (ONOXMLElement *element in document.rootElement.children) {
+//        NSLog(@"%@: %@", element.tag, element.attributes);
+//    }
 //    
+//    // Support for Namespaces
+//    NSString *author = [[document.rootElement firstChildWithTag:@"creator" inNamespace:@"dc"] stringValue];
+//    
+//    // Automatic Conversion for Number & Date Values
+//    NSDate *date = [[document.rootElement firstChildWithTag:@"created_at"] dateValue]; // ISO 8601 Timestamp
+//    NSInteger numberOfWords = [[[document.rootElement firstChildWithTag:@"word_count"] numberValue] integerValue];
+//    BOOL isPublished = [[[document.rootElement firstChildWithTag:@"is_published"] numberValue] boolValue];
+//    
+//    // Convenient Accessors for Attributes
+//    NSString *unit = [document.rootElement firstChildWithTag:@"Length"][@"unit"];
+//    NSDictionary *authorAttributes = [[document.rootElement firstChildWithTag:@"author"] attributes];
+//    
+//    // Support for XPath & CSS Queries
+//    [document enumerateElementsWithXPath:@"//Content" usingBlock:^(ONOXMLElement *element, NSUInteger idx, BOOL *stop) {
+//        NSLog(@"%@", element);
+//    }];
+
+
+//NSData *data = ...;
+//NSError *error;
+
+//ONOXMLDocument *document = [ONOXMLDocument XMLDocumentWithData:data error:&error];
+//for (ONOXMLElement *element in document.rootElement.children) {
+//    NSLog(@"%@: %@", element.tag, element.attributes);
 //}
+{
+NSURL *url = [[NSURL alloc] initWithString:@"http://sites.google.com/site/iphonesdktutorials/xml/Books.xml"];
+NSXMLParser *xmlparser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+    
+    
+    NSLog(@"%@", xmlparser);
+
+}
 
 
 
