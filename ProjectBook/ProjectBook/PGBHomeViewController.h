@@ -13,7 +13,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 
-@interface PGBHomeViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface PGBHomeViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UITableView *bookTableView;
 

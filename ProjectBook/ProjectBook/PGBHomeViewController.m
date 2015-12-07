@@ -17,12 +17,6 @@
 #import "PGBLoginViewController.h"
 #import "PGBSignUpViewController.h"
 
-#import <XMLDictionary.h>
-#import <QuartzCore/QuartzCore.h>
-#import "SVPullToRefresh.h"
-
-#import <GROAuth.h>
-
 #import "PGBDataStore.h"
 #import "Book.h"
 #import <AFNetworking/AFNetworking.h>
@@ -43,7 +37,6 @@
 @property (nonatomic, assign) int initialPage;
 @property (strong, nonatomic) NSMutableArray *list;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
-//@property (nonatomic, readwrite) SVPullToRefreshPosition position;
 
 //@property (strong, nonatomic) PGBBookCustomTableCell *customCell;
 @property (strong, nonatomic) PGBCustomBookCollectionViewCell *bookCoverCell;
@@ -70,7 +63,6 @@
     [self.bookCollectionView setDataSource:self];
     
     //logo for banner
-    
     UIImage *logo = [[UIImage imageNamed:@"NOVEL_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     
@@ -85,7 +77,7 @@
     //xib
 //    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
 
-    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBCustomBookTableCell" bundle:nil] forCellReuseIdentifier:@"BookCustomCell"];
+    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellReuseIdentifier:@"BookCoverCell"];
     
     self.bookTableView.rowHeight = 80;
     
@@ -94,7 +86,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self ch]
+
     if ([PFUser currentUser] && ![self.loginButton.title isEqual: @"👤"]) {
         [self changeLoginButtonToProfileIcon];
         
@@ -232,10 +224,83 @@
     }
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//collection view
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 1;
+    
+    if ([self.books count] == 0) {
+        return 0;
+    } else {
+        return [self.books count] + 1;
+    }
 }
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    //    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"bookCoverCell" forIndexPath:indexPath];
+    
+    PGBCustomBookCollectionViewCell *cell = (PGBCustomBookCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:@"bookCoverCell" forIndexPath:indexPath];
+    
+    if (self.books.count != 0) {
+        if (indexPath.row < self.books.count)
+        {
+            PGBRealmBook *book = self.books[indexPath.row];
+            UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+            
+            if (!bookCoverImage) {
+                cell.titleLabel.text = book.title;
+                cell.authorLabel.text = book.author;
+            } else if (bookCoverImage) {
+                cell.bookCover.image = bookCoverImage;
+            } else{
+                if (!self.noMoreResultsAvail) {
+                    spinner.hidden =NO;
+                    //                cell.textLabel.text=n;
+                    cell.titleLabel.text = @"";
+                    cell.authorLabel.text = @"";
+                    cell.bookCover.image = nil;
+                    
+                    
+                    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                    spinner.frame = CGRectMake(150, 10, 24, 50);
+                    [cell addSubview:spinner];
+                    if ([self.books count] >= 10) {
+                        [spinner startAnimating];
+                    }
+                }
+                
+                else{
+                    [spinner stopAnimating];
+                    spinner.hidden=YES;
+                    
+                    //                cell.textLabel.text=nil;
+                    cell.titleLabel.text = @"";
+                    cell.authorLabel.text = @"";
+                    cell.bookCover.image = nil;
+                    
+                    UILabel* loadingLabel = [[UILabel alloc]init];
+                    loadingLabel.font=[UIFont boldSystemFontOfSize:14.0f];
+                    loadingLabel.textAlignment = UITextAlignmentLeft;
+                    loadingLabel.textColor = [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0];
+                    loadingLabel.numberOfLines = 0;
+                    loadingLabel.text=@"No More data Available";
+                    loadingLabel.frame=CGRectMake(85,20, 302,25);
+                    [cell addSubview:loadingLabel];
+                }
+            }
+            
+        }
+    }
+    
+    return cell;
+}
+
+
+//table view
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return 1;
+//}
 
 //-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 //{
@@ -249,7 +314,6 @@
 //    }
 //}
 
--
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
