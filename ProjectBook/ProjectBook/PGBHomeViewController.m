@@ -66,13 +66,13 @@
     [self.bookTableView setDelegate:self];
     [self.bookTableView setDataSource:self];
     
-    UIImage *logo = [UIImage imageNamed:@"NOVEL_Logo_small"];
+    //logo for banner
     
+    UIImage *logo = [[UIImage imageNamed:@"NOVEL_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
-    [self.navigationItem.titleView sizeToFit];
     
     //coreData
-    //commented by leopoo
+    //commented by leo
     //    [PGBRealmBook generateTestBookData];
     //    self.books = [PGBRealmBook getUserBookDataInArray];
     //    self.books = @[self.books[0], self.books[1], self.books[2]];
@@ -96,7 +96,6 @@
     } else if (![PFUser currentUser] && ![self.loginButton.title isEqual: @"Login"]){
         [self.loginButton setTitle:@"Login"];
     }
-    
     
 }
 

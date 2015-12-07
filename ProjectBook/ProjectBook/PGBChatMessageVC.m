@@ -14,6 +14,7 @@
 #import "JSQMessagesTypingIndicatorFooterView.h"
 #import "UIImage+JSQMessages.h"
 #import "JSQSystemSoundPlayer+JSQMessages.h"
+//#import "NSUserDefaults.h"
 
 @interface PGBChatMessageVC ()
 
@@ -34,50 +35,65 @@
     self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
     self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
     
-    
+
     
     NSString *senderParseId = currentPerson.objectId;
     NSString *senderUserName = currentPerson.username;
     self.senderId = senderParseId;
     self.senderDisplayName = senderUserName;
     SEL selector = @selector(receiveNotification:);
-
     
-
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"NewMessage" object:nil];
     
+    //    self.inputToolbar.contentView.textView.pasteDelegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"dGWeFofcrQ" object:nil];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
 }
 
 - (void) receiveNotification:(NSNotification *) notification {
     
-    if ([[notification name] isEqualToString:@"NewMessage"]) {
-        
-        PFQuery *messagesQuery = [PFQuery queryWithClassName:@"bookChat"];
-        
-        // this needs to do the chat's unique id that is created when a new chat is created
-        [messagesQuery whereKey:@"objectId" equalTo:@"R4F0MHrv6R"];
-        self.showTypingIndicator = !self.showTypingIndicator;
-        [self scrollToBottomAnimated:YES];
-        
-        
-        [messagesQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-            // this is where youd stop the loading indicator
-            
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                
-                NSDictionary *lastMessage = objects.lastObject;
-                JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:lastMessage[@"senderID"]
-                                                               senderDisplayName:lastMessage[@"senderDisplayName"]
-                                                                            date:lastMessage[@"date"]
-                                                                            text:lastMessage[@"text"]];
-                
-                [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
-                [self.messagesInConversation addObject:latestMessage];
-                [self finishReceivingMessageAnimated:YES];
-            }];
-        }];
+    if (![[notification name] isEqualToString:@"dGWeFofcrQ"]) {
+        NSLog(@"receiveNotification: error: notification name invalid; name=%@; expected=dGWeFofcrQ", notification.name);
+        // TODO: uncomment below after debugging...
+        //return;
     }
+    
+    self.showTypingIndicator = !self.showTypingIndicator;
+    [self scrollToBottomAnimated:YES];
+
+    // TODO: get all messages that are *newer* than our last message...
+    
+    // get all messages for bookChatId...
+    
+    PFQuery *messagesQuery = [PFQuery queryWithClassName:@"bookChatMessages"];
+    [messagesQuery whereKey:@"bookChatId" equalTo:@"dGWeFofcrQ"];
+    
+    [messagesQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        // this is where youd stop the loading indicator
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
+            NSDictionary *lastMessage = objects.lastObject;
+            JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:lastMessage[@"senderId"]
+                                                           senderDisplayName:lastMessage[@"senderDisplayName"]
+                                                                        date:lastMessage[@"date"]
+                                                                        text:lastMessage[@"text"]];
+            
+            [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+            [self.messagesInConversation addObject:latestMessage];
+            [self finishReceivingMessageAnimated:YES];
+        }];
+    }];
+}
+
+- (void)pushMainViewController {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController *nc = [sb instantiateInitialViewController];
+    [self.navigationController pushViewController:nc.topViewController animated:YES];
 }
 
 - (void)configureWithEllipsisColor:(UIColor *)ellipsisColor messageBubbleColor:(UIColor *)messageBubbleColor shouldDisplayOnLeft:(BOOL)shouldDisplayOnLeft forCollectionView:(UICollectionView *)collectionView {
@@ -85,9 +101,9 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    //    self.collectionView.collectionViewLayout.springinessEnabled = [NSUserDefaults springinessSetting];
     
-    
-
 }
 
 -(void)didPressSendButton:(UIButton *)button
@@ -102,50 +118,22 @@
                                                           text:text];
     
     [self.messagesInConversation addObject:message];
-    [self finishSendingMessageAnimated:YES];
-    
-    //create Parse Object or something, and push it up to Parse. TO make sure it's associated with the right user, MAKE SURE The senderID is equal to some unique ID in parse.  Pushing up to parse should be done in a block SO YOU KNOW THE MESSAGE WAS SENT (with completon block)
-    
-//    PFObject *bookChat = [PFObject objectWithClassName:@"bookChat"];
-    [self turnJSQMessageObjectIntoDictionary:message];
-//    [bookChat addObject:self.messageContent forKey:@"messagesInConversation" ];
-//    
-//    
-//    [bookChat saveInBackgroundWithTarget:@"R4F0MHrv6R" selector:nil];
-    
-    
-    PFQuery *newQuery = [PFQuery queryWithClassName:@"bookChat"];
-    
-    [newQuery getObjectInBackgroundWithId:@"R4F0MHrv6R" block:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        
-        NSLog(@"What is messageContent: %@", self.messageContent);
-        
-        [object addObject:self.messageContent forKey:@"messagesInConversation"];
-        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            
-            if (succeeded) {
-                
-                NSLog(@"SUCCESSION!!!!!!");
-            }
-            
-        }];
+    PFObject *bookChatMessage = [PFObject objectWithClassName:@"bookChatMessages"];
+    bookChatMessage[@"text"] = message.text;
+    bookChatMessage[@"senderId"] = message.senderId;
+    bookChatMessage[@"senderDisplayName"] = message.senderDisplayName;
+    bookChatMessage[@"bookChatId"] = @"dGWeFofcrQ";
+    [bookChatMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            // The object has been saved.
+            NSLog(@"bookChatMessage saved");
+        } else {
+            // There was a problem, check error.description
+            NSLog(@"Problem saving: %@", error.description);
+        }
     }];
-    
+    [self finishSendingMessageAnimated:YES];
 }
-
-- (NSDictionary *)turnJSQMessageObjectIntoDictionary:(JSQMessage *)message {
-    
-    self.messageContent = [NSDictionary new];
-    self.messageContent = @{ @"senderID" : message.senderId,
-                             @"senderDisplayName" : message.senderDisplayName,
-                             @"date" : message.date,
-                             @"text" : message.text };
-    return self.messageContent;
-}
-
-
-
-#pragma mark - JSQMessages CollectionView DataSource
 
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self.messagesInConversation objectAtIndex:indexPath.item];
@@ -156,15 +144,15 @@
 }
 
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     
     JSQMessagesBubbleImage *outgoingBubbleImage = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor lightGrayColor]];
     
     
     JSQMessagesBubbleImage *incomingBubbleImage = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor blueColor]];
-
-
+    
+    
     
     JSQMessage *message = [self.messagesInConversation objectAtIndex:indexPath.item];
     
@@ -385,19 +373,19 @@
     NSLog(@"Tapped cell at %@!", NSStringFromCGPoint(touchLocation));
 }
 
-//- (BOOL)composerTextView:(JSQMessagesComposerTextView *)textView shouldPasteWithSender:(id)sender {
-//    if ([UIPasteboard generalPasteboard].image) {
-//        JSQPhotoMediaItem *item = [[JSQPhotoMediaItem alloc] initWithImage:[UIPasteboard generalPasteboard].image];
-//        JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.senderId
-//                                                 senderDisplayName:self.senderDisplayName
-//                                                              date:[NSDate date]
-//                                                             media:item];
-//        [self.messagesInConversation addObject:message];
-//        [self finishSendingMessage];
-//        return NO;
-//    }
-//    return YES;
-//}
-//
+- (BOOL)composerTextView:(JSQMessagesComposerTextView *)textView shouldPasteWithSender:(id)sender {
+    if ([UIPasteboard generalPasteboard].image) {
+        JSQPhotoMediaItem *item = [[JSQPhotoMediaItem alloc] initWithImage:[UIPasteboard generalPasteboard].image];
+        JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.senderId
+                                                 senderDisplayName:self.senderDisplayName
+                                                              date:[NSDate date]
+                                                             media:item];
+        [self.messagesInConversation addObject:message];
+        [self finishSendingMessage];
+        return NO;
+    }
+    return YES;
+}
+
 
 @end

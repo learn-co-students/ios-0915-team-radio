@@ -66,6 +66,7 @@
     for (UIView *view in self.superContentView.subviews)
         if (totalHeight < view.frame.origin.y + view.frame.size.height) totalHeight = view.frame.origin.y + view.frame.size.height;
     
+
 //    [self getReviewswithCompletion:^(BOOL success) {
 //        success = YES;
 //    }];
@@ -75,6 +76,7 @@
 //    UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
 //    UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
 //    [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
+
 
 }
 
@@ -173,13 +175,6 @@
     }
 }
 
-//-(void)tapOut:(UIGestureRecognizer *)gestureRecognizer {
-//    CGPoint p = [gestureRecognizer locationInView:self.view];
-//    if (p.y < 0 ) {
-//        [self ]
-//    }
-//}
-
 - (IBAction)optionsButtonTapped:(id)sender {
     UIAlertController *view = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
@@ -241,29 +236,42 @@
     
     NSString *litFileName = [NSString stringWithFormat:@"pg%@-images.epub", parsedEbookID];
     
-//    NSString *litFileName = [NSString stringWithFormat:@"pg%@", self.ebookIndex];
+    //    NSString *litFileName = [NSString stringWithFormat:@"pg%@", self.ebookIndex];
     NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];
     NSURL *targetURL = [NSURL fileURLWithPath:filePath];
-
+    
     self.docController = [UIDocumentInteractionController interactionControllerWithURL:targetURL];
     
     if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"itms-books:"]]) {
         
         [self.docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
         
-//        [self.docController presentOpenInMenuFromRect:_openInIBooksButton.bounds inView:self.openInIBooksButton animated:YES];
-
+        //        [self.docController presentOpenInMenuFromRect:_openInIBooksButton.bounds inView:self.openInIBooksButton animated:YES];
+        
         NSLog(@"iBooks installed");
         
     } else {
+        UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"You don't have iBooks installed." message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * _Nonnull action) {
+                                                   }];
+        [invalid addAction:ok];
+        [self presentViewController:invalid animated:YES completion:nil];
         
-        NSLog(@"iBooks not installed");
     }
+    
+    NSLog(@"iBooks not installed");
 }
+
 
 - (IBAction)bookmarkButtonTapped:(id)sender {
     NSLog(@"bookmark button tapped!");
     
+//    UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
+//    UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
+//    [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
+
     if (self.book.ebookID.length != 0) {
         [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
             self.book.isBookmarked = YES;

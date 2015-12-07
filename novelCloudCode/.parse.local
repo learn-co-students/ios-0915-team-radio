@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "project gutenburg app"
+    },
+    "project gutenburg app": {
+      "applicationId": "VADP3uGjgBGfaYax1jbKoDlKzhCYyilh8I83XfmI"
+    }
+  }
+}
