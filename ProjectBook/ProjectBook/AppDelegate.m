@@ -12,6 +12,7 @@
 #import "PGBRealmUser.h"
 #import "PGBRealmBook.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "PGBGoodreadsAPIClient.h"
 
 #import <GROAuth.h>
 
@@ -63,6 +64,16 @@
 //    NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
 //    NSLog(@"End store to core data");
 //    end test
+    
+//    PGBGoodreadsAPIClient *testGoodReadsAPI = [[PGBGoodreadsAPIClient alloc] init];
+    NSLog(@"Goodreadsapiclient dummylogin about to be called\n.");
+    [PGBGoodreadsAPIClient getReviewsWithCompletion:@"Haruki Murakami" bookTitle:@"Norwegian Wood" completion:nil];
+    
+    PGBGoodreadsAPIClient *testingXMLParsing = [[PGBGoodreadsAPIClient alloc] init];
+    NSLog(@"%@", [testingXMLParsing methodToGetDescriptions]);
+    
+    
+    
 
     // Override point for customization after application launch.
     
