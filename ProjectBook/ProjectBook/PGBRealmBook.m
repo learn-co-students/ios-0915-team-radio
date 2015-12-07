@@ -145,7 +145,6 @@
     }
     
     if ([self validateBookDataWithRealmBook:realmBook]) {
-  
         return realmBook;
         
     } else {

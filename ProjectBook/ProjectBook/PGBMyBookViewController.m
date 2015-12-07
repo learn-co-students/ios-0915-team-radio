@@ -176,13 +176,7 @@
     NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
     PGBRealmBook *bookAtIndexPath = self.booksDisplayed[selectedIndexPath.row];
     
-    bookPageVC.titleBook = bookAtIndexPath.title;
-    bookPageVC.author = bookAtIndexPath.author;
-    bookPageVC.genre = bookAtIndexPath.genre;
-    bookPageVC.language = bookAtIndexPath.language;
-    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
-    bookPageVC.ebookID = bookAtIndexPath.ebookID;
-    bookPageVC.books = bookPageVC.books;
+    bookPageVC.book = bookAtIndexPath;
 }
 
 @end

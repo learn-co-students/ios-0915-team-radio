@@ -45,23 +45,13 @@
 {
     [super viewDidLoad];
 
-//    NSLog(@"view loaded");
-    
-//    [PGBRealmBook generateTestBookData];
-//    NSArray *books = [PGBRealmBook getUserBookDataInArray];
-//    self.books = @[books[0], books[1], books[2]];
-    
     
     self.bookDescriptionTV.editable = NO;
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    NSString *datePublished = [dateFormatter stringFromDate:[NSDate date]];
-    
-    self.titleLabel.text = self.titleBook;
-    self.authorLabel.text = self.author;
-    self.genreLabel.text = self.genre;
-    self.yearLabel.text = datePublished;
-    self.languageLabel.text = self.language;
+
+    self.titleLabel.text = self.book.title;
+    self.authorLabel.text = self.book.author;
+    self.genreLabel.text = self.book.genre;
+    self.languageLabel.text = self.book.language;
     self.bookDescriptionTV.text = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     
     CGRect rect = self.bookDescriptionTV.frame;
@@ -80,7 +70,7 @@
 
 -(void)getReviewswithCompletion:(void (^)(BOOL))completionBlock
 {
-    [PGBGoodreadsAPIClient getReviewsWithCompletion:self.author bookTitle:self.titleBook completion:^(NSDictionary *reviewDict) {
+    [PGBGoodreadsAPIClient getReviewsWithCompletion:self.book.author bookTitle:self.book.title completion:^(NSDictionary *reviewDict) {
         {
 
             self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];
@@ -138,7 +128,7 @@
 
 - (IBAction)downloadButtonTapped:(id)sender
 {
-    NSString *parsedEbookID = [self.ebookID substringFromIndex:5];
+    NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
     
     NSString *idURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", parsedEbookID];
     
@@ -231,7 +221,7 @@
 
 - (IBAction)readButtonTapped:(id)sender
 {
-    NSString *parsedEbookID = [self.ebookID substringFromIndex:5];
+    NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
     
     NSString *litFileName = [NSString stringWithFormat:@"pg%@-images.epub", parsedEbookID];
     
