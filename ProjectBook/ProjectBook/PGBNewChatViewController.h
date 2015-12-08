@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <Masonry/Masonry.h>
+#import <Parse/Parse.h>
 @interface PGBNewChatViewController : UIViewController
 
 @end

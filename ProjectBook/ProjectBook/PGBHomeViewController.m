@@ -252,33 +252,16 @@
     return cell;
 }
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    [self performSegueWithIdentifier:@"bookInfoSegue" sender:self];
-//}
-//
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    PGBBookPageViewController *bookPageVC = segue.destinationViewController;
-//    
-//    NSIndexPath *selectedIndexPath = self.bookCollectionView.indexPathsForSelectedItems;
-//    PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
-//    //    Book *bookAtIndexPath = self.books[selectedIndexPath.row];
-//    
-//    bookPageVC.titleBook = bookAtIndexPath.title;
-//    bookPageVC.author = bookAtIndexPath.author;
-//    bookPageVC.genre = bookAtIndexPath.genre;
-//    bookPageVC.language = bookAtIndexPath.language;
-//    bookPageVC.ebookID = bookAtIndexPath.ebookID;
-//    
-//    //    bookPageVC.ebookID = bookAtIndexPath.eBookNumbers;
-//    //    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
-//    //    bookPageVC.books = bookPageVC.books;
-//    
-//    //leo fix
-//    bookPageVC.book = bookAtIndexPath;
-//    
-//}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    PGBBookPageViewController *bookPageVC = segue.destinationViewController;
+    
+    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
+    PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
+    
+    bookPageVC.book = bookAtIndexPath;
+    
+}
 
 //login info
 - (IBAction)loginButtonTouched:(id)sender {

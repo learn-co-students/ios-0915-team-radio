@@ -24,6 +24,8 @@
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) PGBDataStore *dataStore;
 
+@property (nonatomic, strong)NSOperationQueue *bgQueue;
+@property (nonatomic, strong)NSOperationQueue *bookCoverBgQueue;
 
 @end
 
@@ -66,7 +68,7 @@
     
     //create table view custom cell
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
-    self.bookTableView.rowHeight = 70;
+    self.bookTableView.rowHeight = 80;
     
     self.bookTableView.delegate = self;
     self.bookTableView.dataSource = self;
@@ -95,6 +97,13 @@
     [romanceButton setTitle:@"Romance" forState:UIControlStateNormal];
     romanceButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
     
+    UIButton *randomButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [randomButton addTarget:self
+                      action:@selector(randomButtonTapped:)
+            forControlEvents:UIControlEventTouchUpInside];
+    [randomButton setTitle:@"Random" forState:UIControlStateNormal];
+    randomButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    
     //adding buttons to stack view
     UIStackView *genreButtonStackView = [[UIStackView alloc]init];
     genreButtonStackView.axis = UILayoutConstraintAxisVertical;
@@ -104,6 +113,7 @@
     
     [genreButtonStackView addArrangedSubview:fictionButton];
     [genreButtonStackView addArrangedSubview:romanceButton];
+    [genreButtonStackView addArrangedSubview:randomButton];
     
     genreButtonStackView.translatesAutoresizingMaskIntoConstraints = false;
     [self.defaultContentView addSubview:genreButtonStackView];
@@ -116,19 +126,98 @@
 
 -(void)fictionButtonTapped:(UIButton *)sender {
     NSLog(@"fiction button Tapped!");
-
-    [self.bookSearchBar becomeFirstResponder];
+    
     self.bookSearchBar.text = @"fiction";
+    [self.bookSearchBar becomeFirstResponder];
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
 -(void)romanceButtonTapped:(UIButton *)sender {
     NSLog(@"romance button tapped!");
     
-    [self.bookSearchBar becomeFirstResponder];
     self.bookSearchBar.text = @"romance";
+    [self.bookSearchBar becomeFirstResponder];
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
+
+-(void)randomButtonTapped:(UIButton *)sender {
+    NSLog(@"random button tapped");
+    
+    self.bookSearchBar.text = @"random";
+    [self.bookSearchBar becomeFirstResponder];
+    [self generateRandomBookByCount:100];
+}
+
+- (void)generateRandomBookByCount:(NSInteger)count{
+    //bg Queue
+    self.bgQueue = [[NSOperationQueue alloc]init];
+    self.bookCoverBgQueue = [[NSOperationQueue alloc]init];
+    
+    self.bgQueue.maxConcurrentOperationCount = 1;
+    self.bookCoverBgQueue.maxConcurrentOperationCount = 5;
+    
+    NSOperation *fetchBookOperation = [NSBlockOperation blockOperationWithBlock:^{
+        PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
+        [dataStore fetchData];
+        
+        NSMutableArray *booksGeneratedSoFar = [NSMutableArray new];
+        
+        for (NSInteger i = 0; i < count; i++) {
+            NSInteger randomNumber = arc4random_uniform((u_int32_t)dataStore.managedBookObjects.count);
+            
+            Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
+            
+            //if a book has already been shown, itll be added into the mutable array
+            //if the same book is called again, then i is lowered by 1, the for loops starts again, and so i is increased by 1
+            //this makes sure that there will always be 100 random numbers to check
+            if ([booksGeneratedSoFar containsObject:coreDataBook]) {
+                i--;
+                continue;
+            }
+            
+            PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
+            
+            if (realmBook) {
+                
+                NSOperation *fetchBookCoverOperation = [NSBlockOperation blockOperationWithBlock:^{
+                    
+                    NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:coreDataBook.eBookNumbers]];
+                    realmBook.bookCoverData = bookCoverData;
+                    
+                    if (i < self.books.count && self.books[i]) {  //fixed a crash bug
+                        
+                        PGBRealmBook *realmBook = self.books[i];
+                        realmBook.bookCoverData = bookCoverData;
+                        
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            [self.bookTableView reloadData];
+                        }];
+                        
+                    }
+                }];
+                
+                
+                [self.books addObject:realmBook];
+                [booksGeneratedSoFar addObject:coreDataBook]; //add to list of shown books
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    
+                    [self.bookTableView reloadData];
+                    
+                    [self.bookCoverBgQueue addOperation:fetchBookCoverOperation];
+                }];
+            } else {
+                
+                //Didn't find a book that we should display to user, resetting counter down by 1
+                i--;
+            }
+            
+        }
+    }];
+    
+    [self.bgQueue addOperation:fetchBookOperation];
+}
+
 
 #pragma UITableView DataSource Method ::
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -176,23 +265,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     PGBBookPageViewController *bookPageVC = segue.destinationViewController;
-    
+
     NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
     PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
-//    Book *bookAtIndexPath = self.books[selectedIndexPath.row];
     
-    if (bookAtIndexPath.title.length != 0) {
-        bookPageVC.titleBook = bookAtIndexPath.title;
-    } else {
-        bookPageVC.titleBook = bookAtIndexPath.friendlyTitle;
-    }
-    
-    bookPageVC.author = bookAtIndexPath.author;
-    bookPageVC.genre = bookAtIndexPath.genre;
-    bookPageVC.language = bookAtIndexPath.language;
-    bookPageVC.bookDescription = @"No description yet";
-    bookPageVC.ebookID = bookAtIndexPath.ebookID;
-//    bookPageVC.books = bookPageVC.books;
+    bookPageVC.book = bookAtIndexPath;
 }
 
 #pragma UISearchBar Method::
@@ -203,7 +280,7 @@
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
     
-    if ([self.bookSearchBar.text length] == 0) {
+    if (!self.bookSearchBar.text.length) {
         self.defaultContentView.hidden = NO;
     }
 }
@@ -220,22 +297,13 @@
     [self.books removeAllObjects];
     
     for (Book *coreDataBook in coreDataBooks) {
-        PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
-        realmBook.title = coreDataBook.eBookTitles;
-        realmBook.friendlyTitle = coreDataBook.eBookFriendlyTitles;
-        realmBook.author = coreDataBook.eBookAuthors;
-        realmBook.genre = coreDataBook.eBookGenres;
-        realmBook.language = coreDataBook.eBookLanguages;
-        realmBook.ebookID  = coreDataBook.eBookNumbers;
-        //not getting book cover images here
-        [self.books addObject:realmBook];
+        PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
+        
+        if (realmBook) {
+            [self.books addObject:realmBook];
+        }
     }
-
     [self.bookTableView reloadData];
-    
-//    if ([searchText length] == 0) {
-//        [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:self.bookSearchBar afterDelay:0];
-//    }
 }
 
 - (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar {

@@ -7,8 +7,11 @@
 //
 
 #import "PGBMainSocialTableViewController.h"
+#import "PGBChatTableViewCell.h"
 
 @interface PGBMainSocialTableViewController ()
+
+@property (strong, nonatomic) NSMutableArray *arrayOfOpenBookChats;
 
 @end
 
@@ -17,11 +20,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"PGBChatTableViewCell" bundle:nil] forCellReuseIdentifier:@"bookWithChatCell"];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
+    
+    [query whereKeyExists:@"objectId"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
+            for (PFObject *object in objects) {
+                
+//                NSDictionary *chatRoomInfo = [NSDictionary new];
+//                chatRoomInfo = @{ @"chatRoomId" : object.objectId,
+//                                  @"bookId" : object.bookId,
+//                                  @"bookTitle" : object.booktitle,
+//                                  @"topic" : objec.topic };
+//                
+//                
+                
+//                [self.arrayOfOpenBookChats addObject:chatRoomInfo];
+                [self.arrayOfOpenBookChats addObject:objects];
+            }
+            [self.tableView reloadData];
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,25 +61,21 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    
-    return 3;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return 3;
+    return self.arrayOfOpenBookChats.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
-    
-    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
+//    tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
+    PGBChatTableViewCell *cell = (PGBChatTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
     
     return cell;
 }
-
 
 /*
 // Override to support conditional editing of the table view.
