@@ -133,9 +133,6 @@
     
     PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
     
-    //olivia
-
-    
     //leo here
     realmBook.ebookID = coreDataBook.eBookNumbers;
     realmBook.genre = coreDataBook.eBookGenres;
