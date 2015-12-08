@@ -37,15 +37,16 @@
             
             for (PFObject *object in objects) {
                 
-                NSDictionary *chatRoomInfo = [NSDictionary new];
-                chatRoomInfo = @{ @"chatRoomId" : object.objectId,
-                                  @"bookId" : object.bookId,
-                                  @"bookTitle" : object.booktitle,
-                                  @"topic" : objec.topic };
+//                NSDictionary *chatRoomInfo = [NSDictionary new];
+//                chatRoomInfo = @{ @"chatRoomId" : object.objectId,
+//                                  @"bookId" : object.bookId,
+//                                  @"bookTitle" : object.booktitle,
+//                                  @"topic" : objec.topic };
+//                
+//                
                 
-                
-                
-                [self.arrayOfOpenBookChats addObject:chatRoomInfo];
+//                [self.arrayOfOpenBookChats addObject:chatRoomInfo];
+                [self.arrayOfOpenBookChats addObject:objects];
             }
             [self.tableView reloadData];
         }];
