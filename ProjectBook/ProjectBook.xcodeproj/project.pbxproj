@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C094AEB1C167ECE00F21208 /* PGBParseAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C094AEA1C167ECE00F21208 /* PGBParseAPIClient.m */; };
 		4C25FFA61C03B7E200B5C8E3 /* Book+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFA31C03B7E200B5C8E3 /* Book+CoreDataProperties.m */; };
 		4C25FFA71C03B7E200B5C8E3 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFA51C03B7E200B5C8E3 /* Book.m */; };
 		4C25FFAB1C03B83B00B5C8E3 /* PGBDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFAA1C03B83B00B5C8E3 /* PGBDataStore.m */; };
@@ -99,6 +100,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C094AE91C167ECE00F21208 /* PGBParseAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBParseAPIClient.h; sourceTree = "<group>"; };
+		4C094AEA1C167ECE00F21208 /* PGBParseAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBParseAPIClient.m; sourceTree = "<group>"; };
 		4C25FFA21C03B7E200B5C8E3 /* Book+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Book+CoreDataProperties.h"; sourceTree = "<group>"; };
 		4C25FFA31C03B7E200B5C8E3 /* Book+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Book+CoreDataProperties.m"; sourceTree = "<group>"; };
 		4C25FFA41C03B7E200B5C8E3 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 				CB3C07971C05063A00235D78 /* hoppers.gif */,
 				CB3C07981C05063A00235D78 /* PGBGoodreadsAPIClient.h */,
 				CB3C07991C05063A00235D78 /* PGBGoodreadsAPIClient.m */,
+				4C094AE91C167ECE00F21208 /* PGBParseAPIClient.h */,
+				4C094AEA1C167ECE00F21208 /* PGBParseAPIClient.m */,
 				CB3C079A1C05063A00235D78 /* PGBIntroViewController.h */,
 				CB3C079B1C05063A00235D78 /* PGBIntroViewController.m */,
 				4C25FFA81C03B7FF00B5C8E3 /* CoreDataModel */,
@@ -671,6 +676,7 @@
 				CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */,
 				CBFD3F911BFBB250002CE0A4 /* PGBDownloadHelper.m in Sources */,
 				4C9597AB1BFBEB2000BBD558 /* PGBRealmUser.m in Sources */,
+				4C094AEB1C167ECE00F21208 /* PGBParseAPIClient.m in Sources */,
 				4C3FDE911C0FD95F00F5B8FA /* PGBTabBarViewController.m in Sources */,
 				A77A08F91BFBE78700CA62F8 /* PGBparsingThroughText.m in Sources */,
 				4C25FFAB1C03B83B00B5C8E3 /* PGBDataStore.m in Sources */,

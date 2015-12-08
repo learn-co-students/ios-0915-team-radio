@@ -73,9 +73,9 @@
     //    }];
     
     //bookmarkstuff
-    //    UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
-    //    UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
-    //    [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
+        UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
+        UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
+        [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
     
 }
 
