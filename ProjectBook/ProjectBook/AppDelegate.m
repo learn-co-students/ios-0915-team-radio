@@ -29,10 +29,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  //    PGBGoodreadsAPIClient *goodReads = [[PGBGoodreadsAPIClient alloc] init];
+
+    
+//    PGBGoodreadsAPIClient *goodReads = [[PGBGoodreadsAPIClient alloc] init];
 //    [goodReads methodToGetDescriptions];
 //    NSLog(@"%@", [goodReads methodToGetDescriptions]);
-//    
+    
+
     
     //for banner image
 //    UIImage *image = [[UIImage imageNamed:@"NOVEL_Banner"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];

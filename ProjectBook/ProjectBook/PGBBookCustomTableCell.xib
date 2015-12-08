@@ -17,7 +17,6 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_book_cover" translatesAutoresizingMaskIntoConstraints="NO" id="TaM-gH-GAi">
                         <rect key="frame" x="0.0" y="0.0" width="113" height="126"/>
-                        <animations/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hjd-jQ-7HM" userLabel="Labels">
                         <rect key="frame" x="113" y="0.0" width="453" height="126"/>
@@ -27,27 +26,23 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiL-8P-xAE">
                                         <rect key="frame" x="0.0" y="0.0" width="437" height="31"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIa-gk-zA2">
                                         <rect key="frame" x="0.0" y="34" width="437" height="32"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZ9-An-Zam">
                                         <rect key="frame" x="0.0" y="69" width="437" height="31"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <constraints>
                                     <constraint firstItem="PiL-8P-xAE" firstAttribute="width" secondItem="xxk-MA-qE2" secondAttribute="width" id="7xU-Re-rVQ"/>
                                     <constraint firstItem="jIa-gk-zA2" firstAttribute="width" secondItem="xxk-MA-qE2" secondAttribute="width" id="NBW-Mg-ixQ"/>
@@ -55,7 +50,6 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <animations/>
                         <constraints>
                             <constraint firstItem="xxk-MA-qE2" firstAttribute="centerY" secondItem="Hjd-jQ-7HM" secondAttribute="centerY" id="5Ym-bh-3ut"/>
                             <constraint firstItem="xxk-MA-qE2" firstAttribute="height" secondItem="Hjd-jQ-7HM" secondAttribute="height" multiplier="0.8" id="MRW-4Y-PCL"/>
@@ -64,7 +58,6 @@
                         </constraints>
                     </view>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="TaM-gH-GAi" firstAttribute="height" secondItem="xfd-hc-Uwr" secondAttribute="height" id="8Ia-Iy-iwr"/>
                     <constraint firstItem="Hjd-jQ-7HM" firstAttribute="top" secondItem="xfd-hc-Uwr" secondAttribute="top" id="9qd-a2-EzY"/>
@@ -78,7 +71,6 @@
                     <constraint firstItem="TaM-gH-GAi" firstAttribute="trailing" secondItem="Hjd-jQ-7HM" secondAttribute="leading" id="h03-C1-KSO"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="authorLabel" destination="jIa-gk-zA2" id="yb4-2h-jY5"/>
                 <outlet property="bookCover" destination="TaM-gH-GAi" id="VY7-ke-Kjq"/>
