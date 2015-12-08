@@ -65,14 +65,16 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     
     //coreData
-    //commented by leo
-    //    [PGBRealmBook generateTestBookData];
-    //    self.books = [PGBRealmBook getUserBookDataInArray];
-    //    self.books = @[self.books[0], self.books[1], self.books[2]];
+//    commented by leo
+//        [PGBRealmBook generateTestBookData];
+//        self.books = [PGBRealmBook getUserBookDataInArray];
+//        self.books = @[self.books[0], self.books[1], self.books[2]];
     self.books = [NSMutableArray arrayWithCapacity:100];
 //    [self generateRandomBookByCount:10];
     [self generateBook];
-//    [self generateClassics];
+//    [PGBRealmBook generateClassicBooks];
+//    self.books = [[PGBRealmBook getUserBookDataInArray] mutableCopy];
+//    [self.books addObject:self.books[0]];
     
     //xib
     
@@ -101,7 +103,7 @@
 //    for (Book *coreDataBook in dataStore.managedBookObjects) {
 //        [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
 //    }
-    for (NSInteger i = 0; i < 15; i++) {
+    for (NSInteger i = 0; i < 30; i++) {
         PGBRealmBook *newBook = [PGBRealmBook createPGBRealmBookWithBook:dataStore.managedBookObjects[i]];
         if (newBook) {
              [self.books addObject:newBook];
@@ -215,7 +217,6 @@
 //collection view
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    
     NSLog(@"book count %lu", self.books.count);
     return self.books.count;
 }
@@ -235,14 +236,14 @@
 //            cell.titleLabel.text = @"THINGS";
 //            cell.authorLabel.text = @"AN AUTHOR";
             
-//            UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+            UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
 //
-//            if (!bookCoverImage) {
+            if (!bookCoverImage) {
                 cell.titleTV.text = book.title;
                 cell.authorLabel.text = book.author;
-//            } else if (bookCoverImage) {
-//                cell.bookCover.image = bookCoverImage;
-//            }
+            } else if (bookCoverImage) {
+                cell.bookCover.image = bookCoverImage;
+            }
 //            cell.titleTV.adjustsFontSizeToFitWidth = YES;
 //            cell.titleTV.minimumFontSize = 0;
 //            cell.authorLabel.adjustsFontSizeToFitWidth = YES;
@@ -252,11 +253,21 @@
     return cell;
 }
 
+//segue
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"bookPageSegue" sender:self];
+    
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     PGBBookPageViewController *bookPageVC = segue.destinationViewController;
     
-    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
+    NSArray *arrayOfIndexPaths = [self.bookCollectionView indexPathsForSelectedItems];
+    
+    NSIndexPath *selectedIndexPath = [arrayOfIndexPaths firstObject];
+    
+//    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
     PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
     
     bookPageVC.book = bookAtIndexPath;

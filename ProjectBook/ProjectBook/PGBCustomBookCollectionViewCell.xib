@@ -31,7 +31,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bear" translatesAutoresizingMaskIntoConstraints="NO" id="3XR-oV-slS">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3XR-oV-slS">
                         <rect key="frame" x="0.0" y="0.0" width="90" height="140"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50B-cf-qXE" userLabel="Title">
@@ -72,7 +72,6 @@
             <size key="customSize" width="278" height="402"/>
             <variation key="default">
                 <mask key="subviews">
-                    <exclude reference="3XR-oV-slS"/>
                     <exclude reference="50B-cf-qXE"/>
                 </mask>
             </variation>
@@ -85,7 +84,4 @@
             <point key="canvasLocation" x="559" y="265"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="bear" width="500" height="334"/>
-    </resources>
 </document>

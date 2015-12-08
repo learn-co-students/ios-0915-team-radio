@@ -32,11 +32,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnu-2K-HE5" userLabel="Overall Scroll View">
-                                <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fnu-2K-HE5" userLabel="Overall Scroll View">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9OG-6H-cgF" userLabel="Overall Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9OG-6H-cgF" userLabel="Overall Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U1Y-Pf-EIo" userLabel="Horizontal Scoll View">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
@@ -108,6 +108,9 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
+                                                        <connections>
+                                                            <segue destination="BYZ-38-t0r" kind="show" identifier="bookPageSegue" id="S7s-LL-ndt"/>
+                                                        </connections>
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
@@ -149,12 +152,13 @@
                                                 </cells>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.78430957199999995" green="1" blue="0.90738587059999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="9G8-gs-hXd" firstAttribute="leading" secondItem="9OG-6H-cgF" secondAttribute="leading" id="FQh-yP-S7E"/>
                                             <constraint firstItem="bG3-i2-RbI" firstAttribute="trailing" secondItem="9OG-6H-cgF" secondAttribute="trailing" id="MTq-BZ-IyG"/>
                                             <constraint firstItem="9G8-gs-hXd" firstAttribute="trailing" secondItem="9OG-6H-cgF" secondAttribute="trailing" id="Nu0-0m-USf"/>
                                             <constraint firstItem="fYR-Z4-TFx" firstAttribute="bottom" secondItem="xp5-nd-QDU" secondAttribute="top" id="Qhe-gA-Cw6"/>
+                                            <constraint firstItem="xp5-nd-QDU" firstAttribute="bottom" secondItem="9OG-6H-cgF" secondAttribute="bottom" id="W6U-c9-mOH"/>
                                             <constraint firstItem="bG3-i2-RbI" firstAttribute="top" secondItem="U1Y-Pf-EIo" secondAttribute="bottom" id="aLr-h4-gqr"/>
                                             <constraint firstItem="U1Y-Pf-EIo" firstAttribute="trailing" secondItem="9OG-6H-cgF" secondAttribute="trailing" id="awr-7i-T0k"/>
                                             <constraint firstItem="U1Y-Pf-EIo" firstAttribute="top" secondItem="9OG-6H-cgF" secondAttribute="top" id="cHe-bX-1sv"/>
@@ -172,9 +176,7 @@
                                 <constraints>
                                     <constraint firstItem="9OG-6H-cgF" firstAttribute="leading" secondItem="fnu-2K-HE5" secondAttribute="leading" id="Hrp-pV-z7d"/>
                                     <constraint firstItem="9OG-6H-cgF" firstAttribute="top" secondItem="fnu-2K-HE5" secondAttribute="top" id="NxP-1Q-KdN"/>
-                                    <constraint firstItem="9OG-6H-cgF" firstAttribute="bottom" secondItem="fnu-2K-HE5" secondAttribute="bottom" id="Odc-fL-xi6"/>
                                     <constraint firstItem="9OG-6H-cgF" firstAttribute="trailing" secondItem="fnu-2K-HE5" secondAttribute="trailing" id="TmF-VV-ODN"/>
-                                    <constraint firstItem="9OG-6H-cgF" firstAttribute="centerY" secondItem="fnu-2K-HE5" secondAttribute="centerY" id="gYz-Td-V4K"/>
                                     <constraint firstItem="9OG-6H-cgF" firstAttribute="centerX" secondItem="fnu-2K-HE5" secondAttribute="centerX" id="kpZ-ea-fY2"/>
                                 </constraints>
                             </scrollView>
@@ -184,9 +186,9 @@
                             <constraint firstItem="bG3-i2-RbI" firstAttribute="height" secondItem="uDS-Gw-5iD" secondAttribute="height" multiplier="1/16" id="0By-Eb-gOq"/>
                             <constraint firstItem="fnu-2K-HE5" firstAttribute="width" secondItem="uDS-Gw-5iD" secondAttribute="width" id="2Tb-1f-kWr"/>
                             <constraint firstItem="fnu-2K-HE5" firstAttribute="leading" secondItem="uDS-Gw-5iD" secondAttribute="leading" id="3nB-MF-qMX"/>
-                            <constraint firstItem="fnu-2K-HE5" firstAttribute="height" secondItem="uDS-Gw-5iD" secondAttribute="height" id="4UA-Wd-EVi"/>
                             <constraint firstItem="xp5-nd-QDU" firstAttribute="height" secondItem="uDS-Gw-5iD" secondAttribute="height" multiplier="1/4" id="5IB-E4-9DU"/>
                             <constraint firstItem="fnu-2K-HE5" firstAttribute="trailing" secondItem="uDS-Gw-5iD" secondAttribute="trailing" id="DW2-MY-4Qv"/>
+                            <constraint firstItem="fnu-2K-HE5" firstAttribute="bottom" secondItem="fT6-tu-SX3" secondAttribute="top" id="MOt-Dy-I4S"/>
                             <constraint firstItem="9G8-gs-hXd" firstAttribute="height" secondItem="uDS-Gw-5iD" secondAttribute="height" multiplier="1/4" id="isi-sV-Aci"/>
                             <constraint firstItem="fYR-Z4-TFx" firstAttribute="height" secondItem="uDS-Gw-5iD" secondAttribute="height" multiplier="1/16" id="sRn-Rz-son"/>
                             <constraint firstItem="fnu-2K-HE5" firstAttribute="top" secondItem="0yy-cw-rBm" secondAttribute="bottom" id="y8T-Of-Fa8"/>
@@ -274,7 +276,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cgw-bP-CX6">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgw-bP-CX6">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1zv-Hm-lSE" userLabel="SV ContentView">
