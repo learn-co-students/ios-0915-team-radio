@@ -73,7 +73,7 @@
     self.books = [NSMutableArray arrayWithCapacity:100];
 //    [self generateRandomBookByCount:10];
     [self generateBook];
-//    [PGBRealmBook generateClassicBooks];
+//    [self generateClassics];
 //    self.books = [[PGBRealmBook getUserBookDataInArray] mutableCopy];
 //    [self.books addObject:self.books[0]];
     
@@ -292,11 +292,11 @@
             
             UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
 //
-            if (!bookCoverImage) {
+            if (bookCoverImage) {
+                cell.bookCover.image = bookCoverImage;
+            } else {
                 cell.titleTV.text = book.title;
                 cell.authorLabel.text = book.author;
-            } else if (bookCoverImage) {
-                cell.bookCover.image = bookCoverImage;
             }
 //            cell.titleTV.adjustsFontSizeToFitWidth = YES;
 //            cell.titleTV.minimumFontSize = 0;

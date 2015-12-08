@@ -8,7 +8,6 @@
 
 #import "PGBBookPageViewController.h"
 #import "PGBDownloadHelper.h"
-#import "PGBGoodreadsAPIClient.h"
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Masonry/Masonry.h>
 
@@ -36,8 +35,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *optionsButton;
 @property (weak, nonatomic) IBOutlet UIImageView *bookCoverImageView;
 
-@property (strong, nonatomic) PGBGoodreadsAPIClient *goodreadsAPI;
-           
 //@property (weak, nonatomic) IBOutlet UIView *webview;
 
 @end
@@ -50,14 +47,24 @@
     
     
     self.bookDescriptionTV.editable = NO;
-    NSString *description = [self.goodreadsAPI methodToGetDescriptions];
+    self.bookDescriptionTV.text = @"";
+    PGBGoodreadsAPIClient *goodreadsAPI = [[PGBGoodreadsAPIClient alloc] init];
+    [goodreadsAPI getDescriptionForBookTitle:self.book.title completion:^(NSString *bookDescription) {
 
-    
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                if ([bookDescription isEqual:@""]) {
+                    self.bookDescriptionTV.text = @"There is no description for this book.";
+                }else{
+                    self.bookDescriptionTV.text = bookDescription;
+                }
+            }];
+    }];
+
     self.titleLabel.text = self.book.title;
     self.authorLabel.text = self.book.author;
     self.genreLabel.text = self.book.genre;
     self.languageLabel.text = self.book.language;
-    self.bookDescriptionTV.text = description;
+
     
 
     if (self.book.bookCoverData) {
@@ -86,12 +93,10 @@
 
 -(void)getReviewswithCompletion:(void (^)(BOOL))completionBlock
 {
-    [PGBGoodreadsAPIClient getReviewsWithCompletion:self.book.author bookTitle:self.book.title completion:^(NSDictionary *reviewDict) {
-        {
+    [PGBGoodreadsAPIClient getReviewsForBook:self.book.title completion:^(NSDictionary *reviewDict) {
             
             self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];
-            
-            
+        
             NSData *htmlData = [self.htmlString dataUsingEncoding:NSUTF8StringEncoding];
             
             NSURL *baseURL = [NSURL URLWithString:@"https://www.goodreads.com"];
@@ -118,7 +123,6 @@
             
             //            [self.webView.heightAnchor constraintEqualToConstant:300];
             //            [self.webViewContainer layoutSubviews];
-        }
         completionBlock(YES);
     }];
 }

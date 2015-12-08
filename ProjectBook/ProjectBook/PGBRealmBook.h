@@ -51,6 +51,9 @@
 + (NSURL *)createBookCoverURL:(NSString *)eBookNumber;
 + (BOOL)validateBookDataWithRealmBook:(PGBRealmBook *)realmBook;
 
+- (NSString *)getAuthorFromFriendlyTitle:(NSString *)friendlyTitle;
+- (BOOL)checkFriendlyTitleIfItHasAuthor:(NSString *)friendlyTitle;
+
 
 //override primary key
 + (NSString *)primaryKey;

@@ -29,21 +29,23 @@ NSString *const GOODREADS_SECRET = @"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno"
 NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 
 
-+(void)getReviewsWithCompletion:(NSString *)author bookTitle:(NSString *)bookTitle completion:(void (^)(NSDictionary *))completionBlock
++ (void)getReviewsForBook:(NSString *)bookTitle completion:(void (^)(NSDictionary *))completionBlock
 {
-    
-    //    bookTitle = @"Norwegian Wood";
-    //    author = @"Haruki Murakami";
     NSString *titleWithPluses = [bookTitle stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *goodreadsURL = [[NSMutableString alloc]init];
     
+    PGBRealmBook *book = [[PGBRealmBook alloc]init];
+    NSString *author = @"";
     
-    //    if (author && bookTitle) {
-    //        NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    //        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses, authorWithPluses];
-    //    } else
-    //
-    if (bookTitle) {
+    //checks if friendlytitle has author, if so, parses out author
+    if ([book checkFriendlyTitleIfItHasAuthor:book.friendlyTitle]) {
+        author = [book getAuthorFromFriendlyTitle:book.friendlyTitle];
+    }
+    
+    if (author && bookTitle) {
+        NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses, authorWithPluses];
+    } else if (bookTitle) {
         goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
         
         //LEO bug fix here - URL string can't contain accent cahracters - example for failure:https://www.goodreads.com/book/title.json?key=AckMqnduhbH8xQdja2Nw&title=The+Ancien+Régime
@@ -62,7 +64,7 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Fail: %@",error.localizedDescription);
     }];
-
+    
 }
 
 
@@ -78,35 +80,33 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     return lines;
 }
 
--(NSString *)getURLAsString:(NSString *)URL
+- (void)getDescriptionForBookTitle:(NSString *)bookTitle completion:(void (^)(NSString *description))completion
 {
-    
-    //    NSString *tempURL = @"https://www.goodreads.com/book/title.xml?key=AckMqnduhbH8xQdja2Nw&title=Hound+of+the+Baskervilles&author=Arthur+Conan+Doyle";
-    
     __block NSString *contentOfUrl = @"";
     // __weak typeof(self) tmpself = self;
     
+    NSString *titleWithPluses = [bookTitle stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *URL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
+    NSLog(@"url as string:%@", URL);
     NSURLSession *aSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
     [[aSession dataTaskWithURL:[NSURL URLWithString:URL] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            
             if (((NSHTTPURLResponse *)response).statusCode == 200) {
                 if (data) {
                     contentOfUrl = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                    //NSLog(@"This is working: %@", contentOfUrl);
+                    NSLog(@"This is working: %@", contentOfUrl);
+                    NSString *bookDescription = [self getDescriptionWithContentsOfURLString:contentOfUrl];
+                    completion(bookDescription);
                 }
             }
-            [self methodToGetDescriptionsWithString:contentOfUrl];
-        }];
     }] resume];
-    
-    //NSLog(@"Are you working: %@", contentOfUrl);
-    return nil;
 }
 
-
+-(NSString*) getDescriptionWithContentsOfURLString:(NSString*) contentsOfURL{
+    NSDictionary *dictionaryOfDescriptionAndURLS = [self methodToGetDescriptionsWithString:contentsOfURL];
+    NSString *bookDescription = dictionaryOfDescriptionAndURLS[@"Book Description"];
+    return bookDescription;
+}
 
 -(NSDictionary *)methodToGetDescriptionsWithString:(NSString *)string
 {
@@ -127,11 +127,18 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
             [arrayOfImageUrls addObject:line];
         }
     }
-    
+
     NSString *bookDescription = arrayOfDescription[0];
-    bookDescription = [bookDescription substringFromIndex:24];
-    bookDescription = [bookDescription substringToIndex:bookDescription.length-17];
+    bookDescription = [bookDescription stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    BOOL bookHasADescription = ![bookDescription isEqual:@"<description></description>"];
     
+    if (bookHasADescription) {
+        bookDescription = [bookDescription substringFromIndex:24];
+        bookDescription = [bookDescription substringToIndex:bookDescription.length-17];
+    } else {
+        bookDescription = @"";
+    }
+
     NSMutableArray *cleanedUpArrayOfImageUrls = [NSMutableArray new];
     
     for (NSString *imageURLString in arrayOfImageUrls)
