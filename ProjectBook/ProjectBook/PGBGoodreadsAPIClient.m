@@ -127,8 +127,6 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
             [arrayOfImageUrls addObject:line];
         }
     }
-    //    NSLog(@"array:%@", arrayOfDescription);
-    //    NSLog(@"urls:%@", arrayOfImageUrls);
     
     NSString *bookDescription = arrayOfDescription[0];
     bookDescription = [bookDescription substringFromIndex:24];
@@ -142,11 +140,9 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
         imageURL = [imageURL substringToIndex:imageURL.length-3];
         [cleanedUpArrayOfImageUrls addObject:imageURL];
     }
-    //    NSLog(@"Book Description:%@", bookDescription);
-    //    NSLog(@"imageURLS:%@", cleanedUpArrayOfImageUrls);
     
     NSDictionary *dictionaryOfDescriptionAndURLS = @{@"Book Description":bookDescription,
-                                                     @"Image URLS":cleanedUpArrayOfImageUrls,
+                                                     @"Image URLS":[cleanedUpArrayOfImageUrls firstObject],
                                                      };
     NSLog(@"dictionary:%@", dictionaryOfDescriptionAndURLS);
     return dictionaryOfDescriptionAndURLS;
