@@ -12,15 +12,11 @@
 #import "PGBBookPageViewController.h"
 #import "PGBRealmBook.h"
 #import "PGBGoodreadsAPIClient.h"
+#import "PGBCustomBookCollectionViewCell.h"
 
 #import "PGBLoginViewController.h"
 #import "PGBSignUpViewController.h"
-
-#import <XMLDictionary.h>
-#import <QuartzCore/QuartzCore.h>
-#import "SVPullToRefresh.h"
-
-#import <GROAuth.h>
+#import "PGBParseAPIClient.h"
 
 #import "PGBDataStore.h"
 #import "Book.h"
@@ -42,9 +38,8 @@
 @property (nonatomic, assign) int initialPage;
 @property (strong, nonatomic) NSMutableArray *list;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
-//@property (nonatomic, readwrite) SVPullToRefreshPosition position;
 
-@property (strong, nonatomic) PGBBookCustomTableCell *customCell;
+@property (strong, nonatomic) PGBCustomBookCollectionViewCell *bookCoverCell;
 
 //pagination
 //@property (strong, nonatomic) NSMutableArray *dataArray;
@@ -63,111 +58,202 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.bookTableView setDelegate:self];
-    [self.bookTableView setDataSource:self];
+    [self.bookCollectionView setDelegate:self];
+    [self.bookCollectionView setDataSource:self];
     
     //logo for banner
-    
-    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];;
+    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     
     //coreData
-    //commented by leo
-    //    [PGBRealmBook generateTestBookData];
-    //    self.books = [PGBRealmBook getUserBookDataInArray];
-    //    self.books = @[self.books[0], self.books[1], self.books[2]];
+//    commented by leo
+//        [PGBRealmBook generateTestBookData];
+//        self.books = [PGBRealmBook getUserBookDataInArray];
+//        self.books = @[self.books[0], self.books[1], self.books[2]];
     self.books = [NSMutableArray arrayWithCapacity:100];
-    [self generateRandomBookByCount:100];
+//    [self generateRandomBookByCount:10];
+    [self generateBook];
+//    [PGBRealmBook generateClassicBooks];
+//    self.books = [[PGBRealmBook getUserBookDataInArray] mutableCopy];
+//    [self.books addObject:self.books[0]];
     
     //xib
-    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     
-    self.bookTableView.rowHeight = 80;
+    [self.bookCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
     
-    
+    self.bookCollectionView.backgroundColor = [UIColor whiteColor];
+    self.bookCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
     if ([PFUser currentUser] && ![self.loginButton.title isEqual: @"👤"]) {
         [self changeLoginButtonToProfileIcon];
+        
     } else if (![PFUser currentUser] && ![self.loginButton.title isEqual: @"Login"]){
         [self.loginButton setTitle:@"Login"];
     }
-    
-}
 
-- (void)generateRandomBookByCount:(NSInteger)count{
-    //bg Queue
-    self.bgQueue = [[NSOperationQueue alloc]init];
-    self.bookCoverBgQueue = [[NSOperationQueue alloc]init];
     
-    self.bgQueue.maxConcurrentOperationCount = 1;
-    self.bookCoverBgQueue.maxConcurrentOperationCount = 5;
+    //leo test parse here
+//        self.books = [PGBRealmBook getUserBookDataInArray];
     
-    NSOperation *fetchBookOperation = [NSBlockOperation blockOperationWithBlock:^{
-        PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
-        [dataStore fetchData];
+
+    [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
+        NSLog(@"user data: %@", data);
         
-        NSMutableArray *booksGeneratedSoFar = [NSMutableArray new];
-        
-        for (NSInteger i = 0; i < count; i++) {
-            NSInteger randomNumber = arc4random_uniform((u_int32_t)dataStore.managedBookObjects.count);
+        PFObject *user = data;
+        if (user) {
+            //            [PGBParseAPIClient fetchUserBookDataWithUserObject:user andCompletion:^(NSArray *objects) {
+            //                NSLog(@"book data: %@",objects);
+            //            }];
+            //            [PGBParseAPIClient storeUserBookDataWithUserObject:user andCompletion:^{
+            //                NSLog(@"saved book");
+            //            }];
             
-            Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
+            [PGBRealmBook deleteAllUserBookData];
             
-            //if a book has already been shown, itll be added into the mutable array
-            //if the same book is called again, then i is lowered by 1, the for loops starts again, and so i is increased by 1
-            //this makes sure that there will always be 100 random numbers to check
-            if ([booksGeneratedSoFar containsObject:coreDataBook]) {
-                i--;
-                continue;
-            }
+//            PGBRealmBook *newBook = [[PGBRealmBook alloc]init];
+//            newBook.title = @"old BOok2";
+//            newBook.ebookID = @"6666";
+//            newBook.author = @"Leo Feng";
+//            newBook.genre = @"Fiction";
+//            newBook.language = @"en";
+//            newBook.bookDescription = @"just a test description";
+//            newBook.isDownloaded = YES;
+//            newBook.isBookmarked = YES;
+//            
+//            [PGBParseAPIClient storeUserBookDataWithUserObject:user realmBookObject:newBook andCompletion:^(PFObject *bookObject) {
+//                
+//            }];
             
-            PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
-            
-            if (realmBook) {
-                
-                NSOperation *fetchBookCoverOperation = [NSBlockOperation blockOperationWithBlock:^{
+            [PGBParseAPIClient fetchUserBookDataWithUserObject:user andCompletion:^(NSArray *objects) {
+                for (NSDictionary *book in objects) {
+                    PGBRealmBook *newBook = [[PGBRealmBook alloc]init];
+                    newBook.ebookID = book[@"eBookID"];
+                    newBook.title = book[@"eBookTitle"];
+                    newBook.isDownloaded = [book[@"isDownloaded"] integerValue];
+                    newBook.isBookmarked = [book[@"isBookmarked"] integerValue];
                     
-                    NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:coreDataBook.eBookNumbers]];
-                    realmBook.bookCoverData = bookCoverData;
-                    
-                     if (i < self.books.count && self.books[i]) {  //fixed a crash bug
-                        
-                        PGBRealmBook *realmBook = self.books[i];
-                        realmBook.bookCoverData = bookCoverData;
-                        
-                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                            [self.bookTableView reloadData];
-                        }];
-                        
-                    }
-                }];
-                
-                
-                [self.books addObject:realmBook];
-                [booksGeneratedSoFar addObject:coreDataBook]; //add to list of shown books
-                
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    
-                    [self.bookTableView reloadData];
-                    
-                    [self.bookCoverBgQueue addOperation:fetchBookCoverOperation];
-                }];
-            } else {
-                
-                //Didn't find a book that we should display to user, resetting counter down by 1
-                i--;
-            }
+                    [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+                        return newBook;
+                    }];
+                }
+            }];
             
         }
     }];
     
-    [self.bgQueue addOperation:fetchBookOperation];
+
+
 }
+
+- (void)generateBook {
+    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
+    [dataStore fetchData];
+    
+//    for (Book *coreDataBook in dataStore.managedBookObjects) {
+//        [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
+//    }
+    for (NSInteger i = 0; i < 30; i++) {
+        PGBRealmBook *newBook = [PGBRealmBook createPGBRealmBookWithBook:dataStore.managedBookObjects[i]];
+        if (newBook) {
+             [self.books addObject:newBook];
+        }
+    }
+    
+    [self.bookCollectionView reloadData];
+}
+
+- (void)generateClassics {
+    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
+    [dataStore fetchData];
+    
+    [PGBRealmBook generateClassicBooks];
+    for (Book *book in dataStore.managedBookObjects) {
+        [PGBRealmBook createPGBRealmBookWithBook:book];
+        if (book)
+        {
+            [self.books addObject:book];
+        }
+    }
+    
+    
+    [self.bookCollectionView reloadData];
+}
+
+//- (void)generateRandomBookByCount:(NSInteger)count{
+//    NSLog(@"genraing books");
+//    //bg Queue
+//    self.bgQueue = [[NSOperationQueue alloc]init];
+//    self.bookCoverBgQueue = [[NSOperationQueue alloc]init];
+//    
+//    self.bgQueue.maxConcurrentOperationCount = 1;
+//    self.bookCoverBgQueue.maxConcurrentOperationCount = 5;
+//    
+//    NSOperation *fetchBookOperation = [NSBlockOperation blockOperationWithBlock:^{
+//        PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
+//        [dataStore fetchData];
+//        
+//        NSMutableArray *booksGeneratedSoFar = [NSMutableArray new];
+//        
+//        for (NSInteger i = 0; i < count; i++) {
+//            NSInteger randomNumber = arc4random_uniform((u_int32_t)dataStore.managedBookObjects.count);
+//            
+//            Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
+//            
+//            //if a book has already been shown, itll be added into the mutable array
+//            //if the same book is called again, then i is lowered by 1, the for loops starts again, and so i is increased by 1
+//            //this makes sure that there will always be 100 random numbers to check
+//            if ([booksGeneratedSoFar containsObject:coreDataBook]) {
+//                i--;
+//                continue;
+//            }
+//            
+//            PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
+//            
+//            if (realmBook) {
+//                
+//                NSOperation *fetchBookCoverOperation = [NSBlockOperation blockOperationWithBlock:^{
+//                    
+//                    NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:coreDataBook.eBookNumbers]];
+//                    realmBook.bookCoverData = bookCoverData;
+//                    
+//                     if (i < self.books.count && self.books[i]) {  //fixed a crash bug
+//                        
+//                        PGBRealmBook *realmBook = self.books[i];
+//                        realmBook.bookCoverData = bookCoverData;
+//                        
+//                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                            [self.bookCollectionView reloadData];
+//                        }];
+//                        
+//                    }
+//                }];
+//                
+//                
+//                [self.books addObject:realmBook];
+//                [booksGeneratedSoFar addObject:coreDataBook]; //add to list of shown books
+//                
+//                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                    
+//                    [self.bookCollectionView reloadData];
+//                    
+//                    [self.bookCoverBgQueue addOperation:fetchBookCoverOperation];
+//                }];
+//            } else {
+//                
+//                //Didn't find a book that we should display to user, resetting counter down by 1
+//                i--;
+//            }
+//            
+//        }
+//    }];
+//    
+//    [self.bgQueue addOperation:fetchBookOperation];
+//}
 
 - (NSURL *)createBookCoverURL:(NSString *)eBookNumber{
     NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
@@ -182,197 +268,60 @@
     return url;
 }
 
--(void) cellDownloadButtonTapped:(UIButton*) button
+//collection view
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    //create modal view to show when downloading, show view once downloaded
-    
-    button.enabled = NO; // FIXME: re-enable button after download succeeds/fails
-    // THIS IS A LIL HACKY — will change if you change the view heirarchy of the cell
-    PGBBookCustomTableCell *cell = (PGBBookCustomTableCell*)[[[button superview] superview] superview];
-    
-    PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
-    realmBook = self.books[self.bookTableView.indexPathForSelectedRow.row];
-    
-    NSString *neweBookID = [realmBook.ebookID substringFromIndex:5];
-    
-    if (cell && [cell isKindOfClass:[PGBBookCustomTableCell class]]){
-        NSLog(@"selected book is: %@; URL: %@", cell.titleLabel.text, cell.bookURL);
-        
-        NSString *downloadURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", neweBookID];
-        
-        NSURL *URL = [NSURL URLWithString:downloadURL];
-        self.downloadHelper = [[PGBDownloadHelper alloc] init];
-        [self.downloadHelper download:URL];
-        
-        
-        //during download
-        UIAlertController *downloadComplete = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        
-        
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction * _Nonnull action) {
-                                                   }];
-        
-        [downloadComplete addAction:ok];
-        [self presentViewController:downloadComplete animated:YES completion:nil];
-        
-        
-        //when download, disable button
-        self.customCell.downloadButton.enabled = NO;
-        
-    }
-    else {
-        NSLog(@"Didn't get a cell, I fucked UP");
-    }
+    NSLog(@"book count %lu", self.books.count);
+    return self.books.count;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 1;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    //    return self.books.count;
-    //pagination
-    if([ self.books count] == 0){
-        return 0;
-    }
-    else {
-        return [self.books count] + 1;
-    }
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
+    //    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"bookCoverCell" forIndexPath:indexPath];
     
-    //    PGBRealmBook *book = self.books[indexPath.row];
-    //    //    Book *book = self.books[indexPath.row];
-    //
-    //    cell.titleLabel.text = book.title;
-    //    cell.authorLabel.text = book.author;
-    //    cell.genreLabel.text = book.genre;
-    ////    cell.bookCover.image = self.bookCovers[indexPath.row];
-    //    UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
-    //    if (!bookCoverImage) {
-    //        bookCoverImage = [UIImage imageNamed:@"no_book_cover"];
-    //    }
-    //
-    //    cell.bookCover.image = bookCoverImage;
-    //    cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
+    PGBCustomBookCollectionViewCell *cell = (PGBCustomBookCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:@"bookCoverCell" forIndexPath:indexPath];
     
-    //pagination
+
     if (self.books.count != 0) {
-        if(indexPath.row < [self.books count]){
-            
+        if (indexPath.row < self.books.count)
+        {
             PGBRealmBook *book = self.books[indexPath.row];
+
+//            cell.titleLabel.text = @"THINGS";
+//            cell.authorLabel.text = @"AN AUTHOR";
             
-            cell.titleLabel.text = book.title;
-            cell.authorLabel.text = book.author;
-            cell.genreLabel.text = book.genre;
-            //    cell.bookCover.image = self.bookCovers[indexPath.row];
             UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+//
             if (!bookCoverImage) {
-                bookCoverImage = [UIImage imageNamed:@"no_book_cover"];
+                cell.titleTV.text = book.title;
+                cell.authorLabel.text = book.author;
+            } else if (bookCoverImage) {
+                cell.bookCover.image = bookCoverImage;
             }
-            
-            cell.bookCover.image = bookCoverImage;
-            cell.bookURL = [NSURL URLWithString:@"http://www.gutenberg.org/ebooks/4028.epub.images"];
-        }
-        else{
-            if (!self.noMoreResultsAvail) {
-                spinner.hidden =NO;
-                //                cell.textLabel.text=n;
-                cell.titleLabel.text = @"";
-                cell.authorLabel.text = @"";
-                cell.genreLabel.text = @"";
-                cell.bookCover.image = nil;
-                
-                
-                spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-                spinner.frame = CGRectMake(150, 10, 24, 50);
-                [cell addSubview:spinner];
-                if ([self.books count] >= 10) {
-                    [spinner startAnimating];
-                }
-            }
-            
-            else{
-                [spinner stopAnimating];
-                spinner.hidden=YES;
-                
-                //                cell.textLabel.text=nil;
-                cell.titleLabel.text = @"";
-                cell.authorLabel.text = @"";
-                cell.genreLabel.text = @"";
-                cell.bookCover.image = nil;
-                
-                UILabel* loadingLabel = [[UILabel alloc]init];
-                loadingLabel.font=[UIFont boldSystemFontOfSize:14.0f];
-                loadingLabel.textAlignment = UITextAlignmentLeft;
-                loadingLabel.textColor = [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0];
-                loadingLabel.numberOfLines = 0;
-                loadingLabel.text=@"No More data Available";
-                loadingLabel.frame=CGRectMake(85,20, 302,25);
-                [cell addSubview:loadingLabel];
-            }
+//            cell.titleTV.adjustsFontSizeToFitWidth = YES;
+//            cell.titleTV.minimumFontSize = 0;
+//            cell.authorLabel.adjustsFontSizeToFitWidth = YES;
         }
     }
-    
-    
+
     return cell;
 }
 
-
-#pragma UIScroll View Method::
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    if (!self.loading) {
-        float endScrolling = scrollView.contentOffset.y + scrollView.frame.size.height;
-        if (endScrolling >= scrollView.contentSize.height)
-        {
-            [self performSelector:@selector(loadDataDelayed) withObject:nil afterDelay:0.2];
-            
-        }
-    }
-}
-
-#pragma UserDefined Method for generating data which are show in Table :::
--(void)loadDataDelayed{
+//segue
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"bookPageSegue" sender:self];
     
-    //cancel operations first to avoid too much background jobs running
-    [self.bgQueue cancelAllOperations];
-    [self.bookCoverBgQueue cancelAllOperations];
-    
-    if (self.books.count >= 100) {
-        
-        NSLog(@"before: %lu",[self.books count]);
-        //index range 0-4 , 5 items
-        [self.books removeObjectsInRange:NSMakeRange(0, self.books.count/4)];
-        NSLog(@"after remove: %lu",[self.books count]);
-    }
-    
-    [self generateRandomBookByCount:(self.books.count/4)+1];
-    
-    NSLog(@"number of books in array %lu",self.books.count);
-    [self.bookTableView reloadData];
-    
-}
-
-
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self performSegueWithIdentifier:@"bookInfoSegue" sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     PGBBookPageViewController *bookPageVC = segue.destinationViewController;
     
-    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
+    NSArray *arrayOfIndexPaths = [self.bookCollectionView indexPathsForSelectedItems];
+    
+    NSIndexPath *selectedIndexPath = [arrayOfIndexPaths firstObject];
+    
+//    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
     PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
     
     bookPageVC.book = bookAtIndexPath;

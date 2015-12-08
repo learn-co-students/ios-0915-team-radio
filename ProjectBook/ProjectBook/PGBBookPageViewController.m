@@ -36,6 +36,8 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *optionsButton;
 @property (weak, nonatomic) IBOutlet UIImageView *bookCoverImageView;
 
+@property (strong, nonatomic) PGBGoodreadsAPIClient *goodreadsAPI;
+           
 //@property (weak, nonatomic) IBOutlet UIView *webview;
 
 @end
@@ -48,13 +50,16 @@
     
     
     self.bookDescriptionTV.editable = NO;
+    NSString *description = [self.goodreadsAPI methodToGetDescriptions];
+
     
     self.titleLabel.text = self.book.title;
     self.authorLabel.text = self.book.author;
     self.genreLabel.text = self.book.genre;
     self.languageLabel.text = self.book.language;
-    self.bookDescriptionTV.text = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    self.bookDescriptionTV.text = description;
     
+
     if (self.book.bookCoverData) {
         self.bookCoverImageView.image = [UIImage imageWithData:self.book.bookCoverData];
     }
@@ -73,9 +78,9 @@
     //    }];
     
     //bookmarkstuff
-    //    UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
-    //    UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
-    //    [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
+        UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
+        UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
+        [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
     
 }
 
