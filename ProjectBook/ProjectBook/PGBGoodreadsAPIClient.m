@@ -78,184 +78,78 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     return lines;
 }
 
--(void)somemethod
+-(NSString *)getURLAsString:(NSString *)URL
 {
-    NSMutableArray *newArray = [NSMutableArray new];
-     __block NSMutableArray *anInteger = [NSMutableArray new];
     
+    //    NSString *tempURL = @"https://www.goodreads.com/book/title.xml?key=AckMqnduhbH8xQdja2Nw&title=Hound+of+the+Baskervilles&author=Arthur+Conan+Doyle";
+    
+    __block NSString *contentOfUrl = @"";
+    // __weak typeof(self) tmpself = self;
     
     NSURLSession *aSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
-    [[aSession dataTaskWithURL:[NSURL URLWithString:@"https://www.goodreads.com/book/title.xml?key=AckMqnduhbH8xQdja2Nw&title=Hound+of+the+Baskervilles&author=Arthur+Conan+Doyle"] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (((NSHTTPURLResponse *)response).statusCode == 200) {
-            if (data) {
-                NSString *contentOfURL = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                [newArray addObject:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
-                [anInteger addObject:contentOfURL];
-                
-                
-                
-                NSCharacterSet *newlineSet = [NSCharacterSet newlineCharacterSet];
-                NSArray *lines = [contentOfURL componentsSeparatedByCharactersInSet:newlineSet];
-                 NSLog(@"Lines as elements %@", lines);
-                
-                NSMutableArray *mutableLines = [lines mutableCopy];
-                for (NSString *line in mutableLines)
-                {
-                    if (line.length > 14)
-                    {
-                        NSString *first = [line substringToIndex:14];
-                        if ([first isEqualToString:@"  description"])
-                        {
-                            [mutableLines addObject:line];
-                            NSLog(@"array %@", mutableLines);
-                        } else {
-                            
-                        
-                        }
-                    }
-                    
-                }
-                
-                NSLog(@"here");
+    [[aSession dataTaskWithURL:[NSURL URLWithString:URL] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             
-
+            if (((NSHTTPURLResponse *)response).statusCode == 200) {
+                if (data) {
+                    contentOfUrl = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    //NSLog(@"This is working: %@", contentOfUrl);
+                }
             }
-        }
+            [self methodToGetDescriptionsWithString:contentOfUrl];
+        }];
     }] resume];
-   
     
-    //NSLog(@"Got here, %@", newArray);
-    //return nil;
-    
-    
-//    NSHTTPURLResponse *response;
-//    NSData *data;
-//    
-//    NSURLSession *aSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-//    [aSession dataTaskWithURL:[NSURL URLWithString:@"https://www.goodreads.com/book/title.xml?key=AckMqnduhbH8xQdja2Nw&title=Hound+of+the+Baskervilles&author=Arthur+Conan+Doyle"]];
-//     
-//     if (response.statusCode == 200) {
-//         
-//         if (data) {
-//             NSString *contentOfURL = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//             [newArray addObject:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
-//             NSLog(@" contents:%@", contentOfURL);
-//             
-//             
-//         }
-//     }
-//    NSLog(@"Got Here");
-//    return nil;
+    //NSLog(@"Are you working: %@", contentOfUrl);
+    return nil;
 }
 
 
 
--(NSDictionary *)methodToGetDescriptions
-//{
-//    NSData *data;
-//    NSError *error;
-//    
-//    ONOXMLDocument *document = [ONOXMLDocument XMLDocumentWithData:data error:&error];
-//    for (ONOXMLElement *element in document.rootElement.children) {
-//        NSLog(@"%@: %@", element.tag, element.attributes);
-//    }
-//    
-//    // Support for Namespaces
-//    NSString *author = [[document.rootElement firstChildWithTag:@"creator" inNamespace:@"dc"] stringValue];
-//    
-//    // Automatic Conversion for Number & Date Values
-//    NSDate *date = [[document.rootElement firstChildWithTag:@"created_at"] dateValue]; // ISO 8601 Timestamp
-//    NSInteger numberOfWords = [[[document.rootElement firstChildWithTag:@"word_count"] numberValue] integerValue];
-//    BOOL isPublished = [[[document.rootElement firstChildWithTag:@"is_published"] numberValue] boolValue];
-//    
-//    // Convenient Accessors for Attributes
-//    NSString *unit = [document.rootElement firstChildWithTag:@"Length"][@"unit"];
-//    NSDictionary *authorAttributes = [[document.rootElement firstChildWithTag:@"author"] attributes];
-//    
-//    // Support for XPath & CSS Queries
-//    [document enumerateElementsWithXPath:@"//Content" usingBlock:^(ONOXMLElement *element, NSUInteger idx, BOOL *stop) {
-//        NSLog(@"%@", element);
-//    }];
-
-
-//NSData *data = ...;
-//NSError *error;
-
-//ONOXMLDocument *document = [ONOXMLDocument XMLDocumentWithData:data error:&error];
-//for (ONOXMLElement *element in document.rootElement.children) {
-//    NSLog(@"%@: %@", element.tag, element.attributes);
-
-
-
-
+-(NSDictionary *)methodToGetDescriptionsWithString:(NSString *)string
 {
+    NSMutableArray *arrayOfDescription = [NSMutableArray new];
+    NSMutableArray *arrayOfImageUrls = [NSMutableArray new];
     
-    //NSLog(@"fourth xml as string:%@", XMLasString);
-    
-    //NSLog(@"xml as a string:%@", secondString);
-    
-    
-//NSURL *url = [[NSURL alloc] initWithString:@"https://www.goodreads.com/book/title.xml?key=AckMqnduhbH8xQdja2Nw&title=Hound+of+the+Baskervilles&author=Arthur+Conan+Doyle"];
-    
-//    NSLog(@"the URL is:%@", url);
-//NSXMLParser *xmlparser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-//
-//    NSLog(@"xmlparser:%@", xmlparser);
-//    
-//    NSString *XMLasString = [NSString stringWithFormat:@"%@", xmlparser.description];
-//    
-//    NSLog(@"xml as a string:%@ %lu", XMLasString, XMLasString.length);
-    [self somemethod];
-    NSString *someString;
     NSCharacterSet *newlineSet = [NSCharacterSet newlineCharacterSet];
-    NSArray *lines = [someString componentsSeparatedByCharactersInSet:newlineSet];
-   // NSLog(@"Lines as elements %@", lines);
-    NSMutableArray *importantLines = [NSMutableArray new];
-    NSMutableArray *imageURL = [NSMutableArray new];
-    
-    NSString *thingWeWant = @"  <description>";
-    NSString *thingWeWantAlso = @"  <image_url>";
+    NSArray *lines = [string componentsSeparatedByCharactersInSet:newlineSet];
     
     for (NSString *line in lines)
     {
-        if (line.length > 13) {
-            NSString *lookingForURL = [line substringToIndex:13];
-            NSString *lookingForDescription = [line substringToIndex:14];
-            
-            if ([lookingForDescription isEqualToString:thingWeWant])
-            {
-                [importantLines addObject:line];
-            }
-            else if ([lookingForURL isEqualToString:thingWeWantAlso])
-            {
-                NSUInteger index = [lines indexOfObject:line];
-                
-                [imageURL addObject:[imageURL objectAtIndex:index+1]];
-                
+        if ([line hasPrefix:@"  <description"])
+        {
+            [arrayOfDescription addObject:line];
         }
-        
+        if ([line hasPrefix:@"<![CDATA[https"])
+        {
+            [arrayOfImageUrls addObject:line];
         }
     }
+    //    NSLog(@"array:%@", arrayOfDescription);
+    //    NSLog(@"urls:%@", arrayOfImageUrls);
     
-    NSString *description = importantLines[0];
-    NSString *imageURLAsString = imageURL[0];
+    NSString *bookDescription = arrayOfDescription[0];
+    bookDescription = [bookDescription substringFromIndex:24];
+    bookDescription = [bookDescription substringToIndex:bookDescription.length-17];
     
-    description = [description substringFromIndex:25];
-    description = [description substringToIndex:(description.length-19)];
+    NSMutableArray *cleanedUpArrayOfImageUrls = [NSMutableArray new];
     
-    imageURLAsString = [imageURLAsString substringFromIndex:9];
-    imageURLAsString = [imageURLAsString substringToIndex:(imageURLAsString.length-2)];
+    for (NSString *imageURLString in arrayOfImageUrls)
+    {
+        NSString *imageURL = [imageURLString substringFromIndex:9];
+        imageURL = [imageURL substringToIndex:imageURL.length-3];
+        [cleanedUpArrayOfImageUrls addObject:imageURL];
+    }
+    //    NSLog(@"Book Description:%@", bookDescription);
+    //    NSLog(@"imageURLS:%@", cleanedUpArrayOfImageUrls);
     
-    NSDictionary *dictionaryOfDescriptionAndBookURL = @{@"Description":description,
-                                                        @"URL":imageURLAsString};
-    
-    
-    
-    
-    
-    
-    return dictionaryOfDescriptionAndBookURL;
+    NSDictionary *dictionaryOfDescriptionAndURLS = @{@"Book Description":bookDescription,
+                                                     @"Image URLS":cleanedUpArrayOfImageUrls,
+                                                     };
+    NSLog(@"dictionary:%@", dictionaryOfDescriptionAndURLS);
+    return dictionaryOfDescriptionAndURLS;
 }
 
 
