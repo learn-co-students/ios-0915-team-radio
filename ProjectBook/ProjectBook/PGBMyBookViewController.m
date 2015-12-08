@@ -33,7 +33,7 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
-    self.bookTableView.rowHeight = 70;
+    self.bookTableView.rowHeight = 80;
     
     self.bookTableView.delegate = self;
     self.bookTableView.dataSource = self;

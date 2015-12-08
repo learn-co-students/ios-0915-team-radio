@@ -7,14 +7,15 @@
 //
 
 #import "AppDelegate.h"
-#import <Parse/Parse.h>
+
 #import "PGBDownloadHelper.h"
 #import "PGBRealmUser.h"
 #import "PGBRealmBook.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "PGBGoodreadsAPIClient.h"
-
+#import "PGBParseAPIClient.h"
+#import <Parse/Parse.h>
 #import <GROAuth.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "PGBparsingThroughText.h"
 #import "PGBDataStore.h"
@@ -28,11 +29,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
     
+
 //    PGBGoodreadsAPIClient *goodReads = [[PGBGoodreadsAPIClient alloc] init];
 //    [goodReads methodToGetDescriptions];
 //    NSLog(@"%@", [goodReads methodToGetDescriptions]);
     
+
+
+    PGBGoodreadsAPIClient *goodReads = [[PGBGoodreadsAPIClient alloc] init];
+    //    [goodReads methodToGetDescriptions];
+    //    NSLog(@"%@", [goodReads methodToGetDescriptions]);
+    [goodReads getURLAsString:@"https://www.goodreads.com/book/title.xml?key=AckMqnduhbH8xQdja2Nw&title=Hound+of+the+Baskervilles&author=Arthur+Conan+Doyle"];
+
     
     //for banner image
 //    UIImage *image = [[UIImage imageNamed:@"NOVEL_Banner"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
