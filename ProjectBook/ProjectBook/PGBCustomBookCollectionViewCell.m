@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.titleTV.editable = NO;
+    self.titleTV.selectable = NO;
 }
 
 @end

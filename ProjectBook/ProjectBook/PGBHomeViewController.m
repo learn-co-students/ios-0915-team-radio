@@ -38,7 +38,6 @@
 @property (strong, nonatomic) NSMutableArray *list;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
 
-//@property (strong, nonatomic) PGBBookCustomTableCell *customCell;
 @property (strong, nonatomic) PGBCustomBookCollectionViewCell *bookCoverCell;
 
 //pagination
@@ -62,7 +61,7 @@
     [self.bookCollectionView setDataSource:self];
     
     //logo for banner
-    UIImage *logo = [[UIImage imageNamed:@"NOVEL_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];;
+    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     
     //coreData
@@ -73,6 +72,7 @@
     self.books = [NSMutableArray arrayWithCapacity:100];
 //    [self generateRandomBookByCount:10];
     [self generateBook];
+//    [self generateClassics];
     
     //xib
     
@@ -110,6 +110,24 @@
     
     [self.bookCollectionView reloadData];
 }
+
+- (void)generateClassics {
+    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
+    [dataStore fetchData];
+    
+    [PGBRealmBook generateClassicBooks];
+    for (Book *book in dataStore.managedBookObjects) {
+        [PGBRealmBook createPGBRealmBookWithBook:book];
+        if (book)
+        {
+            [self.books addObject:book];
+        }
+    }
+    
+    
+    [self.bookCollectionView reloadData];
+}
+
 //- (void)generateRandomBookByCount:(NSInteger)count{
 //    NSLog(@"genraing books");
 //    //bg Queue
@@ -208,18 +226,26 @@
     
     PGBCustomBookCollectionViewCell *cell = (PGBCustomBookCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:@"bookCoverCell" forIndexPath:indexPath];
     
+
     if (self.books.count != 0) {
         if (indexPath.row < self.books.count)
         {
             PGBRealmBook *book = self.books[indexPath.row];
-            UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+
+//            cell.titleLabel.text = @"THINGS";
+//            cell.authorLabel.text = @"AN AUTHOR";
             
-            if (!bookCoverImage) {
-                cell.titleLabel.text = book.title;
+//            UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+//
+//            if (!bookCoverImage) {
+                cell.titleTV.text = book.title;
                 cell.authorLabel.text = book.author;
-            } else if (bookCoverImage) {
-                cell.bookCover.image = bookCoverImage;
-            }
+//            } else if (bookCoverImage) {
+//                cell.bookCover.image = bookCoverImage;
+//            }
+//            cell.titleTV.adjustsFontSizeToFitWidth = YES;
+//            cell.titleTV.minimumFontSize = 0;
+//            cell.authorLabel.adjustsFontSizeToFitWidth = YES;
         }
     }
 

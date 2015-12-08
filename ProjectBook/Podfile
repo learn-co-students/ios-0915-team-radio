@@ -15,6 +15,7 @@ pod 'Masonry'
 pod 'ParseUI'
 pod 'YYWebImage'
 pod 'Ono'
+pod 'Goodreads-Oauth'
 pod 'ionicons'
 pod 'JSQMessagesViewController'
 

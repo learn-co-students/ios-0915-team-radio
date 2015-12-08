@@ -10,9 +10,10 @@
     <customFonts key="customFonts">
         <mutableArray key="Moon Bold.otf">
             <string>Moon-Bold</string>
+            <string>Moon-Bold</string>
         </mutableArray>
-        <mutableArray key="Moon Light.otf">
-            <string>Moon-Light</string>
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -24,21 +25,28 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="90" height="140"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50B-cf-qXE" userLabel="Title">
-                        <rect key="frame" x="8" y="8" width="53" height="75"/>
-                        <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="20"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rH2-IQ-PGv" userLabel="Author">
-                        <rect key="frame" x="8" y="100" width="53" height="25"/>
-                        <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="14"/>
+                        <rect key="frame" x="8" y="101" width="74" height="28"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bear" translatesAutoresizingMaskIntoConstraints="NO" id="3XR-oV-slS">
                         <rect key="frame" x="0.0" y="0.0" width="90" height="140"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50B-cf-qXE" userLabel="Title">
+                        <rect key="frame" x="8" y="8" width="74" height="84"/>
+                        <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="u6Y-Yg-hq9" userLabel="TitleTV">
+                        <rect key="frame" x="8" y="8" width="74" height="84"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -48,25 +56,31 @@
                 <constraint firstItem="rH2-IQ-PGv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="AEA-IF-ReO"/>
                 <constraint firstItem="rH2-IQ-PGv" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailingMargin" id="BUv-Rf-1c9"/>
                 <constraint firstItem="3XR-oV-slS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Bzd-jG-Q8g"/>
+                <constraint firstItem="u6Y-Yg-hq9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="EaC-5F-X3I"/>
+                <constraint firstItem="u6Y-Yg-hq9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="GBT-a1-PDc"/>
                 <constraint firstItem="50B-cf-qXE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="VPB-R7-gNl"/>
                 <constraint firstItem="3XR-oV-slS" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="Wol-VD-3US"/>
                 <constraint firstItem="3XR-oV-slS" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" id="Y4s-uJ-Vet"/>
                 <constraint firstItem="rH2-IQ-PGv" firstAttribute="top" secondItem="50B-cf-qXE" secondAttribute="bottom" multiplier="6/5" id="Ztx-vE-b3B"/>
                 <constraint firstItem="50B-cf-qXE" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="3/5" id="ad5-gc-GG2"/>
                 <constraint firstItem="50B-cf-qXE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="dRL-6M-IZZ"/>
+                <constraint firstItem="u6Y-Yg-hq9" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="3/5" id="eay-8g-TXu"/>
+                <constraint firstItem="rH2-IQ-PGv" firstAttribute="top" secondItem="u6Y-Yg-hq9" secondAttribute="bottom" multiplier="1.1" id="hkH-nm-4Ia"/>
+                <constraint firstItem="u6Y-Yg-hq9" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailingMargin" id="lE9-GX-Kgs"/>
                 <constraint firstItem="50B-cf-qXE" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailingMargin" id="lTS-Nn-9n8"/>
             </constraints>
             <size key="customSize" width="278" height="402"/>
             <variation key="default">
                 <mask key="subviews">
+                    <exclude reference="3XR-oV-slS"/>
                     <exclude reference="50B-cf-qXE"/>
-                    <exclude reference="rH2-IQ-PGv"/>
                 </mask>
             </variation>
             <connections>
                 <outlet property="authorLabel" destination="rH2-IQ-PGv" id="HKA-0V-qMg"/>
                 <outlet property="bookCover" destination="3XR-oV-slS" id="7qi-Yy-qx0"/>
                 <outlet property="titleLabel" destination="50B-cf-qXE" id="bgq-eu-7Y6"/>
+                <outlet property="titleTV" destination="u6Y-Yg-hq9" id="QUd-bT-AAa"/>
             </connections>
             <point key="canvasLocation" x="559" y="265"/>
         </collectionViewCell>
