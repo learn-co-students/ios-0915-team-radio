@@ -15,16 +15,16 @@
 
 @interface PGBBookPageViewController : UIViewController <WKUIDelegate, WKNavigationDelegate, UIActionSheetDelegate>
 
-@property (strong, nonatomic)NSString *titleBook;
-@property (strong, nonatomic)NSString *author;
-@property (strong, nonatomic)NSString *genre;
-@property (strong, nonatomic)NSString *language;
-@property (strong, nonatomic)NSString *bookDescription;
-@property (strong, nonatomic)NSDate *datePublished;
-@property (assign, nonatomic)NSString *ebookID;
-@property (strong, nonatomic)NSArray *books;
+//@property (strong, nonatomic)NSString *titleBook;
+//@property (strong, nonatomic)NSString *author;
+//@property (strong, nonatomic)NSString *genre;
+//@property (strong, nonatomic)NSString *language;
+//@property (strong, nonatomic)NSString *bookDescription;
+//@property (strong, nonatomic)NSDate *datePublished;
+//@property (assign, nonatomic)NSString *ebookID;
+//@property (strong, nonatomic)NSArray *books;
 
-//leo fix
+//leo fix - only a PGBRealmBook object will be received from the segue
 @property (strong, nonatomic)PGBRealmBook *book;
 
 @property (strong, nonatomic) WKWebView *webView;

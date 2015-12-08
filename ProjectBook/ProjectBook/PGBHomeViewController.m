@@ -66,13 +66,13 @@
     [self.bookTableView setDelegate:self];
     [self.bookTableView setDataSource:self];
     
-    UIImage *logo = [UIImage imageNamed:@"NOVEL_Logo_small"];
+    //logo for banner
     
+    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
-    [self.navigationItem.titleView sizeToFit];
     
     //coreData
-    //commented by leopoo
+    //commented by leo
     //    [PGBRealmBook generateTestBookData];
     //    self.books = [PGBRealmBook getUserBookDataInArray];
     //    self.books = @[self.books[0], self.books[1], self.books[2]];
@@ -96,7 +96,6 @@
     } else if (![PFUser currentUser] && ![self.loginButton.title isEqual: @"Login"]){
         [self.loginButton setTitle:@"Login"];
     }
-    
     
 }
 
@@ -375,19 +374,7 @@
     
     NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
     PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
-    //    Book *bookAtIndexPath = self.books[selectedIndexPath.row];
     
-    bookPageVC.titleBook = bookAtIndexPath.title;
-    bookPageVC.author = bookAtIndexPath.author;
-    bookPageVC.genre = bookAtIndexPath.genre;
-    bookPageVC.language = bookAtIndexPath.language;
-    bookPageVC.ebookID = bookAtIndexPath.ebookID;
-    
-    //    bookPageVC.ebookID = bookAtIndexPath.eBookNumbers;
-    //    bookPageVC.bookDescription = bookAtIndexPath.bookDescription;
-    //    bookPageVC.books = bookPageVC.books;
-    
-    //leo fix
     bookPageVC.book = bookAtIndexPath;
     
 }
