@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rZq-d8-kap">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9527.1" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rZq-d8-kap">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9525.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +20,6 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="91fJxgs69QL._SL1500_" translatesAutoresizingMaskIntoConstraints="NO" id="JmV-L1-1bM">
                                 <rect key="frame" x="-4" y="0.0" width="383" height="148"/>
-                                <animations/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="148" id="5VS-AA-mhk"/>
@@ -28,7 +27,6 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7XD-9x-4Ec">
                                 <rect key="frame" x="20" y="156" width="34" height="30"/>
-                                <animations/>
                                 <state key="normal" title="back"/>
                                 <connections>
                                     <action selector="backToBooksTapped:" destination="B1G-TE-m3Q" eventType="touchUpInside" id="0hw-qh-u05"/>
@@ -36,7 +34,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGg-xm-y0q">
                                 <rect key="frame" x="300" y="156" width="55" height="30"/>
-                                <animations/>
                                 <state key="normal" title="settings"/>
                                 <connections>
                                     <segue destination="wJh-NQ-zfe" kind="show" id="OKS-kw-jGc"/>
@@ -44,14 +41,12 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SpI-hL-SMC">
                                 <rect key="frame" x="107" y="207" width="160" height="24"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRa-VQ-RWB">
                                 <rect key="frame" x="148" y="232" width="79" height="21"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="MpX-sY-QK9"/>
                                     <constraint firstAttribute="width" constant="79" id="mrU-eU-0BG"/>
@@ -62,12 +57,10 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OHE-zA-3bD">
                                 <rect key="frame" x="-4" y="261" width="383" height="198"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <navigationBar key="tableFooterView" contentMode="scaleToFill" id="nH8-4L-Fpi">
                                     <rect key="frame" x="0.0" y="0.0" width="383" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <animations/>
                                     <items>
                                         <navigationItem title="Active Chats" id="g8q-5p-XFs">
                                             <barButtonItem key="rightBarButtonItem" title="new" id="lXu-fb-UdV"/>
@@ -77,7 +70,6 @@
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0JW-E9-Nmg">
                                 <rect key="frame" x="-4" y="459" width="383" height="208"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="208" id="ymU-hi-WgJ"/>
@@ -85,7 +77,6 @@
                                 <navigationBar key="tableFooterView" contentMode="scaleToFill" id="UFe-WR-OZO">
                                     <rect key="frame" x="0.0" y="0.0" width="383" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <animations/>
                                     <items>
                                         <navigationItem title="BookMarked" id="70n-e7-5N3"/>
                                     </items>
@@ -93,7 +84,6 @@
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDg-aB-gGI">
                                 <rect key="frame" x="16" y="184" width="343" height="35"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="81" id="Bv5-bK-aSq"/>
                                     <constraint firstAttribute="height" constant="21" id="vrK-9T-FcI"/>
@@ -110,7 +100,6 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IUD-S2-n40">
                                 <rect key="frame" x="136" y="34" width="103" height="100"/>
-                                <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="103" id="4ui-Mf-482"/>
@@ -118,7 +107,6 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="JmV-L1-1bM" firstAttribute="leading" secondItem="0JW-E9-Nmg" secondAttribute="leading" id="12e-rT-OOJ"/>
@@ -202,7 +190,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9H4-3n-piJ">
                                 <rect key="frame" x="20" y="156" width="34" height="30"/>
-                                <animations/>
                                 <state key="normal" title="back"/>
                                 <connections>
                                     <action selector="backButtonTapped:" destination="wJh-NQ-zfe" eventType="touchUpInside" id="lB1-Pa-w7c"/>
@@ -210,7 +197,6 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="91fJxgs69QL._SL1500_" translatesAutoresizingMaskIntoConstraints="NO" id="C53-gr-Dfk">
                                 <rect key="frame" x="-4" y="0.0" width="383" height="148"/>
-                                <animations/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="148" id="sJ5-Pe-3YV"/>
@@ -223,7 +209,6 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xBW-W9-vLU">
                                 <rect key="frame" x="136" y="33" width="103" height="100"/>
-                                <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="103" id="3WM-9d-nQH"/>
@@ -242,14 +227,12 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jst-LX-37X">
                                 <rect key="frame" x="311" y="156" width="44" height="30"/>
-                                <animations/>
                                 <state key="normal" title="logout"/>
                                 <connections>
                                     <action selector="logoutButtonTapped:" destination="wJh-NQ-zfe" eventType="touchUpInside" id="2Jh-Pq-pPm"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="C53-gr-Dfk" firstAttribute="leading" secondItem="BCg-xt-M54" secondAttribute="leadingMargin" constant="-20" id="0p2-tB-0YB"/>
@@ -292,7 +275,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="O1r-dB-aRE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -305,6 +287,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="91fJxgs69QL._SL1500_" width="504" height="526"/>
+        <image name="91fJxgs69QL._SL1500_" width="1600" height="2400"/>
     </resources>
 </document>

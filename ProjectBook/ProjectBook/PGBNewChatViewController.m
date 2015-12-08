@@ -10,6 +10,7 @@
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
 #import "PGBDataStore.h"
+#import "PGBChatRoom.h"
 #import "PGBSearchChatPreviewViewController.h"
 
 @interface PGBNewChatViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource>
@@ -40,7 +41,7 @@
     self.dataStore = [PGBDataStore sharedDataStore];
     [self.dataStore fetchData];
     self.books = [NSMutableArray new];
-
+    
 }
 
 - (void)loadDefaultView {
@@ -48,7 +49,7 @@
     self.searchBar.placeholder = @"Search for Book";
     self.searchBar.delegate = self;
     [self.navigationController.navigationBar addSubview:self.searchBar];
-
+    
     [self.bookSearchTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     self.bookSearchTableView.rowHeight = 70;
     
@@ -92,7 +93,7 @@
     [self.searchBar resignFirstResponder];
     self.searchBar.hidden = YES;
     tableView.hidden = YES;
-   //show book details in a sec
+    //show book details in a sec
     self.previewVC.book = self.books[indexPath.row];
     [UIView animateWithDuration:0.25 animations:^{
         self.previewContainerView.alpha = 1;
@@ -105,7 +106,7 @@
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-
+    
     if ([self.searchBar.text length] == 0) {
         self.defaultView.hidden = NO;
     }
@@ -153,9 +154,9 @@
 }
 
 - (IBAction)creatChatTouched:(id)sender {
-  
+    
     if (self.topicTextField.text.length == 0){
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Uh oh!" message:@"Please include a topic!" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Uh oh!" message:@"Please include a topic!" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Uh oh!" message:@"Please include a topic!" preferredStyle:UIAlertControllerStyleAlert];
         // create action
         UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
@@ -164,10 +165,10 @@
         // present controller
         [self presentViewController:alert animated:YES completion:nil];
     } else {
-        PFObject *newChat = [PFObject objectWithClassName:@"bookChat"];
-        newChat[@"topic"] = self.topicTextField.text;
-        newChat[@"bookId"] = self.selectedBook.ebookID;
-        newChat[@"bookTitle"] = self.selectedBook.title;
+        PGBChatRoom *newChat = [PGBChatRoom new];
+        newChat.topic = self.topicTextField.text;
+        newChat.bookId = self.selectedBook.ebookID;
+        newChat.bookTitle = self.selectedBook.title;
         [newChat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 // The object has been saved.

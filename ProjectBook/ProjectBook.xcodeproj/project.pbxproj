@@ -25,6 +25,7 @@
 		890200351C0CFD08001A1ECF /* PGBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890200341C0CFD08001A1ECF /* PGBProfileViewController.m */; };
 		894AE4611C1607DF007F22A5 /* social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894AE4601C1607DF007F22A5 /* social.storyboard */; };
 		894AE4641C161227007F22A5 /* PGBSearchChatPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */; };
+		894D292F1C172E48003A7D95 /* PGBChatRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 894D292E1C172E48003A7D95 /* PGBChatRoom.m */; };
 		8964243C1C163C3D00FBB988 /* PGBChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8964243A1C163C3D00FBB988 /* PGBChatTableViewCell.m */; };
 		8964243D1C163C3D00FBB988 /* PGBChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8964243B1C163C3D00FBB988 /* PGBChatTableViewCell.xib */; };
 		899A4D071C10A77200D499C4 /* PGBChatMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */; };
@@ -131,6 +132,8 @@
 		894AE4601C1607DF007F22A5 /* social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = social.storyboard; path = ../../../../Desktop/social.storyboard; sourceTree = "<group>"; };
 		894AE4621C161227007F22A5 /* PGBSearchChatPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBSearchChatPreviewViewController.h; sourceTree = "<group>"; };
 		894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBSearchChatPreviewViewController.m; sourceTree = "<group>"; };
+		894D292D1C172E48003A7D95 /* PGBChatRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBChatRoom.h; sourceTree = "<group>"; };
+		894D292E1C172E48003A7D95 /* PGBChatRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBChatRoom.m; sourceTree = "<group>"; };
 		896424391C163C3D00FBB988 /* PGBChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBChatTableViewCell.h; sourceTree = "<group>"; };
 		8964243A1C163C3D00FBB988 /* PGBChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBChatTableViewCell.m; sourceTree = "<group>"; };
 		8964243B1C163C3D00FBB988 /* PGBChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBChatTableViewCell.xib; sourceTree = "<group>"; };
@@ -390,6 +393,8 @@
 				8964243A1C163C3D00FBB988 /* PGBChatTableViewCell.m */,
 				899A4D0B1C11EF9C00D499C4 /* PGBMainSocialTableViewController.h */,
 				899A4D0C1C11EF9C00D499C4 /* PGBMainSocialTableViewController.m */,
+				894D292D1C172E48003A7D95 /* PGBChatRoom.h */,
+				894D292E1C172E48003A7D95 /* PGBChatRoom.m */,
 				899A4D0E1C11EFC100D499C4 /* PGBNewChatViewController.h */,
 				899A4D0F1C11EFC100D499C4 /* PGBNewChatViewController.m */,
 				899A4D051C10A77200D499C4 /* PGBChatMessageVC.h */,
@@ -698,6 +703,7 @@
 				4C9597AC1BFBEB2000BBD558 /* PGBRealmBook.m in Sources */,
 				890200351C0CFD08001A1ECF /* PGBProfileViewController.m in Sources */,
 				CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */,
+				894D292F1C172E48003A7D95 /* PGBChatRoom.m in Sources */,
 				890200301C0CAA10001A1ECF /* PGBSignUpViewController.m in Sources */,
 				CB3C079F1C05063A00235D78 /* PGBGoodreadsAPIClient.m in Sources */,
 				8902002D1C0CA900001A1ECF /* PGBLoginViewController.m in Sources */,
