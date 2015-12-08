@@ -7,6 +7,7 @@
 //
 
 #import "PGBMainSocialTableViewController.h"
+#import "PGBChatTableViewCell.h"
 
 @interface PGBMainSocialTableViewController ()
 
@@ -18,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"PGBChatTableViewCell" bundle:nil] forCellReuseIdentifier:@"bookWithChatCell"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -33,7 +36,16 @@
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             
             for (PFObject *object in objects) {
-                [self.arrayOfOpenBookChats addObject:object];
+                
+                NSDictionary *chatRoomInfo = [NSDictionary new];
+                chatRoomInfo = @{ @"chatRoomId" : object.objectId,
+                                  @"bookId" : object.bookId,
+                                  @"bookTitle" : object.booktitle,
+                                  @"topic" : objec.topic };
+                
+                
+                
+                [self.arrayOfOpenBookChats addObject:chatRoomInfo];
             }
             [self.tableView reloadData];
         }];
@@ -52,25 +64,17 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return self.arrayOfOpenBookChats.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
-    
-    NSString *chatId = self.arrayOfOpenBookChats[indexPath.row];
-    
-    PFQuery *quaryForChatData = [PFQuery queryWithClassName:@"bookChat"];
-    [quaryForChatData whereKeyExists:chatId];
-    NSArray *chatData = [quaryForChatData findObjects];
-    
-    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
+//    tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
+    PGBChatTableViewCell *cell = (PGBChatTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
     
     return cell;
 }
-
 
 /*
 // Override to support conditional editing of the table view.
