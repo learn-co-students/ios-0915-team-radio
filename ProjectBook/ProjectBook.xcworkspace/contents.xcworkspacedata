@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ProjectBook/PGBBookCustomTableCell.xib">
+   </FileRef>
+   <FileRef
       location = "group:ProjectBook.xcodeproj">
    </FileRef>
    <FileRef
