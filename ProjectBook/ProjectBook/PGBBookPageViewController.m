@@ -50,7 +50,8 @@
     
     
     self.bookDescriptionTV.editable = NO;
-    NSString *description = [self.goodreadsAPI methodToGetDescriptions];
+//    NSString *description = [self.goodreadsAPI methodToGetDescriptionsWithString:<#(NSString *)#>];
+    NSString *description =@"";
 
     
     self.titleLabel.text = self.book.title;

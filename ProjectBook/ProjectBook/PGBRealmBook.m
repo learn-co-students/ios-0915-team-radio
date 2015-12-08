@@ -8,6 +8,7 @@
 
 #import "PGBRealmBook.h"
 #import "PGBHomeViewController.h"
+#import "PGBParseAPIClient.h"
 
 @implementation PGBRealmBook
 
@@ -245,14 +246,6 @@
     }
     
     return YES;
-    
-    
-//    if (realmBook.title.length == 0) {
-//        return NO;
-//    } else if (realmBook.author.length == 0) {
-//        return NO;
-//    }
-//    return YES;
 }
 
 
@@ -268,7 +261,7 @@
 
 + (NSURL *)createBookCoverURL:(NSString *)eBookNumber {
     
-    if (eBookNumber.length != 0) {
+    if (eBookNumber.length) {
         
         NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
         NSString *bookCoverURL = [NSString stringWithFormat:@"https://www.gutenberg.org/cache/epub/%@/pg%@.cover.medium.jpg", eBookNumberParsed, eBookNumberParsed];
@@ -280,5 +273,52 @@
     
     return nil;
 }
+
++ (void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock {
+    
+    [PGBParseAPIClient fetchUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^(NSArray *books) {
+        for (NSDictionary *book in books) {
+            PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
+            realmBook.ebookID = book[@"eBookID"];
+            realmBook.title = book[@"eBookTitle"];
+            realmBook.friendlyTitle = book[@"eBookFriendlyTitle"];
+            realmBook.author = book[@"eBookAuthor"];
+            realmBook.genre = book[@"eBookGenre"];
+            realmBook.language = book[@"eBookLanguage"];
+            realmBook.bookDescription = book[@"eBookDescription"];
+            realmBook.isDownloaded = [book[@"isDownloaded"] integerValue];
+            realmBook.isBookmarked = [book[@"isBookmarked"] integerValue];
+            
+            NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:realmBook.ebookID]];
+            realmBook.bookCoverData = bookCoverData;
+            
+            [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+                return realmBook;
+            }];
+        }
+        
+        completionBlock();
+    }];
+    
+    
+}
+
+//+(void)storeUserBookDataWithUserObject:(PFObject *)userObject realmBookObject:(PGBRealmBook *)realmBook andCompletion:(void (^)(PFObject *bookObject))completionBlock{
+
+//[PGBParseAPIClient fetchUserBookDataWithUserObject:user andCompletion:^(NSArray *objects) {
+//    for (NSDictionary *book in objects) {
+//        PGBRealmBook *newBook = [[PGBRealmBook alloc]init];
+//        newBook.ebookID = book[@"eBookID"];
+//        newBook.title = book[@"eBookTitle"];
+//        newBook.isDownloaded = [book[@"isDownloaded"] integerValue];
+//        newBook.isBookmarked = [book[@"isBookmarked"] integerValue];
+//        
+//        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+//            return newBook;
+//        }];
+//    }
+//}];
+
+
 
 @end
