@@ -118,6 +118,7 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     
     for (NSString *line in lines)
     {
+        NSLog(@"line:%@", line);
         if ([line hasPrefix:@"  <description"])
         {
             [arrayOfDescription addObject:line];
@@ -128,9 +129,39 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
         }
     }
 
+// Tom 
+    // NSString *bookDescription = arrayOfDescription[0];
+    // bookDescription = [bookDescription stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    // BOOL bookHasADescription = ![bookDescription isEqual:@"<description></description>"];
+
+//Pri
     NSString *bookDescription = arrayOfDescription[0];
-    bookDescription = [bookDescription stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    BOOL bookHasADescription = ![bookDescription isEqual:@"<description></description>"];
+    
+    NSArray *arrayOfPotentialPrefixes = @[@"  <description>", @"<![CDATA["];
+    
+    for (NSString *string in arrayOfPotentialPrefixes)
+    {
+        NSUInteger stringLength = string.length;
+        NSRange range = NSMakeRange(0, stringLength);
+        
+        if ([[bookDescription substringWithRange:range] isEqualToString:string])
+        {
+            bookDescription = [bookDescription substringFromIndex:stringLength];
+        }
+    }
+    
+    NSArray *arrayOfPotentialSuffixes = @[@"</description>", @"]]>"];
+    for (NSString *string  in arrayOfPotentialSuffixes)
+    {
+        NSUInteger stringLength = string.length;
+        NSUInteger bookDescriptionLength = bookDescription.length;
+        
+        if ([[bookDescription substringFromIndex:bookDescriptionLength-stringLength] isEqualToString:string])
+        {
+            bookDescription = [bookDescription substringToIndex:bookDescriptionLength-stringLength];
+        }
+        
+    }
     
     if (bookHasADescription) {
         bookDescription = [bookDescription substringFromIndex:24];
