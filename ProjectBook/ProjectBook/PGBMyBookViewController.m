@@ -10,6 +10,7 @@
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
 #import "PGBBookPageViewController.h"
+#import "PGBParseAPIClient.h"
 
 @interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -39,9 +40,7 @@
     self.bookTableView.dataSource = self;
     self.bookSearchBar.delegate = self;
     
-    //begin test data
-//    [PGBRealmBook generateTestBookData];
-    //end test data
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{

@@ -11,8 +11,8 @@
 
 @interface PGBGoodreadsAPIClient : NSObject
 
-+(void)getReviewsWithCompletion:(NSString *)author bookTitle:(NSString *)bookTitle completion:(void (^)(NSDictionary *))completionBlock;
--(NSDictionary *)methodToGetDescriptionsWithString:(NSString *)string;
--(NSString *)getURLAsString:(NSString *)URL;
++ (void)getReviewsForBook:(NSString *)bookTitle completion:(void (^)(NSDictionary *))completionBlock;
+- (NSDictionary *)methodToGetDescriptionsWithString:(NSString *)string;
+- (void)getDescriptionForBookTitle:(NSString *)bookTitle completion:(void (^)(NSString *description))completion;
 
 @end

@@ -12,6 +12,8 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <WebKit/WebKit.h>
 #import "PGBRealmBook.h"
+#import "PGBGoodreadsAPIClient.h"
+
 
 @interface PGBBookPageViewController : UIViewController <WKUIDelegate, WKNavigationDelegate, UIActionSheetDelegate>
 

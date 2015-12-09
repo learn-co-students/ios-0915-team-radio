@@ -42,9 +42,9 @@
     self.authorLabel.text = self.book.author;
     self.authorLabel.text = self.book.author;
     self.genreLabel.text = self.book.author;
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    NSString *datePublished = [dateFormatter stringFromDate:self.book.datePublished];
-    self.yearPublishedLabel.text = datePublished;
+//    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+//    NSString *datePublished = [dateFormatter stringFromDate:self.book.datePublished];
+//    self.yearPublishedLabel.text = datePublished;
     self.languageLabel.text = self.book.language;
 }
 
