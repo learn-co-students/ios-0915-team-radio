@@ -12,6 +12,7 @@
 #import "PGBParseAPIClient.h"
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Masonry/Masonry.h>
+#import <YYWebImage/YYWebImage.h>
 
 
 @interface PGBBookPageViewController () <UIScrollViewDelegate>
@@ -71,9 +72,9 @@
 
     
 
-    if (self.book.bookCoverData) {
-        self.bookCoverImageView.image = [UIImage imageWithData:self.book.bookCoverData];
-    }
+//    if (self.book.bookCoverData) {
+//        self.bookCoverImageView.image = [UIImage imageWithData:self.book.bookCoverData];
+//    }
     
     CGRect rect = self.bookDescriptionTV.frame;
     rect.size.height = self.bookDescriptionTV.contentSize.height;
@@ -94,6 +95,45 @@
         [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
     
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if (![ PFUser currentUser]) {
+        // do something
+    }
+    else{
+        // we have a user! do somethin..
+    }
+    //    NSArray *permissions = @[@"public_profile"];
+    //
+    //    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissions block:^(PFUser *user, NSError *error) {
+    //
+    //        if (!user) {
+    //            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+    //        } else if (user.isNew) {
+    //            NSLog(@"User signed up and logged in through Facebook!");
+    //        } else {
+    //            NSLog(@"User logged in through Facebook!");
+    //        }
+    //    }];
+    
+    //get book cover image in background
+    NSString *ebookID = self.book.ebookID;
+    
+    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+    [bgQueue addOperationWithBlock:^{
+        
+        [self.bookCoverImageView yy_setImageWithURL:[PGBRealmBook createBookCoverURL:ebookID] placeholder:[UIImage imageNamed:@"no_book_cover"] options:YYWebImageOptionProgressive completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+            
+            if (image) {
+                self.bookCoverImageView.image = image;
+            }
+            
+        }];
+    }];
+}
+
 
 -(void)getReviewswithCompletion:(void (^)(BOOL))completionBlock
 {
@@ -221,49 +261,6 @@
     [view addAction:save];
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
-}
-
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    if (![ PFUser currentUser]) {
-        // do something
-    }
-    else{
-        // we have a user! do somethin..
-    }
-    //    NSArray *permissions = @[@"public_profile"];
-    //
-    //    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissions block:^(PFUser *user, NSError *error) {
-    //
-    //        if (!user) {
-    //            NSLog(@"Uh oh. The user cancelled the Facebook login.");
-    //        } else if (user.isNew) {
-    //            NSLog(@"User signed up and logged in through Facebook!");
-    //        } else {
-    //            NSLog(@"User logged in through Facebook!");
-    //        }
-    //    }];
-    
-    //get book cover image in background
-    NSString *ebookID = self.book.ebookID;
-    
-    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
-    [bgQueue addOperationWithBlock:^{
-        NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:ebookID]];
-        
-        if (bookCoverData) {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                self.bookCoverImageView.image = [UIImage imageWithData:bookCoverData];
-            }];
-            
-        } else {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                self.bookCoverImageView.image = [UIImage imageNamed:@"no_book_cover"];
-            }];
-        }
-    }];
 }
 
 - (IBAction)readButtonTapped:(id)sender
