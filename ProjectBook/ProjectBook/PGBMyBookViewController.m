@@ -60,18 +60,19 @@
 }
 
 -(void)fetchBookFromParse {
-        NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
     
-        [bgQueue addOperationWithBlock:^{
-    
+    [bgQueue addOperationWithBlock:^{
+        if ([PFUser currentUser]) {
+            
             [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
                 NSLog(@"user data: %@", data);
-    
+                
                 PFObject *user = data;
                 if (user) {
-    
-//                    [PGBRealmBook deleteAllUserBookData];
-    
+                    
+                    //                    [PGBRealmBook deleteAllUserBookData];
+                    
                     [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
                         NSLog(@"successfully fetch book from parse");
                         
@@ -83,7 +84,15 @@
                     }];
                 }
             }];
-        }];
+            
+        } else {
+            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                self.books = [PGBRealmBook getUserBookDataInArray];
+                [self loadDefaultContent];
+                [self.bookTableView reloadData];
+            }];
+        }
+    }];
 }
 
 - (void)loadDefaultContent{

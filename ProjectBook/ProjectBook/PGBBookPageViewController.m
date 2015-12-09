@@ -220,21 +220,18 @@
     
     if (self.book.ebookID.length) {
         
-//        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-//            //   saving the book cover data to realm
-//            //            self.book.bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:self.book.ebookID]];
-//            self.book.isDownloaded = YES;
-//            
-//            //store book to parse - first check if user if logged in!!!!!!
-//            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-//                NSLog(@"saved book to parse");
-//            }];
-//            
-//            return self.book;
-//        }];
+        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+            self.book.isDownloaded = YES;
+            return self.book;
+        } andCompletion:^{
+            if ([PFUser currentUser]) {
+                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                    NSLog(@"saved book to parse");
+                }];
+            }
+            
+        }];
         
-        
-
     }
 }
 
@@ -305,19 +302,21 @@
     //    UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
     //    [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
     
-//    if (self.book.ebookID.length) {
-//        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-//            //            self.book.bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:self.book.ebookID]];
-//            self.book.isBookmarked = YES;
-//            
-//            //first check if user is logged in
-//            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-//                NSLog(@"saved book to parse");
-//            }];
-//            
-//            return self.book;
-//        }];
-//    }
+    if (self.book.ebookID.length) {
+        
+        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+            self.book.isBookmarked = YES;
+            return self.book;
+        } andCompletion:^{
+            if ([PFUser currentUser]) {
+                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                    NSLog(@"saved book to parse");
+                }];
+            }
+            
+        }];
+        
+    }
 }
 
 @end
