@@ -10,6 +10,7 @@
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
 #import "PGBBookPageViewController.h"
+#import "PGBParseAPIClient.h"
 
 @interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -38,18 +39,41 @@
     self.bookTableView.delegate = self;
     self.bookTableView.dataSource = self;
     self.bookSearchBar.delegate = self;
-    
-    //begin test data
-//    [PGBRealmBook generateTestBookData];
-    //end test data
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.books = [PGBRealmBook getUserBookDataInArray];
+//    self.books = [PGBRealmBook getUserBookDataInArray];
     
-    [self loadDefaultContent];
+//    [self loadDefaultContent];
+    [self loadBookFromParse];
+}
+
+-(void)loadBookFromParse {
+        NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+    
+        [bgQueue addOperationWithBlock:^{
+    
+            [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
+                NSLog(@"user data: %@", data);
+    
+                PFObject *user = data;
+                if (user) {
+    
+//                    [PGBRealmBook deleteAllUserBookData];
+    
+                    [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
+                        NSLog(@"successfully fetch book from parse");
+                        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                            self.books = [PGBRealmBook getUserBookDataInArray];
+                            [self loadDefaultContent];
+                            [self.bookTableView reloadData];
+                        }];
+                    }];
+                }
+            }];
+        }];
 }
 
 - (void)loadDefaultContent{
@@ -62,7 +86,6 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-
 //    [self.bookTableView setContentOffset:CGPointMake(0, 44) animated:NO];
 //    [self.bookTableView setContentOffset:CGPointZero animated:YES];
 }

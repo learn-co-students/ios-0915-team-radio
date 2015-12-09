@@ -26,7 +26,7 @@
     }];
 }
 
-+(void)fetchUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(NSArray *objects))completionBlock{
++(void)fetchUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(NSArray *books))completionBlock{
     
     PFQuery *query = [PFQuery queryWithClassName:@"book"];
     [query whereKey:@"owner" equalTo:userObject];
@@ -56,6 +56,7 @@
             bookObject[@"eBookID"] = realmBook.ebookID;
             bookObject[@"eBookAuthor"] = realmBook.author;
             bookObject[@"eBookTitle"] = realmBook.title;
+            bookObject[@"eBookFriendlyTitle"] = realmBook.friendlyTitle;
             bookObject[@"eBookGenre"] = realmBook.genre;
             bookObject[@"eBookLanguage"] = realmBook.language;
             bookObject[@"eBookDescription"] = realmBook.bookDescription;
@@ -74,6 +75,7 @@
             newBook[@"eBookID"] = realmBook.ebookID;
             newBook[@"eBookAuthor"] = realmBook.author;
             newBook[@"eBookTitle"] = realmBook.title;
+            newBook[@"eBookFriendlyTitle"] = realmBook.friendlyTitle;
             newBook[@"eBookGenre"] = realmBook.genre;
             newBook[@"eBookLanguage"] = realmBook.language;
             newBook[@"eBookDescription"] = realmBook.bookDescription;

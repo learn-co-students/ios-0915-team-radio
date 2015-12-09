@@ -95,59 +95,29 @@
     } else if (![PFUser currentUser] && ![self.loginButton.title isEqual: @"Login"]){
         [self.loginButton setTitle:@"Login"];
     }
-
+    
     
     //leo test parse here
-//        self.books = [PGBRealmBook getUserBookDataInArray];
+    //put this into background thread
     
-
-    [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
-        NSLog(@"user data: %@", data);
-        
-        PFObject *user = data;
-        if (user) {
-            //            [PGBParseAPIClient fetchUserBookDataWithUserObject:user andCompletion:^(NSArray *objects) {
-            //                NSLog(@"book data: %@",objects);
-            //            }];
-            //            [PGBParseAPIClient storeUserBookDataWithUserObject:user andCompletion:^{
-            //                NSLog(@"saved book");
-            //            }];
-            
-            [PGBRealmBook deleteAllUserBookData];
-            
-//            PGBRealmBook *newBook = [[PGBRealmBook alloc]init];
-//            newBook.title = @"old BOok2";
-//            newBook.ebookID = @"6666";
-//            newBook.author = @"Leo Feng";
-//            newBook.genre = @"Fiction";
-//            newBook.language = @"en";
-//            newBook.bookDescription = @"just a test description";
-//            newBook.isDownloaded = YES;
-//            newBook.isBookmarked = YES;
+//    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+//    
+//    [bgQueue addOperationWithBlock:^{
+//        
+//        [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
+//            NSLog(@"user data: %@", data);
 //            
-//            [PGBParseAPIClient storeUserBookDataWithUserObject:user realmBookObject:newBook andCompletion:^(PFObject *bookObject) {
+//            PFObject *user = data;
+//            if (user) {
 //                
-//            }];
-            
-            [PGBParseAPIClient fetchUserBookDataWithUserObject:user andCompletion:^(NSArray *objects) {
-                for (NSDictionary *book in objects) {
-                    PGBRealmBook *newBook = [[PGBRealmBook alloc]init];
-                    newBook.ebookID = book[@"eBookID"];
-                    newBook.title = book[@"eBookTitle"];
-                    newBook.isDownloaded = [book[@"isDownloaded"] integerValue];
-                    newBook.isBookmarked = [book[@"isBookmarked"] integerValue];
-                    
-                    [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-                        return newBook;
-                    }];
-                }
-            }];
-            
-        }
-    }];
-    
-
-
+//                [PGBRealmBook deleteAllUserBookData];
+//                
+//                [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
+//                    NSLog(@"successfully fetch book from parse");
+//                }];
+//            }
+//        }];
+//    }];
 }
 
 - (void)generateBook {

@@ -8,6 +8,8 @@
 
 #import "PGBBookPageViewController.h"
 #import "PGBDownloadHelper.h"
+#import "PGBGoodreadsAPIClient.h"
+#import "PGBParseAPIClient.h"
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Masonry/Masonry.h>
 
@@ -47,6 +49,7 @@
     
     
     self.bookDescriptionTV.editable = NO;
+
     self.bookDescriptionTV.text = @"";
     PGBGoodreadsAPIClient *goodreadsAPI = [[PGBGoodreadsAPIClient alloc] init];
     [goodreadsAPI getDescriptionForBookTitle:self.book.title completion:^(NSString *bookDescription) {
@@ -59,6 +62,7 @@
                 }
             }];
     }];
+
 
     self.titleLabel.text = self.book.title;
     self.authorLabel.text = self.book.author;
@@ -177,11 +181,20 @@
     if (self.book.ebookID.length) {
         
         [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-            //saving the book cover data to realm
-            self.book.bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:self.book.ebookID]];
+            //   saving the book cover data to realm
+            //            self.book.bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:self.book.ebookID]];
             self.book.isDownloaded = YES;
+            
+            //store book to parse - first check if user if logged in!!!!!!
+            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                NSLog(@"saved book to parse");
+            }];
+            
             return self.book;
         }];
+        
+        
+
     }
 }
 
@@ -293,7 +306,14 @@
     
     if (self.book.ebookID.length) {
         [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+            //            self.book.bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:self.book.ebookID]];
             self.book.isBookmarked = YES;
+            
+            //first check if user is logged in
+            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                NSLog(@"saved book to parse");
+            }];
+            
             return self.book;
         }];
     }

@@ -13,7 +13,7 @@
 @interface PGBParseAPIClient : NSObject
 
 +(void)fetchUserProfileDataWithUserObject:(PFObject *)user andCompletion:(void (^)(PFObject *data))completionBlock;
-+(void)fetchUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(NSArray *objects))completionBlock;
++(void)fetchUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(NSArray *books))completionBlock;
 //+(void)storeUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)())completionBlock;
 +(void)storeUserBookDataWithUserObject:(PFObject *)userObject realmBookObject:(PGBRealmBook *)realmBook andCompletion:(void (^)(PFObject *bookObject))completionBlock;
 @end
