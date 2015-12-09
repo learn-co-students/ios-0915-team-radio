@@ -56,8 +56,8 @@
                                          iconColor:[UIColor colorWithRed:0.3216 green:0.749 blue:1.0 alpha:1.0]
                                           iconSize:37.0f
                                          imageSize:CGSizeMake(90.0f, 90.0f)];
-//    [self.tabBar.items[3] setTitle:@"Chat"];
-//    [self.tabBar.items[3] setImage:chatIcon];
+    [self.tabBar.items[3] setTitle:@"Chat"];
+    [self.tabBar.items[3] setImage:chatIcon];
 
     
 }

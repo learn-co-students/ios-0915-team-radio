@@ -100,24 +100,24 @@
     //leo test parse here
     //put this into background thread
     
-    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
-    
-    [bgQueue addOperationWithBlock:^{
-        
-        [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
-            NSLog(@"user data: %@", data);
-            
-            PFObject *user = data;
-            if (user) {
-                
-                [PGBRealmBook deleteAllUserBookData];
-                
-                [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
-                    NSLog(@"successfully fetch book from parse");
-                }];
-            }
-        }];
-    }];
+//    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+//    
+//    [bgQueue addOperationWithBlock:^{
+//        
+//        [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
+//            NSLog(@"user data: %@", data);
+//            
+//            PFObject *user = data;
+//            if (user) {
+//                
+//                [PGBRealmBook deleteAllUserBookData];
+//                
+//                [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
+//                    NSLog(@"successfully fetch book from parse");
+//                }];
+//            }
+//        }];
+//    }];
 }
 
 - (void)generateBook {
