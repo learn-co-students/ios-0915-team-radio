@@ -47,7 +47,8 @@
     
 }
 
-+ (NSString *)primaryKey {
++ (NSString *)primaryKey
+{
     return @"ebookID";
 }
 
@@ -161,18 +162,21 @@
 }
 
 - (BOOL)checkFriendlyTitleIfItHasAuthor:(NSString *)friendlyTitle {
-    if ([friendlyTitle containsString:@"by"]) {
+    if ([friendlyTitle containsString:@"by"])
+    {
         NSMutableArray *wordsInFriendlyTitleInArray = [[friendlyTitle componentsSeparatedByString: @" "] mutableCopy];
         NSInteger index = [wordsInFriendlyTitleInArray indexOfObject:@"by"];
         NSInteger afterIndex = index + 1;
-        if (afterIndex < wordsInFriendlyTitleInArray.count) {
+        if (afterIndex < wordsInFriendlyTitleInArray.count)
+        {
             return YES;
         }
     }
     return NO;
 }
 
-- (NSString *)getAuthorFromFriendlyTitle:(NSString *)friendlyTitle {
+- (NSString *)getAuthorFromFriendlyTitle:(NSString *)friendlyTitle
+{
     
     friendlyTitle = [friendlyTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSMutableArray *wordsInFriendlyTitleInArray = [[friendlyTitle componentsSeparatedByString: @" "] mutableCopy];

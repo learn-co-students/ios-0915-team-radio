@@ -11,47 +11,47 @@
 
 @implementation PGBParseAPIClient
 
-+(void)fetchUserProfileDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(PFObject *data))completionBlock{
-
++(void)fetchUserProfileDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(PFObject *data))completionBlock
+{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"objectId = %@", userObject.objectId];
-    
     PFQuery *query = [PFUser queryWithPredicate:predicate];
     
     [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        if (!error) {
+        if (!error)
+        {
             completionBlock(object);
-        }else{
+        }else {
             NSLog(@"Unable to get user data from parse");
         }
     }];
 }
 
-+(void)fetchUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(NSArray *books))completionBlock{
-    
++(void)fetchUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(NSArray *books))completionBlock
+{
     PFQuery *query = [PFQuery queryWithClassName:@"book"];
     [query whereKey:@"owner" equalTo:userObject];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (!error) {
+        if (!error)
+        {
             completionBlock(objects);
-        }else{
+        } else {
             NSLog(@"Unable to get book data from parse");
         }
     }];
     
 }
 
-
-+(void)storeUserBookDataWithUserObject:(PFObject *)userObject realmBookObject:(PGBRealmBook *)realmBook andCompletion:(void (^)(PFObject *bookObject))completionBlock{
-
++(void)storeUserBookDataWithUserObject:(PFObject *)userObject realmBookObject:(PGBRealmBook *)realmBook andCompletion:(void (^)(PFObject *bookObject))completionBlock
+{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eBookID = %@", realmBook.ebookID];
     
     PFQuery *query = [PFQuery queryWithClassName:@"book" predicate:predicate];
 
     [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable bookObject, NSError * _Nullable error) {
         
-        if (bookObject) {
-            
-            NSLog(@"book exist - udpate book");
+        if (bookObject)
+        {
+            //NSLog(@"book exist - udpate book");
             bookObject[@"owner"] = userObject;
             bookObject[@"eBookID"] = realmBook.ebookID;
             bookObject[@"eBookAuthor"] = realmBook.author;
@@ -64,10 +64,10 @@
             bookObject[@"isBookmarked"] = [NSNumber numberWithBool:realmBook.isBookmarked];
             
             [bookObject saveInBackground];
-            
+
             completionBlock(bookObject);
             
-        }else{
+        }else {
             
             NSLog(@"book doesn't - new book");
             PFObject *newBook = [PFObject objectWithClassName:@"book"];
@@ -87,7 +87,6 @@
             completionBlock(newBook);
 
         }
-        
         NSLog(@"error %@",error.localizedDescription);
     }];
 
