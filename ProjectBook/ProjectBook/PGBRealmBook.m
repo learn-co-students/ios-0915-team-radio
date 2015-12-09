@@ -9,6 +9,7 @@
 #import "PGBRealmBook.h"
 #import "PGBHomeViewController.h"
 #import "PGBParseAPIClient.h"
+#import "PGBDataStore.h"
 
 @implementation PGBRealmBook
 
@@ -120,13 +121,19 @@
 //    }
 //}
 
-+(void)generateClassicBooks {
-    if (![PGBRealmBook getUserBookDataInArray].count) {
-        PGBRealmBook *prideAndPrejudice = [[PGBRealmBook alloc]initWithTitle:@"Pride and Prejudice" author:@"Jane Austen" genre:@"Fiction" language:@"English" friendlyTitle:@"" downloadURL:@"https://www.gutenberg.org/ebooks/1342.epub.images" bookDescription:@"\"It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.\"\nSo begins Pride and Prejudice, Jane Austen's witty comedy of manners--one of the most popular novels of all time--that features splendidly civilized sparring between the proud Mr. Darcy and the prejudiced Elizabeth Bennet as they play out their spirited courtship in a series of eighteenth-century drawing-room intrigues." ebookID:nil isDownloaded:NO isBookmarked:nil bookCoverData:nil];
-        
-        [PGBRealmBook storeUserBookDataWithBook:prideAndPrejudice];
-    }
-
++(PGBRealmBook *)generateBooksWitheBookID:(NSString *)ebookID {
+//    if (![PGBRealmBook getUserBookDataInArray].count) {
+//        PGBRealmBook *prideAndPrejudice = [[PGBRealmBook alloc]initWithTitle:@"Pride and Prejudice" author:@"Jane Austen" genre:@"Fiction" language:@"English" friendlyTitle:@"" downloadURL:@"https://www.gutenberg.org/ebooks/1342.epub.images" bookDescription:@"\"It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.\"\nSo begins Pride and Prejudice, Jane Austen's witty comedy of manners--one of the most popular novels of all time--that features splendidly civilized sparring between the proud Mr. Darcy and the prejudiced Elizabeth Bennet as they play out their spirited courtship in a series of eighteenth-century drawing-room intrigues." ebookID:@"etext1342" isDownloaded:NO isBookmarked:NO bookCoverData:nil];
+//        
+//        [PGBRealmBook storeUserBookDataWithBook:prideAndPrejudice];
+//    }
+    
+    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
+    
+    NSPredicate *filter = [NSPredicate predicateWithFormat:@"eBookNumbers MATCHES[c] %@", ebookID];
+    NSArray *coreDataBooks = [dataStore.managedBookObjects filteredArrayUsingPredicate:filter];
+    
+    return [PGBRealmBook createPGBRealmBookWithBook:[coreDataBooks firstObject]];
 }
 
 

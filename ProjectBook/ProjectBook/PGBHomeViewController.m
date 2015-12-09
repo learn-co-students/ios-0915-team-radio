@@ -32,7 +32,10 @@
     
 }
 
+//book arrays
 @property (strong, nonatomic) NSMutableArray *books;
+@property (strong, nonatomic) NSMutableArray *classicBooks;
+
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
 @property (nonatomic, assign) int currentList;
 @property (nonatomic, assign) int initialPage;
@@ -49,6 +52,9 @@
 @property (nonatomic, strong)NSOperationQueue *bgQueue;
 @property (nonatomic, strong)NSOperationQueue *bookCoverBgQueue;
 
+@property (strong, nonatomic) PGBDataStore *dataStore;
+
+
 
 @end
 
@@ -58,8 +64,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.bookCollectionView setDelegate:self];
-    [self.bookCollectionView setDataSource:self];
     
     //logo for banner
     UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
@@ -71,18 +75,38 @@
 //        self.books = [PGBRealmBook getUserBookDataInArray];
 //        self.books = @[self.books[0], self.books[1], self.books[2]];
     self.books = [NSMutableArray arrayWithCapacity:100];
+    self.classicBooks = [NSMutableArray arrayWithCapacity:100];
+
 //    [self generateRandomBookByCount:10];
-    [self generateBook];
+//    [self generateBook];
 //    [self generateClassics];
 //    self.books = [[PGBRealmBook getUserBookDataInArray] mutableCopy];
 //    [self.books addObject:self.books[0]];
     
+    self.dataStore = [PGBDataStore sharedDataStore];
+    [self.dataStore fetchData];
+    
+//popular books
+    //delegate
+    [self.popularCollectionView setDelegate:self];
+    [self.popularCollectionView setDataSource:self];
+    
     //xib
+    [self.popularCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
     
-    [self.bookCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
+    self.popularCollectionView.backgroundColor = [UIColor whiteColor];
+    self.popularCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
     
-    self.bookCollectionView.backgroundColor = [UIColor whiteColor];
-    self.bookCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+//classic books
+    //delegate
+    [self.classicsCollectionView setDelegate:self];
+    [self.classicsCollectionView setDataSource:self];
+    
+    //xib
+    [self.classicsCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
+    
+    self.classicsCollectionView.backgroundColor = [UIColor whiteColor];
+    self.classicsCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -120,6 +144,64 @@
 //    }];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
+    
+    [backgroundQueue addOperationWithBlock:^{
+        NSArray *mostPopularBooks = @[ @"etext1342", @"etext46", @"etext11", @"etext76", @"etext84", @"etext1952", @"etext1661", @"etext2701", @"etext23", @"etext98", @"etext5200", @"etext345", @"etext1232", @"etext74", @"etext2542", @"etext844", @"etext174", @"etext4300", @"etext1400", @"etext1260", @"etext135"];
+        
+        for (NSString *ebookNumber in mostPopularBooks) {
+            PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
+            if (book) {
+                [self.books addObject:book];
+                NSLog (@"popular books count:%lu", self.books.count);
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.popularCollectionView reloadData];
+                    
+                }];
+            }
+        }
+        
+        NSArray *harvardClassicBooks = @[ @"etext22456", @"etext28", @"etext4081", @"etext2062", @"etext3330", @"etext1597", @"etext1399", @"etext1656", @"etext13726", @"etext10378", @"etext20203", @"etext4028", @"etext2880", @"etext4797", @"etext3296", @"etext1657", @"etext766", @"etext12816", @"etext274", @"etext1012", @"etext1008", @"etext996", @"etext9662", @"etext16643", @"etext1237", @"etext14460", @"etext5999", @"etext8418", @"etext5314", @"etext41", @"etext2610", @"etext3160", @"etext2009", @"etext18269", @"etext31", @"etext1342", @"etext1232", @"etext33"];
+        
+        for (NSString *ebookNumber in harvardClassicBooks) {
+            PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
+            if (book) {
+                [self.classicBooks addObject:book];
+                NSLog (@"classic books count:%lu", self.classicBooks.count);
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.classicsCollectionView reloadData];
+                }];
+            } else {
+                NSLog (@"%@", ebookNumber);
+            }
+        }
+    }];
+    
+    
+//    NSOperationQueue *secondBackgroundQueue = [[NSOperationQueue alloc]init];
+//    
+//    [secondBackgroundQueue addOperationWithBlock:^{
+//        
+//        NSArray *harvardClassicBooks = @[ @"etext22456", @"etext28", @"etext4081", @"etext2062", @"etext3330", @"etext1597", @"etext1399", @"etext1656", @"etext13726", @"etext10378", @"etext20203", @"etext4028", @"etext2880", @"etext4797", @"etext3296", @"etext1657", @"etext766", @"etext12816", @"etext274", @"etext1012", @"etext1008"];
+//        
+//        for (NSString *ebookNumber in harvardClassicBooks) {
+//            PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
+//            if (book) {
+//                [self.classicBooks addObject:book];
+//                NSLog (@"classic books count:%lu", self.classicBooks.count);
+//                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                    [self.classicsCollectionView reloadData];
+//                }];
+//            } else {
+//                NSLog (@"%@", ebookNumber);
+//            }
+//        }
+//    }];
+}
+
 - (void)generateBook {
     PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
     [dataStore fetchData];
@@ -134,24 +216,7 @@
         }
     }
     
-    [self.bookCollectionView reloadData];
-}
-
-- (void)generateClassics {
-    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
-    [dataStore fetchData];
-    
-    [PGBRealmBook generateClassicBooks];
-    for (Book *book in dataStore.managedBookObjects) {
-        [PGBRealmBook createPGBRealmBookWithBook:book];
-        if (book)
-        {
-            [self.books addObject:book];
-        }
-    }
-    
-    
-    [self.bookCollectionView reloadData];
+    [self.popularCollectionView reloadData];
 }
 
 //- (void)generateRandomBookByCount:(NSInteger)count{
@@ -197,7 +262,7 @@
 //                        realmBook.bookCoverData = bookCoverData;
 //                        
 //                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                            [self.bookCollectionView reloadData];
+//                            [self.popularCollectionView reloadData];
 //                        }];
 //                        
 //                    }
@@ -209,7 +274,7 @@
 //                
 //                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
 //                    
-//                    [self.bookCollectionView reloadData];
+//                    [self.popularCollectionView reloadData];
 //                    
 //                    [self.bookCoverBgQueue addOperation:fetchBookCoverOperation];
 //                }];
@@ -241,40 +306,65 @@
 //collection view
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSLog(@"book count %lu", self.books.count);
-    return self.books.count;
+    NSLog(@"popular book count %lu", self.books.count);
+    NSLog(@"classic book count %lu", self.classicBooks.count);
+    
+    if (collectionView == self.popularCollectionView) {
+        return self.books.count;
+    } else if (collectionView == self.classicsCollectionView) {
+        return self.classicBooks.count;
+    }
+    
+    return self.classicBooks.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"bookCoverCell" forIndexPath:indexPath];
     
     PGBCustomBookCollectionViewCell *cell = (PGBCustomBookCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:@"bookCoverCell" forIndexPath:indexPath];
     
-
-    if (self.books.count != 0) {
-        if (indexPath.row < self.books.count)
-        {
-            PGBRealmBook *book = self.books[indexPath.row];
-
-//            cell.titleLabel.text = @"THINGS";
-//            cell.authorLabel.text = @"AN AUTHOR";
-            
-            UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
-//
-            if (bookCoverImage) {
-                cell.bookCover.image = bookCoverImage;
-            } else {
-                cell.titleTV.text = book.title;
-                cell.authorLabel.text = book.author;
+    if (collectionView == self.popularCollectionView)
+    {
+        if (self.books.count != 0) {
+            if (indexPath.row < self.books.count)
+            {
+                PGBRealmBook *book = self.books[indexPath.row];
+                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+                
+                if (bookCoverImage) {
+                    cell.bookCover.image = bookCoverImage;
+                } else {
+                    cell.titleTV.text = book.title;
+                    cell.authorLabel.text = book.author;
+                }
+                //            cell.titleTV.adjustsFontSizeToFitWidth = YES;
+                //            cell.titleTV.minimumFontSize = 0;
+                //            cell.authorLabel.adjustsFontSizeToFitWidth = YES;
             }
-//            cell.titleTV.adjustsFontSizeToFitWidth = YES;
-//            cell.titleTV.minimumFontSize = 0;
-//            cell.authorLabel.adjustsFontSizeToFitWidth = YES;
         }
+        return cell;
+        
+    } else if (collectionView == self.classicsCollectionView) {
+        if (self.classicBooks.count != 0) {
+            if (indexPath.row < self.classicBooks.count)
+            {
+                PGBRealmBook *book = self.classicBooks[indexPath.row];
+                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+                
+                if (bookCoverImage) {
+                    cell.bookCover.image = bookCoverImage;
+                } else {
+                    cell.titleTV.text = book.title;
+                    cell.authorLabel.text = book.author;
+                }
+                //cell.titleTV.adjustsFontSizeToFitWidth = YES;
+                //cell.titleTV.minimumFontSize = 0;
+                //cell.authorLabel.adjustsFontSizeToFitWidth = YES;
+            }
+        }
+        return cell;
     }
-
-    return cell;
+    return nil;
 }
 
 //segue
@@ -287,7 +377,7 @@
 {
     PGBBookPageViewController *bookPageVC = segue.destinationViewController;
     
-    NSArray *arrayOfIndexPaths = [self.bookCollectionView indexPathsForSelectedItems];
+    NSArray *arrayOfIndexPaths = [self.popularCollectionView indexPathsForSelectedItems];
     
     NSIndexPath *selectedIndexPath = [arrayOfIndexPaths firstObject];
     

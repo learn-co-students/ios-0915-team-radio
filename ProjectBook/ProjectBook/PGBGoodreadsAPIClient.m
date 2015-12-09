@@ -70,7 +70,7 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 
 -(NSString *)getURLForBookAndAuthor:(PGBRealmBook *)realmBook
 {
-
+    
     NSString *author = nil;
     NSString *goodreadsURL = [[NSMutableString alloc]init];
     NSString *titleWithPluses = [realmBook.title stringByReplacingOccurrencesOfString:@" " withString:@"+"];
@@ -84,9 +84,14 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     if (author && realmBook.title) {
         NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
         goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses, authorWithPluses];
+        goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:nil];
+        NSLog (@"%@", goodreadsURL);
+
         return goodreadsURL;
     } else if (realmBook.title) {
         goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
+        goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:nil];
+        
         return goodreadsURL;
     }
     
@@ -112,6 +117,11 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
                     contentOfUrl = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                     NSLog(@"This is working: %@", contentOfUrl);
                     NSString *bookDescription = [self getDescriptionWithContentsOfURLString:contentOfUrl];
+                    
+                    if ([bookDescription containsString:@"<br>"]) {
+                        bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n"];
+                    }
+                    
                     completion(bookDescription);
                 }
             }
