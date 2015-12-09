@@ -68,24 +68,24 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 }
 
 
--(NSString *)getURLForBookAndAuthor:(NSString *)bookTitle
+-(NSString *)getURLForBookAndAuthor:(PGBRealmBook *)realmBook
 {
-    PGBRealmBook *book = [[PGBRealmBook alloc]init];
+
     NSString *author = nil;
     NSString *goodreadsURL = [[NSMutableString alloc]init];
-    NSString *titleWithPluses = [bookTitle stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSLog(@"friendlyTitle %@ for bookTitle %@", book.friendlyTitle, bookTitle);
+    NSString *titleWithPluses = [realmBook.title stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSLog(@"friendlyTitle %@ for bookTitle %@", realmBook.friendlyTitle, realmBook.title);
     //checks if friendlytitle has author, if so, parses out author
-    if ([book checkFriendlyTitleIfItHasAuthor:book.friendlyTitle]) {
-        author = [book getAuthorFromFriendlyTitle:book.friendlyTitle];
+    if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle]) {
+        author = [realmBook getAuthorFromFriendlyTitle:realmBook.friendlyTitle];
         NSLog (@"author: %@", author);
     }
     
-    if (author && bookTitle) {
+    if (author && realmBook.title) {
         NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
         goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses, authorWithPluses];
         return goodreadsURL;
-    } else if (bookTitle) {
+    } else if (realmBook.title) {
         goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
         return goodreadsURL;
     }
@@ -93,7 +93,7 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     return goodreadsURL;
 }
 
-- (void)getDescriptionForBookTitle:(NSString *)bookTitle completion:(void (^)(NSString *description))completion
+- (void)getDescriptionForBookTitle:(PGBRealmBook *)realmBook completion:(void (^)(NSString *description))completion
 {
     __block NSString *contentOfUrl = @"";
     // __weak typeof(self) tmpself = self;
@@ -101,7 +101,7 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 //    NSString *titleWithPluses = [bookTitle stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 //    NSString *URL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
 
-    NSString *URL = [self getURLForBookAndAuthor:bookTitle];
+    NSString *URL = [self getURLForBookAndAuthor:realmBook];
     
     NSLog(@"url as string:%@", URL);
     NSURLSession *aSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -165,11 +165,18 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     for (NSString *string  in arrayOfPotentialSuffixes)
     {
         NSUInteger stringLength = string.length;
-        NSUInteger bookDescriptionLength = bookDescription.length;
-        
-        if ([[bookDescription substringFromIndex:bookDescriptionLength-stringLength] isEqualToString:string])
-        {
-            bookDescription = [bookDescription substringToIndex:bookDescriptionLength-stringLength];
+        if (stringLength) {
+            
+            NSUInteger bookDescriptionLength = bookDescription.length;
+            
+            if (bookDescriptionLength) {
+                if ([[bookDescription substringFromIndex:bookDescriptionLength-stringLength] isEqualToString:string])
+                {
+                    bookDescription = [bookDescription substringToIndex:bookDescriptionLength-stringLength];
+                }
+            } else {
+                bookDescription = @"There is no description for this book.";
+            }
         }
         
     }

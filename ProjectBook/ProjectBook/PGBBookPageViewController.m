@@ -52,7 +52,7 @@
 
     self.bookDescriptionTV.text = @"";
     PGBGoodreadsAPIClient *goodreadsAPI = [[PGBGoodreadsAPIClient alloc] init];
-    [goodreadsAPI getDescriptionForBookTitle:self.book.title completion:^(NSString *bookDescription) {
+    [goodreadsAPI getDescriptionForBookTitle:self.book completion:^(NSString *bookDescription) {
 
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 if ([bookDescription isEqual:@""]) {
