@@ -62,7 +62,7 @@
 + (NSString *)primaryKey;
 
 + (void)generateTestBookData;
-+ (void)generateClassicBooks;
++(PGBRealmBook *)generateBooksWitheBookID:(NSString *)ebookID;
 
 @end
 
