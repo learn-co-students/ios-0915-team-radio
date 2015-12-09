@@ -91,6 +91,7 @@
     self.bookSearchBar.text = @"";
     self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
     self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+    
 //    [self.bookTableView reloadData];
 }
 
@@ -208,7 +209,23 @@
     
     bookPageVC.book = bookAtIndexPath;
     
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return YES - we will be able to delete all rows
+    if (tableView == self.bookTableView) {
+        return YES;
+    }
     
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Perform the real delete action here. Note: you may need to check editing style
+    //   if you do not perform delete only.
+    NSLog(@"Deleted row.");
 }
 
 @end
