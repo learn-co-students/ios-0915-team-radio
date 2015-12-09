@@ -11,6 +11,8 @@
 #import "PGBRealmBook.h"
 #import "PGBBookPageViewController.h"
 #import "PGBParseAPIClient.h"
+#import <YYWebImage/YYWebImage.h>
+
 
 @interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -45,12 +47,19 @@
     [super viewWillAppear:animated];
     
 //    self.books = [PGBRealmBook getUserBookDataInArray];
-    
 //    [self loadDefaultContent];
-    [self loadBookFromParse];
+//    [self fetchBookFromParse];
 }
 
--(void)loadBookFromParse {
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    //    [self.bookTableView setContentOffset:CGPointMake(0, 44) animated:NO];
+    //    [self.bookTableView setContentOffset:CGPointZero animated:YES];
+    
+    [self fetchBookFromParse];
+}
+
+-(void)fetchBookFromParse {
         NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
     
         [bgQueue addOperationWithBlock:^{
@@ -65,6 +74,7 @@
     
                     [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
                         NSLog(@"successfully fetch book from parse");
+                        
                         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
                             self.books = [PGBRealmBook getUserBookDataInArray];
                             [self loadDefaultContent];
@@ -81,13 +91,7 @@
     self.bookSearchBar.text = @"";
     self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
     self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
-    [self.bookTableView reloadData];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-//    [self.bookTableView setContentOffset:CGPointMake(0, 44) animated:NO];
-//    [self.bookTableView setContentOffset:CGPointZero animated:YES];
+//    [self.bookTableView reloadData];
 }
 
 - (IBAction)bookSegmentedControlSelected:(UISegmentedControl *)sender {
@@ -147,8 +151,12 @@
         cell.authorLabel.text = book.author;
         cell.genreLabel.text = book.genre;
         
-        if (book.bookCoverData) {
-            cell.bookCover.image = [UIImage imageWithData: book.bookCoverData];
+        UIImage *bookCoverImage = [UIImage imageWithData: book.bookCoverData];
+        
+        if (bookCoverImage) {
+            cell.bookCover.image = bookCoverImage;
+        } else {
+            cell.bookCover.image = [UIImage imageNamed:@"no_book_cover"];
         }
         
         return cell;
@@ -199,6 +207,8 @@
     PGBRealmBook *bookAtIndexPath = self.booksDisplayed[selectedIndexPath.row];
     
     bookPageVC.book = bookAtIndexPath;
+    
+    
 }
 
 @end

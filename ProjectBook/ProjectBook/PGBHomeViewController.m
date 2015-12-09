@@ -25,14 +25,17 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+static dispatch_once_t once;
 
 @interface PGBHomeViewController () {
     
     UIActivityIndicatorView *spinner;
-    
+
 }
 
+
 //book arrays
+
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) NSMutableArray *classicBooks;
 
@@ -49,10 +52,16 @@
 @property (nonatomic) BOOL noMoreResultsAvail;
 @property (nonatomic) BOOL loading;
 
+
+
+@property (assign, nonatomic) BOOL isLoggedin;
+//@property (nonatomic, assign) dispatch_once_t *once;
+
 @property (nonatomic, strong)NSOperationQueue *bgQueue;
 @property (nonatomic, strong)NSOperationQueue *bookCoverBgQueue;
 
 @property (strong, nonatomic) PGBDataStore *dataStore;
+
 
 
 
@@ -120,27 +129,32 @@
         [self.loginButton setTitle:@"Login"];
     }
     
-    
     //leo test parse here
-    //put this into background thread
+
+
+}
+
+
+
+-(void)fetchBookFromParse {
+    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
     
-//    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
-//    
-//    [bgQueue addOperationWithBlock:^{
-//        
+    [bgQueue addOperationWithBlock:^{
+    
 //        [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
 //            NSLog(@"user data: %@", data);
 //            
 //            PFObject *user = data;
 //            if (user) {
-//                
-//                [PGBRealmBook deleteAllUserBookData];
-//                
-//                [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
-//                    NSLog(@"successfully fetch book from parse");
-//                }];
+        
+                [PGBRealmBook deleteAllUserBookData];
+        
+                [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
+                    NSLog(@"successfully fetch book from parse");
+                    
+                }];
 //            }
-//        }];
+        }];
 //    }];
 }
 
