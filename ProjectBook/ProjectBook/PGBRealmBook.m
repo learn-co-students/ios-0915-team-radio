@@ -51,7 +51,7 @@
     return @"ebookID";
 }
 
-+ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock {
++ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock andCompletion:(void (^)())completionBlock{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
@@ -61,6 +61,7 @@
     
     [realm commitWriteTransaction];
     
+    completionBlock();
 //    [realm transactionWithBlock:^{
 //        // [Dog createInRealm:realm withValue:@{@"name": @"Fido", @"age": @1}];
 //        PGBRealmBook *book = updateBlock();
@@ -279,21 +280,20 @@
                     
                     if (bookCoverData) {
                         realmBook.bookCoverData = bookCoverData;
-                    }
+                    } 
                 }
                 
                 NSLog(@"begin storing to realm");
                 [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
                     return realmBook;
+                } andCompletion:^{
+                    completionBlock();
                 }];
+                
             }];
-            
-            
         }
         
         NSLog(@"end storing to realm");
-        completionBlock();
-    
     }];
 }
 

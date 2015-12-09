@@ -180,18 +180,18 @@
     
     if (self.book.ebookID.length) {
         
-        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-            //   saving the book cover data to realm
-            //            self.book.bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:self.book.ebookID]];
-            self.book.isDownloaded = YES;
-            
-            //store book to parse - first check if user if logged in!!!!!!
-            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                NSLog(@"saved book to parse");
-            }];
-            
-            return self.book;
-        }];
+//        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+//            //   saving the book cover data to realm
+//            //            self.book.bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:self.book.ebookID]];
+//            self.book.isDownloaded = YES;
+//            
+//            //store book to parse - first check if user if logged in!!!!!!
+//            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+//                NSLog(@"saved book to parse");
+//            }];
+//            
+//            return self.book;
+//        }];
         
         
 
@@ -252,12 +252,16 @@
     NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
     [bgQueue addOperationWithBlock:^{
         NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:ebookID]];
+        
         if (bookCoverData) {
-            
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 self.bookCoverImageView.image = [UIImage imageWithData:bookCoverData];
             }];
             
+        } else {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                self.bookCoverImageView.image = [UIImage imageNamed:@"no_book_cover"];
+            }];
         }
     }];
 }
@@ -304,19 +308,19 @@
     //    UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
     //    [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
     
-    if (self.book.ebookID.length) {
-        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-            //            self.book.bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:self.book.ebookID]];
-            self.book.isBookmarked = YES;
-            
-            //first check if user is logged in
-            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                NSLog(@"saved book to parse");
-            }];
-            
-            return self.book;
-        }];
-    }
+//    if (self.book.ebookID.length) {
+//        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+//            //            self.book.bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:self.book.ebookID]];
+//            self.book.isBookmarked = YES;
+//            
+//            //first check if user is logged in
+//            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+//                NSLog(@"saved book to parse");
+//            }];
+//            
+//            return self.book;
+//        }];
+//    }
 }
 
 @end
