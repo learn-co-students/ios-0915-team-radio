@@ -25,12 +25,14 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-
+static dispatch_once_t once = 0;
 @interface PGBHomeViewController () {
     
     UIActivityIndicatorView *spinner;
-    
+
 }
+
+
 
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
@@ -46,8 +48,9 @@
 @property (nonatomic) BOOL noMoreResultsAvail;
 @property (nonatomic) BOOL loading;
 
-@property (nonatomic, strong)NSOperationQueue *bgQueue;
-@property (nonatomic, strong)NSOperationQueue *bookCoverBgQueue;
+@property (nonatomic, strong) NSOperationQueue *bgQueue;
+@property (nonatomic, strong) NSOperationQueue *bookCoverBgQueue;
+@property (assign, nonatomic) BOOL isLoggedin;
 
 
 @end
@@ -96,28 +99,42 @@
         [self.loginButton setTitle:@"Login"];
     }
     
-    
     //leo test parse here
-    //put this into background thread
+    self.isLoggedin = [PFUser currentUser];
     
-//    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
-//    
-//    [bgQueue addOperationWithBlock:^{
-//        
-//        [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
-//            NSLog(@"user data: %@", data);
-//            
-//            PFObject *user = data;
-//            if (user) {
-//                
-//                [PGBRealmBook deleteAllUserBookData];
-//                
-//                [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
-//                    NSLog(@"successfully fetch book from parse");
-//                }];
-//            }
-//        }];
-//    }];
+    if (self.isLoggedin) {
+        
+        dispatch_once(&once, ^ {
+            [self fetchBookFromParse];// Code to run onces
+            NSLog(@"fetch book running");
+        });
+        
+    }
+    
+
+
+}
+
+-(void)fetchBookFromParse {
+    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+    
+    [bgQueue addOperationWithBlock:^{
+    
+        [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
+            NSLog(@"user data: %@", data);
+            
+            PFObject *user = data;
+            if (user) {
+                
+                [PGBRealmBook deleteAllUserBookData];
+                
+                [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
+                    NSLog(@"successfully fetch book from parse");
+                    
+                }];
+            }
+        }];
+    }];
 }
 
 - (void)generateBook {

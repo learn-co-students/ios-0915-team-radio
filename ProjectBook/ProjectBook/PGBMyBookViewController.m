@@ -11,6 +11,8 @@
 #import "PGBRealmBook.h"
 #import "PGBBookPageViewController.h"
 #import "PGBParseAPIClient.h"
+#import <YYWebImage/YYWebImage.h>
+
 
 @interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -44,13 +46,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-//    self.books = [PGBRealmBook getUserBookDataInArray];
+    self.books = [PGBRealmBook getUserBookDataInArray];
     
-//    [self loadDefaultContent];
-    [self loadBookFromParse];
+    [self loadDefaultContent];
+//    [self fetchBookFromParse];
 }
 
--(void)loadBookFromParse {
+-(void)fetchBookFromParse {
         NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
     
         [bgQueue addOperationWithBlock:^{
@@ -65,9 +67,11 @@
     
                     [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
                         NSLog(@"successfully fetch book from parse");
+                        
+                        self.books = [PGBRealmBook getUserBookDataInArray];
+                        [self loadDefaultContent];
+                        
                         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-                            self.books = [PGBRealmBook getUserBookDataInArray];
-                            [self loadDefaultContent];
                             [self.bookTableView reloadData];
                         }];
                     }];
@@ -148,7 +152,17 @@
         cell.genreLabel.text = book.genre;
         
         if (book.bookCoverData) {
-            cell.bookCover.image = [UIImage imageWithData: book.bookCoverData];
+            NSURL *url = [NSURL URLWithString:@"http://www.gutenberg.org/cache/epub/50651/pg50651.cover.medium.jpg"];
+//            [cell.bookCover yy_setImageWithURL:url options:YYWebImageOptionProgressive];
+
+//            cell.bookCover.image = [UIImage imageWithData: book.bookCoverData];
+            
+            [cell.bookCover yy_setImageWithURL:url placeholder:[UIImage imageNamed:@"placeholder"] options:YYWebImageOptionProgressive completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+                //        if (from == YYWebImageFromDiskCache) {
+                //            NSLog(@"From Cache!");
+                //        }
+                
+            }];
         }
         
         return cell;
