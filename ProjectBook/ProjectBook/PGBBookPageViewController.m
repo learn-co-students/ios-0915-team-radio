@@ -186,9 +186,9 @@
             self.book.isDownloaded = YES;
             
             //store book to parse - first check if user if logged in!!!!!!
-            //            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-            //                NSLog(@"saved book to parse");
-            //            }];
+            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                NSLog(@"saved book to parse");
+            }];
             
             return self.book;
         }];
@@ -310,9 +310,9 @@
             self.book.isBookmarked = YES;
             
             //first check if user is logged in
-            //            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-            //                NSLog(@"saved book to parse");
-            //            }];
+            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                NSLog(@"saved book to parse");
+            }];
             
             return self.book;
         }];
