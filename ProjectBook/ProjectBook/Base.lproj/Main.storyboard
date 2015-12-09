@@ -9,6 +9,7 @@
         <mutableArray key="Moon Bold.otf">
             <string>Moon-Bold</string>
             <string>Moon-Bold</string>
+            <string>Moon-Bold</string>
         </mutableArray>
         <mutableArray key="OpenSans-Bold.ttf">
             <string>OpenSans-Bold</string>
@@ -32,11 +33,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnu-2K-HE5" userLabel="Overall Scroll View">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fnu-2K-HE5" userLabel="Overall Scroll View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9OG-6H-cgF" userLabel="Overall Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="576"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9OG-6H-cgF" userLabel="Overall Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U1Y-Pf-EIo" userLabel="Horizontal Scoll View">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
@@ -74,11 +75,11 @@
                                                     <constraint firstItem="Nrl-qm-fpw" firstAttribute="top" secondItem="U1Y-Pf-EIo" secondAttribute="top" id="sXP-Hi-BrY"/>
                                                 </constraints>
                                             </scrollView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bG3-i2-RbI" userLabel="Popular">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bG3-i2-RbI" userLabel="Popular Bar">
                                                 <rect key="frame" x="0.0" y="200" width="600" height="38"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvT-bp-eHT">
-                                                        <rect key="frame" x="20" y="4" width="92" height="31"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvT-bp-eHT">
+                                                        <rect key="frame" x="20" y="4" width="89" height="31"/>
                                                         <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="19"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -91,7 +92,7 @@
                                                     <constraint firstItem="UvT-bp-eHT" firstAttribute="centerY" secondItem="bG3-i2-RbI" secondAttribute="centerY" id="vNW-eL-iKk"/>
                                                 </constraints>
                                             </view>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9G8-gs-hXd" userLabel="Popular Book Collection View">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9G8-gs-hXd" userLabel="Popular Book CV">
                                                 <rect key="frame" x="0.0" y="238" width="600" height="150"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="20" id="NGJ-lH-zCM">
                                                     <size key="itemSize" width="90" height="140"/>
@@ -117,8 +118,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYR-Z4-TFx" userLabel="Classics Bar">
                                                 <rect key="frame" x="0.0" y="388" width="600" height="38"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Classics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKQ-10-Fur" userLabel="Russian Literature">
-                                                        <rect key="frame" x="20" y="4" width="200" height="31"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Classics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKQ-10-Fur">
+                                                        <rect key="frame" x="20" y="4" width="92" height="31"/>
                                                         <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="19"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -151,23 +152,65 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWm-Va-sYU" userLabel="Shakespeare Bar">
+                                                <rect key="frame" x="0.0" y="576" width="600" height="24"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVN-18-l5A" userLabel="Shakespeare">
+                                                        <rect key="frame" x="20" y="2" width="89" height="20"/>
+                                                        <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="19"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.28627450980000002" green="0.71764705880000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="cVN-18-l5A" firstAttribute="leading" secondItem="gWm-Va-sYU" secondAttribute="leading" multiplier="1/6" constant="20" symbolic="YES" id="Mxn-Kn-Jpv"/>
+                                                    <constraint firstItem="cVN-18-l5A" firstAttribute="height" secondItem="gWm-Va-sYU" secondAttribute="height" multiplier="5/6" id="Rdl-Pv-G2l"/>
+                                                    <constraint firstItem="cVN-18-l5A" firstAttribute="centerY" secondItem="gWm-Va-sYU" secondAttribute="centerY" id="pBR-m9-dnR"/>
+                                                </constraints>
+                                            </view>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nQt-7j-xmt" userLabel="Shakespeare CV">
+                                                <rect key="frame" x="0.0" y="600" width="600" height="0.0"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="20" id="C3x-ge-5Ws">
+                                                    <size key="itemSize" width="90" height="140"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="bookCoverCell" id="a5g-xT-kM5" customClass="PGBCustomBookCollectionViewCell">
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </view>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="nQt-7j-xmt" firstAttribute="bottom" secondItem="9OG-6H-cgF" secondAttribute="bottom" id="75Y-e0-Grq"/>
+                                            <constraint firstItem="gWm-Va-sYU" firstAttribute="bottom" secondItem="nQt-7j-xmt" secondAttribute="top" id="AUE-SK-IB3"/>
                                             <constraint firstItem="9G8-gs-hXd" firstAttribute="leading" secondItem="9OG-6H-cgF" secondAttribute="leading" id="FQh-yP-S7E"/>
                                             <constraint firstItem="bG3-i2-RbI" firstAttribute="trailing" secondItem="9OG-6H-cgF" secondAttribute="trailing" id="MTq-BZ-IyG"/>
+                                            <constraint firstItem="nQt-7j-xmt" firstAttribute="trailing" secondItem="9OG-6H-cgF" secondAttribute="trailing" id="NXJ-sb-ygX"/>
                                             <constraint firstItem="9G8-gs-hXd" firstAttribute="trailing" secondItem="9OG-6H-cgF" secondAttribute="trailing" id="Nu0-0m-USf"/>
+                                            <constraint firstItem="nQt-7j-xmt" firstAttribute="leading" secondItem="9OG-6H-cgF" secondAttribute="leading" id="Pel-6u-DGB"/>
                                             <constraint firstItem="fYR-Z4-TFx" firstAttribute="bottom" secondItem="xp5-nd-QDU" secondAttribute="top" id="Qhe-gA-Cw6"/>
-                                            <constraint firstItem="xp5-nd-QDU" firstAttribute="bottom" secondItem="9OG-6H-cgF" secondAttribute="bottom" id="W6U-c9-mOH"/>
                                             <constraint firstItem="bG3-i2-RbI" firstAttribute="top" secondItem="U1Y-Pf-EIo" secondAttribute="bottom" id="aLr-h4-gqr"/>
                                             <constraint firstItem="U1Y-Pf-EIo" firstAttribute="trailing" secondItem="9OG-6H-cgF" secondAttribute="trailing" id="awr-7i-T0k"/>
                                             <constraint firstItem="U1Y-Pf-EIo" firstAttribute="top" secondItem="9OG-6H-cgF" secondAttribute="top" id="cHe-bX-1sv"/>
                                             <constraint firstItem="xp5-nd-QDU" firstAttribute="trailing" secondItem="9OG-6H-cgF" secondAttribute="trailing" id="dWD-DW-Jdi"/>
+                                            <constraint firstItem="xp5-nd-QDU" firstAttribute="bottom" secondItem="gWm-Va-sYU" secondAttribute="top" id="dh0-gm-CcQ"/>
+                                            <constraint firstItem="gWm-Va-sYU" firstAttribute="trailing" secondItem="9OG-6H-cgF" secondAttribute="trailing" id="gtd-YC-2nc"/>
                                             <constraint firstItem="xp5-nd-QDU" firstAttribute="leading" secondItem="9OG-6H-cgF" secondAttribute="leading" id="iz2-tr-rmI"/>
                                             <constraint firstItem="9G8-gs-hXd" firstAttribute="bottom" secondItem="fYR-Z4-TFx" secondAttribute="top" id="lBg-YE-g1v"/>
                                             <constraint firstItem="fYR-Z4-TFx" firstAttribute="trailing" secondItem="9OG-6H-cgF" secondAttribute="trailing" id="lHE-R5-ANC"/>
                                             <constraint firstItem="U1Y-Pf-EIo" firstAttribute="leading" secondItem="9OG-6H-cgF" secondAttribute="leading" id="lMD-qX-FAH"/>
+                                            <constraint firstItem="nQt-7j-xmt" firstAttribute="top" secondItem="gWm-Va-sYU" secondAttribute="bottom" id="mYD-dr-sv6"/>
                                             <constraint firstItem="9G8-gs-hXd" firstAttribute="top" secondItem="bG3-i2-RbI" secondAttribute="bottom" id="pPs-Jw-5uZ"/>
+                                            <constraint firstItem="gWm-Va-sYU" firstAttribute="leading" secondItem="9OG-6H-cgF" secondAttribute="leading" id="q0c-0t-jTg"/>
                                             <constraint firstItem="bG3-i2-RbI" firstAttribute="leading" secondItem="9OG-6H-cgF" secondAttribute="leading" id="tWn-sv-OLM"/>
                                             <constraint firstItem="fYR-Z4-TFx" firstAttribute="leading" secondItem="9OG-6H-cgF" secondAttribute="leading" id="tfj-Wg-knq"/>
                                         </constraints>

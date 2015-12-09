@@ -137,7 +137,7 @@
 
 -(void)getReviewswithCompletion:(void (^)(BOOL))completionBlock
 {
-    [PGBGoodreadsAPIClient getReviewsForBook:self.book.title completion:^(NSDictionary *reviewDict) {
+    [PGBGoodreadsAPIClient getReviewsForBook:self.book completion:^(NSDictionary *reviewDict) {
             
             self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];
         
