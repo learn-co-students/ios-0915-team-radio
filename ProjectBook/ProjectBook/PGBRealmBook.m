@@ -56,7 +56,7 @@
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
-    //    [realm addObject:book];
+    //[realm addObject:book];
     PGBRealmBook *book = updateBlock();
     [realm addOrUpdateObject:book];
     [realm commitWriteTransaction];
@@ -121,21 +121,21 @@
 //    }
 //}
 
-+(void)generateClassicBooks {
-    if (![PGBRealmBook getUserBookDataInArray].count) {
++(void)generateClassicBooks
+{
+    if (![PGBRealmBook getUserBookDataInArray].count)
+    {
         PGBRealmBook *prideAndPrejudice = [[PGBRealmBook alloc]initWithTitle:@"Pride and Prejudice" author:@"Jane Austen" genre:@"Fiction" language:@"English" friendlyTitle:@"" downloadURL:@"https://www.gutenberg.org/ebooks/1342.epub.images" bookDescription:@"\"It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.\"\nSo begins Pride and Prejudice, Jane Austen's witty comedy of manners--one of the most popular novels of all time--that features splendidly civilized sparring between the proud Mr. Darcy and the prejudiced Elizabeth Bennet as they play out their spirited courtship in a series of eighteenth-century drawing-room intrigues." ebookID:nil isDownloaded:NO isBookmarked:nil bookCoverData:nil];
         
         [PGBRealmBook storeUserBookDataWithBook:prideAndPrejudice];
     }
-
 }
 
 
-+ (PGBRealmBook *)createPGBRealmBookWithBook:(Book *)coreDataBook {
++ (PGBRealmBook *)createPGBRealmBookWithBook:(Book *)coreDataBook
+{
     
     PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
-    
-    //leo here
     realmBook.ebookID = coreDataBook.eBookNumbers;
     realmBook.genre = coreDataBook.eBookGenres;
     realmBook.title = coreDataBook.eBookTitles;
@@ -143,17 +143,22 @@
     realmBook.friendlyTitle = coreDataBook.eBookFriendlyTitles;
     realmBook.language = coreDataBook.eBookLanguages;
     
-    if ([realmBook.language isEqualToString:@"en"]) {
+    if ([realmBook.language isEqualToString:@"en"])
+    {
         realmBook.language = @"English";
-    } else if ([realmBook.language isEqualToString:@"de"]) {
+    } else if ([realmBook.language isEqualToString:@"de"])
+    {
         realmBook.language = @"German";
-    } else if ([realmBook.language isEqualToString:@"fr"]) {
+    } else if ([realmBook.language isEqualToString:@"fr"])
+    {
         realmBook.language = @"French";
-    } else if ([realmBook.language isEqualToString:@"it"]) {
+    } else if ([realmBook.language isEqualToString:@"it"])
+    {
         realmBook.language = @"Italian";
     }
     
-    if ([self validateBookDataWithRealmBook:realmBook]) {
+    if ([self validateBookDataWithRealmBook:realmBook])
+    {
         return realmBook;
     } else {
         return nil;
@@ -161,7 +166,8 @@
     
 }
 
-- (BOOL)checkFriendlyTitleIfItHasAuthor:(NSString *)friendlyTitle {
+- (BOOL)checkFriendlyTitleIfItHasAuthor:(NSString *)friendlyTitle
+{
     if ([friendlyTitle containsString:@"by"])
     {
         NSMutableArray *wordsInFriendlyTitleInArray = [[friendlyTitle componentsSeparatedByString: @" "] mutableCopy];
@@ -181,36 +187,41 @@
     friendlyTitle = [friendlyTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSMutableArray *wordsInFriendlyTitleInArray = [[friendlyTitle componentsSeparatedByString: @" "] mutableCopy];
     NSMutableString *authorName = [NSMutableString new];
-    //if (![coreDataBook.eBookFriendlyTitles isEqualToString:@""])
+    /*
+     if (![coreDataBook.eBookFriendlyTitles isEqualToString:@""])
     
-    //here, the friendly title does contain the string "by", and so is of the correct format
-    //next step is to get the author of the book without the title
-    //this means we must get all the strings after the word "by"
+    here, the friendly title does contain the string "by", and so is of the correct format
+    next step is to get the author of the book without the title
+    this means we must get all the strings after the word "by"
     
-    //we find the index of element "by", and then append every element after that index to a string, in order to get the book title
+    we find the index of element "by", and then append every element after that index to a string, in order to get the book title
+     */
     NSUInteger indexOfStringBy = [wordsInFriendlyTitleInArray indexOfObject:@"by"];
     
-    //here we remove by, and everything before it, now the array is just the authors name
+    /*
+     here we remove by, and everything before it, now the array is just the authors name
+     */
+    
     [wordsInFriendlyTitleInArray removeObjectsInRange:NSMakeRange (0, indexOfStringBy+1)];
     
+    /*
+     append the array elements (authors name) to a string
+     */
     
-    //append the array elements (authors name) to a string
     for (NSString *nameOfAuthor in wordsInFriendlyTitleInArray)
     {
         [authorName appendString:nameOfAuthor];
         
-        //add a space so the name isn't one word
-        //this also adds a space to the end of the last word
+        /*
+        add a space so the name isn't one word
+        this also adds a space to the end of the last word
+         */
         [authorName appendString:@" "];
-        
-        //            NSString *authorWithSpace = authorName;
-        //            //need to remove the last character in the string which is just a space
-        //            authorWithSpace = [authorWithSpace stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        //            NSLog (@"ayyy %@", authorWithSpace);
     }
     
     NSString *authorWithSpace = authorName;
     authorWithSpace = [authorWithSpace stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
     return authorWithSpace;
 }
 
@@ -218,7 +229,8 @@
 +(BOOL)validateBookDataWithRealmBook:(PGBRealmBook *)realmBook{
     
     if (realmBook.title.length == 0 ||
-        realmBook.author.length == 0 || [realmBook.author isEqualToString:@"Various"] || [realmBook.author isEqualToString:@"Unknown"] || realmBook.ebookID.length == 0) {
+        realmBook.author.length == 0 || [realmBook.author isEqualToString:@"Various"] || [realmBook.author isEqualToString:@"Unknown"] || realmBook.ebookID.length == 0)
+    {
         return NO;
     }
     
@@ -226,7 +238,8 @@
 }
 
 
-+ (PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook {
++ (PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook
+{
     
     PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
     
@@ -236,8 +249,8 @@
     return realmBook;
 }
 
-+ (NSURL *)createBookCoverURL:(NSString *)eBookNumber {
-    
++ (NSURL *)createBookCoverURL:(NSString *)eBookNumber
+{
     if (eBookNumber.length) {
         
         NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
@@ -251,8 +264,8 @@
     return nil;
 }
 
-+ (void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock {
-    
++ (void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock
+{
     [PGBParseAPIClient fetchUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^(NSArray *books) {
         for (NSDictionary *book in books) {
             PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
@@ -266,10 +279,12 @@
             realmBook.isDownloaded = [book[@"isDownloaded"] integerValue];
             realmBook.isBookmarked = [book[@"isBookmarked"] integerValue];
             
-            if (realmBook.ebookID.length) {
+            if (realmBook.ebookID.length)
+            {
                 NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:realmBook.ebookID]];
                 
-                if (bookCoverData) {
+                if (bookCoverData)
+                {
                     realmBook.bookCoverData = bookCoverData;
                 }
             }
@@ -284,17 +299,11 @@
     }];
 }
 
-+ (void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock {
-    
-//    [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-    
++ (void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock
+{
         [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
             completionBlock();
         }];
-        
-//        return realmBook;
-//    }];
-
 }
 
 
