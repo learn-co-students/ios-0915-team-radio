@@ -156,19 +156,19 @@
 - (IBAction)creatChatTouched:(id)sender {
     
     if (self.topicTextField.text.length == 0){
-        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Uh oh!" message:@"Please include a topic!" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+     
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Uh oh!" message:@"Please include a topic!" preferredStyle:UIAlertControllerStyleAlert];
-        // create action
         UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-        // add action
         [alert addAction:okayAction];
-        // present controller
         [self presentViewController:alert animated:YES completion:nil];
+   
     } else {
+    
         PGBChatRoom *newChat = [PGBChatRoom new];
         newChat.topic = self.topicTextField.text;
         newChat.bookId = self.selectedBook.ebookID;
         newChat.bookTitle = self.selectedBook.title;
+        
         [newChat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 // The object has been saved.
@@ -180,21 +180,5 @@
         // this is where i'll go to the new chat or something....
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end
