@@ -289,10 +289,10 @@
             
             if (realmBook.ebookID.length) {
                 NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:realmBook.ebookID]];
+                
                 if (bookCoverData) {
                     realmBook.bookCoverData = bookCoverData;
                 }
-//                realmBook.bookCoverData = bookCoverData;
             }
 
             

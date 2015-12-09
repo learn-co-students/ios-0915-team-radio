@@ -10,6 +10,7 @@
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
 #import "PGBBookPageViewController.h"
+#import "PGBParseAPIClient.h"
 
 @interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -42,6 +43,25 @@
     //begin test data
 //    [PGBRealmBook generateTestBookData];
     //end test data
+    
+    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+    
+    [bgQueue addOperationWithBlock:^{
+        
+        [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
+            NSLog(@"user data: %@", data);
+            
+            PFObject *user = data;
+            if (user) {
+                
+                [PGBRealmBook deleteAllUserBookData];
+                
+                [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
+                    NSLog(@"successfully fetch book from parse");
+                }];
+            }
+        }];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
