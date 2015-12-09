@@ -107,16 +107,17 @@ static dispatch_once_t once;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.isLoggedin = [PFUser currentUser];
     
-    if (self.isLoggedin) {
-        
-        dispatch_once(&once, ^ {
-            [self fetchBookFromParse];// Code to run onces
-            NSLog(@"fetch book running");
-        });
-        
-    }
+//    self.isLoggedin = [PFUser currentUser];
+    
+//    if (self.isLoggedin) {
+//        
+//        dispatch_once(&once, ^ {
+//            [self fetchBookFromParse];// Code to run onces
+//            NSLog(@"fetch book running");
+//        });
+//        
+//    }
     
 }
 

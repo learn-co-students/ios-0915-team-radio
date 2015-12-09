@@ -46,10 +46,9 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.books = [PGBRealmBook getUserBookDataInArray];
-    
-    [self loadDefaultContent];
-//    [self fetchBookFromParse];
+//    self.books = [PGBRealmBook getUserBookDataInArray];
+//    [self loadDefaultContent];
+    [self fetchBookFromParse];
 }
 
 -(void)fetchBookFromParse {
@@ -152,17 +151,9 @@
         cell.genreLabel.text = book.genre;
         
         if (book.bookCoverData) {
-            NSURL *url = [NSURL URLWithString:@"http://www.gutenberg.org/cache/epub/50651/pg50651.cover.medium.jpg"];
-//            [cell.bookCover yy_setImageWithURL:url options:YYWebImageOptionProgressive];
-
-//            cell.bookCover.image = [UIImage imageWithData: book.bookCoverData];
+            cell.bookCover.image = [UIImage imageWithData: book.bookCoverData];
+        } else {
             
-            [cell.bookCover yy_setImageWithURL:url placeholder:[UIImage imageNamed:@"placeholder"] options:YYWebImageOptionProgressive completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
-                //        if (from == YYWebImageFromDiskCache) {
-                //            NSLog(@"From Cache!");
-                //        }
-                
-            }];
         }
         
         return cell;
