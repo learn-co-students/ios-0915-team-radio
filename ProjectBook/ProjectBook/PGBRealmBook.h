@@ -52,6 +52,11 @@
 + (void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock;
 + (void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock;
 
+- (NSString *)getAuthorFromFriendlyTitle:(NSString *)friendlyTitle;
+- (BOOL)checkFriendlyTitleIfItHasAuthor:(NSString *)friendlyTitle;
+
+
+
 //override primary key
 + (NSString *)primaryKey;
 

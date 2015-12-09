@@ -38,10 +38,10 @@
     
 
 
-    PGBGoodreadsAPIClient *goodReads = [[PGBGoodreadsAPIClient alloc] init];
-    //    [goodReads methodToGetDescriptions];
-    //    NSLog(@"%@", [goodReads methodToGetDescriptions]);
-    [goodReads getURLAsString:@"https://www.goodreads.com/book/title.xml?key=AckMqnduhbH8xQdja2Nw&title=Hound+of+the+Baskervilles&author=Arthur+Conan+Doyle"];
+//    PGBGoodreadsAPIClient *goodReads = [[PGBGoodreadsAPIClient alloc] init];
+//    //    [goodReads methodToGetDescriptions];
+//    //    NSLog(@"%@", [goodReads methodToGetDescriptions]);
+//    [goodReads getURLAsString:@"https://www.goodreads.com/book/title.xml?key=AckMqnduhbH8xQdja2Nw&title=Hound+of+the+Baskervilles&author=Arthur+Conan+Doyle"];
 
     
     //for banner image
