@@ -25,7 +25,8 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-static dispatch_once_t once = 0;
+static dispatch_once_t once;
+
 @interface PGBHomeViewController () {
     
     UIActivityIndicatorView *spinner;
@@ -51,7 +52,7 @@ static dispatch_once_t once = 0;
 @property (nonatomic, strong) NSOperationQueue *bgQueue;
 @property (nonatomic, strong) NSOperationQueue *bookCoverBgQueue;
 @property (assign, nonatomic) BOOL isLoggedin;
-
+//@property (nonatomic, assign) dispatch_once_t *once;
 
 @end
 
@@ -100,6 +101,12 @@ static dispatch_once_t once = 0;
     }
     
     //leo test parse here
+
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     self.isLoggedin = [PFUser currentUser];
     
     if (self.isLoggedin) {
@@ -111,8 +118,6 @@ static dispatch_once_t once = 0;
         
     }
     
-
-
 }
 
 -(void)fetchBookFromParse {
@@ -120,21 +125,21 @@ static dispatch_once_t once = 0;
     
     [bgQueue addOperationWithBlock:^{
     
-        [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
-            NSLog(@"user data: %@", data);
-            
-            PFObject *user = data;
-            if (user) {
-                
+//        [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
+//            NSLog(@"user data: %@", data);
+//            
+//            PFObject *user = data;
+//            if (user) {
+        
                 [PGBRealmBook deleteAllUserBookData];
-                
+        
                 [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
                     NSLog(@"successfully fetch book from parse");
                     
                 }];
-            }
+//            }
         }];
-    }];
+//    }];
 }
 
 - (void)generateBook {
