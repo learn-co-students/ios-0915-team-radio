@@ -46,22 +46,15 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
      Example "Harry Potter and the Sorcerer's Stone by J.K. Rowling"
      */
     
-<<<<<<< HEAD
-    if ([book checkFriendlyTitleIfItHasAuthor:book.friendlyTitle])
-=======
-    
     if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle])
->>>>>>> 78b3be7a47d9b52ce96aba484054f4d37984b131
+
     {
         author = [realmBook getAuthorFromFriendlyTitle:realmBook.friendlyTitle];
         //        NSLog (@"author: %@", author);
     }
     
-<<<<<<< HEAD
-    if (author && bookTitle)
-=======
+
     if (author && realmBook.title)
->>>>>>> 78b3be7a47d9b52ce96aba484054f4d37984b131
     {
         NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
         goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses, authorWithPluses];
@@ -83,6 +76,7 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
      }];
     
 }
+
 
 -(NSString *)getURLForBookAndAuthor:(PGBRealmBook *)realmBook
 {
@@ -119,6 +113,8 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     
     return goodreadsURL;
 }
+
+
 
 - (void)getDescriptionForBookTitle:(PGBRealmBook *)realmBook completion:(void (^)(NSString *description))completion
 {
