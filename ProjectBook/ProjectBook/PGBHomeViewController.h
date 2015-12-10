@@ -15,7 +15,8 @@
 
 @interface PGBHomeViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *bookCollectionView;
+@property (weak, nonatomic) IBOutlet UICollectionView *popularCollectionView;
+@property (weak, nonatomic) IBOutlet UICollectionView *classicsCollectionView;
 
 
 @end

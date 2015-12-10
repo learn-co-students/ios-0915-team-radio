@@ -39,7 +39,8 @@
                 bookCoverData:(NSData *)bookCoverData;
 
 + (void)storeUserBookDataWithBook:(PGBRealmBook *)book;
-+ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock;
+//+ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock;
++ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock andCompletion:(void (^)())completionBlock;
 + (void)deleteUserBookDataForBook:(PGBRealmBook *)book;
 + (void)deleteAllUserBookData;
 + (RLMResults *)getUserBookData;
@@ -61,7 +62,7 @@
 + (NSString *)primaryKey;
 
 + (void)generateTestBookData;
-+ (void)generateClassicBooks;
++(PGBRealmBook *)generateBooksWitheBookID:(NSString *)ebookID;
 
 @end
 
