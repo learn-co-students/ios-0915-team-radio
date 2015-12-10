@@ -10,7 +10,6 @@
 #import "PGBChatTableViewCell.h"
 #import "PGBNewChatViewController.h"
 #import "PGBChatRoom.h"
-#import "PGBChatMessageVC.h"
 
 @interface PGBMainSocialTableViewController ()
 
@@ -41,6 +40,18 @@
             [self.tableView reloadData];
         }];
     }];
+    
+    [[PFInstallation currentInstallation] removeObjectForKey:@"channels"];
+    [[PFInstallation currentInstallation] saveInBackground];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,17 +88,25 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"goToChat"]) {
-        PGBChatMessageVC *chatVC = segue.destinationViewController;
+
+        UINavigationController *navController = segue.destinationViewController;
+        PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)navController.topViewController;
+       
         NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
         PGBChatRoom *currentChatRoom = self.arrayOfOpenBookChats[selectedIndexPath.row];
         
         PFUser *currentUser = [PFUser currentUser];
-        PFObject *notChatRoom = [PFObject objectWithClassName:@"bookChat"];
+        PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
+        PFObject *notChatRoom = [query getObjectWithId:currentChatRoom.objectId];
         [notChatRoom addObject:currentUser.objectId forKey:@"usersInChat"];
         [notChatRoom saveInBackground];
-        chatVC.currentChatRoom = currentChatRoom;
+        
+        chatViewController.currentChatRoom = currentChatRoom;
     }
 }
 
+- (void)didDismissPGBChatMessageVC:(PGBChatMessageVC *)vc {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

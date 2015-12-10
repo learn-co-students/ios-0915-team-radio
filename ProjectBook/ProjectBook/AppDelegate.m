@@ -228,6 +228,12 @@
                                                        annotation:annotation];
 }
 
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [[PFInstallation currentInstallation] setDeviceTokenFromData:deviceToken];
+    [[PFInstallation currentInstallation] saveInBackground];
+}
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     

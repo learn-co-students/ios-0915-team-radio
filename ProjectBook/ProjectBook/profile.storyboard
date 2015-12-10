@@ -101,7 +101,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="redribbon" translatesAutoresizingMaskIntoConstraints="NO" id="P6H-n4-xfv">
-                                <rect key="frame" x="20" y="325" width="40" height="65"/>
+                                <rect key="frame" x="31" y="368" width="40" height="65"/>
                                 <animations/>
                             </imageView>
                         </subviews>

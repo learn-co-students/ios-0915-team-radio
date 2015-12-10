@@ -10,9 +10,22 @@
 #import <JSQSystemSoundPlayer/JSQSystemSoundPlayer.h>
 #import <Parse/Parse.h>
 #import "PGBChatRoom.h"
-@interface PGBChatMessageVC : JSQMessagesViewController
+
+@class PGBChatMessageVC;
+
+@protocol PGBChatMessageVCDelegate <NSObject>
+
+- (void)didDismissPGBChatMessageVC:(PGBChatMessageVC *)vc;
+
+@end
+
+@interface PGBChatMessageVC : JSQMessagesViewController <UIActionSheetDelegate, JSQMessagesComposerTextViewPasteDelegate>
+
+@property (weak, nonatomic) id<PGBChatMessageVCDelegate> delegateModal;
 
 @property (strong, nonatomic) NSMutableArray *randomArray;
 @property (strong, nonatomic) PGBChatRoom *currentChatRoom;
+
+- (void) closePressed:(UIBarButtonItem *)sender;
 
 @end

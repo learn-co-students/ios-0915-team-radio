@@ -34,23 +34,36 @@
     self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
     self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
     
-
+    [[PFInstallation currentInstallation] addUniqueObject:self.currentChatRoom.objectId forKey:@"channels"];
+    
+    self.title = self.currentChatRoom.topic;
     
     NSString *senderParseId = currentPerson.objectId;
     NSString *senderUserName = currentPerson.username;
     self.senderId = senderParseId;
     self.senderDisplayName = senderUserName;
-    SEL selector = @selector(receiveNotification:);
-    
     
     //    self.inputToolbar.contentView.textView.pasteDelegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:self.currentChatRoom.objectId object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(closePressed:)];
+}
+
+- (void)closePressed:(UIBarButtonItem *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void) receiveNotification:(NSNotification *) notification {
@@ -68,25 +81,48 @@
     
     // get all messages for bookChatId...
     
-    PFQuery *messagesQuery = [PFQuery queryWithClassName:self.currentChatRoom.objectId];
-    [messagesQuery whereKey:@"bookChatId" equalTo:self.currentChatRoom.objectId];
+//    PFQuery *messagesQuery = [PFQuery queryWithClassName:self.currentChatRoom.objectId];
+//    [messagesQuery whereKey:@"bookChatId" equalTo:self.currentChatRoom.objectId];
+//    
+//    [messagesQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+//        // this is where youd stop the loading indicator
+//        
+//        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//            
+//            NSDictionary *lastMessage = objects.lastObject;
+//            JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:lastMessage[@"senderId"]
+//                                                           senderDisplayName:lastMessage[@"senderDisplayName"]
+//                                                                        date:lastMessage[@"date"]
+//                                                                        text:lastMessage[@"text"]];
+//            
+//            [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+//            [self.messagesInConversation addObject:latestMessage];
+//            [self finishReceivingMessageAnimated:YES];
+//        }];
+//    }];
     
-    [messagesQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        // this is where youd stop the loading indicator
+    PFQuery *query = [PFQuery queryWithClassName:@"bookChatMessages"];
+    [query orderByDescending:@"createdAt"];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//        [NSOperation mainQueue] addOperationWithBlock:^{
+//            
+//        
+//        JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:object
+//                                                       senderDisplayName:lastMessage[@"senderDisplayName"]
+//                                                                    date:lastMessage[@"date"]
+//                                                                    text:lastMessage[@"text"]];
+//        
+//        }
+        NSLog(@"%@", object);
         
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            
-            NSDictionary *lastMessage = objects.lastObject;
-            JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:lastMessage[@"senderId"]
-                                                           senderDisplayName:lastMessage[@"senderDisplayName"]
-                                                                        date:lastMessage[@"date"]
-                                                                        text:lastMessage[@"text"]];
-            
-            [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
-            [self.messagesInConversation addObject:latestMessage];
-            [self finishReceivingMessageAnimated:YES];
-        }];
     }];
+    
+    
+    
+    
+    [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+//    [self.messagesInConversation addObject:latestMessage];
+    [self finishReceivingMessageAnimated:YES];
 }
 
 - (void)pushMainViewController {
