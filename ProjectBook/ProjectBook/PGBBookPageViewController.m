@@ -36,7 +36,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *bookmarkButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *optionsButton;
 @property (weak, nonatomic) IBOutlet UIImageView *bookCoverImageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *noBooksLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *BookPageBottomConstraint;
 //@property (weak, nonatomic) IBOutlet UIView *webview;
 
 @end
@@ -49,7 +52,9 @@
     
     
     self.bookDescriptionTV.editable = NO;
+    self.noBooksLabel.hidden = YES;
 
+    
     self.bookDescriptionTV.text = @"";
     PGBGoodreadsAPIClient *goodreadsAPI = [[PGBGoodreadsAPIClient alloc] init];
     [goodreadsAPI getDescriptionForBookTitle:self.book completion:^(NSString *bookDescription) {
@@ -84,9 +89,7 @@
         if (totalHeight < view.frame.origin.y + view.frame.size.height) totalHeight = view.frame.origin.y + view.frame.size.height;
     
     
-    //    [self getReviewswithCompletion:^(BOOL success) {
-    //        success = YES;
-    //    }];
+
     
     //bookmarkstuff
         UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
@@ -94,6 +97,14 @@
         [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
     
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getReviewswithCompletion:^(BOOL success) {
+        success = YES;
+    }];
+}
+
 
 -(void)getReviewswithCompletion:(void (^)(BOOL))completionBlock
 {
@@ -106,7 +117,7 @@
             NSURL *baseURL = [NSURL URLWithString:@"https://www.goodreads.com"];
             
             // make / constrain webview
-            
+        self.webView.hidden = YES;
             CGRect webViewFrame = CGRectMake(0, 0, self.webViewContainer.frame.size.width, self.webViewContainer.frame.size.height);
             
             self.webView = [[WKWebView alloc]initWithFrame: webViewFrame];
@@ -118,13 +129,14 @@
             //                [self.webView.topAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
             //                [self.webView.bottomAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
             
+        // start progress (spinner or hud) over webviewContainer
+        [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
             
-            [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
-            
-            self.webView.UIDelegate = self;
-            self.webView.navigationDelegate = self;
-            self.webView.scrollView.delegate = self;
-            
+
+        self.webView.navigationDelegate = self;
+
+        
+        
             //            [self.webView.heightAnchor constraintEqualToConstant:300];
             //            [self.webViewContainer layoutSubviews];
         completionBlock(YES);
@@ -133,21 +145,30 @@
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     NSLog(@"didFinishNavigation");
+    // dismiss progress over webviewContainer
+    [webView evaluateJavaScript:@"document.getElementById('the_iframe').contentDocument.body.innerHTML.indexOf('No reviews found') != -1" completionHandler:^(NSNumber *hasNoReviews, NSError *error) {
+        if(hasNoReviews.boolValue) {
+            NSLog(@"no reviews!");
+            // show label saying "No reviews found"
+            //self.noBooksLabel.hidden = NO;
+            //self.noBooksLabel.text = @"No Book Reviews Available";
+        }
+        else {
+            NSLog(@"reviews!");
+            // animate resizing of webViewContainerView
+            
+            //self.BookPageBottomConstraint = 300;
+            self.bottomConstraint.constant = 300;
+            
+            webView.hidden = NO;
+        }
+    }];
     
-    [webView.scrollView setZoomScale:0.6];
-    [webView.scrollView setContentOffset:CGPointMake(0, 0)];
     
+    [webView.scrollView setZoomScale:0.6 animated:YES];
+    [webView.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+
     //    [webView.scrollView zoomToRect:CGRectMake(0, 0, 20, 20) animated:YES];
-}
-
-
-
--(void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation
-{
-    NSLog (@"didCommitNavigation");
-    
-    [webView.scrollView setZoomScale:0.6];
-    [webView.scrollView setContentOffset:CGPointMake(0, 0)];
 }
 
 - (IBAction)downloadButtonTapped:(id)sender

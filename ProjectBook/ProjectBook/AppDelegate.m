@@ -30,12 +30,42 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    /*
+     
+    [PGBGoodreadsAPIClient getReviewsForBook:@"The Adventures of Huckleberry Finn" completion:^(NSDictionary *reviewDict) {
+        
+        self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];
+        
+        NSData *htmlData = [self.htmlString dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSURL *baseURL = [NSURL URLWithString:@"https://www.goodreads.com"];
+        
+        // make / constrain webview
+        
+        CGRect webViewFrame = CGRectMake(0, 0, self.webViewContainer.frame.size.width, self.webViewContainer.frame.size.height);
+        
+        self.webView = [[WKWebView alloc]initWithFrame: webViewFrame];
+        [self.webViewContainer addSubview:self.webView];
+        //                self.webView.translatesAutoresizingMaskIntoConstraints = NO;
+        //
+        //                [self.webView.leftAnchor constraintEqualToAnchor:self.webViewContainer.leftAnchor].active = YES;
+        //                [self.webView.rightAnchor constraintEqualToAnchor:self.webViewContainer.rightAnchor].active = YES;
+        //                [self.webView.topAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
+        //                [self.webView.bottomAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
+        
+        
+        [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
+        
+        self.webView.UIDelegate = self;
+        self.webView.navigationDelegate = self;
+        self.webView.scrollView.delegate = self;
+        
+        //            [self.webView.heightAnchor constraintEqualToConstant:300];
+        //            [self.webViewContainer layoutSubviews];
+        completionBlock(YES);
+    }];
     
-
-//    PGBGoodreadsAPIClient *goodReads = [[PGBGoodreadsAPIClient alloc] init];
-//    [goodReads methodToGetDescriptions];
-//    NSLog(@"%@", [goodReads methodToGetDescriptions]);
-    
+    */
 
 
 //    PGBGoodreadsAPIClient *goodReads = [[PGBGoodreadsAPIClient alloc] init];
