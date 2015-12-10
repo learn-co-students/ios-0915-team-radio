@@ -46,8 +46,8 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
      Example "Harry Potter and the Sorcerer's Stone by J.K. Rowling"
      */
     
-    
     if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle])
+
     {
         author = [realmBook getAuthorFromFriendlyTitle:realmBook.friendlyTitle];
         //        NSLog (@"author: %@", author);
@@ -55,6 +55,7 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
         author = [realmBook parseAuthor:realmBook.author];
     }
     
+
     if (author && realmBook.title)
     {
         NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];

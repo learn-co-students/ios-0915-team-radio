@@ -94,6 +94,13 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getReviewswithCompletion:^(BOOL success) {
+        success = YES;
+    }
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
