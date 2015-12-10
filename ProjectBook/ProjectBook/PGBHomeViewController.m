@@ -118,7 +118,8 @@ static dispatch_once_t once;
     self.classicsCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
     
     
-    //leo test parse here
+    //fetch from parse when the app opens for the first time
+    //user can kill the app and re-open, however they don't need to re-login
     [self fetchBookFromParse];
 }
 
@@ -506,6 +507,9 @@ static dispatch_once_t once;
     //once logged in fetch book from parse
     [self fetchBookFromParse];
 }
+
+
+
 
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {

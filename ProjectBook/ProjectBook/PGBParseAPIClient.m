@@ -67,7 +67,7 @@
         
         if (bookObject)
         {
-            //NSLog(@"book exist - udpate book");
+            NSLog(@"book exist - udpate book");
             bookObject[@"owner"] = userObject;
             bookObject[@"eBookID"] = realmBook.ebookID;
             bookObject[@"eBookAuthor"] = realmBook.author;
@@ -85,7 +85,7 @@
             
         }else {
             
-            NSLog(@"book doesn't - new book");
+            NSLog(@"book doesn't exist- new book");
             PFObject *newBook = [PFObject objectWithClassName:@"book"];
             newBook[@"owner"] = userObject;
             newBook[@"eBookID"] = realmBook.ebookID;
@@ -103,7 +103,7 @@
             completionBlock(newBook);
 
         }
-        NSLog(@"error %@",error.localizedDescription);
+        NSLog(@"New book is being stored in parse, ignore this error: %@",error.localizedDescription);
     }];
 
 }

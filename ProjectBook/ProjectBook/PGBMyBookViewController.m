@@ -48,10 +48,7 @@
   
 }
 
-- (void)reloadTableViewData: (NSNotification *)notification {
-    NSLog(@"storing data from parse to realm, refresh table!!!");
-    [self fetchBookFromRealm];
-}
+
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -69,6 +66,11 @@
     [self fetchBookFromRealm];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData:) name:@"StoringDataFromParseToRealm" object:nil];
+}
+
+- (void)reloadTableViewData: (NSNotification *)notification {
+    NSLog(@"storing data from parse to realm, refresh table!!!");
+    [self fetchBookFromRealm];
 }
 
 - (void)fetchBookFromRealm {
@@ -187,13 +189,21 @@
         cell.authorLabel.text = book.author;
         cell.genreLabel.text = book.genre;
         
-        UIImage *bookCoverImage = [UIImage imageWithData: book.bookCoverData];
+//        UIImage *bookCoverImage = [UIImage imageWithData: book.bookCoverData];
+//        
+//        if (bookCoverImage) {
+//            cell.bookCover.image = bookCoverImage;
+//        }
+//        
+        NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:book.ebookID]];
         
-        if (bookCoverImage) {
-            cell.bookCover.image = bookCoverImage;
+        if (bookCoverData)
+        {
+            cell.bookCover.image = [UIImage imageWithData:bookCoverData];
         } else {
             cell.bookCover.image = [UIImage imageNamed:@"no_book_cover"];
         }
+
         
         return cell;
     }

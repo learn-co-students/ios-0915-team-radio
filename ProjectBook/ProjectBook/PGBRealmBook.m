@@ -125,6 +125,25 @@
     return result;
 }
 
++ (NSArray *)getUserBookDataInArrayIncludingCoverData{
+    RLMResults *books = [PGBRealmBook allObjects];
+    
+    NSMutableArray *result = [[NSMutableArray alloc]init];
+    for (PGBRealmBook *book in books) {
+        
+        NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:book.ebookID]];
+        
+        if (bookCoverData) {
+            book.bookCoverData = bookCoverData;
+        }
+        
+        [result addObject:book];
+    }
+    return result;
+}
+
+
+
 //+ (void)generateTestBookData{
 //    if (![PGBRealmBook getUserBookDataInArray].count) {
 //        PGBRealmBook *book1 = [[PGBRealmBook alloc]initWithTitle:@"Norwegian Wood" author:@"Haruki Murakami" genre:@"Fiction" language:@"English" friendlyTitle: @"" downloadURL:@"" bookDescription:@"This stunning and elegiac novel by the author of the internationally acclaimed Wind-Up Bird Chronicle has sold over 4 million copies in Japan and is now available to American audiences for the first time.  It is sure to be a literary event.\nToru, a quiet and preternaturally serious young college student in Tokyo, is devoted to Naoko, a beautiful and introspective young woman, but their mutual passion is marked by the tragic death of their best friend years before.  Toru begins to adapt to campus life and the loneliness and isolation he faces there, but Naoko finds the pressures and responsibilities of life unbearable.  As she retreats further into her own world, Toru finds himself reaching out to others and drawn to a fiercely independent and sexually liberated young woman.\nA poignant story of one college student's romantic coming-of-age, Norwegian Wood takes us to that distant place of a young man's first, hopeless, and heroic love." datePublished:[NSDate date] ebookID:@"" isDownloaded:YES isBookmarked:NO bookCoverData:nil];
@@ -354,6 +373,18 @@
     }];
 }
 
++(void)updateParseWithRealmBookDataWithCompletion:(void (^)())completionBlock{
+    [PGBParseAPIClient deleteUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^{
+        
+        NSArray *booksInRealm = [PGBRealmBook getUserBookDataInArray];
+        for (PGBRealmBook *realmBook in booksInRealm) {
+      
+            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:realmBook andCompletion:^{
+                completionBlock();
+            }];
+        }
 
+    }];
+}
 
 @end
