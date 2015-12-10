@@ -41,18 +41,21 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     NSString *author = @"";
     
     /*
-     checks if friendlytitle has author, if so, parses out author
+     checks if friendlytitle has author, ibrf so, parses out author
      friendly title has the format "BookTitle by AuthorName"
      Example "Harry Potter and the Sorcerer's Stone by J.K. Rowling"
      */
     
-    
     if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle])
+
     {
         author = [realmBook getAuthorFromFriendlyTitle:realmBook.friendlyTitle];
         //        NSLog (@"author: %@", author);
+    } else {
+        author = [realmBook parseAuthor:realmBook.author];
     }
     
+
     if (author && realmBook.title)
     {
         NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
@@ -93,6 +96,8 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     {
         author = [realmBook getAuthorFromFriendlyTitle:realmBook.friendlyTitle];
         NSLog (@"author: %@", author);
+    } else {
+        author = [realmBook parseAuthor:realmBook.author];
     }
     
     if (author && realmBook.title)
@@ -134,7 +139,7 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
                      */
                     NSString *bookDescription = [self getDescriptionWithContentsOfURLString:contentOfUrl];
                     
-                    NSArray *htmlTags = @[ @"<br", @"<strong>", @"<em>"];
+                    NSArray *htmlTags = @[ @"<br", @"<strong>", @"<em>", @"<p>", @"</a>"];
                     
                     for (NSString *tag in htmlTags) {
                         if ([bookDescription containsString:tag]) {
@@ -143,6 +148,11 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
                             bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
                             bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"<em>" withString:@""];
                             bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"</em>" withString:@""];
+                            bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+                            bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+                            bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"<a href=\"" withString:@""];
+                            bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"</a>" withString:@""];
+                            bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"\">" withString:@""];
                         }
                     }
                     

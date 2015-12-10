@@ -188,7 +188,7 @@
     {
         realmBook.author = [realmBook getAuthorFromFriendlyTitle:realmBook.friendlyTitle];
         if (!realmBook.author) {
-            realmBook.author = coreDataBook.eBookAuthors;
+            realmBook.author = [realmBook parseAuthor:realmBook.author];
         }
     }
     
@@ -248,6 +248,11 @@
     friendlyTitle = [friendlyTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSMutableArray *wordsInFriendlyTitleInArray = [[friendlyTitle componentsSeparatedByString: @" "] mutableCopy];
     NSMutableString *authorName = [NSMutableString new];
+    NSMutableArray *newArray = [[NSMutableArray alloc]init];
+    
+    
+    
+    
     /*
      if (![coreDataBook.eBookFriendlyTitles isEqualToString:@""])
     
@@ -263,10 +268,18 @@
      here we remove by, and everything before it, now the array is just the authors name
      */
         [wordsInFriendlyTitleInArray removeObjectsInRange:NSMakeRange (0, indexOfStringBy+1)];
-        
+
+    for (NSString *string in wordsInFriendlyTitleInArray) {
+        if (![string isEqualToString:@""]){
+            BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[string characterAtIndex:0]];
+            if (isUppercase) {
+                [newArray addObject:string];
+            }
+        }
+    }
 //      append the array elements (authors name) to a string
-    if (wordsInFriendlyTitleInArray.count > 1) {
-        for (NSString *nameOfAuthor in wordsInFriendlyTitleInArray)
+    if (newArray.count > 1) {
+        for (NSString *nameOfAuthor in newArray)
         {
             [authorName appendString:nameOfAuthor];
             /*
@@ -285,6 +298,56 @@
     return nil;
 }
 
+
+
+-(NSString *)parseAuthor:(NSString *)author {
+    author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    NSArray *unnecesssary = @[ @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"0", @"-", @"?", @"(", @")", @"BC"];
+    
+    for (NSString *thing in unnecesssary) {
+        if ([author containsString:thing]) {
+            
+            author = [author stringByReplacingOccurrencesOfString:thing withString:@""];
+        }
+    }
+    author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([author hasSuffix:@","]){
+        author = [author substringToIndex:[author length]-1];
+    }
+    
+    NSMutableArray *wordsInAuthorInArray = [[author componentsSeparatedByString: @" "] mutableCopy];
+    NSMutableArray *authorArray = [[NSMutableArray alloc]init];
+    
+    for (NSString *string in wordsInAuthorInArray) {
+        BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[string characterAtIndex:0]];
+        if (isUppercase) {
+            [authorArray addObject:string];
+        }
+    }
+    if ([authorArray.firstObject containsString:@","]) {
+        NSString *lastName = authorArray.firstObject;
+        [authorArray removeObject:lastName];
+        [authorArray insertObject:lastName atIndex:authorArray.count];
+    }
+    
+    NSMutableString *newAuthor = [[NSMutableString alloc]init];
+    
+    for (NSString *name in authorArray) {
+        [newAuthor appendString:name];
+        [newAuthor appendString:@" "];
+    }
+    
+    author = newAuthor;
+    
+    author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if ([author hasSuffix:@","]){
+        author = [author substringToIndex:[author length]-1];
+    }
+    
+    return author;
+}
 
 +(BOOL)validateBookDataWithRealmBook:(PGBRealmBook *)realmBook{
     

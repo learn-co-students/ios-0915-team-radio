@@ -67,6 +67,7 @@
 
 + (void)generateTestBookData;
 +(PGBRealmBook *)generateBooksWitheBookID:(NSString *)ebookID;
+- (NSString *)parseAuthor:(NSString *)author;
 
 @end
 
