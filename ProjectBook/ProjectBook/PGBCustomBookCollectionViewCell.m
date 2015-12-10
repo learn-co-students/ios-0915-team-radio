@@ -7,6 +7,7 @@
 //
 
 #import "PGBCustomBookCollectionViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation PGBCustomBookCollectionViewCell
 
@@ -14,6 +15,9 @@
     // Initialization code
     self.titleTV.editable = NO;
     self.titleTV.selectable = NO;
+    
+    self.overlayView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.overlayView.layer.borderWidth = 3.0f;
 }
 
 @end

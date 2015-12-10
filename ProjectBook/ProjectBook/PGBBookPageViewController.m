@@ -83,9 +83,9 @@
         if (totalHeight < view.frame.origin.y + view.frame.size.height) totalHeight = view.frame.origin.y + view.frame.size.height;
     
     
-        [self getReviewswithCompletion:^(BOOL success) {
-            success = YES;
-        }];
+//        [self getReviewswithCompletion:^(BOOL success) {
+//            success = YES;
+//        }];
     
     //bookmarkstuff
         UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
@@ -94,12 +94,12 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self getReviewswithCompletion:^(BOOL success) {
-        success = YES;
-    }
-}
+//-(void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    [self getReviewswithCompletion:^(BOOL success) {
+//        success = YES;
+//    }];
+//}
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

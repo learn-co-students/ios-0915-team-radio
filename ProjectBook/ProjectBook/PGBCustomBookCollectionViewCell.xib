@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -32,10 +32,25 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="u6Y-Yg-hq9" userLabel="TitleTV">
+                        <rect key="frame" x="8" y="8" width="74" height="84"/>
+                        <animations/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3XR-oV-slS">
                         <rect key="frame" x="0.0" y="0.0" width="90" height="140"/>
                         <animations/>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D3A-ex-soT">
+                        <rect key="frame" x="0.0" y="0.0" width="90" height="140"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                <integer key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50B-cf-qXE" userLabel="Title">
                         <rect key="frame" x="8" y="8" width="74" height="84"/>
                         <animations/>
@@ -43,14 +58,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="u6Y-Yg-hq9" userLabel="TitleTV">
-                        <rect key="frame" x="8" y="8" width="74" height="84"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                        <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
                 </subviews>
                 <animations/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -64,6 +71,9 @@
                 <constraint firstItem="3XR-oV-slS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Bzd-jG-Q8g"/>
                 <constraint firstItem="u6Y-Yg-hq9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="EaC-5F-X3I"/>
                 <constraint firstItem="u6Y-Yg-hq9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="GBT-a1-PDc"/>
+                <constraint firstAttribute="bottom" secondItem="D3A-ex-soT" secondAttribute="bottom" id="SCD-sm-BP4"/>
+                <constraint firstItem="D3A-ex-soT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="T8O-TI-zAY"/>
+                <constraint firstAttribute="trailing" secondItem="D3A-ex-soT" secondAttribute="trailing" id="VH1-lJ-2xR"/>
                 <constraint firstItem="50B-cf-qXE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="VPB-R7-gNl"/>
                 <constraint firstItem="3XR-oV-slS" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="Wol-VD-3US"/>
                 <constraint firstItem="3XR-oV-slS" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" id="Y4s-uJ-Vet"/>
@@ -71,6 +81,7 @@
                 <constraint firstItem="50B-cf-qXE" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="3/5" id="ad5-gc-GG2"/>
                 <constraint firstItem="50B-cf-qXE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="dRL-6M-IZZ"/>
                 <constraint firstItem="u6Y-Yg-hq9" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="3/5" id="eay-8g-TXu"/>
+                <constraint firstItem="D3A-ex-soT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hW0-gd-Qbf"/>
                 <constraint firstItem="rH2-IQ-PGv" firstAttribute="top" secondItem="u6Y-Yg-hq9" secondAttribute="bottom" multiplier="1.1" id="hkH-nm-4Ia"/>
                 <constraint firstItem="u6Y-Yg-hq9" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailingMargin" id="lE9-GX-Kgs"/>
                 <constraint firstItem="50B-cf-qXE" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailingMargin" id="lTS-Nn-9n8"/>
@@ -84,6 +95,7 @@
             <connections>
                 <outlet property="authorLabel" destination="rH2-IQ-PGv" id="HKA-0V-qMg"/>
                 <outlet property="bookCover" destination="3XR-oV-slS" id="7qi-Yy-qx0"/>
+                <outlet property="overlayView" destination="D3A-ex-soT" id="pBk-v5-PKn"/>
                 <outlet property="titleLabel" destination="50B-cf-qXE" id="bgq-eu-7Y6"/>
                 <outlet property="titleTV" destination="u6Y-Yg-hq9" id="QUd-bT-AAa"/>
             </connections>

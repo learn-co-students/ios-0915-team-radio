@@ -76,6 +76,7 @@
 		CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */; };
 		CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */; };
 		CBF2C61F1BFD1FF300BCBCDD /* PGBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */; };
+		CBFC218F1C1A1D62007404E7 /* PGBBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFC218E1C1A1D62007404E7 /* PGBBookViewController.m */; };
 		CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5A1BFBA076002CE0A4 /* main.m */; };
 		CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */; };
 		CBFD3F611BFBA076002CE0A4 /* PGBBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F601BFBA076002CE0A4 /* PGBBookPageViewController.m */; };
@@ -200,6 +201,8 @@
 		CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBBookCustomTableCell.xib; sourceTree = "<group>"; };
 		CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBHomeViewController.h; sourceTree = "<group>"; };
 		CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBHomeViewController.m; sourceTree = "<group>"; };
+		CBFC218D1C1A1D62007404E7 /* PGBBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBBookViewController.h; sourceTree = "<group>"; };
+		CBFC218E1C1A1D62007404E7 /* PGBBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBBookViewController.m; sourceTree = "<group>"; };
 		CBFD3F561BFBA076002CE0A4 /* ProjectBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFD3F5A1BFBA076002CE0A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -426,6 +429,8 @@
 				CBEFBD091C16192100D878AC /* PGBCustomBookCollectionViewCell.m */,
 				CBEFBD0A1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib */,
 				CBFD3F621BFBA076002CE0A4 /* Main.storyboard */,
+				CBFC218D1C1A1D62007404E7 /* PGBBookViewController.h */,
+				CBFC218E1C1A1D62007404E7 /* PGBBookViewController.m */,
 				CBFD3F5F1BFBA076002CE0A4 /* PGBBookPageViewController.h */,
 				CBFD3F601BFBA076002CE0A4 /* PGBBookPageViewController.m */,
 				A77A08F71BFBE78700CA62F8 /* PGBparsingThroughText.h */,
@@ -730,6 +735,7 @@
 				890200351C0CFD08001A1ECF /* PGBProfileViewController.m in Sources */,
 				CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */,
 				890200301C0CAA10001A1ECF /* PGBSignUpViewController.m in Sources */,
+				CBFC218F1C1A1D62007404E7 /* PGBBookViewController.m in Sources */,
 				CB3C079F1C05063A00235D78 /* PGBGoodreadsAPIClient.m in Sources */,
 				8902002D1C0CA900001A1ECF /* PGBLoginViewController.m in Sources */,
 				4C25FFA61C03B7E200B5C8E3 /* Book+CoreDataProperties.m in Sources */,
