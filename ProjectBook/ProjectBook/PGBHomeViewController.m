@@ -155,18 +155,18 @@ static dispatch_once_t once;
                         [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
                             NSLog(@"successfully fetch book from parse");
                             
-                            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-                                //alert user that their library is update????
-                                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Hello"
-                                                                                               message:@"Your library is now updated!"
-                                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                                
-                                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                                      handler:^(UIAlertAction * action) {}];
-                                
-                                [alert addAction:defaultAction];
-                                [self presentViewController:alert animated:YES completion:nil];
-                            }];
+//                            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+//                                //alert user that their library is update????
+//                                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Hello"
+//                                                                                               message:@"Your library is now updated!"
+//                                                                                        preferredStyle:UIAlertControllerStyleAlert];
+//                                
+//                                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+//                                                                                      handler:^(UIAlertAction * action) {}];
+//                                
+//                                [alert addAction:defaultAction];
+//                                [self presentViewController:alert animated:YES completion:nil];
+//                            }];
                         }];
                         
                     }];

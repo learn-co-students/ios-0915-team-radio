@@ -64,12 +64,20 @@
     [realm commitWriteTransaction];
     
     completionBlock();
-//    [realm transactionWithBlock:^{
-//        // [Dog createInRealm:realm withValue:@{@"name": @"Fido", @"age": @1}];
-//        PGBRealmBook *book = updateBlock();
-//        [realm addOrUpdateObject:book];
-//    }];
+}
 
++ (void)storeUserBookDataWithBooks:(NSArray *)books andCompletion:(void (^)())completionBlock{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    [realm beginWriteTransaction];
+    
+    for (PGBRealmBook *book in books) {
+        [realm addOrUpdateObject:book];
+    }
+
+    [realm commitWriteTransaction];
+    
+    completionBlock();
 }
 
 + (void)storeUserBookDataWithBook:(PGBRealmBook *)book{

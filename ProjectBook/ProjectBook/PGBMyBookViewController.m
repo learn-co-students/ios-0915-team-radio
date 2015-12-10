@@ -125,7 +125,7 @@
     
     if (self.bookSegmentControl.selectedSegmentIndex == 0) {
         
-        if ([self.bookSearchBar.text isEqualToString:@""]) {
+        if (!self.bookSearchBar.text.length) {
             self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
         } else {
             self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == YES", self.bookSearchBar.text];
@@ -135,7 +135,7 @@
     }
     else if (self.bookSegmentControl.selectedSegmentIndex == 1) {
         
-        if ([self.bookSearchBar.text isEqualToString:@""]) {
+        if (!self.bookSearchBar.text.length) {
             self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == YES"];
         } else {
             self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == YES", self.bookSearchBar.text];
@@ -258,10 +258,18 @@
         
         [self.booksDisplayed removeObject:bookToBeDeleted];
         
-        [PGBRealmBook deleteUserBookDataForBook:bookToBeDeleted andCompletion:^{
+        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+            if (self.bookSegmentControl.selectedSegmentIndex == 0) {
+                bookToBeDeleted.isDownloaded = NO;
+            } else if (self.bookSegmentControl.selectedSegmentIndex == 1) {
+                bookToBeDeleted.isBookmarked = NO;
+            }
             
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            return bookToBeDeleted;
+        } andCompletion:^{
+             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }];
+
     }
     
     NSLog(@"Deleted row.");

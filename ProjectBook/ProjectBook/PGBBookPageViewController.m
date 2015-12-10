@@ -222,12 +222,11 @@
             self.book.isDownloaded = YES;
             return self.book;
         } andCompletion:^{
-            if ([PFUser currentUser]) {
-                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                    NSLog(@"saved book to parse");
-                }];
-            }
-            
+//            if ([PFUser currentUser]) {
+//                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+//                    NSLog(@"saved book to parse");
+//                }];
+//            }
         }];
         
     }
@@ -306,11 +305,11 @@
             self.book.isBookmarked = YES;
             return self.book;
         } andCompletion:^{
-            if ([PFUser currentUser]) {
-                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                    NSLog(@"saved book to parse");
-                }];
-            }
+//            if ([PFUser currentUser]) {
+//                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+//                    NSLog(@"saved book to parse");
+//                }];
+//            }
             
         }];
         
