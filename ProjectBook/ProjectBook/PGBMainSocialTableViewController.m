@@ -8,12 +8,16 @@
 
 #import "PGBMainSocialTableViewController.h"
 #import "PGBChatTableViewCell.h"
+#import "PGBNewChatViewController.h"
 #import "PGBChatRoom.h"
+#import "PGBChatMessageVC.h"
 
 @interface PGBMainSocialTableViewController ()
 
 @property (strong, nonatomic) NSMutableArray *arrayOfOpenBookChats;
 @property (weak, nonatomic) PGBChatRoom *chatRoom;
+@property (strong, nonatomic) NSString *chatRoomId;
+
 @end
 
 @implementation PGBMainSocialTableViewController
@@ -67,14 +71,23 @@
     return cell;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"goToChat" sender:nil];
 }
-*/
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([[segue identifier] isEqualToString:@"goToChat"]) {
+        PGBChatMessageVC *chatVC = segue.destinationViewController;
+        NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
+        PGBChatRoom *currentChatRoom = self.arrayOfOpenBookChats[selectedIndexPath.row];
+        
+        PFUser *currentUser = [PFUser currentUser];
+        PFObject *notChatRoom = [PFObject objectWithClassName:@"bookChat"];
+        [notChatRoom addObject:currentUser.objectId forKey:@"usersInChat"];
+        [notChatRoom saveInBackground];
+        chatVC.currentChatRoom = currentChatRoom;
+    }
+}
+
 
 @end

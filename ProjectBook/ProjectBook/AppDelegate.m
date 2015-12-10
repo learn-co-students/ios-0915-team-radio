@@ -229,8 +229,11 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    
+    
     //send a notification to NSNotificationCenter:
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"dGWeFofcrQ" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName: self.currentChatRoom.objectId object:self];
 }
 
 @end

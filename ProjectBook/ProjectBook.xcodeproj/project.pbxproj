@@ -26,6 +26,8 @@
 		890200351C0CFD08001A1ECF /* PGBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890200341C0CFD08001A1ECF /* PGBProfileViewController.m */; };
 		894AE4641C161227007F22A5 /* PGBSearchChatPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */; };
 		894D292F1C172E48003A7D95 /* PGBChatRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 894D292E1C172E48003A7D95 /* PGBChatRoom.m */; };
+		89560A4B1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89560A491C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.m */; };
+		89560A4C1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89560A4A1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.xib */; };
 		8964243C1C163C3D00FBB988 /* PGBChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8964243A1C163C3D00FBB988 /* PGBChatTableViewCell.m */; };
 		8964243D1C163C3D00FBB988 /* PGBChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8964243B1C163C3D00FBB988 /* PGBChatTableViewCell.xib */; };
 		899A4D071C10A77200D499C4 /* PGBChatMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */; };
@@ -141,6 +143,9 @@
 		894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBSearchChatPreviewViewController.m; sourceTree = "<group>"; };
 		894D292D1C172E48003A7D95 /* PGBChatRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBChatRoom.h; sourceTree = "<group>"; };
 		894D292E1C172E48003A7D95 /* PGBChatRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBChatRoom.m; sourceTree = "<group>"; };
+		89560A481C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBProfileBooksCustomCollectionViewCell.h; sourceTree = "<group>"; };
+		89560A491C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBProfileBooksCustomCollectionViewCell.m; sourceTree = "<group>"; };
+		89560A4A1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBProfileBooksCustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		896424391C163C3D00FBB988 /* PGBChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBChatTableViewCell.h; sourceTree = "<group>"; };
 		8964243A1C163C3D00FBB988 /* PGBChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBChatTableViewCell.m; sourceTree = "<group>"; };
 		8964243B1C163C3D00FBB988 /* PGBChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBChatTableViewCell.xib; sourceTree = "<group>"; };
@@ -411,6 +416,9 @@
 				8902002E1C0CAA10001A1ECF /* PGBSignUpViewController.h */,
 				8902002F1C0CAA10001A1ECF /* PGBSignUpViewController.m */,
 				890200311C0CF4EB001A1ECF /* profile.storyboard */,
+				89560A4A1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.xib */,
+				89560A481C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.h */,
+				89560A491C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.m */,
 				890200331C0CFD08001A1ECF /* PGBProfileViewController.h */,
 				890200341C0CFD08001A1ECF /* PGBProfileViewController.m */,
 				89EE0D381C15CF9100CCA1EA /* PGBSettingsViewController.h */,
@@ -556,7 +564,12 @@
 				TargetAttributes = {
 					CBFD3F551BFBA076002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 652FKRA3R9;
+						DevelopmentTeam = KXY9EDFTF5;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					CBFD3F711BFBA077002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
@@ -643,6 +656,7 @@
 				A7DD3FFE1C03717100D13A4B /* bookInformationSet4.txt in Resources */,
 				A7DD400B1C03717100D13A4B /* bookInformationSet17.txt in Resources */,
 				4CF789B81C15359300C82EB6 /* ProjectBook.sqlite in Resources */,
+				89560A4C1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.xib in Resources */,
 				CBC051101C109AB200118044 /* OpenSans-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -720,6 +734,7 @@
 				4C9D16631C0CF04800DBF989 /* PGBSearchViewController.m in Sources */,
 				CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */,
 				899A4D101C11EFC100D499C4 /* PGBNewChatViewController.m in Sources */,
+				89560A4B1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.m in Sources */,
 				CBEFBD0B1C16192100D878AC /* PGBCustomBookCollectionViewCell.m in Sources */,
 				CBFD3F611BFBA076002CE0A4 /* PGBBookPageViewController.m in Sources */,
 				4C5D947E1BFE389A0086DB5F /* PGBMyBookViewController.m in Sources */,
@@ -891,7 +906,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ProjectBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github-olivialim.learn-co-students.ios-0915-team-radio.ProjectBook";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.novel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -907,7 +922,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ProjectBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github-olivialim.learn-co-students.ios-0915-team-radio.ProjectBook";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.novel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

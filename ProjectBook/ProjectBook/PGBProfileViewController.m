@@ -7,6 +7,7 @@
 //
 
 #import "PGBProfileViewController.h"
+#import "PGBProfileBooksCustomCollectionViewCell.h"
 
 @interface PGBProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
@@ -14,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *location;
+
+@property (strong, nonatomic) NSArray *books;
 
 @end
 
@@ -29,6 +32,7 @@
     self.name.text = object[@"additional"];
     self.location.text = object[@"location"];
     
+
     
 }
 
@@ -38,9 +42,7 @@
 
 
 - (IBAction)backToBooksTapped:(id)sender {
-
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 @end

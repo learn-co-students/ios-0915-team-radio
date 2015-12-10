@@ -14,7 +14,6 @@
 #import "JSQMessagesTypingIndicatorFooterView.h"
 #import "UIImage+JSQMessages.h"
 #import "JSQSystemSoundPlayer+JSQMessages.h"
-//#import "NSUserDefaults.h"
 
 @interface PGBChatMessageVC ()
 
@@ -46,7 +45,7 @@
     
     //    self.inputToolbar.contentView.textView.pasteDelegate = self;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"dGWeFofcrQ" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:self.currentChatRoom.objectId object:nil];
     
 }
 
@@ -56,7 +55,7 @@
 
 - (void) receiveNotification:(NSNotification *) notification {
     
-    if (![[notification name] isEqualToString:@"dGWeFofcrQ"]) {
+    if (![[notification name] isEqualToString:self.currentChatRoom.objectId]) {
         NSLog(@"receiveNotification: error: notification name invalid; name=%@; expected=dGWeFofcrQ", notification.name);
         // TODO: uncomment below after debugging...
         //return;
@@ -69,8 +68,8 @@
     
     // get all messages for bookChatId...
     
-    PFQuery *messagesQuery = [PFQuery queryWithClassName:@"bookChatMessages"];
-    [messagesQuery whereKey:@"bookChatId" equalTo:@"dGWeFofcrQ"];
+    PFQuery *messagesQuery = [PFQuery queryWithClassName:self.currentChatRoom.objectId];
+    [messagesQuery whereKey:@"bookChatId" equalTo:self.currentChatRoom.objectId];
     
     [messagesQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         // this is where youd stop the loading indicator
@@ -122,12 +121,16 @@
     bookChatMessage[@"text"] = message.text;
     bookChatMessage[@"senderId"] = message.senderId;
     bookChatMessage[@"senderDisplayName"] = message.senderDisplayName;
-    bookChatMessage[@"bookChatId"] = @"dGWeFofcrQ";
+    bookChatMessage[@"bookChatId"] = self.currentChatRoom.objectId;
     [bookChatMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
+            
+            
             // The object has been saved.
             NSLog(@"bookChatMessage saved");
         } else {
+            
+            
             // There was a problem, check error.description
             NSLog(@"Problem saving: %@", error.description);
         }

@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <Masonry/Masonry.h>
 #import <Parse/Parse.h>
+@class PGBChatRoom;
+
 @interface PGBNewChatViewController : UIViewController
+
+@property (nonatomic, strong) PGBChatRoom *chatRoom;
 
 @end

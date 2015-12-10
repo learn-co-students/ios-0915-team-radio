@@ -9,9 +9,10 @@
 #import <JSQMessagesViewController/JSQMessagesViewController.h>
 #import <JSQSystemSoundPlayer/JSQSystemSoundPlayer.h>
 #import <Parse/Parse.h>
-
+#import "PGBChatRoom.h"
 @interface PGBChatMessageVC : JSQMessagesViewController
 
 @property (strong, nonatomic) NSMutableArray *randomArray;
+@property (strong, nonatomic) PGBChatRoom *currentChatRoom;
 
 @end
