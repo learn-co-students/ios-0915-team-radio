@@ -132,15 +132,10 @@
 //}
 
 +(PGBRealmBook *)generateBooksWitheBookID:(NSString *)ebookID {
-//    if (![PGBRealmBook getUserBookDataInArray].count) {
-//        PGBRealmBook *prideAndPrejudice = [[PGBRealmBook alloc]initWithTitle:@"Pride and Prejudice" author:@"Jane Austen" genre:@"Fiction" language:@"English" friendlyTitle:@"" downloadURL:@"https://www.gutenberg.org/ebooks/1342.epub.images" bookDescription:@"\"It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.\"\nSo begins Pride and Prejudice, Jane Austen's witty comedy of manners--one of the most popular novels of all time--that features splendidly civilized sparring between the proud Mr. Darcy and the prejudiced Elizabeth Bennet as they play out their spirited courtship in a series of eighteenth-century drawing-room intrigues." ebookID:@"etext1342" isDownloaded:NO isBookmarked:NO bookCoverData:nil];
-//        
-//        [PGBRealmBook storeUserBookDataWithBook:prideAndPrejudice];
-//    }
     
     PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
     
-    NSPredicate *filter = [NSPredicate predicateWithFormat:@"eBookNumbers MATCHES[c] %@", ebookID];
+    NSPredicate *filter = [NSPredicate predicateWithFormat:@"eBookNumbers == %@", ebookID];
     NSArray *coreDataBooks = [dataStore.managedBookObjects filteredArrayUsingPredicate:filter];
     
     return [PGBRealmBook createPGBRealmBookWithBook:[coreDataBooks firstObject]];
@@ -154,10 +149,24 @@
     realmBook.ebookID = coreDataBook.eBookNumbers;
     realmBook.genre = coreDataBook.eBookGenres;
     realmBook.title = coreDataBook.eBookTitles;
-    realmBook.author = coreDataBook.eBookAuthors;
     realmBook.friendlyTitle = coreDataBook.eBookFriendlyTitles;
     realmBook.language = coreDataBook.eBookLanguages;
     
+    //for author
+    if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle])
+    {
+        realmBook.author = [realmBook getAuthorFromFriendlyTitle:realmBook.friendlyTitle];
+        if (!realmBook.author) {
+            realmBook.author = coreDataBook.eBookAuthors;
+        }
+    }
+    
+    //for punctuation
+    if ([realmBook.title containsString:@"&quot;"]) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    }
+    
+    //for language
     if ([realmBook.language isEqualToString:@"en"])
     {
         realmBook.language = @"English";
@@ -170,6 +179,12 @@
     } else if ([realmBook.language isEqualToString:@"it"])
     {
         realmBook.language = @"Italian";
+    } else if ([realmBook.language isEqualToString:@"fi"])
+    {
+        realmBook.language = @"Finnish";
+    } else if ([realmBook.language isEqualToString:@"zh"])
+    {
+        realmBook.language = @"Chinese";
     }
     
     if ([self validateBookDataWithRealmBook:realmBook])
@@ -216,28 +231,27 @@
     /*
      here we remove by, and everything before it, now the array is just the authors name
      */
-    
-    [wordsInFriendlyTitleInArray removeObjectsInRange:NSMakeRange (0, indexOfStringBy+1)];
-    
-    /*
-     append the array elements (authors name) to a string
-     */
-    
-    for (NSString *nameOfAuthor in wordsInFriendlyTitleInArray)
-    {
-        [authorName appendString:nameOfAuthor];
+        [wordsInFriendlyTitleInArray removeObjectsInRange:NSMakeRange (0, indexOfStringBy+1)];
         
-        /*
-        add a space so the name isn't one word
-        this also adds a space to the end of the last word
-         */
-        [authorName appendString:@" "];
+//      append the array elements (authors name) to a string
+    if (wordsInFriendlyTitleInArray.count > 1) {
+        for (NSString *nameOfAuthor in wordsInFriendlyTitleInArray)
+        {
+            [authorName appendString:nameOfAuthor];
+            /*
+             add a space so the name isn't one word
+             this also adds a space to the end of the last word
+             */
+            [authorName appendString:@" "];
+        }
+        
+        NSString *authorWithSpace = authorName;
+        authorWithSpace = [authorWithSpace stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        return authorWithSpace;
     }
     
-    NSString *authorWithSpace = authorName;
-    authorWithSpace = [authorWithSpace stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    return authorWithSpace;
+    return nil;
 }
 
 

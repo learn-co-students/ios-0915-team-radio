@@ -69,8 +69,6 @@
     self.genreLabel.text = self.book.genre;
     self.languageLabel.text = self.book.language;
 
-    
-
     if (self.book.bookCoverData) {
         self.bookCoverImageView.image = [UIImage imageWithData:self.book.bookCoverData];
     }

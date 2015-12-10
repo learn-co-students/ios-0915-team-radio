@@ -33,11 +33,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fnu-2K-HE5" userLabel="Overall Scroll View">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnu-2K-HE5" userLabel="Overall Scroll View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9OG-6H-cgF" userLabel="Overall Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9OG-6H-cgF" userLabel="Overall Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="764"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U1Y-Pf-EIo" userLabel="Horizontal Scoll View">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
@@ -153,10 +153,10 @@
                                                 </cells>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWm-Va-sYU" userLabel="Shakespeare Bar">
-                                                <rect key="frame" x="0.0" y="576" width="600" height="24"/>
+                                                <rect key="frame" x="0.0" y="576" width="600" height="38"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVN-18-l5A" userLabel="Shakespeare">
-                                                        <rect key="frame" x="20" y="2" width="89" height="20"/>
+                                                        <rect key="frame" x="20" y="3" width="89" height="31"/>
                                                         <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="19"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -169,8 +169,8 @@
                                                     <constraint firstItem="cVN-18-l5A" firstAttribute="centerY" secondItem="gWm-Va-sYU" secondAttribute="centerY" id="pBR-m9-dnR"/>
                                                 </constraints>
                                             </view>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nQt-7j-xmt" userLabel="Shakespeare CV">
-                                                <rect key="frame" x="0.0" y="600" width="600" height="0.0"/>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nQt-7j-xmt" userLabel="Shakespeare CV">
+                                                <rect key="frame" x="0.0" y="614" width="600" height="150"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="20" id="C3x-ge-5Ws">
                                                     <size key="itemSize" width="90" height="140"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -179,8 +179,10 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="bookCoverCell" id="a5g-xT-kM5" customClass="PGBCustomBookCollectionViewCell">
+                                                        <rect key="frame" x="0.0" y="5" width="90" height="140"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="140"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
@@ -208,7 +210,7 @@
                                             <constraint firstItem="9G8-gs-hXd" firstAttribute="bottom" secondItem="fYR-Z4-TFx" secondAttribute="top" id="lBg-YE-g1v"/>
                                             <constraint firstItem="fYR-Z4-TFx" firstAttribute="trailing" secondItem="9OG-6H-cgF" secondAttribute="trailing" id="lHE-R5-ANC"/>
                                             <constraint firstItem="U1Y-Pf-EIo" firstAttribute="leading" secondItem="9OG-6H-cgF" secondAttribute="leading" id="lMD-qX-FAH"/>
-                                            <constraint firstItem="nQt-7j-xmt" firstAttribute="top" secondItem="gWm-Va-sYU" secondAttribute="bottom" id="mYD-dr-sv6"/>
+                                            <constraint firstItem="gWm-Va-sYU" firstAttribute="bottom" secondItem="nQt-7j-xmt" secondAttribute="top" id="mYD-dr-sv6"/>
                                             <constraint firstItem="9G8-gs-hXd" firstAttribute="top" secondItem="bG3-i2-RbI" secondAttribute="bottom" id="pPs-Jw-5uZ"/>
                                             <constraint firstItem="gWm-Va-sYU" firstAttribute="leading" secondItem="9OG-6H-cgF" secondAttribute="leading" id="q0c-0t-jTg"/>
                                             <constraint firstItem="bG3-i2-RbI" firstAttribute="leading" secondItem="9OG-6H-cgF" secondAttribute="leading" id="tWn-sv-OLM"/>
@@ -233,8 +235,10 @@
                             <constraint firstItem="xp5-nd-QDU" firstAttribute="height" secondItem="uDS-Gw-5iD" secondAttribute="height" multiplier="1/4" id="5IB-E4-9DU"/>
                             <constraint firstItem="fnu-2K-HE5" firstAttribute="trailing" secondItem="uDS-Gw-5iD" secondAttribute="trailing" id="DW2-MY-4Qv"/>
                             <constraint firstItem="fnu-2K-HE5" firstAttribute="bottom" secondItem="fT6-tu-SX3" secondAttribute="top" id="Mjb-Is-712"/>
+                            <constraint firstItem="nQt-7j-xmt" firstAttribute="height" secondItem="uDS-Gw-5iD" secondAttribute="height" multiplier="1/4" id="VzN-7B-RBj"/>
                             <constraint firstItem="9G8-gs-hXd" firstAttribute="height" secondItem="uDS-Gw-5iD" secondAttribute="height" multiplier="1/4" id="isi-sV-Aci"/>
                             <constraint firstItem="fYR-Z4-TFx" firstAttribute="height" secondItem="uDS-Gw-5iD" secondAttribute="height" multiplier="1/16" id="sRn-Rz-son"/>
+                            <constraint firstItem="gWm-Va-sYU" firstAttribute="height" secondItem="uDS-Gw-5iD" secondAttribute="height" multiplier="1/16" id="y3j-mD-Wm1"/>
                             <constraint firstItem="fnu-2K-HE5" firstAttribute="top" secondItem="0yy-cw-rBm" secondAttribute="bottom" id="y8T-Of-Fa8"/>
                             <constraint firstItem="U1Y-Pf-EIo" firstAttribute="height" secondItem="uDS-Gw-5iD" secondAttribute="height" multiplier="1/3" id="ynJ-vn-IcR"/>
                         </constraints>
@@ -296,26 +300,26 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="SO8-st-1f3">
                                                                 <rect key="frame" x="9" y="5" width="342" height="190"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f27-z1-o1N">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="342" height="51"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f27-z1-o1N">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="342" height="50"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA5-0Q-GKZ">
-                                                                        <rect key="frame" x="0.0" y="51" width="342" height="50"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA5-0Q-GKZ">
+                                                                        <rect key="frame" x="0.0" y="50" width="342" height="50"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt5-uI-cnf">
-                                                                        <rect key="frame" x="0.0" y="101" width="342" height="45"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt5-uI-cnf">
+                                                                        <rect key="frame" x="0.0" y="100" width="342" height="45"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX6-mt-LxQ">
-                                                                        <rect key="frame" x="0.0" y="146" width="342" height="44"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX6-mt-LxQ">
+                                                                        <rect key="frame" x="0.0" y="145" width="342" height="45"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>

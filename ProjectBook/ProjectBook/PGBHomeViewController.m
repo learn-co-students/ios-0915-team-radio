@@ -170,28 +170,29 @@ static dispatch_once_t once;
             PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
             if (book) {
                 [self.books addObject:book];
-                NSLog (@"popular books count:%lu", self.books.count);
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    [self.popularCollectionView reloadData];
-                    
-                }];
+//                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                    [self.popularCollectionView reloadData];
+                
+//                }];
             }
         }
         
-        NSArray *harvardClassicBooks = @[ @"etext22456", @"etext28", @"etext4081", @"etext2062", @"etext3330", @"etext1597", @"etext1399", @"etext1656", @"etext13726", @"etext10378", @"etext20203", @"etext4028", @"etext2880", @"etext4797", @"etext3296", @"etext1657", @"etext766", @"etext12816", @"etext274", @"etext1012", @"etext1008", @"etext996", @"etext9662", @"etext16643", @"etext1237", @"etext14460", @"etext5999", @"etext8418", @"etext5314", @"etext41", @"etext2610", @"etext3160", @"etext2009", @"etext18269", @"etext31", @"etext1342", @"etext1232", @"etext33"];
+        NSArray *harvardClassicBooks = @[ @"etext22456", @"etext28", @"etext4081", @"etext1597", @"etext1399", @"etext1656", @"etext13726", @"etext10378", @"etext20203", @"etext4028", @"etext2880", @"etext3296", @"etext1657", @"etext766", @"etext12816", @"etext1012", @"etext996", @"etext9662", @"etext16643", @"etext1237", @"etext8418", @"etext5314", @"etext41", @"etext2610", @"etext3160", @"etext18269", @"etext1342", @"etext1232", @"etext33"];
         
         for (NSString *ebookNumber in harvardClassicBooks) {
             PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
             if (book) {
                 [self.classicBooks addObject:book];
-                NSLog (@"classic books count:%lu", self.classicBooks.count);
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    [self.classicsCollectionView reloadData];
-                }];
-            } else {
-                NSLog (@"%@", ebookNumber);
+//                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                    [self.classicsCollectionView reloadData];
+//                }];
             }
         }
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.classicsCollectionView reloadData];
+            [self.popularCollectionView reloadData];
+        }];
     }];
     
     
@@ -320,8 +321,8 @@ static dispatch_once_t once;
 //collection view
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSLog(@"popular book count %lu", self.books.count);
-    NSLog(@"classic book count %lu", self.classicBooks.count);
+//    NSLog(@"popular book count %lu", self.books.count);
+//    NSLog(@"classic book count %lu", self.classicBooks.count);
     
     if (collectionView == self.popularCollectionView) {
         return self.books.count;
@@ -383,7 +384,7 @@ static dispatch_once_t once;
 
 //segue
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"bookPageSegue" sender:self];
+    [self performSegueWithIdentifier:@"bookPageSegue" sender:collectionView];
     
 }
 
@@ -391,12 +392,30 @@ static dispatch_once_t once;
 {
     PGBBookPageViewController *bookPageVC = segue.destinationViewController;
     
-    NSArray *arrayOfIndexPaths = [self.popularCollectionView indexPathsForSelectedItems];
+    NSArray *arrayOfIndexPaths;
+    NSArray *relevantBookArray;
+    
+    if (sender == self.popularCollectionView) {
+        arrayOfIndexPaths = [self.popularCollectionView indexPathsForSelectedItems];
+        relevantBookArray = self.books;
+    } else if (sender == self.classicsCollectionView) {
+        arrayOfIndexPaths = [self.classicsCollectionView indexPathsForSelectedItems];
+        relevantBookArray = self.classicBooks;
+    }
+    
+    NSLog(@"arrayOfIndexPaths: %@", arrayOfIndexPaths);
+    
     
     NSIndexPath *selectedIndexPath = [arrayOfIndexPaths firstObject];
     
+    NSLog(@"selectedIndexPath: %@", selectedIndexPath);
+
+    
 //    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
-    PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];
+    PGBRealmBook *bookAtIndexPath = relevantBookArray[selectedIndexPath.row];
+    
+    NSLog(@"bookAtIndexPath: %@", bookAtIndexPath);
+
     
     bookPageVC.book = bookAtIndexPath;
     

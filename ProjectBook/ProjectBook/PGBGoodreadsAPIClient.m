@@ -134,8 +134,16 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
                      */
                     NSString *bookDescription = [self getDescriptionWithContentsOfURLString:contentOfUrl];
                     
-                    if ([bookDescription containsString:@"<br>"]) {
-                        bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n"];
+                    NSArray *htmlTags = @[ @"<br", @"<strong>", @"<em>"];
+                    
+                    for (NSString *tag in htmlTags) {
+                        if ([bookDescription containsString:tag]) {
+                            bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n"];
+                            bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"<strong>" withString:@""];
+                            bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
+                            bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"<em>" withString:@""];
+                            bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"</em>" withString:@""];
+                        }
                     }
                     
                     completion(bookDescription);
