@@ -44,6 +44,13 @@
     
     self.books = [[NSMutableArray alloc]init];
     self.booksDisplayed = [[NSMutableArray alloc]init];
+    
+  
+}
+
+- (void)reloadTableViewData: (NSNotification *)notification {
+    NSLog(@"storing data from parse to realm, refresh table!!!");
+    [self fetchBookFromRealm];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -60,6 +67,8 @@
     //    [self.bookTableView setContentOffset:CGPointZero animated:YES];
     
     [self fetchBookFromRealm];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData:) name:@"StoringDataFromParseToRealm" object:nil];
 }
 
 - (void)fetchBookFromRealm {
@@ -239,7 +248,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return YES - we will be able to delete all rows
+    
     if (tableView == self.bookTableView) {
         return YES;
     }
@@ -249,11 +258,9 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Perform the real delete action here. Note: you may need to check editing style
-    //   if you do not perform delete only.
     
     if (tableView == self.bookTableView & editingStyle == UITableViewCellEditingStyleDelete) {
-        //remove data from realm and update refresh the table;
+ 
         PGBRealmBook *bookToBeDeleted = self.booksDisplayed[indexPath.row];
         
         [self.booksDisplayed removeObject:bookToBeDeleted];

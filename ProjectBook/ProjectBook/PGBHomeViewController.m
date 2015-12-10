@@ -167,6 +167,9 @@ static dispatch_once_t once;
 //                                [alert addAction:defaultAction];
 //                                [self presentViewController:alert animated:YES completion:nil];
 //                            }];
+                            
+                            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+                            [center postNotificationName:@"StoringDataFromParseToRealm" object:nil];
                         }];
                         
                     }];
