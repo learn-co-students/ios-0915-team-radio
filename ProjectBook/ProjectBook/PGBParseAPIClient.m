@@ -11,8 +11,8 @@
 
 @implementation PGBParseAPIClient
 
-+(void)fetchUserProfileDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(PFObject *data))completionBlock
-{
++(void)fetchUserProfileDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(PFObject *data))completionBlock {
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"objectId = %@", userObject.objectId];
     PFQuery *query = [PFUser queryWithPredicate:predicate];
     
@@ -26,8 +26,8 @@
     }];
 }
 
-+(void)fetchUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(NSArray *books))completionBlock
-{
++(void)fetchUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(NSArray *books))completionBlock {
+    
     PFQuery *query = [PFQuery queryWithClassName:@"book"];
     [query whereKey:@"owner" equalTo:userObject];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
@@ -38,11 +38,27 @@
             NSLog(@"Unable to get book data from parse");
         }
     }];
-    
 }
 
-+(void)storeUserBookDataWithUserObject:(PFObject *)userObject realmBookObject:(PGBRealmBook *)realmBook andCompletion:(void (^)(PFObject *bookObject))completionBlock
-{
++(void)deleteUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)())completionBlock {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"book"];
+    [query whereKey:@"owner" equalTo:userObject];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error)
+        {
+            [PFObject deleteAllInBackground:objects block:^(BOOL succeeded, NSError * _Nullable error) {
+                completionBlock();
+            }];
+        } else {
+            NSLog(@"Unable to get book data from parse");
+        }
+    }];
+}
+
+
++(void)storeUserBookDataWithUserObject:(PFObject *)userObject realmBookObject:(PGBRealmBook *)realmBook andCompletion:(void (^)(PFObject *bookObject))completionBlock {
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eBookID = %@", realmBook.ebookID];
     
     PFQuery *query = [PFQuery queryWithClassName:@"book" predicate:predicate];

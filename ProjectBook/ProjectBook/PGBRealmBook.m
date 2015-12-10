@@ -279,8 +279,7 @@
 }
 
 
-+ (PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook
-{
++(PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook {
     
     PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
     
@@ -290,8 +289,8 @@
     return realmBook;
 }
 
-+ (NSURL *)createBookCoverURL:(NSString *)eBookNumber
-{
++(NSURL *)createBookCoverURL:(NSString *)eBookNumber {
+    
     if (eBookNumber.length) {
         
         NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
@@ -305,8 +304,8 @@
     return nil;
 }
 
-+ (void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock
-{
++(void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock {
+    
     [PGBParseAPIClient fetchUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^(NSArray *books) {
         for (NSDictionary *book in books) {
             
@@ -348,11 +347,11 @@
     }];
 }
 
-+ (void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock
-{
-        [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
-            completionBlock();
-        }];
++(void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock {
+    
+    [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
+        completionBlock();
+    }];
 }
 
 

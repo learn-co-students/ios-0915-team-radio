@@ -130,8 +130,7 @@
             [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:realmBook andCompletion:^{
 //                realmBook.author = @"Leo Feng"; //error : tried to modify realm object outside of transaction !!!!!
                 NSLog(@"saved book to parse, in application will enter background");
-                
-
+            
             }];
         }
     }
