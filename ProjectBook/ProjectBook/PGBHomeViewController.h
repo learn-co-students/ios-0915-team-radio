@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *popularCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *classicsCollectionView;
+@property (weak, nonatomic) IBOutlet UICollectionView *shakespeareCollectionView;
 
 
 @end

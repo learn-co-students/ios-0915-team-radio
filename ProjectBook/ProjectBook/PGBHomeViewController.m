@@ -25,19 +25,17 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-static dispatch_once_t once;
-
 @interface PGBHomeViewController () {
     
     UIActivityIndicatorView *spinner;
 
 }
 
-
 //book arrays
 
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) NSMutableArray *classicBooks;
+@property (strong, nonatomic) NSMutableArray *shakespeareBooks;
 
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
 @property (nonatomic, assign) int currentList;
@@ -51,8 +49,6 @@ static dispatch_once_t once;
 //@property (strong, nonatomic) NSMutableArray *dataArray;
 @property (nonatomic) BOOL noMoreResultsAvail;
 @property (nonatomic) BOOL loading;
-
-
 
 @property (assign, nonatomic) BOOL isLoggedin;
 //@property (nonatomic, assign) dispatch_once_t *once;
@@ -85,6 +81,7 @@ static dispatch_once_t once;
 //        self.books = @[self.books[0], self.books[1], self.books[2]];
     self.books = [NSMutableArray arrayWithCapacity:100];
     self.classicBooks = [NSMutableArray arrayWithCapacity:100];
+    self.shakespeareBooks = [NSMutableArray arrayWithCapacity:100];
 
 //    [self generateRandomBookByCount:10];
 //    [self generateBook];
@@ -116,6 +113,17 @@ static dispatch_once_t once;
     
     self.classicsCollectionView.backgroundColor = [UIColor whiteColor];
     self.classicsCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+//classic books
+    //delegate
+    [self.shakespeareCollectionView setDelegate:self];
+    [self.shakespeareCollectionView setDataSource:self];
+    
+    //xib
+    [self.shakespeareCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
+    
+    self.shakespeareCollectionView.backgroundColor = [UIColor whiteColor];
+    self.shakespeareCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -130,11 +138,7 @@ static dispatch_once_t once;
     }
     
     //leo test parse here
-
-
 }
-
-
 
 -(void)fetchBookFromParse {
     NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
@@ -172,7 +176,6 @@ static dispatch_once_t once;
                 [self.books addObject:book];
 //                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
 //                    [self.popularCollectionView reloadData];
-                
 //                }];
             }
         }
@@ -189,32 +192,24 @@ static dispatch_once_t once;
             }
         }
         
+        
+        NSArray *shakespearesBooks = @[ @"etext2265", @"etext1112", @"etext2264", @"etext2267", @"etext1041", @"etext2235", @"etext2242", @"etext1430", @"etext1128", @"etext1120", @"etext1121", @"etext2243", @"etext2253", @"etext1107", @"etext1526", @"etext1103", @"etext2240", @"etext1539", @"etext1535", @"etext2268", @"etext1126", @"etext1045" ];
+        
+        for (NSString *ebookNumber in shakespearesBooks) {
+            PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
+            if (book) {
+                [self.shakespeareBooks addObject:book];
+            } else {
+                NSLog(@"this is outttttt: %@", ebookNumber);
+            }
+        }
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.classicsCollectionView reloadData];
             [self.popularCollectionView reloadData];
+            [self.shakespeareCollectionView reloadData];
+
         }];
     }];
-    
-    
-//    NSOperationQueue *secondBackgroundQueue = [[NSOperationQueue alloc]init];
-//    
-//    [secondBackgroundQueue addOperationWithBlock:^{
-//        
-//        NSArray *harvardClassicBooks = @[ @"etext22456", @"etext28", @"etext4081", @"etext2062", @"etext3330", @"etext1597", @"etext1399", @"etext1656", @"etext13726", @"etext10378", @"etext20203", @"etext4028", @"etext2880", @"etext4797", @"etext3296", @"etext1657", @"etext766", @"etext12816", @"etext274", @"etext1012", @"etext1008"];
-//        
-//        for (NSString *ebookNumber in harvardClassicBooks) {
-//            PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
-//            if (book) {
-//                [self.classicBooks addObject:book];
-//                NSLog (@"classic books count:%lu", self.classicBooks.count);
-//                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                    [self.classicsCollectionView reloadData];
-//                }];
-//            } else {
-//                NSLog (@"%@", ebookNumber);
-//            }
-//        }
-//    }];
 }
 
 - (void)generateBook {
@@ -328,6 +323,8 @@ static dispatch_once_t once;
         return self.books.count;
     } else if (collectionView == self.classicsCollectionView) {
         return self.classicBooks.count;
+    }  else if (collectionView == self.shakespeareCollectionView) {
+        return self.shakespeareBooks.count;
     }
     
     return self.classicBooks.count;
@@ -378,6 +375,26 @@ static dispatch_once_t once;
             }
         }
         return cell;
+        
+    } else if (collectionView == self.shakespeareCollectionView) {
+        if (self.shakespeareBooks.count != 0) {
+            if (indexPath.row < self.shakespeareBooks.count)
+            {
+                PGBRealmBook *book = self.shakespeareBooks[indexPath.row];
+                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+                
+                if (bookCoverImage) {
+                    cell.bookCover.image = bookCoverImage;
+                } else {
+                    cell.titleTV.text = book.title;
+                    cell.authorLabel.text = @"William Shakespeare";
+                }
+                //cell.titleTV.adjustsFontSizeToFitWidth = YES;
+                //cell.titleTV.minimumFontSize = 0;
+                //cell.authorLabel.adjustsFontSizeToFitWidth = YES;
+            }
+        }
+        return cell;
     }
     return nil;
 }
@@ -401,6 +418,9 @@ static dispatch_once_t once;
     } else if (sender == self.classicsCollectionView) {
         arrayOfIndexPaths = [self.classicsCollectionView indexPathsForSelectedItems];
         relevantBookArray = self.classicBooks;
+    }  else if (sender == self.shakespeareCollectionView) {
+        arrayOfIndexPaths = [self.shakespeareCollectionView indexPathsForSelectedItems];
+        relevantBookArray = self.shakespeareBooks;
     }
     
     NSLog(@"arrayOfIndexPaths: %@", arrayOfIndexPaths);

@@ -95,17 +95,17 @@
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9G8-gs-hXd" userLabel="Popular Book CV">
                                                 <rect key="frame" x="0.0" y="238" width="600" height="150"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="20" id="NGJ-lH-zCM">
-                                                    <size key="itemSize" width="90" height="140"/>
+                                                    <size key="itemSize" width="100" height="140"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="bookCoverCell" id="x8Z-sB-2cv" customClass="PGBCustomBookCollectionViewCell">
-                                                        <rect key="frame" x="0.0" y="5" width="90" height="140"/>
+                                                        <rect key="frame" x="0.0" y="5" width="100" height="140"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="140"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="140"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
@@ -155,7 +155,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWm-Va-sYU" userLabel="Shakespeare Bar">
                                                 <rect key="frame" x="0.0" y="576" width="600" height="38"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVN-18-l5A" userLabel="Shakespeare">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Shakespeare" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVN-18-l5A" userLabel="Shakespeare">
                                                         <rect key="frame" x="20" y="3" width="89" height="31"/>
                                                         <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="19"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -254,6 +254,7 @@
                         <outlet property="classicsCollectionView" destination="xp5-nd-QDU" id="5Cq-0a-XYP"/>
                         <outlet property="loginButton" destination="cXi-sA-yTG" id="ZTq-IQ-dsU"/>
                         <outlet property="popularCollectionView" destination="9G8-gs-hXd" id="xDp-UE-VvL"/>
+                        <outlet property="shakespeareCollectionView" destination="nQt-7j-xmt" id="Bxg-z4-tj5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qR3-M7-lRC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -286,7 +287,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1zv-Hm-lSE" userLabel="SV ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="669"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="969"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9m-eD-9zA" userLabel="Cover/Info View">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
@@ -300,26 +301,26 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="SO8-st-1f3">
                                                                 <rect key="frame" x="9" y="5" width="342" height="190"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f27-z1-o1N">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="342" height="50"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f27-z1-o1N">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="342" height="51"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA5-0Q-GKZ">
-                                                                        <rect key="frame" x="0.0" y="50" width="342" height="50"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA5-0Q-GKZ">
+                                                                        <rect key="frame" x="0.0" y="51" width="342" height="50"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt5-uI-cnf">
-                                                                        <rect key="frame" x="0.0" y="100" width="342" height="45"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt5-uI-cnf">
+                                                                        <rect key="frame" x="0.0" y="101" width="342" height="45"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX6-mt-LxQ">
-                                                                        <rect key="frame" x="0.0" y="145" width="342" height="45"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX6-mt-LxQ">
+                                                                        <rect key="frame" x="0.0" y="146" width="342" height="44"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -397,7 +398,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eaf-LU-Sm3" userLabel="Placeholder for WKWebView">
                                                 <rect key="frame" x="0.0" y="369" width="600" height="300"/>
-                                                <color key="backgroundColor" red="0.079500462349999995" green="1" blue="0.95648744549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" indicatorStyle="black" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fcU-hx-NGB" userLabel="DescriptionTV">
                                                 <rect key="frame" x="0.0" y="238" width="600" height="131"/>
@@ -409,7 +410,7 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.60651898319999997" green="1" blue="0.50222864840000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="Eaf-LU-Sm3" firstAttribute="bottom" secondItem="1zv-Hm-lSE" secondAttribute="bottom" id="62I-Wt-XUU"/>
+                                            <constraint firstItem="Eaf-LU-Sm3" firstAttribute="bottom" secondItem="1zv-Hm-lSE" secondAttribute="bottom" constant="-300" id="62I-Wt-XUU"/>
                                             <constraint firstItem="r9m-eD-9zA" firstAttribute="width" secondItem="1zv-Hm-lSE" secondAttribute="width" id="7ll-fF-FlL"/>
                                             <constraint firstItem="r9m-eD-9zA" firstAttribute="leading" secondItem="1zv-Hm-lSE" secondAttribute="leading" id="B2b-71-dAm"/>
                                             <constraint firstItem="r9m-eD-9zA" firstAttribute="trailing" secondItem="1zv-Hm-lSE" secondAttribute="trailing" id="BFI-9w-V4o"/>
