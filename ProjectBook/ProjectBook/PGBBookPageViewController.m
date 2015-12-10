@@ -12,6 +12,7 @@
 #import "PGBParseAPIClient.h"
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Masonry/Masonry.h>
+#import <YYWebImage/YYWebImage.h>
 
 
 @interface PGBBookPageViewController () <UIScrollViewDelegate>
@@ -36,10 +37,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *bookmarkButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *optionsButton;
 @property (weak, nonatomic) IBOutlet UIImageView *bookCoverImageView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
-@property (weak, nonatomic) IBOutlet UILabel *noBooksLabel;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *BookPageBottomConstraint;
 //@property (weak, nonatomic) IBOutlet UIView *webview;
 
 @end
@@ -52,9 +50,7 @@
     
     
     self.bookDescriptionTV.editable = NO;
-    self.noBooksLabel.hidden = YES;
 
-    
     self.bookDescriptionTV.text = @"";
     PGBGoodreadsAPIClient *goodreadsAPI = [[PGBGoodreadsAPIClient alloc] init];
     [goodreadsAPI getDescriptionForBookTitle:self.book completion:^(NSString *bookDescription) {
@@ -74,11 +70,9 @@
     self.genreLabel.text = self.book.genre;
     self.languageLabel.text = self.book.language;
 
-    
-
-    if (self.book.bookCoverData) {
-        self.bookCoverImageView.image = [UIImage imageWithData:self.book.bookCoverData];
-    }
+    // if (self.book.bookCoverData) {
+    //     self.bookCoverImageView.image = [UIImage imageWithData:self.book.bookCoverData];
+    // }
     
     CGRect rect = self.bookDescriptionTV.frame;
     rect.size.height = self.bookDescriptionTV.contentSize.height;
@@ -89,7 +83,9 @@
         if (totalHeight < view.frame.origin.y + view.frame.size.height) totalHeight = view.frame.origin.y + view.frame.size.height;
     
     
-
+    //    [self getReviewswithCompletion:^(BOOL success) {
+    //        success = YES;
+    //    }];
     
     //bookmarkstuff
         UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
@@ -98,17 +94,48 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self getReviewswithCompletion:^(BOOL success) {
-        success = YES;
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if (![ PFUser currentUser]) {
+        // do something
+    }
+    else{
+        // we have a user! do somethin..
+    }
+    //    NSArray *permissions = @[@"public_profile"];
+    //
+    //    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissions block:^(PFUser *user, NSError *error) {
+    //
+    //        if (!user) {
+    //            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+    //        } else if (user.isNew) {
+    //            NSLog(@"User signed up and logged in through Facebook!");
+    //        } else {
+    //            NSLog(@"User logged in through Facebook!");
+    //        }
+    //    }];
+    
+    //get book cover image in background
+    NSString *ebookID = self.book.ebookID;
+    
+    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+    [bgQueue addOperationWithBlock:^{
+        
+        [self.bookCoverImageView yy_setImageWithURL:[PGBRealmBook createBookCoverURL:ebookID] placeholder:[UIImage imageNamed:@"no_book_cover"] options:YYWebImageOptionProgressive completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+            
+            if (image) {
+                self.bookCoverImageView.image = image;
+            }
+            
+        }];
     }];
 }
 
 
 -(void)getReviewswithCompletion:(void (^)(BOOL))completionBlock
 {
-    [PGBGoodreadsAPIClient getReviewsForBook:self.book.title completion:^(NSDictionary *reviewDict) {
+    [PGBGoodreadsAPIClient getReviewsForBook:self.book completion:^(NSDictionary *reviewDict) {
             
             self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];
         
@@ -117,7 +144,7 @@
             NSURL *baseURL = [NSURL URLWithString:@"https://www.goodreads.com"];
             
             // make / constrain webview
-        self.webView.hidden = YES;
+            
             CGRect webViewFrame = CGRectMake(0, 0, self.webViewContainer.frame.size.width, self.webViewContainer.frame.size.height);
             
             self.webView = [[WKWebView alloc]initWithFrame: webViewFrame];
@@ -129,14 +156,13 @@
             //                [self.webView.topAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
             //                [self.webView.bottomAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
             
-        // start progress (spinner or hud) over webviewContainer
-        [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
             
-
-        self.webView.navigationDelegate = self;
-
-        
-        
+            [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
+            
+            self.webView.UIDelegate = self;
+            self.webView.navigationDelegate = self;
+            self.webView.scrollView.delegate = self;
+            
             //            [self.webView.heightAnchor constraintEqualToConstant:300];
             //            [self.webViewContainer layoutSubviews];
         completionBlock(YES);
@@ -145,30 +171,21 @@
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     NSLog(@"didFinishNavigation");
-    // dismiss progress over webviewContainer
-    [webView evaluateJavaScript:@"document.getElementById('the_iframe').contentDocument.body.innerHTML.indexOf('No reviews found') != -1" completionHandler:^(NSNumber *hasNoReviews, NSError *error) {
-        if(hasNoReviews.boolValue) {
-            NSLog(@"no reviews!");
-            // show label saying "No reviews found"
-            //self.noBooksLabel.hidden = NO;
-            //self.noBooksLabel.text = @"No Book Reviews Available";
-        }
-        else {
-            NSLog(@"reviews!");
-            // animate resizing of webViewContainerView
-            
-            //self.BookPageBottomConstraint = 300;
-            self.bottomConstraint.constant = 300;
-            
-            webView.hidden = NO;
-        }
-    }];
     
+    [webView.scrollView setZoomScale:0.6];
+    [webView.scrollView setContentOffset:CGPointMake(0, 0)];
     
-    [webView.scrollView setZoomScale:0.6 animated:YES];
-    [webView.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-
     //    [webView.scrollView zoomToRect:CGRectMake(0, 0, 20, 20) animated:YES];
+}
+
+
+
+-(void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation
+{
+    NSLog (@"didCommitNavigation");
+    
+    [webView.scrollView setZoomScale:0.6];
+    [webView.scrollView setContentOffset:CGPointMake(0, 0)];
 }
 
 - (IBAction)downloadButtonTapped:(id)sender
@@ -202,20 +219,17 @@
     if (self.book.ebookID.length) {
         
         [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-            //   saving the book cover data to realm
-            //            self.book.bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:self.book.ebookID]];
             self.book.isDownloaded = YES;
-            
-            //store book to parse - first check if user if logged in!!!!!!
-            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                NSLog(@"saved book to parse");
-            }];
-            
             return self.book;
+        } andCompletion:^{
+            if ([PFUser currentUser]) {
+                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                    NSLog(@"saved book to parse");
+                }];
+            }
+            
         }];
         
-        
-
     }
 }
 
@@ -242,45 +256,6 @@
     [view addAction:save];
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
-}
-
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    if (![ PFUser currentUser]) {
-        // do something
-    }
-    else{
-        // we have a user! do somethin..
-    }
-    //    NSArray *permissions = @[@"public_profile"];
-    //
-    //    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissions block:^(PFUser *user, NSError *error) {
-    //
-    //        if (!user) {
-    //            NSLog(@"Uh oh. The user cancelled the Facebook login.");
-    //        } else if (user.isNew) {
-    //            NSLog(@"User signed up and logged in through Facebook!");
-    //        } else {
-    //            NSLog(@"User logged in through Facebook!");
-    //        }
-    //    }];
-    
-    //get book cover image in background
-    NSString *ebookID = self.book.ebookID;
-    
-    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
-    [bgQueue addOperationWithBlock:^{
-        NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:ebookID]];
-        if (bookCoverData) {
-            
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                self.bookCoverImageView.image = [UIImage imageWithData:bookCoverData];
-            }];
-            
-        }
-    }];
 }
 
 - (IBAction)readButtonTapped:(id)sender
@@ -326,17 +301,19 @@
     //    [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
     
     if (self.book.ebookID.length) {
+        
         [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-            //            self.book.bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:self.book.ebookID]];
             self.book.isBookmarked = YES;
-            
-            //first check if user is logged in
-            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                NSLog(@"saved book to parse");
-            }];
-            
             return self.book;
+        } andCompletion:^{
+            if ([PFUser currentUser]) {
+                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                    NSLog(@"saved book to parse");
+                }];
+            }
+            
         }];
+        
     }
 }
 

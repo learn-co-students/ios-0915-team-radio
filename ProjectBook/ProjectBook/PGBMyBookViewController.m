@@ -11,6 +11,8 @@
 #import "PGBRealmBook.h"
 #import "PGBBookPageViewController.h"
 #import "PGBParseAPIClient.h"
+#import <YYWebImage/YYWebImage.h>
+
 
 @interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -45,26 +47,35 @@
     [super viewWillAppear:animated];
     
 //    self.books = [PGBRealmBook getUserBookDataInArray];
-    
 //    [self loadDefaultContent];
-    [self loadBookFromParse];
+//    [self fetchBookFromParse];
 }
 
--(void)loadBookFromParse {
-        NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    //    [self.bookTableView setContentOffset:CGPointMake(0, 44) animated:NO];
+    //    [self.bookTableView setContentOffset:CGPointZero animated:YES];
     
-        [bgQueue addOperationWithBlock:^{
+    [self fetchBookFromParse];
+}
+
+-(void)fetchBookFromParse {
+    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
     
+    [bgQueue addOperationWithBlock:^{
+        if ([PFUser currentUser]) {
+            
             [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
                 NSLog(@"user data: %@", data);
-    
+                
                 PFObject *user = data;
                 if (user) {
-    
-//                    [PGBRealmBook deleteAllUserBookData];
-    
+                    
+                    //                    [PGBRealmBook deleteAllUserBookData];
+                    
                     [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
                         NSLog(@"successfully fetch book from parse");
+                        
                         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
                             self.books = [PGBRealmBook getUserBookDataInArray];
                             [self loadDefaultContent];
@@ -73,7 +84,15 @@
                     }];
                 }
             }];
-        }];
+            
+        } else {
+            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                self.books = [PGBRealmBook getUserBookDataInArray];
+                [self loadDefaultContent];
+                [self.bookTableView reloadData];
+            }];
+        }
+    }];
 }
 
 - (void)loadDefaultContent{
@@ -81,13 +100,8 @@
     self.bookSearchBar.text = @"";
     self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
     self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
-    [self.bookTableView reloadData];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-//    [self.bookTableView setContentOffset:CGPointMake(0, 44) animated:NO];
-//    [self.bookTableView setContentOffset:CGPointZero animated:YES];
+    
+//    [self.bookTableView reloadData];
 }
 
 - (IBAction)bookSegmentedControlSelected:(UISegmentedControl *)sender {
@@ -147,8 +161,12 @@
         cell.authorLabel.text = book.author;
         cell.genreLabel.text = book.genre;
         
-        if (book.bookCoverData) {
-            cell.bookCover.image = [UIImage imageWithData: book.bookCoverData];
+        UIImage *bookCoverImage = [UIImage imageWithData: book.bookCoverData];
+        
+        if (bookCoverImage) {
+            cell.bookCover.image = bookCoverImage;
+        } else {
+            cell.bookCover.image = [UIImage imageNamed:@"no_book_cover"];
         }
         
         return cell;
@@ -199,6 +217,24 @@
     PGBRealmBook *bookAtIndexPath = self.booksDisplayed[selectedIndexPath.row];
     
     bookPageVC.book = bookAtIndexPath;
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return YES - we will be able to delete all rows
+    if (tableView == self.bookTableView) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Perform the real delete action here. Note: you may need to check editing style
+    //   if you do not perform delete only.
+    NSLog(@"Deleted row.");
 }
 
 @end

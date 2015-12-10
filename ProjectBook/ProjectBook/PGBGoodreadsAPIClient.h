@@ -12,7 +12,7 @@
 
 @interface PGBGoodreadsAPIClient : NSObject
 
-+ (void)getReviewsForBook:(NSString *)bookTitle completion:(void (^)(NSDictionary *))completionBlock;
++ (void)getReviewsForBook:(PGBRealmBook *)realmBook completion:(void (^)(NSDictionary *))completionBlock;
 - (NSDictionary *)methodToGetDescriptionsWithString:(NSString *)string;
 //- (void)getDescriptionForBookTitle:(NSString *)bookTitle completion:(void (^)(NSString *description))completion;
 
