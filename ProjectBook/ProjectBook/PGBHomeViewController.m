@@ -116,6 +116,10 @@ static dispatch_once_t once;
     
     self.classicsCollectionView.backgroundColor = [UIColor whiteColor];
     self.classicsCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+    
+    //leo test parse here
+    [self fetchBookFromParse];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -129,34 +133,50 @@ static dispatch_once_t once;
         [self.loginButton setTitle:@"Login"];
     }
     
-    //leo test parse here
-
 
 }
 
 
 
--(void)fetchBookFromParse {
+- (void)fetchBookFromParse {
     NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
     
     [bgQueue addOperationWithBlock:^{
-    
-//        [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
-//            NSLog(@"user data: %@", data);
-//            
-//            PFObject *user = data;
-//            if (user) {
-        
-                [PGBRealmBook deleteAllUserBookData];
-        
-                [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
-                    NSLog(@"successfully fetch book from parse");
+        if ([PFUser currentUser]) {
+            
+            [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
+                NSLog(@"user data: %@", data);
+                
+                PFObject *user = data;
+                if (user) {
+            
+                    [PGBRealmBook deleteAllUserBookDataWithCompletion:^{
                     
-                }];
-//            }
-        }];
-//    }];
+                        [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
+                            NSLog(@"successfully fetch book from parse");
+                            
+                            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                                //alert user that their library is update????
+                                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Hello"
+                                                                                               message:@"Your library is now updated!"
+                                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                                
+                                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                                      handler:^(UIAlertAction * action) {}];
+                                
+                                [alert addAction:defaultAction];
+                                [self presentViewController:alert animated:YES completion:nil];
+                            }];
+                        }];
+                        
+                    }];
+                }
+            }];
+            
+        } 
+    }];
 }
+
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -479,6 +499,9 @@ static dispatch_once_t once;
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self changeLoginButtonToProfileIcon];
+    
+    //once logged in fetch book from parse
+    [self fetchBookFromParse];
 }
 
 // Sent to the delegate when the log in attempt fails.

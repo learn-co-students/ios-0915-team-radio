@@ -41,8 +41,8 @@
 + (void)storeUserBookDataWithBook:(PGBRealmBook *)book;
 //+ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock;
 + (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock andCompletion:(void (^)())completionBlock;
-+ (void)deleteUserBookDataForBook:(PGBRealmBook *)book;
-+ (void)deleteAllUserBookData;
++ (void)deleteUserBookDataForBook:(PGBRealmBook *)book andCompletion:(void (^)())completionBlock;
++ (void)deleteAllUserBookDataWithCompletion:(void (^)())completionBlock;
 + (RLMResults *)getUserBookData;
 + (NSArray *)getUserBookDataInArray;
 + (PGBRealmBook *)createPGBRealmBookWithBook:(Book *)book;

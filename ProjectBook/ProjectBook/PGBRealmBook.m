@@ -82,20 +82,24 @@
     [realm commitWriteTransaction];
 }
 
-+ (void)deleteUserBookDataForBook:(PGBRealmBook *)book{
++ (void)deleteUserBookDataForBook:(PGBRealmBook *)book andCompletion:(void (^)())completionBlock{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
     [realm deleteObject:book];
     [realm commitWriteTransaction];
+    
+    completionBlock();
 }
 
-+ (void)deleteAllUserBookData{
++ (void)deleteAllUserBookDataWithCompletion:(void (^)())completionBlock{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
     [realm deleteAllObjects];
     [realm commitWriteTransaction];
+    
+    completionBlock();
 }
 
 + (RLMResults *)getUserBookData{
