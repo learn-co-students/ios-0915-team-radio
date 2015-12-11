@@ -155,7 +155,7 @@
             NSLog(@"Succed to get description from API call - LEO");
         } else {
             NSLog(@"failed to get description from API call - LEO");
-            self.bookDescriptionTV.text = @"There is no description for this book.";
+            self.bookDescriptionTV.text = @"There is no review for this book.";
         }
     }];
 }

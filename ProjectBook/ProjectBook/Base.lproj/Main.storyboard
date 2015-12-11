@@ -496,8 +496,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ft6-qf-adu" userLabel="Overall Scroll View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="825-ZV-il2" userLabel="Overall Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="383.5"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="825-ZV-il2" userLabel="Overall Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="931"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPT-Nd-CeZ" userLabel="Book View">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="113"/>
@@ -542,10 +542,10 @@
                                                     <constraint firstItem="GFL-ob-nCM" firstAttribute="centerX" secondItem="bPT-Nd-CeZ" secondAttribute="centerX" id="zit-1u-Hrr"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z1r-rR-3W3" userLabel="Info Stack View">
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z1r-rR-3W3" userLabel="Info Stack View">
                                                 <rect key="frame" x="0.0" y="233" width="600" height="131"/>
                                                 <subviews>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="21f-WM-Z2a" userLabel="Description TV">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="21f-WM-Z2a" userLabel="Description TV">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="131"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -557,8 +557,8 @@
                                                     <constraint firstItem="21f-WM-Z2a" firstAttribute="width" secondItem="Z1r-rR-3W3" secondAttribute="width" id="wFE-K5-52H"/>
                                                 </constraints>
                                             </stackView>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3q-zS-VzH" userLabel="Placeholder for WKView">
-                                                <rect key="frame" x="0.0" y="383.5" width="600" height="0.0"/>
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3q-zS-VzH" userLabel="Placeholder for WKView">
+                                                <rect key="frame" x="0.0" y="523" width="600" height="277"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                         </subviews>
