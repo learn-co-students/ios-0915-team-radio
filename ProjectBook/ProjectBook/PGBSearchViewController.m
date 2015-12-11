@@ -421,6 +421,12 @@
         }
     }
     [self.bookTableView reloadData];
+    
+    
+//    if (!searchText.length) {
+//        UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+//        [self.bookTableView addGestureRecognizer:gestureRecognizer];
+//    }
 }
 
 - (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar {
@@ -429,11 +435,17 @@
     [searchBar resignFirstResponder];
 }
 
+//- (void) hideKeyboard {
+//    self.defaultContentView.hidden = NO;
+//    [self.bookSearchBar resignFirstResponder];
+//}
+
 #pragma UIScroll View Method::
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     [self.bookSearchBar resignFirstResponder];
 }
+
 
 
 
