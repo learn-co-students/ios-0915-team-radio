@@ -236,10 +236,14 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-    
+    NSLog(@"What is in userInfo here: %@", userInfo);
+    // NOTE: while stepping through this comes back to the first line after running through
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NewMessage"
+                                                        object:self
+                                                      userInfo:userInfo];
     
     //send a notification to NSNotificationCenter:
-    [[NSNotificationCenter defaultCenter] postNotificationName: self.currentChatRoom.objectId object:self];
+//    [[NSNotificationCenter defaultCenter] postNotificationName: self.currentChatRoom.objectId object:self];
 }
 
 @end

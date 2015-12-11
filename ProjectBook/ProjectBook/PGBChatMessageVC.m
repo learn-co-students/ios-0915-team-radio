@@ -20,6 +20,8 @@
 @property(strong, nonatomic) NSMutableArray *messagesInConversation;
 @property (strong, nonatomic) NSDictionary *messageContent;
 
+@property (nonatomic, strong) NSMutableArray *locallySentMessages; // ones to be cleared when we get a push notification
+
 @end
 
 @implementation PGBChatMessageVC
@@ -30,11 +32,15 @@
     PFUser *currentPerson = [PFUser currentUser];
     
     self.messagesInConversation = [NSMutableArray new];
+    self.locallySentMessages = [NSMutableArray new];
     
     self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
     self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
     
-    [[PFInstallation currentInstallation] addUniqueObject:self.currentChatRoom.objectId forKey:@"channels"];
+    NSString *channelName = [NSString stringWithFormat:@"chat-%@", self.currentChatRoom.objectId];
+    [[PFInstallation currentInstallation] addUniqueObject:channelName forKey:@"channels"];
+    [[PFInstallation currentInstallation] saveInBackground];
+    
     
     self.title = self.currentChatRoom.topic;
     
@@ -45,7 +51,54 @@
     
     //    self.inputToolbar.contentView.textView.pasteDelegate = self;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:self.currentChatRoom.objectId object:nil];
+    [self loadPastMessagesFromPriorToEnteringChat];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"NewMessage" object:nil];
+}
+
+- (void)loadPastMessagesFromPriorToEnteringChat {
+    
+    NSMutableArray *gotMessages = [NSMutableArray new];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"bookChatMessages"];
+    [query whereKey:@"bookChatId" equalTo:self.currentChatRoom.objectId];
+    [query orderByDescending:@"createdAt"];
+    [query setLimit:100];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+
+        if (!error)
+        {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu objects.", objects.count);
+            
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+                
+                
+                JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:object[@"senderId"]
+                                                               senderDisplayName:object[@"senderDisplayName"]
+                                                                            date:object.createdAt
+                                                                            text:object[@"text"]];
+                
+                
+                [gotMessages addObject:latestMessage];
+            }
+            
+            NSLog(@"got messages array>>> %@", gotMessages);
+            [self removeLocallySentMessagesAndMergeNewMessages:gotMessages];
+            [self finishReceivingMessageAnimated:YES];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        
+    }];
+    
+    //grab messages newly updated or not already in messagesInConversations array
+
+    [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -66,63 +119,106 @@
     
 }
 
+-(JSQMessage *)messageCreatedAt:(NSDate *)date withText:(NSString *)text
+{
+    for(JSQMessage *message in self.messagesInConversation) {
+        if([message.date isEqual:date] && [message.text isEqualToString:text]) {
+            return message;
+        }
+    }
+    
+    return nil;
+}
+
+-(void)removeLocallySentMessagesAndMergeNewMessages:(NSArray *)messages
+{
+    [self.messagesInConversation removeObjectsInArray:self.locallySentMessages];
+    [self.locallySentMessages removeAllObjects];
+    
+    for(JSQMessage *message in messages) {
+        if([self messageCreatedAt:message.date withText:message.text]) {
+            continue;
+        }
+        
+        [self.messagesInConversation addObject:message];
+    }
+    
+    [self.messagesInConversation sortUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]];
+}
+
 - (void) receiveNotification:(NSNotification *) notification {
     
-    if (![[notification name] isEqualToString:self.currentChatRoom.objectId]) {
+    NSMutableArray *gotMessages = [NSMutableArray new];
+    
+    if (![[notification name] isEqualToString:@"NewMessage"]) {
         NSLog(@"receiveNotification: error: notification name invalid; name=%@; expected=dGWeFofcrQ", notification.name);
         // TODO: uncomment below after debugging...
         //return;
     }
-    
+    // apparently neither of these things work so TODO: fix this shit...
     self.showTypingIndicator = !self.showTypingIndicator;
     [self scrollToBottomAnimated:YES];
-
-    // TODO: get all messages that are *newer* than our last message...
     
-    // get all messages for bookChatId...
-    
-//    PFQuery *messagesQuery = [PFQuery queryWithClassName:self.currentChatRoom.objectId];
-//    [messagesQuery whereKey:@"bookChatId" equalTo:self.currentChatRoom.objectId];
-//    
-//    [messagesQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-//        // this is where youd stop the loading indicator
-//        
-//        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//            
-//            NSDictionary *lastMessage = objects.lastObject;
-//            JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:lastMessage[@"senderId"]
-//                                                           senderDisplayName:lastMessage[@"senderDisplayName"]
-//                                                                        date:lastMessage[@"date"]
-//                                                                        text:lastMessage[@"text"]];
-//            
-//            [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
-//            [self.messagesInConversation addObject:latestMessage];
-//            [self finishReceivingMessageAnimated:YES];
-//        }];
-//    }];
+    //    PFQuery *messagesQuery = [PFQuery queryWithClassName:self.currentChatRoom.objectId];
+    //    [messagesQuery whereKey:@"bookChatId" equalTo:self.currentChatRoom.objectId];
+    //
+    //    [messagesQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+    //        // this is where youd stop the loading indicator
+    //
+    //        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    //
+    //            NSDictionary *lastMessage = objects.lastObject;
+    //            JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:lastMessage[@"senderId"]
+    //                                                           senderDisplayName:lastMessage[@"senderDisplayName"]
+    //                                                                        date:lastMessage[@"date"]
+    //                                                                        text:lastMessage[@"text"]];
+    //
+    //            [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+    //            [self.messagesInConversation addObject:latestMessage];
+    //            [self finishReceivingMessageAnimated:YES];
+    //        }];
+    //    }];
     
     PFQuery *query = [PFQuery queryWithClassName:@"bookChatMessages"];
+    [query whereKey:@"bookChatId" equalTo:self.currentChatRoom.objectId];
     [query orderByDescending:@"createdAt"];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//        [NSOperation mainQueue] addOperationWithBlock:^{
-//            
-//        
-//        JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:object
-//                                                       senderDisplayName:lastMessage[@"senderDisplayName"]
-//                                                                    date:lastMessage[@"date"]
-//                                                                    text:lastMessage[@"text"]];
-//        
-//        }
-        NSLog(@"%@", object);
-        
+    [query setLimit:100];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            
+            if (!error)
+            {
+                // The find succeeded.
+                NSLog(@"Successfully retrieved %lu objects.", objects.count);
+                
+                for (PFObject *object in objects) {
+                    NSLog(@"%@", object.objectId);
+                    
+                    
+                    JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:object[@"senderId"]
+                                                                   senderDisplayName:object[@"senderDisplayName"]
+                                                                                date:object.createdAt
+                                                                                text:object[@"text"]];
+                    
+                    
+                    [gotMessages addObject:latestMessage];
+                }
+                
+                NSLog(@"got messages array>>> %@", gotMessages);
+                [self removeLocallySentMessagesAndMergeNewMessages:gotMessages];
+                [self finishReceivingMessageAnimated:YES];
+                
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+    
     }];
     
+    //grab messages newly updated or not already in messagesInConversations array
     
     
     
     [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
-//    [self.messagesInConversation addObject:latestMessage];
-    [self finishReceivingMessageAnimated:YES];
 }
 
 - (void)pushMainViewController {
@@ -152,6 +248,8 @@
                                                           date:date
                                                           text:text];
     
+    [self.locallySentMessages addObject:message];
+    
     [self.messagesInConversation addObject:message];
     PFObject *bookChatMessage = [PFObject objectWithClassName:@"bookChatMessages"];
     bookChatMessage[@"text"] = message.text;
@@ -160,7 +258,6 @@
     bookChatMessage[@"bookChatId"] = self.currentChatRoom.objectId;
     [bookChatMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            
             
             // The object has been saved.
             NSLog(@"bookChatMessage saved");
@@ -230,7 +327,7 @@
 }
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.item % 4 == 0) {
+    if (indexPath.item % 3 == 0) {
         JSQMessage *message = [self.messagesInConversation objectAtIndex:indexPath.item];
         return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
     }

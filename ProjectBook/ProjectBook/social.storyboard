@@ -119,6 +119,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cE-95-DIc">
+                                <rect key="frame" x="102" y="490" width="170" height="30"/>
+                                <animations/>
+                                <state key="normal" title="return to active chats list"/>
+                                <connections>
+                                    <action selector="returnToActiveChats:" destination="JjB-Zu-oh6" eventType="touchUpInside" id="jef-Ar-VbE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -142,6 +150,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="bookSearchTableView" destination="EnG-AA-aNs" id="mEG-gv-a3N"/>
+                        <outlet property="createChatButton" destination="pIi-Ur-cNp" id="ZBq-jf-9Cq"/>
                         <outlet property="previewContainerView" destination="rhQ-Gv-xv2" id="r0b-CA-m3o"/>
                         <outlet property="searchBar" destination="uOC-sX-MZ1" id="KvB-ZM-RLr"/>
                         <outlet property="searchview" destination="JLC-2s-vSk" id="4xo-NF-s5p"/>
@@ -319,7 +328,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Idm-Vs-Z9X">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="n1S-Wz-rWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cQ9-5c-4rh" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WYN-o8-ZPj">
@@ -332,6 +340,7 @@
                         <segue destination="SGF-0z-q3Z" kind="relationship" relationship="rootViewController" id="WLA-po-CbC"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n1S-Wz-rWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2573.5" y="737.5"/>
         </scene>

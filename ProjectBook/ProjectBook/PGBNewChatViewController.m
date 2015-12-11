@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *bookSearchTableView;
 @property (weak, nonatomic) IBOutlet UIView *searchview;
 @property (weak, nonatomic) IBOutlet UITextField *topicTextField;
+@property (weak, nonatomic) IBOutlet UIButton *createChatButton;
 
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -55,6 +56,8 @@
     
     self.bookSearchTableView.delegate = self;
     self.bookSearchTableView.dataSource = self;
+    
+    self.createChatButton.hidden = YES;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -93,6 +96,7 @@
     [self.searchBar resignFirstResponder];
     self.searchBar.hidden = YES;
     tableView.hidden = YES;
+    self.createChatButton.hidden = NO;
     //show book details in a sec
     self.previewVC.book = self.books[indexPath.row];
     [UIView animateWithDuration:0.25 animations:^{
@@ -180,5 +184,10 @@
         // this is where i'll go to the new chat or something....
     }
 }
+
+- (IBAction)returnToActiveChats:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end
