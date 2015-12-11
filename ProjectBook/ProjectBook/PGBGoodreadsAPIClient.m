@@ -67,7 +67,6 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
         goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:nil];
     }
     
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:goodreadsURL parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
      {
@@ -175,8 +174,6 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 
 -(NSDictionary *)methodToGetDescriptionsWithString:(NSString *)string
 {
-    
-    //PRI!!!!
     
     NSMutableArray *arrayOfDescription = [NSMutableArray new];
     NSMutableArray *arrayOfImageUrls = [NSMutableArray new];
