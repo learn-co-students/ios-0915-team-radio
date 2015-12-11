@@ -162,7 +162,7 @@
     genreButtonStackView.alignment = UIStackViewAlignmentCenter;
     genreButtonStackView.spacing = 0;
     
-
+    [genreButtonStackView addArrangedSubview:fictionButton];
     [genreButtonStackView addArrangedSubview:romanceButton];
     [genreButtonStackView addArrangedSubview:dramaButton];
     [genreButtonStackView addArrangedSubview:historyButton];
@@ -171,7 +171,6 @@
     [genreButtonStackView addArrangedSubview:biographyButton];
 //    [genreButtonStackView addArrangedSubview:shortStoryButton];
     [genreButtonStackView addArrangedSubview:childrenButton];
-    [genreButtonStackView addArrangedSubview:fictionButton];
     [genreButtonStackView addArrangedSubview:randomButton];
     
     genreButtonStackView.translatesAutoresizingMaskIntoConstraints = false;
