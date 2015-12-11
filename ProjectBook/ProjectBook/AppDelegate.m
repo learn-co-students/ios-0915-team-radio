@@ -11,10 +11,10 @@
 #import "PGBDownloadHelper.h"
 #import "PGBRealmUser.h"
 #import "PGBRealmBook.h"
-#import "PGBGoodreadsAPIClient.h"
+//#import "PGBGoodreadsAPIClient.h"
 #import "PGBParseAPIClient.h"
 #import <Parse/Parse.h>
-#import <GROAuth.h>
+//#import <GROAuth.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "PGBparsingThroughText.h"
@@ -136,8 +136,9 @@
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    [GROAuth setGoodreadsOAuthWithConsumerKey:@"AckMqnduhbH8xQdja2Nw"
-                                       secret:@"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno"];
+    //LEO- commented
+//    [GROAuth setGoodreadsOAuthWithConsumerKey:@"AckMqnduhbH8xQdja2Nw"
+//                                       secret:@"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno"];
     
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];

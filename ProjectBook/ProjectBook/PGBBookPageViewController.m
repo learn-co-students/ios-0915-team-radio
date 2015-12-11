@@ -8,7 +8,6 @@
 
 #import "PGBBookPageViewController.h"
 #import "PGBDownloadHelper.h"
-#import "PGBGoodreadsAPIClient.h"
 #import "PGBParseAPIClient.h"
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Masonry/Masonry.h>
@@ -88,16 +87,18 @@
     //    }];
     
     //bookmarkstuff
-        UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
-        UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
-        [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
+    UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
+    UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
+    [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    //LEO - this is causing crash when back from book detail
     [self getReviewswithCompletion:^(BOOL success) {
-        success = YES;
+//        success = YES;
     }];
 }
 
@@ -321,6 +322,16 @@
         }];
         
     }
+}
+
+
+- (void)dealloc {
+//    [self.webView setDelegate:nil];
+    
+    self.webView.UIDelegate = nil;
+    self.webView.navigationDelegate = nil;
+    self.webView.scrollView.delegate = nil;
+    [self.webView stopLoading];
 }
 
 @end

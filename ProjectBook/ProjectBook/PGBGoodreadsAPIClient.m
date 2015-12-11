@@ -7,7 +7,7 @@
 //
 
 #import "PGBGoodreadsAPIClient.h"
-#import <GROAuth.h>
+//#import <GROAuth.h>
 #import <XMLDictionary.h>
 #import <AFNetworking/AFNetworking.h>
 #import <Ono.h>
@@ -196,13 +196,19 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     
     for (NSString *line in lines)
     {
-        if ([line hasPrefix:@"  <description"])
-        {
-            [arrayOfDescription addObject:line];
-        }
+//        if ([line hasPrefix:@"  <description"])
+//        {
+//            [arrayOfDescription addObject:line];
+//        }
         if ([line hasPrefix:@"<![CDATA[https"])
         {
             [arrayOfImageUrls addObject:line];
+        }
+        
+        
+        //LEO - bug fix
+        if ([line hasSuffix:@"</description>"]) {
+            [arrayOfDescription addObject:line];
         }
     }
     
@@ -212,61 +218,74 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     NSString *bookDescription = arrayOfDescription[0];
     
     
-    /*
-     Example of tags placed on book descriptions:   "  <description><![CDATA[Holmes" ... Holmes is the first word of the actual description.  To combat additional tags, an array of all known tags is made, and to get rid of tags, add the string of the tag into the array.  The order is important (the tag that first appears should be the first element in the array, the second tag to appear is the second element...etc.
-     */
-    NSArray *arrayOfPotentialPrefixes = @[@"  <description>", @"<![CDATA["];
+//    /*
+//     Example of tags placed on book descriptions:   "  <description><![CDATA[Holmes" ... Holmes is the first word of the actual description.  To combat additional tags, an array of all known tags is made, and to get rid of tags, add the string of the tag into the array.  The order is important (the tag that first appears should be the first element in the array, the second tag to appear is the second element...etc.
+//     */
+//    NSArray *arrayOfPotentialPrefixes = @[@"  <description>", @"<![CDATA[",@"</strong>",@"<br>"];
+//    
+//    for (NSString *string in arrayOfPotentialPrefixes)
+//    {
+//        /*
+//         string here is the tag in array being checked against the description to see if its there
+//         the string length, is the length of the tag
+//         */
+//        
+//        NSUInteger stringLength = string.length;
+//        NSRange range = NSMakeRange(0, stringLength);
+//        
+//        /*
+//         substring to range will break the original string into the first few characters (upto stringLength)
+//         if the new string is the same as the tag, the new string formed will start where the tag ends
+//         
+//         Example:   "  <description><![CDATA[Holmes...."
+//         The string formed is as long as stringLength aka "  <description>"
+//         since this string is equal to the first tag being checked, the new string starts after this
+//         so the new string now is: "<![CDATA[Holmes ..."
+//         */
+//        
+//        if ([[bookDescription substringWithRange:range] isEqualToString:string])
+//        {
+//            bookDescription = [bookDescription substringFromIndex:stringLength];
+//        }
+//    
+//    }
+//    
+//    /*
+//     After getting rid of all tags before the description starts, all tags after the description ends must be deleted
+//     The same format for suffix tag deletion is applied as the format for prefix tag deletion
+//     */
+//    
+//    NSArray *arrayOfPotentialSuffixes = @[@"</description>", @"]]>"];
+//    for (NSString *string  in arrayOfPotentialSuffixes)
+//    {
+//        NSUInteger stringLength = string.length;
+//        if (stringLength)
+//        {
+//            NSUInteger bookDescriptionLength = bookDescription.length;
+//            if (bookDescriptionLength)
+//            {
+//                if ([[bookDescription substringFromIndex:bookDescriptionLength-stringLength] isEqualToString:string])
+//                {
+//                    bookDescription = [bookDescription substringToIndex:bookDescriptionLength-stringLength];
+//                }
+//            } else {
+//                bookDescription = @"There is no description for this book.";
+//            }
+//        }
+//        
+//    }
     
-    for (NSString *string in arrayOfPotentialPrefixes)
-    {
-        /*
-         string here is the tag in array being checked against the description to see if its there
-         the string length, is the length of the tag
-         */
-        
-        NSUInteger stringLength = string.length;
-        NSRange range = NSMakeRange(0, stringLength);
-        
-        /*
-         substring to range will break the original string into the first few characters (upto stringLength)
-         if the new string is the same as the tag, the new string formed will start where the tag ends
-         
-         Example:   "  <description><![CDATA[Holmes...."
-         The string formed is as long as stringLength aka "  <description>"
-         since this string is equal to the first tag being checked, the new string starts after this
-         so the new string now is: "<![CDATA[Holmes ..."
-         */
-        
-        if ([[bookDescription substringWithRange:range] isEqualToString:string])
-        {
-            bookDescription = [bookDescription substringFromIndex:stringLength];
-        }
+    //BEGIN LEO FIX
+    NSArray *arrayOfTagsToBeRemoved = @[@"  <description>", @"<![CDATA[", @"</strong>", @"<br>", @"</description>", @"]]>"];
+    
+    for (NSString *string  in arrayOfTagsToBeRemoved) {
+        bookDescription = [bookDescription stringByReplacingOccurrencesOfString:string withString:@""];
     }
     
-    /*
-     After getting rid of all tags before the description starts, all tags after the description ends must be deleted
-     The same format for suffix tag deletion is applied as the format for prefix tag deletion
-     */
-    
-    NSArray *arrayOfPotentialSuffixes = @[@"</description>", @"]]>"];
-    for (NSString *string  in arrayOfPotentialSuffixes)
-    {
-        NSUInteger stringLength = string.length;
-        if (stringLength)
-        {
-            NSUInteger bookDescriptionLength = bookDescription.length;
-            if (bookDescriptionLength)
-            {
-                if ([[bookDescription substringFromIndex:bookDescriptionLength-stringLength] isEqualToString:string])
-                {
-                    bookDescription = [bookDescription substringToIndex:bookDescriptionLength-stringLength];
-                }
-            } else {
-                bookDescription = @"There is no description for this book.";
-            }
-        }
-        
+    if (!bookDescription.length) {
+        bookDescription = @"There is no description for this book.";
     }
+    //END LEO FIX
     
     NSMutableArray *cleanedUpArrayOfImageUrls = [NSMutableArray new];
     /*
