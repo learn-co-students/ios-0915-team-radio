@@ -7,7 +7,8 @@
 //
 
 #import "PGBSearchViewController.h"
-#import "PGBBookCustomTableCell.h"
+//#import "PGBBookCustomTableCell.h"
+#import "PGBSearchCustomTableCell.h"
 #import "PGBRealmBook.h"
 #import "PGBDataStore.h"
 #import "Book.h"
@@ -67,7 +68,7 @@
     }];
     
     //create table view custom cell
-    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
+    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBSearchCustomTableCell" bundle:nil] forCellReuseIdentifier:@"SearchCustomCell"];
     self.bookTableView.rowHeight = 80;
     
     self.bookTableView.delegate = self;
@@ -233,7 +234,7 @@
     
     if (tableView == self.bookTableView) {
         
-        PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
+        PGBSearchCustomTableCell *cell = (PGBSearchCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"SearchCustomCell" forIndexPath:indexPath];
         
         //pagination
         PGBRealmBook *realmBook = self.books[indexPath.row];
