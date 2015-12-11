@@ -79,9 +79,13 @@
             bookObject[@"isDownloaded"] = [NSNumber numberWithBool:realmBook.isDownloaded];
             bookObject[@"isBookmarked"] = [NSNumber numberWithBool:realmBook.isBookmarked];
             
-            [bookObject saveInBackground];
+            [bookObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    completionBlock(bookObject);
+                }
+            }];
 
-            completionBlock(bookObject);
+//            completionBlock(bookObject);
             
         }else {
             
@@ -98,9 +102,13 @@
             newBook[@"isDownloaded"] = [NSNumber numberWithBool:realmBook.isDownloaded];
             newBook[@"isBookmarked"] = [NSNumber numberWithBool:realmBook.isBookmarked];
     
-            [newBook saveInBackground];
+            [newBook saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    completionBlock(bookObject);
+                }
+            }];
             
-            completionBlock(newBook);
+//            completionBlock(newBook);
 
         }
         NSLog(@"New book is being stored in parse, ignore this error: %@",error.localizedDescription);

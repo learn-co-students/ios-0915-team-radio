@@ -440,13 +440,21 @@
     [PGBParseAPIClient deleteUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^{
         
         NSArray *booksInRealm = [PGBRealmBook getUserBookDataInArray];
-        for (PGBRealmBook *realmBook in booksInRealm) {
-      
-            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:realmBook andCompletion:^{
-                completionBlock();
-            }];
+        
+        if (booksInRealm.count) {
+            for (PGBRealmBook *realmBook in booksInRealm) {
+                
+//                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:realmBook andCompletion:^{
+//                    completionBlock();
+//                }];
+                [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
+                    completionBlock();
+                }];
+            }
+        } else {
+            completionBlock();
         }
-
+        
     }];
 }
 

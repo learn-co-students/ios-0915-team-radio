@@ -544,8 +544,8 @@ static dispatch_once_t onceToken;
 //        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"profile" bundle:nil];
 //        UIViewController *vc = [storyboard instantiateInitialViewController];
 //        [self presentViewController:vc animated:YES completion:nil];
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Logout"
-                                                                       message:@"This is an alert."
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Do you want to logout?"
+                                                                       message:@""
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
@@ -601,6 +601,18 @@ static dispatch_once_t onceToken;
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
     NSLog(@"Failed to log in...");
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Failed to log in..."
+                                                                   message:@""
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:nil];
+    
+    [alert addAction:defaultAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
 }
 
 // Sent to the delegate when the log in screen is dismissed.
@@ -641,6 +653,8 @@ static dispatch_once_t onceToken;
 // Sent to the delegate when the sign up attempt fails.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
     NSLog(@"Failed to sign up...");
+    
+    
 }
 
 // Sent to the delegate when the sign up screen is dismissed.
