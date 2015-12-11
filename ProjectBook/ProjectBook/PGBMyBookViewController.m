@@ -44,8 +44,7 @@
     
     self.books = [[NSMutableArray alloc]init];
     self.booksDisplayed = [[NSMutableArray alloc]init];
-    
-  
+
 }
 
 
