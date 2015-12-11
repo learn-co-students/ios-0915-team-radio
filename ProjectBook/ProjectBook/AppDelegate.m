@@ -11,14 +11,16 @@
 #import "PGBDownloadHelper.h"
 #import "PGBRealmUser.h"
 #import "PGBRealmBook.h"
-//#import "PGBGoodreadsAPIClient.h"
 #import "PGBParseAPIClient.h"
-#import <Parse/Parse.h>
-//#import <GROAuth.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-
 #import "PGBparsingThroughText.h"
 #import "PGBDataStore.h"
+#import "PGBConstants.h"
+//#import "PGBGoodreadsAPIClient.h"
+//#import <GROAuth.h>
+
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <Parse/Parse.h>
+
 
 
 @interface AppDelegate ()
@@ -128,17 +130,13 @@
     
     
     // Initialize Parse.
-    [Parse setApplicationId:@"VADP3uGjgBGfaYax1jbKoDlKzhCYyilh8I83XfmI"
-                  clientKey:@"XFszBVoY8vDT5MUqM82ACP0lfqKeOv9er01VC3NM"];
+    [Parse setApplicationId:PARSE_ID
+                  clientKey:PARSE_CLIENT_KEY];
     
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
 
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    //LEO- commented
-//    [GROAuth setGoodreadsOAuthWithConsumerKey:@"AckMqnduhbH8xQdja2Nw"
-//                                       secret:@"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno"];
     
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
