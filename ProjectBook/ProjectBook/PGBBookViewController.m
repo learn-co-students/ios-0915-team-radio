@@ -19,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollview;
 @property (weak, nonatomic) IBOutlet UIView *bookCover;
+@property (weak, nonatomic) IBOutlet UITextView *bookDescriptionTV;
+@property (weak, nonatomic) IBOutlet UIView *superContentView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *moreOptions;
 
 @end
 
@@ -36,28 +39,74 @@
 //    self.languageLabel.text = self.book.language;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.authorLabel.adjustsFontSizeToFitWidth = YES;
+    
     self.bookCover.layer.borderColor = [UIColor blackColor].CGColor;
     self.bookCover.layer.borderWidth = 3.0f;
+
+//book description height and description
+    CGRect rect = self.bookDescriptionTV.frame;
+    rect.size.height = self.bookDescriptionTV.contentSize.height;
+    self.bookDescriptionTV.frame = rect;
     
+    CGFloat totalHeight = 0.0f;
+    for (UIView *view in self.superContentView.subviews)
+        if (totalHeight < view.frame.origin.y + view.frame.size.height) totalHeight = view.frame.origin.y + view.frame.size.height;
     
-//    [self.scrollview addSubview:self.titleTV];
-//    
-//    [self.titleTV sizeToFit];
-//    [self.titleTV layoutIfNeeded];
-//    
-//    CGRect frame = self.titleTV.frame;
-    
-    
+    self.bookDescriptionTV.text = @"";
+    PGBGoodreadsAPIClient *goodreadsAPI = [[PGBGoodreadsAPIClient alloc] init];
+    [goodreadsAPI getDescriptionForBookTitle:self.book completion:^(NSString *bookDescription) {
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            if ([bookDescription isEqual:@""]) {
+                self.bookDescriptionTV.text = @"There is no description for this book.";
+            }else{
+                self.bookDescriptionTV.text = bookDescription;
+            }
+        }];
+    }];
 }
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    CGFloat fixedWidth = textView.frame.size.width;
-    CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
-    CGRect newFrame = textView.frame;
-    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
-    textView.frame = newFrame;
+    NSInteger fontSize = 20;
+    //fits 50 W;s
+    NSInteger lengthThreshold = 48;
+    if([self.titleTV.text length] > lengthThreshold) {
+        NSInteger newSize = fontSize - (([self.titleTV.text length] - 48)/3);
+        self.titleTV.font = [UIFont fontWithName:@"Moon" size:newSize];
+    }
 }
+
+- (IBAction)optionsButtonTapped:(id)sender {
+    UIAlertController *view = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *download = [UIAlertAction actionWithTitle:@"Download Book" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+// download NEEDS TO CHANGELASKDFLAWER
+    //        [self downloadButtonTapped:sender];
+        //        [view dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    UIAlertAction *save = [UIAlertAction actionWithTitle:@"Bookmark" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //bookmarks it NEED TO CHANGE
+//        [self bookmarkButtonTapped:sender];
+        //        [view dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                             style:UIAlertActionStyleCancel
+                             handler:nil];
+    
+    [view addAction:download];
+    [view addAction:save];
+    [view addAction:cancel];
+    [self presentViewController:view animated:YES completion:nil];
+    
+}
+
+
 
 /*
 #pragma mark - Navigation

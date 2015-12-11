@@ -173,6 +173,9 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 
 -(NSDictionary *)methodToGetDescriptionsWithString:(NSString *)string
 {
+    
+    //PRI!!!!
+    
     NSMutableArray *arrayOfDescription = [NSMutableArray new];
     NSMutableArray *arrayOfImageUrls = [NSMutableArray new];
     
@@ -196,14 +199,22 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     
     for (NSString *line in lines)
     {
+        //description
         if ([line hasPrefix:@"  <description"])
         {
             [arrayOfDescription addObject:line];
         }
+        if ([line hasPrefix:@"  <em>"])
+        {
+            [arrayOfDescription addObject:line];
+        }
+        
+        //image URLs
         if ([line hasPrefix:@"<![CDATA[https"])
         {
             [arrayOfImageUrls addObject:line];
         }
+
     }
     
     /*
@@ -215,7 +226,7 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
     /*
      Example of tags placed on book descriptions:   "  <description><![CDATA[Holmes" ... Holmes is the first word of the actual description.  To combat additional tags, an array of all known tags is made, and to get rid of tags, add the string of the tag into the array.  The order is important (the tag that first appears should be the first element in the array, the second tag to appear is the second element...etc.
      */
-    NSArray *arrayOfPotentialPrefixes = @[@"  <description>", @"<![CDATA["];
+    NSArray *arrayOfPotentialPrefixes = @[ @"  <description>", @"<![CDATA[", @"<strong>", @"  <em>" ];
     
     for (NSString *string in arrayOfPotentialPrefixes)
     {
@@ -240,6 +251,8 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
         if ([[bookDescription substringWithRange:range] isEqualToString:string])
         {
             bookDescription = [bookDescription substringFromIndex:stringLength];
+        } else {
+            bookDescription = @"There is no description for this book.";
         }
     }
     

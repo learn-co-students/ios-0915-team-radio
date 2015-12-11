@@ -79,9 +79,9 @@
 //        [PGBRealmBook generateTestBookData];
 //        self.books = [PGBRealmBook getUserBookDataInArray];
 //        self.books = @[self.books[0], self.books[1], self.books[2]];
-    self.books = [NSMutableArray arrayWithCapacity:100];
-    self.classicBooks = [NSMutableArray arrayWithCapacity:100];
-    self.shakespeareBooks = [NSMutableArray arrayWithCapacity:100];
+    self.books = [NSMutableArray arrayWithCapacity:50];
+    self.classicBooks = [NSMutableArray arrayWithCapacity:50];
+    self.shakespeareBooks = [NSMutableArray arrayWithCapacity:50];
 
 //    [self generateRandomBookByCount:10];
 //    [self generateBook];
@@ -199,17 +199,15 @@
             PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
             if (book) {
                 [self.shakespeareBooks addObject:book];
-            } else {
-                NSLog(@"this is outttttt: %@", ebookNumber);
             }
         }
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.classicsCollectionView reloadData];
             [self.popularCollectionView reloadData];
             [self.shakespeareCollectionView reloadData];
-
         }];
     }];
+    
 }
 
 - (void)generateBook {
