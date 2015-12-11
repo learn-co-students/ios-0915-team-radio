@@ -17,6 +17,7 @@
 #import "PGBLoginViewController.h"
 #import "PGBSignUpViewController.h"
 #import "PGBParseAPIClient.h"
+#import "Reachability.h"
 
 #import "PGBDataStore.h"
 #import "Book.h"
@@ -130,7 +131,38 @@ static dispatch_once_t onceToken;
     //user can kill the app and re-open, however they don't need to re-login
     [self fetchBookFromParse];
 
+    
+    //Reachability to check network connection
+    // Allocate a reachability object
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Set the blocks
+    reach.reachableBlock = ^(Reachability*reach)
+    {
+        NSLog(@"REACHABLE!");
+    };
+    
+    reach.unreachableBlock = ^(Reachability*reach)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"UNREACHABLE!");
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"The Internet connection appears to be offline"
+                                                                           message:@""
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+    };
+    
+    // Start the notifier, which will cause the reachability object to retain itself!
+    [reach startNotifier];
 }
+
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
