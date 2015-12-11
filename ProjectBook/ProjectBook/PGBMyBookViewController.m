@@ -32,8 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];;
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
+//    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];;
+//    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     self.bookTableView.rowHeight = 80;
@@ -44,8 +44,7 @@
     
     self.books = [[NSMutableArray alloc]init];
     self.booksDisplayed = [[NSMutableArray alloc]init];
-    
-  
+
 }
 
 

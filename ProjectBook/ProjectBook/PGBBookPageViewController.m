@@ -214,7 +214,7 @@
     
     NSURL *URL = [NSURL URLWithString:idURL];
     self.downloadHelper = [[PGBDownloadHelper alloc] init];
-    [self.downloadHelper download:URL];
+  //  [self.downloadHelper download:URL];
     
     //    do {
     //        //modal view

@@ -7,15 +7,16 @@
 //
 
 #import "PGBGoodreadsAPIClient.h"
+#import "PGBRealmBook.h"
+#import "Book.h"
+#import "PGBDataStore.h"
+#import "PGBConstants.h"
 //#import <GROAuth.h>
 #import <XMLDictionary.h>
 #import <AFNetworking/AFNetworking.h>
 #import <Ono.h>
 
 
-#import "PGBRealmBook.h"
-#import "Book.h"
-#import "PGBDataStore.h"
 
 @interface PGBGoodreadsAPIClient ()
 
@@ -24,8 +25,6 @@
 @end
 
 @implementation PGBGoodreadsAPIClient
-NSString *const GOODREADS_KEY = @"AckMqnduhbH8xQdja2Nw";
-NSString *const GOODREADS_SECRET = @"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno";
 NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 
 
