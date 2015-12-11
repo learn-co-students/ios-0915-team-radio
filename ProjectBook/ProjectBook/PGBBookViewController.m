@@ -26,6 +26,9 @@
 @property (strong, nonatomic) NSMutableString *htmlString;
 @property (weak, nonatomic) IBOutlet UIView *webViewContainer;
 
+@property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
+@property UIDocumentInteractionController *docController;
+
 @end
 
 @implementation PGBBookViewController
@@ -74,7 +77,8 @@
     }];
 }
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     
     //LEO - this is causing crash when back from book detail
@@ -102,16 +106,109 @@
 - (IBAction)optionsButtonTapped:(id)sender {
     UIAlertController *view = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
+    //download
     UIAlertAction *download = [UIAlertAction actionWithTitle:@"Download Book" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-// download NEEDS TO CHANGELASKDFLAWER
-    //        [self downloadButtonTapped:sender];
-        //        [view dismissViewControllerAnimated:YES completion:nil];
+        NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
+        
+        NSString *idURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", parsedEbookID];
+        
+        NSURL *URL = [NSURL URLWithString:idURL];
+        self.downloadHelper = [[PGBDownloadHelper alloc] init];
+        [self.downloadHelper download:URL];
+        
+        //    do {
+        //        //modal view
+        //    }
+        
+        //during download
+        UIAlertController *downloadComplete = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * _Nonnull action) {
+                                                   }];
+        
+        [downloadComplete addAction:ok];
+        [self presentViewController:downloadComplete animated:YES completion:nil];
+        
+        if (self.book.ebookID.length) {
+            
+            [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+                self.book.isDownloaded = YES;
+                return self.book;
+            } andCompletion:^{
+                //            if ([PFUser currentUser]) {
+                //                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                //                    NSLog(@"saved book to parse");
+                //                }];
+                //            }
+            }];
+            
+        }
     }];
     
+    //open in iBook
+    UIAlertAction *open = [UIAlertAction actionWithTitle:@"Open in iBooks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
+        
+        NSString *litFileName = [NSString stringWithFormat:@"pg%@-images.epub", parsedEbookID];
+        
+        //    NSString *litFileName = [NSString stringWithFormat:@"pg%@", self.ebookIndex];
+        NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];
+        NSURL *targetURL = [NSURL fileURLWithPath:filePath];
+        
+        self.docController = [UIDocumentInteractionController interactionControllerWithURL:targetURL];
+        
+        if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"itms-books:"]]) {
+            
+            [self.docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+            
+            //        [self.docController presentOpenInMenuFromRect:_openInIBooksButton.bounds inView:self.openInIBooksButton animated:YES];
+            
+            NSLog(@"iBooks installed");
+            
+        } else {
+            UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"You don't have iBooks installed." message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                       }];
+            [invalid addAction:ok];
+            [self presentViewController:invalid animated:YES completion:nil];
+            
+        }
+        
+        NSLog(@"iBooks not installed");
+    }];
+    
+    //bookmark
     UIAlertAction *save = [UIAlertAction actionWithTitle:@"Bookmark" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //bookmarks it NEED TO CHANGE
-//        [self bookmarkButtonTapped:sender];
-        //        [view dismissViewControllerAnimated:YES completion:nil];
+        if (self.book.ebookID.length) {
+            
+            [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+                self.book.isBookmarked = YES;
+                return self.book;
+            } andCompletion:^{
+                //            if ([PFUser currentUser]) {
+                //                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                //                    NSLog(@"saved book to parse");
+                //                }];
+                //            }
+                
+            }];
+            
+            NSString *bookIsBookmarked = [NSString stringWithFormat:@"%@ bookmarked", self.book.title];
+            
+            UIAlertController *bookmarked = [UIAlertController alertControllerWithTitle:bookIsBookmarked message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                       }];
+            [bookmarked addAction:ok];
+            [self presentViewController:bookmarked animated:YES completion:nil];
+            
+        }
     }];
     
     UIAlertAction *cancel = [UIAlertAction
@@ -120,6 +217,7 @@
                              handler:nil];
     
     [view addAction:download];
+    [view addAction:open];
     [view addAction:save];
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
@@ -156,9 +254,7 @@
             
             [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
             
-            self.webView.UIDelegate = self;
             self.webView.navigationDelegate = self;
-            self.webView.scrollView.delegate = self;
             
             //            [self.webView.heightAnchor constraintEqualToConstant:300];
             //            [self.webViewContainer layoutSubviews];
@@ -191,9 +287,7 @@
 - (void)dealloc {
     //    [self.webView setDelegate:nil];
     
-    self.webView.UIDelegate = nil;
     self.webView.navigationDelegate = nil;
-    self.webView.scrollView.delegate = nil;
     [self.webView stopLoading];
 }
 
