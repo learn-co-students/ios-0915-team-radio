@@ -113,39 +113,36 @@
         NSString *idURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", parsedEbookID];
         
         NSURL *URL = [NSURL URLWithString:idURL];
-        self.downloadHelper = [[PGBDownloadHelper alloc] init];
-        [self.downloadHelper download:URL];
         
-        //    do {
-        //        //modal view
-        //    }
-        
-        //during download
-        UIAlertController *downloadComplete = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        
-        
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction * _Nonnull action) {
-                                                   }];
-        
-        [downloadComplete addAction:ok];
-        [self presentViewController:downloadComplete animated:YES completion:nil];
-        
-        if (self.book.ebookID.length) {
+        [PGBDownloadHelper download:URL withCompletion:^{
             
-            [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-                self.book.isDownloaded = YES;
-                return self.book;
-            } andCompletion:^{
-                //            if ([PFUser currentUser]) {
-                //                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                //                    NSLog(@"saved book to parse");
-                //                }];
-                //            }
-            }];
+            //after download is finished
+            UIAlertController *downloadComplete = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
             
-        }
+            
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                       }];
+            
+            [downloadComplete addAction:ok];
+            [self presentViewController:downloadComplete animated:YES completion:nil];
+            
+            if (self.book.ebookID.length) {
+                
+                [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+                    self.book.isDownloaded = YES;
+                    return self.book;
+                } andCompletion:^{
+                    //            if ([PFUser currentUser]) {
+                    //                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                    //                    NSLog(@"saved book to parse");
+                    //                }];
+                    //            }
+                }];
+                
+            }
+        }];
     }];
     
     //open in iBook

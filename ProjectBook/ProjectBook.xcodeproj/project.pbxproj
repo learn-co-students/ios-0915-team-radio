@@ -551,7 +551,7 @@
 				TargetAttributes = {
 					CBFD3F551BFBA076002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 652FKRA3R9;
+						DevelopmentTeam = 9YUT5P277S;
 					};
 					CBFD3F711BFBA077002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
@@ -885,7 +885,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ProjectBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github-olivialim.learn-co-students.ios-0915-team-radio.ProjectBook";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github-wojunfeng.learn-co-students.ios-0915-team-radio.ProjectBook";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -901,7 +901,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ProjectBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github-olivialim.learn-co-students.ios-0915-team-radio.ProjectBook";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github-wojunfeng.learn-co-students.ios-0915-team-radio.ProjectBook";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

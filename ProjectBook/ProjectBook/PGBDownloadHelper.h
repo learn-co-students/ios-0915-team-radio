@@ -12,7 +12,7 @@
 
 //DOWNLOAD
 //for downloading books from URL
--(void)download:(NSURL *)url;
++(void)download:(NSURL *)url withCompletion:(void (^)())completionBlock;
 
 
 @end

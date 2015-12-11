@@ -13,7 +13,7 @@
 
 @implementation PGBDownloadHelper
 
--(void)download:(NSURL *)url
++(void)download:(NSURL *)url withCompletion:(void (^)())completionBlock
 {
     //using AFNetworking to download file
     NSLog(@"download method is called & book downloaded");
@@ -28,7 +28,8 @@
         return [tempDirectory URLByAppendingPathComponent:[response suggestedFilename]];
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
         NSLog(@"File downloaded to: %@", filePath);
-    
+        
+        completionBlock();
     }];
     [downloadTask resume];
 }
