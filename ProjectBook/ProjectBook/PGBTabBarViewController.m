@@ -39,6 +39,7 @@
                                   imageSize:CGSizeMake(90.0f, 90.0f)];
     [self.tabBar.items[0] setTitle:@"Home"];
     [self.tabBar.items[0] setImage:homeIcon];
+
     
     UIImage *searchIcon = [IonIcons imageWithIcon:ion_ios_search_strong
                                         iconColor:[UIColor colorWithRed:0 green:136.0f/255.0f blue:62.0f/255.0 alpha:1.0]

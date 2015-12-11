@@ -602,16 +602,11 @@ static dispatch_once_t onceToken;
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
     NSLog(@"Failed to log in...");
     
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Failed to log in..."
-                                                                   message:@""
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:nil];
-    
-    [alert addAction:defaultAction];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+    [[[UIAlertView alloc] initWithTitle:@"Failed to log in..."
+                                message:@"Make sure you enter valid credentials!"
+                               delegate:nil
+                      cancelButtonTitle:@"ok"
+                      otherButtonTitles:nil] show];
 
 }
 

@@ -162,7 +162,7 @@
     genreButtonStackView.alignment = UIStackViewAlignmentCenter;
     genreButtonStackView.spacing = 0;
     
-    [genreButtonStackView addArrangedSubview:fictionButton];
+
     [genreButtonStackView addArrangedSubview:romanceButton];
     [genreButtonStackView addArrangedSubview:dramaButton];
     [genreButtonStackView addArrangedSubview:historyButton];
@@ -171,6 +171,7 @@
     [genreButtonStackView addArrangedSubview:biographyButton];
 //    [genreButtonStackView addArrangedSubview:shortStoryButton];
     [genreButtonStackView addArrangedSubview:childrenButton];
+    [genreButtonStackView addArrangedSubview:fictionButton];
     [genreButtonStackView addArrangedSubview:randomButton];
     
     genreButtonStackView.translatesAutoresizingMaskIntoConstraints = false;
@@ -421,6 +422,12 @@
         }
     }
     [self.bookTableView reloadData];
+    
+    
+//    if (!searchText.length) {
+//        UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+//        [self.bookTableView addGestureRecognizer:gestureRecognizer];
+//    }
 }
 
 - (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar {
@@ -429,11 +436,17 @@
     [searchBar resignFirstResponder];
 }
 
+//- (void) hideKeyboard {
+//    self.defaultContentView.hidden = NO;
+//    [self.bookSearchBar resignFirstResponder];
+//}
+
 #pragma UIScroll View Method::
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     [self.bookSearchBar resignFirstResponder];
 }
+
 
 
 
