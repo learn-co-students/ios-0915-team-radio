@@ -541,10 +541,34 @@ static dispatch_once_t onceToken;
         
         // user logged in; go to profile...
         
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"profile" bundle:nil];
-        UIViewController *vc = [storyboard instantiateInitialViewController];
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"profile" bundle:nil];
+//        UIViewController *vc = [storyboard instantiateInitialViewController];
+//        [self presentViewController:vc animated:YES completion:nil];
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Logout"
+                                                                       message:@"This is an alert."
+                                                                preferredStyle:UIAlertControllerStyleAlert];
         
-        [self presentViewController:vc animated:YES completion:nil];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+                                                                  //update parse when user logs out
+                                                                  [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^{
+                                                                      NSLog(@"update parse completed");
+                                                                      
+                                                                      [PFUser logOut];
+                                                                  }];
+                                                              }];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                                       style:UIAlertActionStyleCancel
+                                       handler:nil];
+        
+        [alert addAction:defaultAction];
+        [alert addAction:cancelAction];
+        
+        [self presentViewController:alert animated:YES completion:^{
+            self.loginButton.title = @"Login";
+        }];
     }
 }
 
@@ -625,7 +649,8 @@ static dispatch_once_t onceToken;
 }
 
 - (void)changeLoginButtonToProfileIcon {
-    self.loginButton.title = @"👤";
+//    self.loginButton.title = @"👤";
+    self.loginButton.title = @"Logout";
 }
 
 @end
