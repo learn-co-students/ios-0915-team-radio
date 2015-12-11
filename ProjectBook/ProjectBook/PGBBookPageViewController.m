@@ -175,9 +175,8 @@
             
             [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
             
-            self.webView.UIDelegate = self;
+
             self.webView.navigationDelegate = self;
-            self.webView.scrollView.delegate = self;
             
             //            [self.webView.heightAnchor constraintEqualToConstant:300];
             //            [self.webViewContainer layoutSubviews];
@@ -337,11 +336,9 @@
 
 
 - (void)dealloc {
-//    [self.webView setDelegate:nil];
-    
-    self.webView.UIDelegate = nil;
+
     self.webView.navigationDelegate = nil;
-    self.webView.scrollView.delegate = nil;
+
     [self.webView stopLoading];
 }
 
