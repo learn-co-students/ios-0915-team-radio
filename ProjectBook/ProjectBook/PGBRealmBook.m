@@ -323,13 +323,25 @@
         realmBook.genre = @"Architecture";
     }  else if ([realmBook.genre containsString:@"Business"]){
         realmBook.genre = @"Business";
+    }  else if ([realmBook.genre containsString:@"Philosophy"]){
+        realmBook.genre = @"Philosophy";
+    }  else if ([realmBook.genre containsString:@"Juvenile fiction"]){
+        realmBook.genre = @"Juvenile Fiction";
+    }  else if ([realmBook.genre containsString:@"Economics"]){
+        realmBook.genre = @"Economics";
+    }  else if ([realmBook.genre containsString:@"Philosophy"]){
+        realmBook.genre = @"Philosophy";
     }
+
     
     else if ([realmBook.genre containsString:@"Mystery"]){
         realmBook.genre = @"Mystery";
-    } else if ([realmBook.genre containsString:@"Fiction"]){
+    }
+    else if ([realmBook.genre containsString:@"Fiction"]){
         realmBook.genre = @"Fiction";
-    } else if ([realmBook.genre containsString:@"Drama"]){
+    }
+
+    else if ([realmBook.genre containsString:@"Drama"]){
         realmBook.genre = @"Drama";
     } else if ([realmBook.genre containsString:@"Poetry"]){
         realmBook.genre = @"Poetry";
@@ -337,14 +349,19 @@
         realmBook.genre = @"Drama";
     }  else if ([realmBook.genre containsString:@"History"]){
         realmBook.genre = @"History";
-    }  else if ([realmBook.genre containsString:@"fiction"]){
+    }
+    
+    else if ([realmBook.genre containsString:@"fiction"]){
         realmBook.genre = @"Fiction";
-    }  else if ([realmBook.genre containsString:@"poetry"]){
+    }
+    
+    else if ([realmBook.genre containsString:@"poetry"]){
         realmBook.genre = @"Poetry";
     }
     
     else {
         realmBook.genre = nil;
+//        NSLog (@"genresss:%@", realmBook.genre);
     }
     
 //    else {

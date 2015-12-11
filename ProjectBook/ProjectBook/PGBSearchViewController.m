@@ -69,7 +69,7 @@
     
     //create table view custom cell
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBSearchCustomTableCell" bundle:nil] forCellReuseIdentifier:@"SearchCustomCell"];
-    self.bookTableView.rowHeight = 80;
+    self.bookTableView.rowHeight = 70;
     
     self.bookTableView.delegate = self;
     self.bookTableView.dataSource = self;
