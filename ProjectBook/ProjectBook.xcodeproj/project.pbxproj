@@ -16,6 +16,7 @@
 		4C5D947E1BFE389A0086DB5F /* PGBMyBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */; };
 		4C766D741C1B239600FDC167 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C766D731C1B239600FDC167 /* Reachability.m */; };
 		4C766D761C1B23ED00FDC167 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C766D751C1B23ED00FDC167 /* SystemConfiguration.framework */; };
+		4C766D7C1C1B3BB500FDC167 /* PGBConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C766D7B1C1B3BB500FDC167 /* PGBConstants.m */; };
 		4C9597AB1BFBEB2000BBD558 /* PGBRealmUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9597A81BFBEB2000BBD558 /* PGBRealmUser.m */; };
 		4C9597AC1BFBEB2000BBD558 /* PGBRealmBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9597AA1BFBEB2000BBD558 /* PGBRealmBook.m */; };
 		4C9D16631C0CF04800DBF989 /* PGBSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */; };
@@ -126,6 +127,8 @@
 		4C766D721C1B239600FDC167 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		4C766D731C1B239600FDC167 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		4C766D751C1B23ED00FDC167 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4C766D7A1C1B3BA300FDC167 /* PGBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBConstants.h; sourceTree = "<group>"; };
+		4C766D7B1C1B3BB500FDC167 /* PGBConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBConstants.m; sourceTree = "<group>"; };
 		4C9597A71BFBEB2000BBD558 /* PGBRealmUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBRealmUser.h; sourceTree = "<group>"; };
 		4C9597A81BFBEB2000BBD558 /* PGBRealmUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBRealmUser.m; sourceTree = "<group>"; };
 		4C9597A91BFBEB2000BBD558 /* PGBRealmBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBRealmBook.h; sourceTree = "<group>"; };
@@ -393,6 +396,8 @@
 		CBFD3F581BFBA076002CE0A4 /* ProjectBook */ = {
 			isa = PBXGroup;
 			children = (
+				4C766D7A1C1B3BA300FDC167 /* PGBConstants.h */,
+				4C766D7B1C1B3BB500FDC167 /* PGBConstants.m */,
 				A75AD6381C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf */,
 				CB3C07951C05063A00235D78 /* book.gif */,
 				CB3C07961C05063A00235D78 /* hopper.gif */,
@@ -738,6 +743,7 @@
 				4C25FFAB1C03B83B00B5C8E3 /* PGBDataStore.m in Sources */,
 				899A4D071C10A77200D499C4 /* PGBChatMessageVC.m in Sources */,
 				CBFD3F671BFBA076002CE0A4 /* ProjectBook.xcdatamodeld in Sources */,
+				4C766D7C1C1B3BB500FDC167 /* PGBConstants.m in Sources */,
 				4C25FFA71C03B7E200B5C8E3 /* Book.m in Sources */,
 				899A4D0D1C11EF9C00D499C4 /* PGBMainSocialTableViewController.m in Sources */,
 				89EE0D3A1C15CF9100CCA1EA /* PGBSettingsViewController.m in Sources */,
