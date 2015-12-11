@@ -188,7 +188,7 @@
 }
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-    NSLog(@"didFinishNavigation");
+//    NSLog(@"didFinishNavigation");
     
     [webView.scrollView setZoomScale:0.6];
     [webView.scrollView setContentOffset:CGPointMake(0, 0)];
@@ -200,7 +200,7 @@
 
 -(void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation
 {
-    NSLog (@"didCommitNavigation");
+//    NSLog (@"didCommitNavigation");
     
     [webView.scrollView setZoomScale:0.6];
     [webView.scrollView setContentOffset:CGPointMake(0, 0)];

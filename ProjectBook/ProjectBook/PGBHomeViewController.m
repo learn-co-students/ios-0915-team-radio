@@ -257,7 +257,7 @@ static dispatch_once_t onceToken;
             }
             
             
-            NSArray *shakespearesBooks = @[ @"etext2265", @"etext1112", @"etext2264", @"etext2267", @"etext1041", @"etext2235", @"etext2242", @"etext1430", @"etext1128", @"etext1120", @"etext1121", @"etext2243", @"etext2253", @"etext1107", @"etext1526", @"etext1103", @"etext2240", @"etext1539", @"etext1535", @"etext2268", @"etext1126", @"etext1045" ];
+            NSArray *shakespearesBooks = @[ @"etext2265", @"etext1777", @"etext2264", @"etext2267", @"etext1041", @"etext2235", @"etext2242", @"etext1430", @"etext1128", @"etext1522", @"etext1121", @"etext2243", @"etext2253", @"etext1107", @"etext1103", @"etext2240", @"etext1539", @"etext1535", @"etext2268", @"etext1126", @"etext1045" ];
             
             for (NSString *ebookNumber in shakespearesBooks) {
                 PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];

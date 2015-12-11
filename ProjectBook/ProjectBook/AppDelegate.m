@@ -32,6 +32,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+//    UIImage *lightGreen = [UIImage imageNamed:@"NOVEL_Banner"];
+//    [[UITabBar appearance] setSelectionIndicatorImage:lightGreen];
+    
     /*
      
     [PGBGoodreadsAPIClient getReviewsForBook:@"The Adventures of Huckleberry Finn" completion:^(NSDictionary *reviewDict) {
