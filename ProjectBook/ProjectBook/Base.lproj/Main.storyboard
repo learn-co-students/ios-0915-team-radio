@@ -496,8 +496,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ft6-qf-adu" userLabel="Overall Scroll View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="825-ZV-il2" userLabel="Overall Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="931"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="825-ZV-il2" userLabel="Overall Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="383.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPT-Nd-CeZ" userLabel="Book View">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="113"/>
@@ -557,8 +557,8 @@
                                                     <constraint firstItem="21f-WM-Z2a" firstAttribute="width" secondItem="Z1r-rR-3W3" secondAttribute="width" id="wFE-K5-52H"/>
                                                 </constraints>
                                             </stackView>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3q-zS-VzH" userLabel="Placeholder for WKView">
-                                                <rect key="frame" x="0.0" y="523" width="600" height="277"/>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3q-zS-VzH" userLabel="Placeholder for WKView">
+                                                <rect key="frame" x="0.0" y="383.5" width="600" height="0.0"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                         </subviews>

@@ -98,12 +98,62 @@
     [romanceButton setTitle:@"Romance" forState:UIControlStateNormal];
     romanceButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
     
+    UIButton *dramaButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [dramaButton addTarget:self
+                     action:@selector(dramaButtonTapped:)
+           forControlEvents:UIControlEventTouchUpInside];
+    [dramaButton setTitle:@"Drama" forState:UIControlStateNormal];
+    dramaButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    
+    UIButton *historyButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [historyButton addTarget:self
+                    action:@selector(historyButtonTapped:)
+          forControlEvents:UIControlEventTouchUpInside];
+    [historyButton setTitle:@"History" forState:UIControlStateNormal];
+    historyButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    
+    UIButton *comedyButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [comedyButton addTarget:self
+                      action:@selector(comedyButtonTapped:)
+            forControlEvents:UIControlEventTouchUpInside];
+    [comedyButton setTitle:@"Comedy" forState:UIControlStateNormal];
+    comedyButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    
+    UIButton *operaButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [operaButton addTarget:self
+                     action:@selector(operaButtonTapped:)
+           forControlEvents:UIControlEventTouchUpInside];
+    [operaButton setTitle:@"Opera" forState:UIControlStateNormal];
+    operaButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    
+    
     UIButton *randomButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [randomButton addTarget:self
-                      action:@selector(randomButtonTapped:)
-            forControlEvents:UIControlEventTouchUpInside];
+                     action:@selector(randomButtonTapped:)
+           forControlEvents:UIControlEventTouchUpInside];
     [randomButton setTitle:@"Random" forState:UIControlStateNormal];
     randomButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    
+    UIButton *biographyButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [biographyButton addTarget:self
+                     action:@selector(biographyButtonTapped:)
+           forControlEvents:UIControlEventTouchUpInside];
+    [biographyButton setTitle:@"Biography" forState:UIControlStateNormal];
+    biographyButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    
+//    UIButton *shortStoryButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//    [shortStoryButton addTarget:self
+//                     action:@selector(shortStoryButtonTapped:)
+//           forControlEvents:UIControlEventTouchUpInside];
+//    [shortStoryButton setTitle:@"Short Story" forState:UIControlStateNormal];
+//    shortStoryButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    
+    UIButton *childrenButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [childrenButton addTarget:self
+                     action:@selector(childrenButtonTapped:)
+           forControlEvents:UIControlEventTouchUpInside];
+    [childrenButton setTitle:@"Children" forState:UIControlStateNormal];
+    childrenButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
     
     //adding buttons to stack view
     UIStackView *genreButtonStackView = [[UIStackView alloc]init];
@@ -114,6 +164,13 @@
     
     [genreButtonStackView addArrangedSubview:fictionButton];
     [genreButtonStackView addArrangedSubview:romanceButton];
+    [genreButtonStackView addArrangedSubview:dramaButton];
+    [genreButtonStackView addArrangedSubview:historyButton];
+    [genreButtonStackView addArrangedSubview:comedyButton];
+    [genreButtonStackView addArrangedSubview:operaButton];
+    [genreButtonStackView addArrangedSubview:biographyButton];
+//    [genreButtonStackView addArrangedSubview:shortStoryButton];
+    [genreButtonStackView addArrangedSubview:childrenButton];
     [genreButtonStackView addArrangedSubview:randomButton];
     
     genreButtonStackView.translatesAutoresizingMaskIntoConstraints = false;
@@ -141,6 +198,63 @@
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
+-(void)dramaButtonTapped:(UIButton *)sender {
+    NSLog(@"romance button tapped!");
+    
+    self.bookSearchBar.text = @"drama";
+    [self.bookSearchBar becomeFirstResponder];
+    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
+}
+
+-(void)historyButtonTapped:(UIButton *)sender {
+    NSLog(@"romance button tapped!");
+    
+    self.bookSearchBar.text = @"history";
+    [self.bookSearchBar becomeFirstResponder];
+    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
+}
+
+-(void)comedyButtonTapped:(UIButton *)sender {
+    NSLog(@"romance button tapped!");
+    
+    self.bookSearchBar.text = @"comedy";
+    [self.bookSearchBar becomeFirstResponder];
+    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
+}
+
+-(void)operaButtonTapped:(UIButton *)sender {
+    NSLog(@"romance button tapped!");
+    
+    self.bookSearchBar.text = @"opera";
+    [self.bookSearchBar becomeFirstResponder];
+    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
+}
+
+-(void)biographyButtonTapped:(UIButton *)sender {
+    NSLog(@"romance button tapped!");
+    
+    self.bookSearchBar.text = @"biography";
+    [self.bookSearchBar becomeFirstResponder];
+    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
+}
+
+//-(void)shortStoryButtonTapped:(UIButton *)sender {
+//    NSLog(@"romance button tapped!");
+//    
+//    self.bookSearchBar.text = @"shortstory";
+//    [self.bookSearchBar becomeFirstResponder];
+//    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
+//}
+
+-(void)childrenButtonTapped:(UIButton *)sender {
+    NSLog(@"romance button tapped!");
+    
+    self.bookSearchBar.text = @"children";
+    [self.bookSearchBar becomeFirstResponder];
+    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
+}
+
+
 -(void)randomButtonTapped:(UIButton *)sender {
     NSLog(@"random button tapped");
     
@@ -148,6 +262,8 @@
     [self.bookSearchBar becomeFirstResponder];
     [self generateRandomBookByCount:100];
 }
+
+
 
 - (void)generateRandomBookByCount:(NSInteger)count{
     //bg Queue
