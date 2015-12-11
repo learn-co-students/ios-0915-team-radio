@@ -11,10 +11,10 @@
 #import "PGBDownloadHelper.h"
 #import "PGBRealmUser.h"
 #import "PGBRealmBook.h"
-#import "PGBGoodreadsAPIClient.h"
+//#import "PGBGoodreadsAPIClient.h"
 #import "PGBParseAPIClient.h"
 #import <Parse/Parse.h>
-#import <GROAuth.h>
+//#import <GROAuth.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "PGBparsingThroughText.h"
@@ -136,8 +136,9 @@
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    [GROAuth setGoodreadsOAuthWithConsumerKey:@"AckMqnduhbH8xQdja2Nw"
-                                       secret:@"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno"];
+    //LEO- commented
+//    [GROAuth setGoodreadsOAuthWithConsumerKey:@"AckMqnduhbH8xQdja2Nw"
+//                                       secret:@"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno"];
     
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
@@ -147,11 +148,18 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    //update parse when app go into background
+    NSLog(@"app will resign active background");
+    if ([PFUser currentUser]) {
+        [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^{
+            NSLog(@"update parse completed");
+        }];
+    }
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

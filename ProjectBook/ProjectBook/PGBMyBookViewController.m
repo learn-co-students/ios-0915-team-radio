@@ -22,8 +22,8 @@
 
 @property (strong, nonatomic) NSPredicate *searchFilter;
 
-@property (strong, nonatomic)NSArray *books;
-@property (strong, nonatomic)NSArray *booksDisplayed;
+@property (strong, nonatomic) NSMutableArray *books;
+@property (strong, nonatomic) NSMutableArray *booksDisplayed;
 
 @end
 
@@ -41,7 +41,14 @@
     self.bookTableView.delegate = self;
     self.bookTableView.dataSource = self;
     self.bookSearchBar.delegate = self;
+    
+    self.books = [[NSMutableArray alloc]init];
+    self.booksDisplayed = [[NSMutableArray alloc]init];
+    
+  
 }
+
+
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -56,10 +63,31 @@
     //    [self.bookTableView setContentOffset:CGPointMake(0, 44) animated:NO];
     //    [self.bookTableView setContentOffset:CGPointZero animated:YES];
     
-    [self fetchBookFromParse];
+    [self fetchBookFromRealm];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData:) name:@"StoringDataFromParseToRealm" object:nil];
 }
 
--(void)fetchBookFromParse {
+- (void)reloadTableViewData: (NSNotification *)notification {
+    NSLog(@"storing data from parse to realm, refresh table!!!");
+    [self fetchBookFromRealm];
+}
+
+- (void)fetchBookFromRealm {
+    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+    
+    [bgQueue addOperationWithBlock:^{
+        
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            self.books = [[PGBRealmBook getUserBookDataInArray] mutableCopy];
+            [self loadDefaultContent];
+            [self.bookTableView reloadData];
+        }];
+    }];
+}
+
+
+- (void)fetchBookFromParse {
     NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
     
     [bgQueue addOperationWithBlock:^{
@@ -77,7 +105,7 @@
                         NSLog(@"successfully fetch book from parse");
                         
                         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-                            self.books = [PGBRealmBook getUserBookDataInArray];
+                            self.books = [[PGBRealmBook getUserBookDataInArray] mutableCopy];
                             [self loadDefaultContent];
                             [self.bookTableView reloadData];
                         }];
@@ -87,7 +115,7 @@
             
         } else {
             [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-                self.books = [PGBRealmBook getUserBookDataInArray];
+                self.books = [[PGBRealmBook getUserBookDataInArray] mutableCopy];
                 [self loadDefaultContent];
                 [self.bookTableView reloadData];
             }];
@@ -99,7 +127,7 @@
     self.bookSegmentControl.selectedSegmentIndex = 0;
     self.bookSearchBar.text = @"";
     self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
-    self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+    self.booksDisplayed = [[self.books filteredArrayUsingPredicate:self.searchFilter] mutableCopy];
     
 //    [self.bookTableView reloadData];
 }
@@ -108,23 +136,23 @@
     
     if (self.bookSegmentControl.selectedSegmentIndex == 0) {
         
-        if ([self.bookSearchBar.text isEqualToString:@""]) {
+        if (!self.bookSearchBar.text.length) {
             self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
         } else {
             self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == YES", self.bookSearchBar.text];
         }
         
-        self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+        self.booksDisplayed = [[self.books filteredArrayUsingPredicate:self.searchFilter] mutableCopy];
     }
     else if (self.bookSegmentControl.selectedSegmentIndex == 1) {
         
-        if ([self.bookSearchBar.text isEqualToString:@""]) {
+        if (!self.bookSearchBar.text.length) {
             self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == YES"];
         } else {
             self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == YES", self.bookSearchBar.text];
         }
         
-        self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+        self.booksDisplayed = [[self.books filteredArrayUsingPredicate:self.searchFilter] mutableCopy];
     }
     
     [self.bookTableView reloadData];
@@ -141,15 +169,15 @@
 }
 
 #pragma mark - Delegate Methods
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.booksDisplayed.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (tableView == self.bookTableView) {
         
@@ -161,13 +189,21 @@
         cell.authorLabel.text = book.author;
         cell.genreLabel.text = book.genre;
         
-        UIImage *bookCoverImage = [UIImage imageWithData: book.bookCoverData];
+//        UIImage *bookCoverImage = [UIImage imageWithData: book.bookCoverData];
+//        
+//        if (bookCoverImage) {
+//            cell.bookCover.image = bookCoverImage;
+//        }
+//        
+        NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:book.ebookID]];
         
-        if (bookCoverImage) {
-            cell.bookCover.image = bookCoverImage;
+        if (bookCoverData)
+        {
+            cell.bookCover.image = [UIImage imageWithData:bookCoverData];
         } else {
             cell.bookCover.image = [UIImage imageNamed:@"no_book_cover"];
         }
+
         
         return cell;
     }
@@ -175,26 +211,26 @@
     return [[UITableViewCell alloc]init];
 }
 
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     
     if (![searchText isEqualToString:@""]) {
         if (self.bookSegmentControl.selectedSegmentIndex == 0) {
             self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == YES", searchText];
-            self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+            self.booksDisplayed = [[self.books filteredArrayUsingPredicate:self.searchFilter] mutableCopy];
         } else if (self.bookSegmentControl.selectedSegmentIndex == 1){
             self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isBookmarked == YES", searchText];
-            self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+            self.booksDisplayed = [[self.books filteredArrayUsingPredicate:self.searchFilter] mutableCopy];
         }
     } else {
         if (self.bookSegmentControl.selectedSegmentIndex == 0) {
             NSLog(@"selected segment index = 0");
             self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
-            self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+            self.booksDisplayed = [[self.books filteredArrayUsingPredicate:self.searchFilter] mutableCopy];
         }
         else if (self.bookSegmentControl.selectedSegmentIndex == 1) {
             NSLog(@"selected segment index = 1");
             self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == YES"];
-            self.booksDisplayed = [self.books filteredArrayUsingPredicate:self.searchFilter];
+            self.booksDisplayed = [[self.books filteredArrayUsingPredicate:self.searchFilter] mutableCopy];
         }
     }
     
@@ -202,7 +238,7 @@
 
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.bookSearchBar resignFirstResponder];
 }
 
@@ -210,7 +246,7 @@
     [self performSegueWithIdentifier:@"bookDetailSegue" sender:nil];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     PGBBookPageViewController *bookPageVC = segue.destinationViewController;
     
     NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
@@ -222,7 +258,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return YES - we will be able to delete all rows
+    
     if (tableView == self.bookTableView) {
         return YES;
     }
@@ -232,8 +268,27 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Perform the real delete action here. Note: you may need to check editing style
-    //   if you do not perform delete only.
+    
+    if (tableView == self.bookTableView & editingStyle == UITableViewCellEditingStyleDelete) {
+ 
+        PGBRealmBook *bookToBeDeleted = self.booksDisplayed[indexPath.row];
+        
+        [self.booksDisplayed removeObject:bookToBeDeleted];
+        
+        [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+            if (self.bookSegmentControl.selectedSegmentIndex == 0) {
+                bookToBeDeleted.isDownloaded = NO;
+            } else if (self.bookSegmentControl.selectedSegmentIndex == 1) {
+                bookToBeDeleted.isBookmarked = NO;
+            }
+            
+            return bookToBeDeleted;
+        } andCompletion:^{
+             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }];
+
+    }
+    
     NSLog(@"Deleted row.");
 }
 

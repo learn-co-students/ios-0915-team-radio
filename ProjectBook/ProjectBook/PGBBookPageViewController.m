@@ -8,7 +8,6 @@
 
 #import "PGBBookPageViewController.h"
 #import "PGBDownloadHelper.h"
-#import "PGBGoodreadsAPIClient.h"
 #import "PGBParseAPIClient.h"
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Masonry/Masonry.h>
@@ -88,18 +87,26 @@
 //        }];
     
     //bookmarkstuff
-        UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
-        UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
-        [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
+    UIImage *unbookmarkImg = [UIImage imageNamed:@"emptyriboon.png"];
+    UIImage *bookmarkImg = [UIImage imageNamed:@"redriboon.png"];
+    [self.bookmarkButton setImage:bookmarkImg forState:UIControlStateNormal];
     
 }
 
-//-(void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    [self getReviewswithCompletion:^(BOOL success) {
-//        success = YES;
-//    }];
-//}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    //LEO - this is causing crash when back from book detail
+    [self getReviewswithCompletion:^(BOOL success) {
+        if (success) {
+            NSLog(@"Succed to get description from API call - LEO");
+        } else {
+            NSLog(@"failed to get description from API call - LEO");
+            self.bookDescriptionTV.text = @"There is no description for this book.";
+        }
+    }];
+}
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -143,9 +150,11 @@
 -(void)getReviewswithCompletion:(void (^)(BOOL))completionBlock
 {
     [PGBGoodreadsAPIClient getReviewsForBook:self.book completion:^(NSDictionary *reviewDict) {
-            
-            self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];
         
+        if (reviewDict) {
+        
+            self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];
+            
             NSData *htmlData = [self.htmlString dataUsingEncoding:NSUTF8StringEncoding];
             
             NSURL *baseURL = [NSURL URLWithString:@"https://www.goodreads.com"];
@@ -172,7 +181,10 @@
             
             //            [self.webView.heightAnchor constraintEqualToConstant:300];
             //            [self.webViewContainer layoutSubviews];
-        completionBlock(YES);
+            completionBlock(YES);
+        } else {
+            completionBlock(NO);
+        }
     }];
 }
 
@@ -229,12 +241,11 @@
             self.book.isDownloaded = YES;
             return self.book;
         } andCompletion:^{
-            if ([PFUser currentUser]) {
-                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                    NSLog(@"saved book to parse");
-                }];
-            }
-            
+//            if ([PFUser currentUser]) {
+//                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+//                    NSLog(@"saved book to parse");
+//                }];
+//            }
         }];
         
     }
@@ -313,15 +324,25 @@
             self.book.isBookmarked = YES;
             return self.book;
         } andCompletion:^{
-            if ([PFUser currentUser]) {
-                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                    NSLog(@"saved book to parse");
-                }];
-            }
+//            if ([PFUser currentUser]) {
+//                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+//                    NSLog(@"saved book to parse");
+//                }];
+//            }
             
         }];
         
     }
+}
+
+
+- (void)dealloc {
+//    [self.webView setDelegate:nil];
+    
+    self.webView.UIDelegate = nil;
+    self.webView.navigationDelegate = nil;
+    self.webView.scrollView.delegate = nil;
+    [self.webView stopLoading];
 }
 
 @end

@@ -64,12 +64,20 @@
     [realm commitWriteTransaction];
     
     completionBlock();
-//    [realm transactionWithBlock:^{
-//        // [Dog createInRealm:realm withValue:@{@"name": @"Fido", @"age": @1}];
-//        PGBRealmBook *book = updateBlock();
-//        [realm addOrUpdateObject:book];
-//    }];
+}
 
++ (void)storeUserBookDataWithBooks:(NSArray *)books andCompletion:(void (^)())completionBlock{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    [realm beginWriteTransaction];
+    
+    for (PGBRealmBook *book in books) {
+        [realm addOrUpdateObject:book];
+    }
+
+    [realm commitWriteTransaction];
+    
+    completionBlock();
 }
 
 + (void)storeUserBookDataWithBook:(PGBRealmBook *)book{
@@ -82,20 +90,24 @@
     [realm commitWriteTransaction];
 }
 
-+ (void)deleteUserBookDataForBook:(PGBRealmBook *)book{
++ (void)deleteUserBookDataForBook:(PGBRealmBook *)book andCompletion:(void (^)())completionBlock{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
     [realm deleteObject:book];
     [realm commitWriteTransaction];
+    
+    completionBlock();
 }
 
-+ (void)deleteAllUserBookData{
++ (void)deleteAllUserBookDataWithCompletion:(void (^)())completionBlock{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
     [realm deleteAllObjects];
     [realm commitWriteTransaction];
+    
+    completionBlock();
 }
 
 + (RLMResults *)getUserBookData{
@@ -112,6 +124,25 @@
     }
     return result;
 }
+
++ (NSArray *)getUserBookDataInArrayIncludingCoverData{
+    RLMResults *books = [PGBRealmBook allObjects];
+    
+    NSMutableArray *result = [[NSMutableArray alloc]init];
+    for (PGBRealmBook *book in books) {
+        
+        NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:book.ebookID]];
+        
+        if (bookCoverData) {
+            book.bookCoverData = bookCoverData;
+        }
+        
+        [result addObject:book];
+    }
+    return result;
+}
+
+
 
 //+ (void)generateTestBookData{
 //    if (![PGBRealmBook getUserBookDataInArray].count) {
@@ -330,8 +361,7 @@
 }
 
 
-+ (PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook
-{
++(PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook {
     
     PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
     
@@ -341,8 +371,8 @@
     return realmBook;
 }
 
-+ (NSURL *)createBookCoverURL:(NSString *)eBookNumber
-{
++(NSURL *)createBookCoverURL:(NSString *)eBookNumber {
+    
     if (eBookNumber.length) {
         
         NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
@@ -356,8 +386,8 @@
     return nil;
 }
 
-+ (void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock
-{
++(void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock {
+    
     [PGBParseAPIClient fetchUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^(NSArray *books) {
         for (NSDictionary *book in books) {
             
@@ -399,13 +429,25 @@
     }];
 }
 
-+ (void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock
-{
-        [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
-            completionBlock();
-        }];
++(void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock {
+    
+    [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
+        completionBlock();
+    }];
 }
 
++(void)updateParseWithRealmBookDataWithCompletion:(void (^)())completionBlock{
+    [PGBParseAPIClient deleteUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^{
+        
+        NSArray *booksInRealm = [PGBRealmBook getUserBookDataInArray];
+        for (PGBRealmBook *realmBook in booksInRealm) {
+      
+            [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:realmBook andCompletion:^{
+                completionBlock();
+            }];
+        }
 
+    }];
+}
 
 @end

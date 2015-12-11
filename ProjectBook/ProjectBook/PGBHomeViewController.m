@@ -11,7 +11,7 @@
 #import "PGBDownloadHelper.h"
 #import "PGBBookPageViewController.h"
 #import "PGBRealmBook.h"
-#import "PGBGoodreadsAPIClient.h"
+//#import "PGBGoodreadsAPIClient.h"
 #import "PGBCustomBookCollectionViewCell.h"
 
 #import "PGBLoginViewController.h"
@@ -25,10 +25,10 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+static dispatch_once_t onceToken;
+
 @interface PGBHomeViewController () {
     
-    UIActivityIndicatorView *spinner;
-
 }
 
 //book arrays
@@ -114,6 +114,7 @@
     self.classicsCollectionView.backgroundColor = [UIColor whiteColor];
     self.classicsCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
     
+
 //classic books
     //delegate
     [self.shakespeareCollectionView setDelegate:self];
@@ -124,6 +125,11 @@
     
     self.shakespeareCollectionView.backgroundColor = [UIColor whiteColor];
     self.shakespeareCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+
+    //fetch from parse when the app opens for the first time
+    //user can kill the app and re-open, however they don't need to re-login
+    [self fetchBookFromParse];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -136,78 +142,108 @@
     } else if (![PFUser currentUser] && ![self.loginButton.title isEqual: @"Login"]){
         [self.loginButton setTitle:@"Login"];
     }
-    
-    //leo test parse here
+
 }
+
+
+
 
 -(void)fetchBookFromParse {
     NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
     
     [bgQueue addOperationWithBlock:^{
-    
-//        [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
-//            NSLog(@"user data: %@", data);
-//            
-//            PFObject *user = data;
-//            if (user) {
-        
-                [PGBRealmBook deleteAllUserBookData];
-        
-                [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
-                    NSLog(@"successfully fetch book from parse");
+        if ([PFUser currentUser]) {
+            
+            [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
+                NSLog(@"user data: %@", data);
+                
+                PFObject *user = data;
+                if (user) {
+            
+                    [PGBRealmBook deleteAllUserBookDataWithCompletion:^{
                     
-                }];
-//            }
-        }];
-//    }];
+                        [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
+                            NSLog(@"successfully fetch book from parse");
+                            
+//                            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+//                                //alert user that their library is update????
+//                                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Hello"
+//                                                                                               message:@"Your library is now updated!"
+//                                                                                        preferredStyle:UIAlertControllerStyleAlert];
+//                                
+//                                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+//                                                                                      handler:^(UIAlertAction * action) {}];
+//                                
+//                                [alert addAction:defaultAction];
+//                                [self presentViewController:alert animated:YES completion:nil];
+//                            }];
+                            
+                            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+                            [center postNotificationName:@"StoringDataFromParseToRealm" object:nil];
+                        }];
+                        
+                    }];
+                }
+            }];
+            
+        } 
+    }];
 }
+
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
-    
-    [backgroundQueue addOperationWithBlock:^{
-        NSArray *mostPopularBooks = @[ @"etext1342", @"etext46", @"etext11", @"etext76", @"etext84", @"etext1952", @"etext1661", @"etext2701", @"etext23", @"etext98", @"etext5200", @"etext345", @"etext1232", @"etext74", @"etext2542", @"etext844", @"etext174", @"etext4300", @"etext1400", @"etext1260", @"etext135"];
+    //do it once
+    dispatch_once (&onceToken, ^{
         
-        for (NSString *ebookNumber in mostPopularBooks) {
-            PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
-            if (book) {
-                [self.books addObject:book];
-//                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                    [self.popularCollectionView reloadData];
-//                }];
+        NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
+        
+        [backgroundQueue addOperationWithBlock:^{
+            NSArray *mostPopularBooks = @[ @"etext1342", @"etext46", @"etext11", @"etext76", @"etext84", @"etext1952", @"etext1661", @"etext2701", @"etext23", @"etext98", @"etext5200", @"etext345", @"etext1232", @"etext74", @"etext2542", @"etext844", @"etext174", @"etext4300", @"etext1400", @"etext1260", @"etext135"];
+            
+            for (NSString *ebookNumber in mostPopularBooks) {
+                PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
+                if (book) {
+                    [self.books addObject:book];
+                    //                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    //                    [self.popularCollectionView reloadData];
+                    //                }];
+                }
             }
-        }
-        
-        NSArray *harvardClassicBooks = @[ @"etext22456", @"etext28", @"etext4081", @"etext1597", @"etext1399", @"etext1656", @"etext13726", @"etext10378", @"etext20203", @"etext4028", @"etext2880", @"etext3296", @"etext1657", @"etext766", @"etext12816", @"etext1012", @"etext996", @"etext9662", @"etext16643", @"etext1237", @"etext8418", @"etext5314", @"etext41", @"etext2610", @"etext3160", @"etext18269", @"etext1342", @"etext1232", @"etext33"];
-        
-        for (NSString *ebookNumber in harvardClassicBooks) {
-            PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
-            if (book) {
-                [self.classicBooks addObject:book];
-//                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                    [self.classicsCollectionView reloadData];
-//                }];
+            
+            NSArray *harvardClassicBooks = @[ @"etext22456", @"etext28", @"etext4081", @"etext1597", @"etext1399", @"etext1656", @"etext13726", @"etext10378", @"etext20203", @"etext4028", @"etext2880", @"etext3296", @"etext1657", @"etext766", @"etext12816", @"etext1012", @"etext996", @"etext9662", @"etext16643", @"etext1237", @"etext8418", @"etext5314", @"etext41", @"etext2610", @"etext3160", @"etext18269", @"etext1342", @"etext1232", @"etext33"];
+            
+            for (NSString *ebookNumber in harvardClassicBooks) {
+                PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
+                if (book) {
+                    [self.classicBooks addObject:book];
+                    //                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    //                    [self.classicsCollectionView reloadData];
+                    //                }];
+                }
             }
-        }
-        
-        
-        NSArray *shakespearesBooks = @[ @"etext2265", @"etext1513", @"etext2264", @"etext2267", @"etext1041", @"etext2235", @"etext2242", @"etext1430", @"etext1128", @"etext2263", @"etext1121", @"etext2243", @"etext2253", @"etext1107", @"etext2247", @"etext1103", @"etext2240", @"etext1539", @"etext1535", @"etext2268", @"etext1126", @"etext1045" ];
-        
-        for (NSString *ebookNumber in shakespearesBooks) {
-            PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
-            if (book) {
-                [self.shakespeareBooks addObject:book];
+            
+            
+            NSArray *shakespearesBooks = @[ @"etext2265", @"etext1112", @"etext2264", @"etext2267", @"etext1041", @"etext2235", @"etext2242", @"etext1430", @"etext1128", @"etext1120", @"etext1121", @"etext2243", @"etext2253", @"etext1107", @"etext1526", @"etext1103", @"etext2240", @"etext1539", @"etext1535", @"etext2268", @"etext1126", @"etext1045" ];
+            
+            for (NSString *ebookNumber in shakespearesBooks) {
+                PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
+                if (book) {
+                    [self.shakespeareBooks addObject:book];
+                } else {
+                    NSLog(@"this is outttttt: %@", ebookNumber);
+                }
             }
-        }
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self.classicsCollectionView reloadData];
-            [self.popularCollectionView reloadData];
-            [self.shakespeareCollectionView reloadData];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.classicsCollectionView reloadData];
+                [self.popularCollectionView reloadData];
+                [self.shakespeareCollectionView reloadData];
+                
+            }];
         }];
-    }];
-    
+        
+    });
 }
 
 - (void)generateBook {
@@ -498,7 +534,13 @@
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self changeLoginButtonToProfileIcon];
+    
+    //once logged in fetch book from parse
+    [self fetchBookFromParse];
 }
+
+
+
 
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
