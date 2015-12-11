@@ -98,7 +98,12 @@
     
     //LEO - this is causing crash when back from book detail
     [self getReviewswithCompletion:^(BOOL success) {
-//        success = YES;
+        if (success) {
+            NSLog(@"Succed to get description from API call - LEO");
+        } else {
+            NSLog(@"failed to get description from API call - LEO");
+            self.bookDescriptionTV.text = @"There is no description for this book.";
+        }
     }];
 }
 
@@ -144,9 +149,11 @@
 -(void)getReviewswithCompletion:(void (^)(BOOL))completionBlock
 {
     [PGBGoodreadsAPIClient getReviewsForBook:self.book completion:^(NSDictionary *reviewDict) {
-            
-            self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];
         
+        if (reviewDict) {
+        
+            self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];
+            
             NSData *htmlData = [self.htmlString dataUsingEncoding:NSUTF8StringEncoding];
             
             NSURL *baseURL = [NSURL URLWithString:@"https://www.goodreads.com"];
@@ -173,7 +180,10 @@
             
             //            [self.webView.heightAnchor constraintEqualToConstant:300];
             //            [self.webViewContainer layoutSubviews];
-        completionBlock(YES);
+            completionBlock(YES);
+        } else {
+            completionBlock(NO);
+        }
     }];
 }
 

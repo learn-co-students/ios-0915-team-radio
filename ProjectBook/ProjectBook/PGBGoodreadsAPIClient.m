@@ -74,6 +74,9 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
      {
          completionBlock(responseObject);
      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+         
+         //LEO - pass back nothing to completion block for failure 
+         completionBlock(nil);
          NSLog(@"Fail: %@",error.localizedDescription);
      }];
     
