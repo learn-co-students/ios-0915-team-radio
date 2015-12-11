@@ -183,6 +183,82 @@
     realmBook.friendlyTitle = coreDataBook.eBookFriendlyTitles;
     realmBook.language = coreDataBook.eBookLanguages;
     
+    realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
+    realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
+    
+    realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"ò" withString:@"o"];
+    realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:@"ò" withString:@"o"];
+    
+    realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"ë" withString:@"e"];
+    realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:@"ë" withString:@"e"];
+    
+    NSArray *aCharacters = @[ @"à", @"á", @"â", @"ä", @"æ", @"ã", @"å", @"ā" ];
+    NSArray *eCharacters = @[ @"è", @"é", @"ê", @"ë", @"ē", @"ė", @"ę" ];
+    NSArray *iCharacters = @[ @"î", @"ï", @"í", @"ī", @"į", @"ì" ];
+    NSArray *oCharacters = @[ @"ô", @"ö", @"ò", @"ó", @"ø", @"ō", @"õ" ];
+    NSArray *uCharacters = @[ @"û", @"ü", @"ù", @"ú", @"ū", @"u" ];
+    NSArray *nCharacters = @[ @"ñ", @"ń"];
+
+    realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"ÿ" withString:@"y"];
+    realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:@"ß" withString:@"ss"];
+    
+    for (NSString *special in nCharacters) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:special withString:@"n"];
+        realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:special withString:@"n"];
+    }
+    
+    for (NSString *special in aCharacters) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:special withString:@"a"];
+        realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:special withString:@"a"];
+    }
+    
+    for (NSString *special in eCharacters) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:special withString:@"e"];
+        realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:special withString:@"e"];
+    }
+    
+    for (NSString *special in iCharacters) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:special withString:@"i"];
+        realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:special withString:@"i"];
+    }
+    
+    for (NSString *special in oCharacters) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:special withString:@"o"];
+        realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:special withString:@"o"];
+    }
+    
+    for (NSString *special in uCharacters) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:special withString:@"u"];
+        realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:special withString:@"u"];
+    }
+    
+    //for genre
+    if ([realmBook.genre containsString:@"Fiction"]){
+        realmBook.genre = @"Fiction";
+    } else if ([realmBook.genre containsString:@"Drama"]){
+        realmBook.genre = @"Drama";
+    } else if ([realmBook.genre containsString:@"History"]){
+        realmBook.genre = @"History";
+    } else if ([realmBook.genre containsString:@"Comedy"]){
+        realmBook.genre = @"Comedy";
+    }  else if ([realmBook.genre containsString:@"fiction"]){
+        realmBook.genre = @"Fiction";
+    }  else if ([realmBook.genre containsString:@"Operas"]){
+        realmBook.genre = @"Opera";
+    }  else if ([realmBook.genre containsString:@"Romances"]){
+        realmBook.genre = @"Romance";
+    }  else if ([realmBook.genre containsString:@"Biography"]){
+        realmBook.genre = @"Biography";
+    }  else if ([realmBook.genre containsString:@"Short stories"]){
+        realmBook.genre = @"Short Stories";
+    }  else if ([realmBook.genre containsString:@"Children's stories"]){
+        realmBook.genre = @"Children's Stories";
+    }
+    
+//    else {
+//        realmBook.genre = nil;
+//    }
+    
     //for author
     if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle])
     {
@@ -195,8 +271,11 @@
     //for punctuation
     if ([realmBook.title containsString:@"&quot;"]) {
         realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    } else if ([realmBook.title containsString:@"&amp;"]) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
     }
     
+
     //for language
     if ([realmBook.language isEqualToString:@"en"])
     {
@@ -216,6 +295,9 @@
     } else if ([realmBook.language isEqualToString:@"zh"])
     {
         realmBook.language = @"Chinese";
+    } else if ([realmBook.language isEqualToString:@"es"])
+    {
+        realmBook.language = @"Spanish";
     }
     
     if ([self validateBookDataWithRealmBook:realmBook])

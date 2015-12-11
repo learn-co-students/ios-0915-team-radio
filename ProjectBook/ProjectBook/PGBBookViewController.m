@@ -25,6 +25,7 @@
 
 @property (strong, nonatomic) NSMutableString *htmlString;
 @property (weak, nonatomic) IBOutlet UIView *webViewContainer;
+@property (weak, nonatomic) IBOutlet UIStackView *infoStackView;
 
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
 @property UIDocumentInteractionController *docController;
@@ -40,6 +41,9 @@
     self.titleTV.selectable = NO;
     
     self.titleTV.text = self.book.title;
+    self.titleTV.layoutManager.hyphenationFactor = 1;
+//    [self.titleTV addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
+    
     self.authorLabel.text = self.book.author;
 //    self.genreLabel.text = self.book.genre;
 //    self.languageLabel.text = self.book.language;
@@ -51,10 +55,65 @@
     self.bookCover.layer.borderColor = [UIColor blackColor].CGColor;
     self.bookCover.layer.borderWidth = 3.0f;
 
+// genre and language stack view
+    UIView *view1 = [[UIView alloc]init];
+    view1.backgroundColor = [UIColor whiteColor];
+    [view1 setFrame:CGRectMake(0, 0, 100, 100)];
+    
+    NSLog (@"%@", self.book.genre);
+    UILabel *genreLabel = [[UILabel alloc]init];
+    genreLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    genreLabel.text = self.book.genre;
+    genreLabel.adjustsFontSizeToFitWidth = YES;
+    genreLabel.font = [UIFont fontWithName:@"Open Sans" size:13.0f];
+    
+    [view1 addSubview:genreLabel];
+    
+    [genreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(view1.mas_top);
+        make.bottom.equalTo(view1.mas_bottom);
+        make.centerX.equalTo(view1.mas_centerX);
+    }];
+    
+    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.greaterThanOrEqualTo(genreLabel.mas_height);
+    }];
+    
+    UIView *view2 = [[UIView alloc]init];
+    view2.backgroundColor = [UIColor whiteColor];
+    [view2 setFrame:CGRectMake(0, 0, 100, 100)];
+    
+    UILabel *languageLabel = [[UILabel alloc]init];
+    languageLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    languageLabel.text = self.book.language;
+    languageLabel.adjustsFontSizeToFitWidth = YES;
+    languageLabel.font = [UIFont fontWithName:@"Open Sans" size:13.0f];
+    
+    [view2 addSubview:languageLabel];
+    
+    [languageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(view2.mas_top);
+        make.bottom.equalTo(view2.mas_bottom);
+        make.centerX.equalTo(view2.mas_centerX);
+    }];
+    
+    
+    
+    [self.infoStackView addArrangedSubview:view1];
+    [self.infoStackView addArrangedSubview:view2];
+
+    
 //book description height and description
+//    [self.view addSubview:self.bookDescriptionTV];
+    [self.bookDescriptionTV sizeToFit];
+    [self.bookDescriptionTV layoutIfNeeded];
+    
     CGRect rect = self.bookDescriptionTV.frame;
     rect.size.height = self.bookDescriptionTV.contentSize.height;
     self.bookDescriptionTV.frame = rect;
+    
+//    [self textViewDidChange:self.bookDescriptionTV];
+    
     
     CGFloat totalHeight = 0.0f;
     for (UIView *view in self.superContentView.subviews)
@@ -77,6 +136,15 @@
     }];
 }
 
+- (void)textViewDidChange:(UITextView *)textView
+{
+    CGFloat fixedWidth = textView.frame.size.width;
+    CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+    CGRect newFrame = textView.frame;
+    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+    textView.frame = newFrame;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -92,15 +160,11 @@
     }];
 }
 
-- (void)textViewDidChange:(UITextView *)textView
-{
-    NSInteger fontSize = 20;
-    //fits 50 W;s
-    NSInteger lengthThreshold = 48;
-    if([self.titleTV.text length] > lengthThreshold) {
-        NSInteger newSize = fontSize - (([self.titleTV.text length] - 48)/3);
-        self.titleTV.font = [UIFont fontWithName:@"Moon" size:newSize];
-    }
+-(void)observeValueForKeyPath:(NSString *)keyPath   ofObject:(id)object   change:(NSDictionary *)change   context:(void *)context {
+    UITextView *tv = object;
+    CGFloat topCorrect = ([tv bounds].size.height - [tv contentSize].height * [tv zoomScale])  / 2.0;
+    topCorrect = ( topCorrect < 0.0 ? 0.0 : topCorrect );
+    tv.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
 }
 
 - (IBAction)optionsButtonTapped:(id)sender {
