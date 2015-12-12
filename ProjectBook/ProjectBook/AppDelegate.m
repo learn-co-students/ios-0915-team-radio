@@ -11,14 +11,16 @@
 #import "PGBDownloadHelper.h"
 #import "PGBRealmUser.h"
 #import "PGBRealmBook.h"
-#import "PGBGoodreadsAPIClient.h"
 #import "PGBParseAPIClient.h"
-#import <Parse/Parse.h>
-#import <GROAuth.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-
 #import "PGBparsingThroughText.h"
 #import "PGBDataStore.h"
+#import "PGBConstants.h"
+//#import "PGBGoodreadsAPIClient.h"
+//#import <GROAuth.h>
+
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <Parse/Parse.h>
+
 
 
 @interface AppDelegate ()
@@ -30,12 +32,45 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+//    UIImage *lightGreen = [UIImage imageNamed:@"NOVEL_Banner"];
+//    [[UITabBar appearance] setSelectionIndicatorImage:lightGreen];
     
-
-//    PGBGoodreadsAPIClient *goodReads = [[PGBGoodreadsAPIClient alloc] init];
-//    [goodReads methodToGetDescriptions];
-//    NSLog(@"%@", [goodReads methodToGetDescriptions]);
+    /*
+     
+    [PGBGoodreadsAPIClient getReviewsForBook:@"The Adventures of Huckleberry Finn" completion:^(NSDictionary *reviewDict) {
+        
+        self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];
+        
+        NSData *htmlData = [self.htmlString dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSURL *baseURL = [NSURL URLWithString:@"https://www.goodreads.com"];
+        
+        // make / constrain webview
+        
+        CGRect webViewFrame = CGRectMake(0, 0, self.webViewContainer.frame.size.width, self.webViewContainer.frame.size.height);
+        
+        self.webView = [[WKWebView alloc]initWithFrame: webViewFrame];
+        [self.webViewContainer addSubview:self.webView];
+        //                self.webView.translatesAutoresizingMaskIntoConstraints = NO;
+        //
+        //                [self.webView.leftAnchor constraintEqualToAnchor:self.webViewContainer.leftAnchor].active = YES;
+        //                [self.webView.rightAnchor constraintEqualToAnchor:self.webViewContainer.rightAnchor].active = YES;
+        //                [self.webView.topAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
+        //                [self.webView.bottomAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
+        
+        
+        [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
+        
+        self.webView.UIDelegate = self;
+        self.webView.navigationDelegate = self;
+        self.webView.scrollView.delegate = self;
+        
+        //            [self.webView.heightAnchor constraintEqualToConstant:300];
+        //            [self.webViewContainer layoutSubviews];
+        completionBlock(YES);
+    }];
     
+    */
 
 
 //    PGBGoodreadsAPIClient *goodReads = [[PGBGoodreadsAPIClient alloc] init];
@@ -98,16 +133,13 @@
     
     
     // Initialize Parse.
-    [Parse setApplicationId:@"VADP3uGjgBGfaYax1jbKoDlKzhCYyilh8I83XfmI"
-                  clientKey:@"XFszBVoY8vDT5MUqM82ACP0lfqKeOv9er01VC3NM"];
+    [Parse setApplicationId:PARSE_ID
+                  clientKey:PARSE_CLIENT_KEY];
     
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
 
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    [GROAuth setGoodreadsOAuthWithConsumerKey:@"AckMqnduhbH8xQdja2Nw"
-                                       secret:@"xlhPN1dtIA5CVXFHVF1q3eQfaUM1EzsT546C6bOZno"];
     
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
@@ -117,11 +149,18 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    //update parse when app go into background
+    NSLog(@"app will resign active background");
+    if ([PFUser currentUser]) {
+        [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^{
+            NSLog(@"update parse completed");
+        }];
+    }
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

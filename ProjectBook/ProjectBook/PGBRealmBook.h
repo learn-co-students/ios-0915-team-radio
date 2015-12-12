@@ -38,19 +38,24 @@
                  isBookmarked:(BOOL)isBookmarked
                 bookCoverData:(NSData *)bookCoverData;
 
++ (void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock;
+
 + (void)storeUserBookDataWithBook:(PGBRealmBook *)book;
-+ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock;
-+ (void)deleteUserBookDataForBook:(PGBRealmBook *)book;
-+ (void)deleteAllUserBookData;
++ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock andCompletion:(void (^)())completionBlock;
++ (void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock;
+
++ (void)deleteUserBookDataForBook:(PGBRealmBook *)book andCompletion:(void (^)())completionBlock;
++ (void)deleteAllUserBookDataWithCompletion:(void (^)())completionBlock;
+
++ (void)updateParseWithRealmBookDataWithCompletion:(void (^)())completionBlock;
+
 + (RLMResults *)getUserBookData;
 + (NSArray *)getUserBookDataInArray;
++ (NSArray *)getUserBookDataInArrayIncludingCoverData;
 + (PGBRealmBook *)createPGBRealmBookWithBook:(Book *)book;
 + (PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook;
 + (NSURL *)createBookCoverURL:(NSString *)eBookNumber;
 + (BOOL)validateBookDataWithRealmBook:(PGBRealmBook *)realmBook;
-
-+ (void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock;
-+ (void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock;
 
 - (NSString *)getAuthorFromFriendlyTitle:(NSString *)friendlyTitle;
 - (BOOL)checkFriendlyTitleIfItHasAuthor:(NSString *)friendlyTitle;
@@ -61,7 +66,8 @@
 + (NSString *)primaryKey;
 
 + (void)generateTestBookData;
-+ (void)generateClassicBooks;
++(PGBRealmBook *)generateBooksWitheBookID:(NSString *)ebookID;
+- (NSString *)parseAuthor:(NSString *)author;
 
 @end
 

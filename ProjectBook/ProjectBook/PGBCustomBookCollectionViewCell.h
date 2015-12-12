@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UITextView *titleTV;
 @property (weak, nonatomic) IBOutlet UIImageView *bookCover;
+@property (weak, nonatomic) IBOutlet UIView *overlayView;
 
 @end

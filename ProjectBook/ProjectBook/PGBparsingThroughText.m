@@ -18,8 +18,8 @@
 
 @implementation PGBparsingThroughText
 
--(instancetype)init {
-    
+-(instancetype)init
+{
     self = [super init];
     _nestedArrayOfAllInformation = [[NSMutableArray alloc] init];
     
@@ -35,10 +35,6 @@
     
     NSCharacterSet *newlineSet = [NSCharacterSet newlineCharacterSet];
     NSArray *lines = [fileContents componentsSeparatedByCharactersInSet:newlineSet];
-    
-    
-    
-    
     NSArray *newArray = [self makeNestedArraysFromAnArrayOfStrings:lines AtASpecificCharater:@""];
     
     return newArray;
@@ -46,10 +42,7 @@
 
 -(void)informationFromAllBooks {
     
-    //[self.nestedArrayOfAllInformation addObject:[self parseATextFile:@"bookInformationSet1"]];
-    
     NSArray *informationArray1 = [self parseATextFile:@"bookInformationSet1"];
-    
     NSArray *informationArray2 = [self parseATextFile:@"bookInformationSet2"];
     NSArray *informationArray3 = [self parseATextFile:@"bookInformationSet3"];
     NSArray *informationArray4 = [self parseATextFile:@"bookInformationSet4"];
@@ -98,25 +91,23 @@
     
     [self informationFromAllBooks];
     
-    //NSLog(@"Starting--------------");
-    
     NSMutableArray *mutableNestedArray = [self.nestedArrayOfAllInformation mutableCopy];
     NSMutableArray *arrayOfDictionaries = [[NSMutableArray alloc] init];
     
-    //NSLog(@"Starting First For Loop");
+    /* 
+     here we end up with an array full of arrays
+     */
     
-    
-    for (NSUInteger i = 0; i < mutableNestedArray.count; i++) {
-        NSMutableArray *informationArray = mutableNestedArray[i]; //an array full of arrays
+    for (NSUInteger i = 0; i < mutableNestedArray.count; i++)
+    {
+        NSMutableArray *informationArray = mutableNestedArray[i];
         
-        //NSLog(@"Logging the mutableArray %@", mutableNestedArray);
-        
-        //NSLog(@"Starting second for loop");
-        
-        for (NSUInteger j = 0; j < informationArray.count; j++) {
-            NSMutableArray *arrayBeingLookedAt = informationArray[j]; //contains NSStrings
-            
-            //NSLog(@"%@", informationArray);
+        for (NSUInteger j = 0; j < informationArray.count; j++)
+        {
+            /*
+             the elements are all strings
+             */
+            NSMutableArray *arrayBeingLookedAt = informationArray[j];
             
             NSString *ebookNumbers = @"";
             NSString *eBookTitles = @"";
@@ -124,45 +115,42 @@
             NSString *eBookFriendlyTitle = @"";
             NSString *eBookLanguage = @"";
             NSString *eBookGenre = @"";
-            
-            //NSLog(@"starting for in loop");
-            
-            for (NSString *string in arrayBeingLookedAt) {
-                
-                //NSLog(@"%@", string);
-                
-                if ([string hasPrefix:@"<pgterms:etext"]) {
+    
+            for (NSString *string in arrayBeingLookedAt)
+            {
+                /*
+                 All eBooksNumbers have @"<pgterms:etext" as a prefix tag in the text file
+                 If this string is there, all unusable characters are removed, and just the ebook numbers remain.  The same thing is done with strings, and all other book categories, each using similar formats
+                 */
+
+                if ([string hasPrefix:@"<pgterms:etext"])
+                {
                     ebookNumbers = string;
                     NSString *eBookNumbersWithOutBeginning = [self getASubStringOfAString:ebookNumbers fromTheFirstCharacterOfACertainCharacter:@"\""];
                     ebookNumbers = [self getASubStringOfAString:eBookNumbersWithOutBeginning toTheFirstCharacterOfACertainCharacter:@"\""];
-                    //ebookNumbers = [ebookNumbers stringByAppendingString:@"Priyansh"];
-                    
                 }
-                else if ([string hasPrefix:@"  <dc:title"]) {
+                else if ([string hasPrefix:@"  <dc:title"])
+                {
                     eBookTitles = string;
                     
                     NSString *eBookTitlesAfterFirstQuotationMark = [self getASubStringOfAString:eBookTitles fromTheFirstCharacterOfACertainCharacter:@"\""];
                     NSString *eBookTitlesAfterSecondQuoationMark = [self getASubStringOfAString:eBookTitlesAfterFirstQuotationMark fromTheFirstCharacterOfACertainCharacter:@">"];
                     eBookTitles = [self getASubStringOfAString:eBookTitlesAfterSecondQuoationMark toTheFirstCharacterOfACertainCharacter:@"<"];
-                    //eBookTitles = [eBookTitles stringByAppendingString:@"Priyansh"];
-                    
                 }
-                
-                else if ([string hasPrefix:@"  <dc:creator"]) {
+                else if ([string hasPrefix:@"  <dc:creator"])
+                {
                     ebookAuthors = string;
                     NSString *gettingRidOfPrefix = [self getASubStringOfAString:ebookAuthors fromTheFirstCharacterOfACertainCharacter:@">"];
                     ebookAuthors = [self getASubStringOfAString:gettingRidOfPrefix toTheFirstCharacterOfACertainCharacter:@"<"];
-                    //ebookAuthors = [ebookAuthors stringByAppendingString:@"Priyansh"];
                 }
                 
                 else if ([string hasPrefix:@"  <pgterms:friendlytitle"]) {
                     eBookFriendlyTitle = string;
                     NSString *gettingRidOfPrefix = [self getASubStringOfAString:eBookFriendlyTitle fromTheFirstCharacterOfACertainCharacter:@">"];
                     eBookFriendlyTitle = [self getASubStringOfAString:gettingRidOfPrefix toTheFirstCharacterOfACertainCharacter:@"<"];
-                    //eBookFriendlyTitle = [eBookFriendlyTitle stringByAppendingString:@"Priyansh"];
-                    
                 }
-                else if ([string hasPrefix:@"  <dc:language>"]) {
+                else if ([string hasPrefix:@"  <dc:language>"])
+                {
                     eBookLanguage = string;
                     
                     NSString *getRidOfBegining = [self getASubStringOfAString:eBookLanguage fromTheFirstCharacterOfACertainCharacter:@">"];
@@ -172,36 +160,25 @@
                     NSString *getRidOfRDFValue = [self getASubStringOfAString:getRidOfISONumber fromTheFirstCharacterOfACertainCharacter:@">"];
                     
                     eBookLanguage = [self getASubStringOfAString:getRidOfRDFValue toTheFirstCharacterOfACertainCharacter:@"<"];
-                    //eBookLanguage = [eBookLanguage stringByAppendingString:@"Priyansh"];
-                    
-                    
-                    
                 }
-                else if ([string hasPrefix:@"      <rdf:li><dcterms:LCSH"]) {
+                else if ([string hasPrefix:@"      <rdf:li><dcterms:LCSH"])
+                {
                     eBookGenre = string;
                     
                     NSString *getRidOfFirstGreaterThanSign = [self getASubStringOfAString:eBookGenre fromTheFirstCharacterOfACertainCharacter:@">"];
                     NSString *getRidOfSecondGreaterThanSign = [self getASubStringOfAString:getRidOfFirstGreaterThanSign fromTheFirstCharacterOfACertainCharacter:@">"];
                     NSString *getRidOfThirdGreaterThanSign = [self getASubStringOfAString:getRidOfSecondGreaterThanSign fromTheFirstCharacterOfACertainCharacter:@">"];
                     eBookGenre = [self getASubStringOfAString:getRidOfThirdGreaterThanSign toTheFirstCharacterOfACertainCharacter:@"<"];
-                    //eBookGenre = [eBookGenre stringByAppendingString:@"Priyansh"];
-                    
                 }
-                
-                
             }
-            
-            //NSLog(@"Ending for in Loop");
-            
+            /*
+             Use all the informations from the arrays to generate a dictionary of books with all the correct information
+             */
             NSDictionary *newDict = [self turnStringsIntoArrayOfDictionaryWithEBookNumbers:ebookNumbers eBookTitles:eBookTitles eBookAuthors:ebookAuthors eBookFriendlyTitles:eBookFriendlyTitle eBookLanguages:eBookLanguage eBookGenres:eBookGenre];
             
             [arrayOfDictionaries addObject:newDict];
-            
-        } //NSLog(@"Ending Second For Loop");
-        
-    } //NSLog(@"Ending First For Loop");
-    
-    //NSLog(@"Done with Loops");
+        }
+    }
     return [arrayOfDictionaries copy];
     
     
@@ -215,7 +192,7 @@
  
  ------------------------Helper Functions----------------------------------------
  
- 
+
  */
 
 -(NSDictionary *)turnStringsIntoArrayOfDictionaryWithEBookNumbers:(NSString *)eBookNumbers
@@ -223,7 +200,8 @@
                                                      eBookAuthors:(NSString *)eBookAuthors
                                               eBookFriendlyTitles:(NSString *)eBookFriendlyTitles
                                                    eBookLanguages:(NSString *)eBookLanguages
-                                                      eBookGenres:(NSString *)eBookGenres {
+                                                      eBookGenres:(NSString *)eBookGenres
+{
     
     NSDictionary *newDictionary = @{@"eBookNumbers":eBookNumbers,
                                     @"eBookTitles":eBookTitles,
@@ -233,34 +211,37 @@
                                     @"eBookGenres":eBookGenres,
                                     };
     
-    NSLog(@"This is the new Dictionary --------------- \n %@", newDictionary);
     return newDictionary;
 }
 
--(NSArray *)makeNestedArraysFromAnArrayOfStrings:(NSArray *)array AtASpecificCharater:(NSString *)string {
-    //NSLog(@"starting");
+-(NSArray *)makeNestedArraysFromAnArrayOfStrings:(NSArray *)array AtASpecificCharater:(NSString *)string
+{
     NSMutableArray *mutableCopy = [array mutableCopy];
     NSMutableArray *resultingArray = [[NSMutableArray alloc] init];
     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-    //NSLog(@"Starting For Loop");
-    for (NSUInteger i = 0; i < mutableCopy.count; i++) {
-        if (![mutableCopy[i] isEqualToString:string]) {
+   
+    for (NSUInteger i = 0; i < mutableCopy.count; i++)
+    {
+        if (![mutableCopy[i] isEqualToString:string])
+        {
             [tempArray addObject:mutableCopy[i]];
-            //NSLog(@"%@", tempArray);
+           
         } else {
             [resultingArray addObject:[tempArray copy]];
-            //NSLog(@"%@", resultingArray);
             [tempArray removeAllObjects];
         }
     }
     return [resultingArray copy];
 }
 
--(NSString *)getASubStringOfAString:(NSString *)string fromTheFirstCharacterOfACertainCharacter:(NSString *)character {
+-(NSString *)getASubStringOfAString:(NSString *)string fromTheFirstCharacterOfACertainCharacter:(NSString *)character
+{
     NSString *newString = @"";
-    for (NSUInteger i = 0; i < string.length; i++) {
+    for (NSUInteger i = 0; i < string.length; i++)
+    {
         unichar currentCharacter = [string characterAtIndex:i];
-        if ([[NSString stringWithFormat:@"%C", currentCharacter] isEqualToString:character]) {
+        if ([[NSString stringWithFormat:@"%C", currentCharacter] isEqualToString:character])
+        {
             newString = [string substringFromIndex:i+1];
             break;
         }
@@ -269,11 +250,14 @@
     
 }
 
--(NSString *)getASubStringOfAString:(NSString *)string toTheFirstCharacterOfACertainCharacter:(NSString *)character {
+-(NSString *)getASubStringOfAString:(NSString *)string toTheFirstCharacterOfACertainCharacter:(NSString *)character
+{
     NSString *newString = @"";
-    for (NSUInteger i = 0; i < string.length; i++) {
+    for (NSUInteger i = 0; i < string.length; i++)
+    {
         unichar currentCharacter = [string characterAtIndex:i];
-        if ([[NSString stringWithFormat:@"%C", currentCharacter] isEqualToString:character]) {
+        if ([[NSString stringWithFormat:@"%C", currentCharacter] isEqualToString:character])
+        {
             newString = [string substringToIndex:i];
             break;
         }

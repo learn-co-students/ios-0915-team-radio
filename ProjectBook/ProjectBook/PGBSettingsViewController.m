@@ -7,6 +7,7 @@
 //
 
 #import "PGBSettingsViewController.h"
+#import "PGBRealmBook.h"
 
 @interface PGBSettingsViewController ()
 
@@ -37,8 +38,14 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (IBAction)logoutButtonTapped:(id)sender {
-    [PFUser logOut];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //update parse when user logs out
+    [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^{
+        NSLog(@"update parse completed");
+        
+        [PFUser logOut];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
 }
 
 @end

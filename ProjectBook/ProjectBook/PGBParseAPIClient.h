@@ -16,4 +16,5 @@
 +(void)fetchUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(NSArray *books))completionBlock;
 //+(void)storeUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)())completionBlock;
 +(void)storeUserBookDataWithUserObject:(PFObject *)userObject realmBookObject:(PGBRealmBook *)realmBook andCompletion:(void (^)(PFObject *bookObject))completionBlock;
++(void)deleteUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)())completionBlock;
 @end

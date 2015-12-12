@@ -9,6 +9,7 @@
 #import "PGBRealmBook.h"
 #import "PGBHomeViewController.h"
 #import "PGBParseAPIClient.h"
+#import "PGBDataStore.h"
 
 @implementation PGBRealmBook
 
@@ -47,18 +48,36 @@
     
 }
 
-+ (NSString *)primaryKey {
++ (NSString *)primaryKey
+{
     return @"ebookID";
 }
 
-+ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock {
++ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock andCompletion:(void (^)())completionBlock{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
-    //    [realm addObject:book];
+    //[realm addObject:book];
     PGBRealmBook *book = updateBlock();
     [realm addOrUpdateObject:book];
+    
     [realm commitWriteTransaction];
+    
+    completionBlock();
+}
+
++ (void)storeUserBookDataWithBooks:(NSArray *)books andCompletion:(void (^)())completionBlock{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    [realm beginWriteTransaction];
+    
+    for (PGBRealmBook *book in books) {
+        [realm addOrUpdateObject:book];
+    }
+
+    [realm commitWriteTransaction];
+    
+    completionBlock();
 }
 
 + (void)storeUserBookDataWithBook:(PGBRealmBook *)book{
@@ -71,20 +90,24 @@
     [realm commitWriteTransaction];
 }
 
-+ (void)deleteUserBookDataForBook:(PGBRealmBook *)book{
++ (void)deleteUserBookDataForBook:(PGBRealmBook *)book andCompletion:(void (^)())completionBlock{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
     [realm deleteObject:book];
     [realm commitWriteTransaction];
+    
+    completionBlock();
 }
 
-+ (void)deleteAllUserBookData{
++ (void)deleteAllUserBookDataWithCompletion:(void (^)())completionBlock{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
     [realm deleteAllObjects];
     [realm commitWriteTransaction];
+    
+    completionBlock();
 }
 
 + (RLMResults *)getUserBookData{
@@ -101,6 +124,25 @@
     }
     return result;
 }
+
++ (NSArray *)getUserBookDataInArrayIncludingCoverData{
+    RLMResults *books = [PGBRealmBook allObjects];
+    
+    NSMutableArray *result = [[NSMutableArray alloc]init];
+    for (PGBRealmBook *book in books) {
+        
+        NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:book.ebookID]];
+        
+        if (bookCoverData) {
+            book.bookCoverData = bookCoverData;
+        }
+        
+        [result addObject:book];
+    }
+    return result;
+}
+
+
 
 //+ (void)generateTestBookData{
 //    if (![PGBRealmBook getUserBookDataInArray].count) {
@@ -120,39 +162,306 @@
 //    }
 //}
 
-+(void)generateClassicBooks {
-    if (![PGBRealmBook getUserBookDataInArray].count) {
-        PGBRealmBook *prideAndPrejudice = [[PGBRealmBook alloc]initWithTitle:@"Pride and Prejudice" author:@"Jane Austen" genre:@"Fiction" language:@"English" friendlyTitle:@"" downloadURL:@"https://www.gutenberg.org/ebooks/1342.epub.images" bookDescription:@"\"It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.\"\nSo begins Pride and Prejudice, Jane Austen's witty comedy of manners--one of the most popular novels of all time--that features splendidly civilized sparring between the proud Mr. Darcy and the prejudiced Elizabeth Bennet as they play out their spirited courtship in a series of eighteenth-century drawing-room intrigues." ebookID:nil isDownloaded:NO isBookmarked:nil bookCoverData:nil];
-        
-        [PGBRealmBook storeUserBookDataWithBook:prideAndPrejudice];
-    }
-
++(PGBRealmBook *)generateBooksWitheBookID:(NSString *)ebookID {
+    
+    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
+    
+    NSPredicate *filter = [NSPredicate predicateWithFormat:@"eBookNumbers == %@", ebookID];
+    NSArray *coreDataBooks = [dataStore.managedBookObjects filteredArrayUsingPredicate:filter];
+    
+    return [PGBRealmBook createPGBRealmBookWithBook:[coreDataBooks firstObject]];
 }
 
 
-+ (PGBRealmBook *)createPGBRealmBookWithBook:(Book *)coreDataBook {
++ (PGBRealmBook *)createPGBRealmBookWithBook:(Book *)coreDataBook
+{
     
     PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
-    
-    //leo here
     realmBook.ebookID = coreDataBook.eBookNumbers;
     realmBook.genre = coreDataBook.eBookGenres;
     realmBook.title = coreDataBook.eBookTitles;
-    realmBook.author = coreDataBook.eBookAuthors;
     realmBook.friendlyTitle = coreDataBook.eBookFriendlyTitles;
     realmBook.language = coreDataBook.eBookLanguages;
     
-    if ([realmBook.language isEqualToString:@"en"]) {
-        realmBook.language = @"English";
-    } else if ([realmBook.language isEqualToString:@"de"]) {
-        realmBook.language = @"German";
-    } else if ([realmBook.language isEqualToString:@"fr"]) {
-        realmBook.language = @"French";
-    } else if ([realmBook.language isEqualToString:@"it"]) {
-        realmBook.language = @"Italian";
+    realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
+    realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
+    
+    realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"ò" withString:@"o"];
+    realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:@"ò" withString:@"o"];
+    
+    realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"ë" withString:@"e"];
+    realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:@"ë" withString:@"e"];
+    
+    NSArray *aCharacters = @[ @"à", @"á", @"â", @"ä", @"æ", @"ã", @"å", @"ā" ];
+    NSArray *eCharacters = @[ @"è", @"é", @"ê", @"ë", @"ē", @"ė", @"ę" ];
+    NSArray *iCharacters = @[ @"î", @"ï", @"í", @"ī", @"į", @"ì" ];
+    NSArray *oCharacters = @[ @"ô", @"ö", @"ò", @"ó", @"ø", @"ō", @"õ" ];
+    NSArray *uCharacters = @[ @"û", @"ü", @"ù", @"ú", @"ū", @"u" ];
+    NSArray *nCharacters = @[ @"ñ", @"ń"];
+
+    realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"ÿ" withString:@"y"];
+    realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:@"ß" withString:@"ss"];
+    
+    for (NSString *special in nCharacters) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:special withString:@"n"];
+        realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:special withString:@"n"];
     }
     
-    if ([self validateBookDataWithRealmBook:realmBook]) {
+    for (NSString *special in aCharacters) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:special withString:@"a"];
+        realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:special withString:@"a"];
+    }
+    
+    for (NSString *special in eCharacters) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:special withString:@"e"];
+        realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:special withString:@"e"];
+    }
+    
+    for (NSString *special in iCharacters) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:special withString:@"i"];
+        realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:special withString:@"i"];
+    }
+    
+    for (NSString *special in oCharacters) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:special withString:@"o"];
+        realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:special withString:@"o"];
+    }
+    
+    for (NSString *special in uCharacters) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:special withString:@"u"];
+        realmBook.author = [realmBook.author stringByReplacingOccurrencesOfString:special withString:@"u"];
+    }
+    
+    //for genre
+    if ([realmBook.genre containsString:@"Comedy"]){
+        realmBook.genre = @"Comedy";
+    }  else if ([realmBook.genre containsString:@"Operas"]){
+        realmBook.genre = @"Opera";
+    }  else if ([realmBook.genre containsString:@"Romances"]){
+        realmBook.genre = @"Romance";
+    }  else if ([realmBook.genre containsString:@"Biography"]){
+        realmBook.genre = @"Biography";
+    }  else if ([realmBook.genre containsString:@"Short stories"]){
+        realmBook.genre = @"Short Stories";
+    }  else if ([realmBook.genre containsString:@"Children's stories"]){
+        realmBook.genre = @"Children's Stories";
+    }  else if ([realmBook.genre containsString:@"Political ethics"]){
+        realmBook.genre = @"Political ethics";
+    }  else if ([realmBook.genre containsString:@"Epic literature"]){
+        realmBook.genre = @"Epic Literature";
+    }  else if ([realmBook.genre containsString:@"Epic poetry"]){
+        realmBook.genre = @"Epic Poetry";
+    }  else if ([realmBook.genre containsString:@"Fables"]){
+        realmBook.genre = @"Fables";
+    }  else if ([realmBook.genre containsString:@"Classical literature"]){
+        realmBook.genre = @"Classical Literature";
+    }  else if ([realmBook.genre containsString:@"Ethics"]){
+        realmBook.genre = @"Ethics";
+    }  else if ([realmBook.genre containsString:@"Sonnets"]){
+        realmBook.genre = @"Sonnets";
+    }  else if ([realmBook.genre containsString:@"Fairy plays"]){
+        realmBook.genre = @"Fairy plays";
+    }  else if ([realmBook.genre containsString:@"Children's literature"]){
+        realmBook.genre = @"Children's Literature";
+    }  else if ([realmBook.genre containsString:@"Tragicomedy"]){
+        realmBook.genre = @"Tragicomedy";
+    }  else if ([realmBook.genre containsString:@"Apologetics"]){
+        realmBook.genre = @"Apologetics";
+    }  else if ([realmBook.genre containsString:@"God"]){
+        realmBook.genre = @"Religion";
+    }  else if ([realmBook.genre containsString:@"Literature"]){
+        realmBook.genre = @"Literature";
+    }  else if ([realmBook.genre containsString:@"Science"]){
+        realmBook.genre = @"Science";
+    }  else if ([realmBook.genre containsString:@"Musical notation"]){
+        realmBook.genre = @"Musical notation";
+    }  else if ([realmBook.genre containsString:@"Renaissance"]){
+        realmBook.genre = @"Renaissance";
+    }  else if ([realmBook.genre containsString:@"Fairy tales"]){
+        realmBook.genre = @"Fairy tales";
+    }  else if ([realmBook.genre containsString:@"Juvenile literature"]){
+        realmBook.genre = @"Juvenile literature";
+    }  else if ([realmBook.genre containsString:@"Latin poetry"]){
+        realmBook.genre = @"Latin poetry";
+    }  else if ([realmBook.genre containsString:@"Satire"]){
+        realmBook.genre = @"Satire";
+    }  else if ([realmBook.genre containsString:@"Women"]){
+        realmBook.genre = @"Women";
+    }  else if ([realmBook.genre containsString:@"Popular music"]){
+        realmBook.genre = @"Popular Music";
+    }  else if ([realmBook.genre containsString:@"Juvenile poetry"]){
+        realmBook.genre = @"Juvenile Poetry";
+    }  else if ([realmBook.genre containsString:@"Mathematics"]){
+        realmBook.genre = @"Mathematics";
+    }  else if ([realmBook.genre containsString:@"Folklore"]){
+        realmBook.genre = @"Folklore";
+    }  else if ([realmBook.genre containsString:@"Folklore"]){
+        realmBook.genre = @"Folklore";
+    }  else if ([realmBook.genre containsString:@"Adventure"]){
+        realmBook.genre = @"Adventure";
+    }  else if ([realmBook.genre containsString:@"Psychology"]){
+        realmBook.genre = @"Psychology";
+    }  else if ([realmBook.genre containsString:@"Love stories"]){
+        realmBook.genre = @"Love Stories";
+    }  else if ([realmBook.genre containsString:@"Editorials"]){
+        realmBook.genre = @"Editorials";
+    }  else if ([realmBook.genre containsString:@"classics"]){
+        realmBook.genre = @"Classics";
+    }  else if ([realmBook.genre containsString:@"Classics"]){
+        realmBook.genre = @"Classics";
+    }  else if ([realmBook.genre containsString:@"Art"]){
+        realmBook.genre = @"Art";
+    }  else if ([realmBook.genre containsString:@"Bible"]){
+        realmBook.genre = @"Bible";
+    }  else if ([realmBook.genre containsString:@"Fantasy"]){
+        realmBook.genre = @"Fantasy";
+    }  else if ([realmBook.genre containsString:@"Textbooks"]){
+        realmBook.genre = @"Textbook";
+    }  else if ([realmBook.genre containsString:@"Shakespeare"]){
+        realmBook.genre = @"Shakespeare";
+    }  else if ([realmBook.genre containsString:@"Architecture"]){
+        realmBook.genre = @"Architecture";
+    }  else if ([realmBook.genre containsString:@"Business"]){
+        realmBook.genre = @"Business";
+    }  else if ([realmBook.genre containsString:@"Philosophy"]){
+        realmBook.genre = @"Philosophy";
+    }  else if ([realmBook.genre containsString:@"Juvenile fiction"]){
+        realmBook.genre = @"Juvenile Fiction";
+    }  else if ([realmBook.genre containsString:@"Economics"]){
+        realmBook.genre = @"Economics";
+    }  else if ([realmBook.genre containsString:@"Philosophy"]){
+        realmBook.genre = @"Philosophy";
+    }
+
+    
+    else if ([realmBook.genre containsString:@"Mystery"]){
+        realmBook.genre = @"Mystery";
+    }
+    else if ([realmBook.genre containsString:@"Fiction"]){
+        realmBook.genre = @"Fiction";
+    }
+
+    else if ([realmBook.genre containsString:@"Drama"]){
+        realmBook.genre = @"Drama";
+    } else if ([realmBook.genre containsString:@"Poetry"]){
+        realmBook.genre = @"Poetry";
+    }  else if ([realmBook.genre containsString:@"drama"]){
+        realmBook.genre = @"Drama";
+    }  else if ([realmBook.genre containsString:@"History"]){
+        realmBook.genre = @"History";
+    }
+    
+    else if ([realmBook.genre containsString:@"fiction"]){
+        realmBook.genre = @"Fiction";
+    }
+    
+    else if ([realmBook.genre containsString:@"poetry"]){
+        realmBook.genre = @"Poetry";
+    }
+    
+    else {
+        realmBook.genre = nil;
+//        NSLog (@"genresss:%@", realmBook.genre);
+    }
+    
+//    else {
+//        realmBook.genre = nil;
+//    }
+    
+    //for author
+    if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle])
+    {
+        realmBook.author = [realmBook getAuthorFromFriendlyTitle:realmBook.friendlyTitle];
+        if (!realmBook.author) {
+            realmBook.author = [realmBook parseAuthor:realmBook.author];
+        }
+    }
+    
+    //for punctuation
+    if ([realmBook.title containsString:@"&quot;"]) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    } else if ([realmBook.title containsString:@"&amp;"]) {
+        realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    }
+    
+
+    //for language
+    
+    if ([realmBook.language isEqualToString:@"en"]){
+        realmBook.language = @"English";
+    } else if ([realmBook.language isEqualToString:@"de"]){
+        realmBook.language = @"German";
+    } else if ([realmBook.language isEqualToString:@"fr"]){
+        realmBook.language = @"French";
+    } else if ([realmBook.language isEqualToString:@"it"]){
+        realmBook.language = @"Italian";
+    } else if ([realmBook.language isEqualToString:@"fi"]){
+        realmBook.language = @"Finnish";
+    } else if ([realmBook.language isEqualToString:@"zh"]){
+        realmBook.language = @"Chinese";
+    } else if ([realmBook.language isEqualToString:@"es"]){
+        realmBook.language = @"Spanish";
+    } else if ([realmBook.language isEqualToString:@"pt"]){
+        realmBook.language = @"Portuguese";
+    } else if ([realmBook.language isEqualToString:@"tr"]){
+        realmBook.language = @"Turkish";
+    } else if ([realmBook.language isEqualToString:@"el"]){
+        realmBook.language = @"Greek";
+    }  else if ([realmBook.language isEqualToString:@"eo"]){
+        realmBook.language = @"Esperanto";
+    }  else if ([realmBook.language isEqualToString:@"la"]){
+        realmBook.language = @"Latin";
+    }  else if ([realmBook.language isEqualToString:@"hu"]){
+        realmBook.language = @"Hungarian";
+    } else if ([realmBook.language isEqualToString:@"ru"]){
+        realmBook.language = @"Russian";
+    }  else if ([realmBook.language isEqualToString:@"nl"]){
+        realmBook.language = @"Dutch";
+    }  else if ([realmBook.language isEqualToString:@"pl"]){
+        realmBook.language = @"Polish";
+    }   else if ([realmBook.language isEqualToString:@"tl"]){
+        realmBook.language = @"Tagalog";
+    }  else if ([realmBook.language isEqualToString:@"ca"]){
+        realmBook.language = @"Catalan";
+    }  else if ([realmBook.language isEqualToString:@"da"]){
+        realmBook.language = @"Danish";
+    }  else if ([realmBook.language isEqualToString:@"no"]){
+        realmBook.language = @"Norwegian";
+    }  else if ([realmBook.language isEqualToString:@"ja"]){
+        realmBook.language = @"Japanese";
+    }  else if ([realmBook.language isEqualToString:@"sl"]){
+        realmBook.language = @"Slovenian";
+    }  else if ([realmBook.language isEqualToString:@"bg"]){
+        realmBook.language = @"Bulgarian";
+    }  else if ([realmBook.language isEqualToString:@"sv"]){
+        realmBook.language = @"Swedish";
+    }  else if ([realmBook.language isEqualToString:@"cs"]){
+        realmBook.language = @"Czech";
+    }  else if ([realmBook.language isEqualToString:@"ia"]){
+        realmBook.language = @"Interlingua";
+    }  else if ([realmBook.language isEqualToString:@"ilo"]){
+        realmBook.language = @"Iloko";
+    }  else if ([realmBook.language isEqualToString:@"he"]){
+        realmBook.language = @"Hebrew";
+    }  else if ([realmBook.language isEqualToString:@"te"]){
+        realmBook.language = @"Telugu";
+    }  else if ([realmBook.language isEqualToString:@"is"]){
+        realmBook.language = @"Icelandic";
+    }  else if ([realmBook.language isEqualToString:@"lt"]){
+        realmBook.language = @"Lithuanian";
+    }  else if ([realmBook.language isEqualToString:@"br"]){
+        realmBook.language = @"Breton";
+    }  else if ([realmBook.language isEqualToString:@"cy"]){
+        realmBook.language = @"Welsh";
+    }  else if ([realmBook.language isEqualToString:@"af"]){
+        realmBook.language = @"Afrikaans";
+    }
+    
+    else {
+        NSLog (@"language needs to be changed: %@", realmBook.language);
+    }
+    
+    if ([self validateBookDataWithRealmBook:realmBook]){
         return realmBook;
     } else {
         return nil;
@@ -160,61 +469,133 @@
     
 }
 
-- (BOOL)checkFriendlyTitleIfItHasAuthor:(NSString *)friendlyTitle {
-    if ([friendlyTitle containsString:@"by"]) {
+- (BOOL)checkFriendlyTitleIfItHasAuthor:(NSString *)friendlyTitle
+{
+    if ([friendlyTitle containsString:@"by"])
+    {
         NSMutableArray *wordsInFriendlyTitleInArray = [[friendlyTitle componentsSeparatedByString: @" "] mutableCopy];
         NSInteger index = [wordsInFriendlyTitleInArray indexOfObject:@"by"];
         NSInteger afterIndex = index + 1;
-        if (afterIndex < wordsInFriendlyTitleInArray.count) {
+        if (afterIndex < wordsInFriendlyTitleInArray.count)
+        {
             return YES;
         }
     }
     return NO;
 }
 
-- (NSString *)getAuthorFromFriendlyTitle:(NSString *)friendlyTitle {
+- (NSString *)getAuthorFromFriendlyTitle:(NSString *)friendlyTitle
+{
     
     friendlyTitle = [friendlyTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSMutableArray *wordsInFriendlyTitleInArray = [[friendlyTitle componentsSeparatedByString: @" "] mutableCopy];
     NSMutableString *authorName = [NSMutableString new];
-    //if (![coreDataBook.eBookFriendlyTitles isEqualToString:@""])
+    NSMutableArray *newArray = [[NSMutableArray alloc]init];
     
-    //here, the friendly title does contain the string "by", and so is of the correct format
-    //next step is to get the author of the book without the title
-    //this means we must get all the strings after the word "by"
     
-    //we find the index of element "by", and then append every element after that index to a string, in order to get the book title
+    
+    
+    /*
+     if (![coreDataBook.eBookFriendlyTitles isEqualToString:@""])
+    
+    here, the friendly title does contain the string "by", and so is of the correct format
+    next step is to get the author of the book without the title
+    this means we must get all the strings after the word "by"
+    
+    we find the index of element "by", and then append every element after that index to a string, in order to get the book title
+     */
     NSUInteger indexOfStringBy = [wordsInFriendlyTitleInArray indexOfObject:@"by"];
     
-    //here we remove by, and everything before it, now the array is just the authors name
-    [wordsInFriendlyTitleInArray removeObjectsInRange:NSMakeRange (0, indexOfStringBy+1)];
-    
-    
-    //append the array elements (authors name) to a string
-    for (NSString *nameOfAuthor in wordsInFriendlyTitleInArray)
-    {
-        [authorName appendString:nameOfAuthor];
+    /*
+     here we remove by, and everything before it, now the array is just the authors name
+     */
+        [wordsInFriendlyTitleInArray removeObjectsInRange:NSMakeRange (0, indexOfStringBy+1)];
+
+    for (NSString *string in wordsInFriendlyTitleInArray) {
+        if (![string isEqualToString:@""]){
+            BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[string characterAtIndex:0]];
+            if (isUppercase) {
+                [newArray addObject:string];
+            }
+        }
+    }
+//      append the array elements (authors name) to a string
+    if (newArray.count > 1) {
+        for (NSString *nameOfAuthor in newArray)
+        {
+            [authorName appendString:nameOfAuthor];
+            /*
+             add a space so the name isn't one word
+             this also adds a space to the end of the last word
+             */
+            [authorName appendString:@" "];
+        }
         
-        //add a space so the name isn't one word
-        //this also adds a space to the end of the last word
-        [authorName appendString:@" "];
+        NSString *authorWithSpace = authorName;
+        authorWithSpace = [authorWithSpace stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
-        //            NSString *authorWithSpace = authorName;
-        //            //need to remove the last character in the string which is just a space
-        //            authorWithSpace = [authorWithSpace stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        //            NSLog (@"ayyy %@", authorWithSpace);
+        return authorWithSpace;
     }
     
-    NSString *authorWithSpace = authorName;
-    authorWithSpace = [authorWithSpace stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    return authorWithSpace;
+    return nil;
 }
 
+
+
+-(NSString *)parseAuthor:(NSString *)author {
+    author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    NSArray *unnecesssary = @[ @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"0", @"-", @"?", @"(", @")", @"BC"];
+    
+    for (NSString *thing in unnecesssary) {
+        if ([author containsString:thing]) {
+            
+            author = [author stringByReplacingOccurrencesOfString:thing withString:@""];
+        }
+    }
+    author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([author hasSuffix:@","]){
+        author = [author substringToIndex:[author length]-1];
+    }
+    
+    NSMutableArray *wordsInAuthorInArray = [[author componentsSeparatedByString: @" "] mutableCopy];
+    NSMutableArray *authorArray = [[NSMutableArray alloc]init];
+    
+    for (NSString *string in wordsInAuthorInArray) {
+        BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[string characterAtIndex:0]];
+        if (isUppercase) {
+            [authorArray addObject:string];
+        }
+    }
+    if ([authorArray.firstObject containsString:@","]) {
+        NSString *lastName = authorArray.firstObject;
+        [authorArray removeObject:lastName];
+        [authorArray insertObject:lastName atIndex:authorArray.count];
+    }
+    
+    NSMutableString *newAuthor = [[NSMutableString alloc]init];
+    
+    for (NSString *name in authorArray) {
+        [newAuthor appendString:name];
+        [newAuthor appendString:@" "];
+    }
+    
+    author = newAuthor;
+    
+    author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if ([author hasSuffix:@","]){
+        author = [author substringToIndex:[author length]-1];
+    }
+    
+    return author;
+}
 
 +(BOOL)validateBookDataWithRealmBook:(PGBRealmBook *)realmBook{
     
     if (realmBook.title.length == 0 ||
-        realmBook.author.length == 0 || [realmBook.author isEqualToString:@"Various"] || [realmBook.author isEqualToString:@"Unknown"] || realmBook.ebookID.length == 0) {
+        realmBook.author.length == 0 || [realmBook.author isEqualToString:@"Various"] || [realmBook.author isEqualToString:@"Unknown"] || realmBook.ebookID.length == 0)
+    {
         return NO;
     }
     
@@ -222,7 +603,7 @@
 }
 
 
-+ (PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook {
++(PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook {
     
     PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
     
@@ -232,7 +613,7 @@
     return realmBook;
 }
 
-+ (NSURL *)createBookCoverURL:(NSString *)eBookNumber {
++(NSURL *)createBookCoverURL:(NSString *)eBookNumber {
     
     if (eBookNumber.length) {
         
@@ -247,52 +628,76 @@
     return nil;
 }
 
-+ (void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock {
++(void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock {
     
     [PGBParseAPIClient fetchUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^(NSArray *books) {
         for (NSDictionary *book in books) {
-            PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
-            realmBook.ebookID = book[@"eBookID"];
-            realmBook.title = book[@"eBookTitle"];
-            realmBook.friendlyTitle = book[@"eBookFriendlyTitle"];
-            realmBook.author = book[@"eBookAuthor"];
-            realmBook.genre = book[@"eBookGenre"];
-            realmBook.language = book[@"eBookLanguage"];
-            realmBook.bookDescription = book[@"eBookDescription"];
-            realmBook.isDownloaded = [book[@"isDownloaded"] integerValue];
-            realmBook.isBookmarked = [book[@"isBookmarked"] integerValue];
             
-            if (realmBook.ebookID.length) {
-                NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:realmBook.ebookID]];
+            NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+            
+            [bgQueue addOperationWithBlock:^{
+                PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
+                realmBook.ebookID = book[@"eBookID"];
+                realmBook.title = book[@"eBookTitle"];
+                realmBook.friendlyTitle = book[@"eBookFriendlyTitle"];
+                realmBook.author = book[@"eBookAuthor"];
+                realmBook.genre = book[@"eBookGenre"];
+                realmBook.language = book[@"eBookLanguage"];
+                realmBook.bookDescription = book[@"eBookDescription"];
+                realmBook.isDownloaded = [book[@"isDownloaded"] integerValue];
+                realmBook.isBookmarked = [book[@"isBookmarked"] integerValue];
                 
-                if (bookCoverData) {
-                    realmBook.bookCoverData = bookCoverData;
+                if (realmBook.ebookID.length)
+                {
+                    NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:realmBook.ebookID]];
+                    
+                    if (bookCoverData)
+                    {
+                        realmBook.bookCoverData = bookCoverData;
+                    }
+                    
+                    NSLog(@"begin storing to realm");
+                    [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+                        return realmBook;
+                    } andCompletion:^{
+                        completionBlock();
+                    }];
+                    
                 }
-            }
-
-            
-            [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-                return realmBook;
             }];
         }
         
+        NSLog(@"end storing to realm");
+    }];
+}
+
++(void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock {
+    
+    [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
         completionBlock();
     }];
 }
 
-+ (void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock {
-    
-//    [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-    
-        [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
-            completionBlock();
-        }];
++(void)updateParseWithRealmBookDataWithCompletion:(void (^)())completionBlock{
+    [PGBParseAPIClient deleteUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^{
         
-//        return realmBook;
-//    }];
-
+        NSArray *booksInRealm = [PGBRealmBook getUserBookDataInArray];
+        
+        if (booksInRealm.count) {
+            for (PGBRealmBook *realmBook in booksInRealm) {
+                
+//                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:realmBook andCompletion:^{
+//                    completionBlock();
+//                }];
+                [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
+                    completionBlock();
+                }];
+            }
+        } else {
+            completionBlock();
+        }
+        
+    }];
 }
-
-
 
 @end
