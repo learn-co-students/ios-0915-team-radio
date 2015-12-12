@@ -75,9 +75,9 @@
         make.centerX.equalTo(view1.mas_centerX);
     }];
     
-    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.greaterThanOrEqualTo(genreLabel.mas_height);
-    }];
+//    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.height.greaterThanOrEqualTo(genreLabel.mas_height);
+//    }];
     
     UIView *view2 = [[UIView alloc]init];
     view2.backgroundColor = [UIColor whiteColor];
@@ -97,12 +97,9 @@
         make.centerX.equalTo(view2.mas_centerX);
     }];
     
-    
-    
     [self.infoStackView addArrangedSubview:view1];
     [self.infoStackView addArrangedSubview:view2];
 
-    
 //book description height and description
 //    [self.view addSubview:self.bookDescriptionTV];
     [self.bookDescriptionTV sizeToFit];

@@ -290,14 +290,14 @@
 		4C58DDE11C1BC18F00438AB0 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */,
 				CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */,
-				CBFC218D1C1A1D62007404E7 /* PGBBookViewController.h */,
-				CBFC218E1C1A1D62007404E7 /* PGBBookViewController.m */,
+				CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */,
 				4C5D947C1BFE389A0086DB5F /* PGBMyBookViewController.h */,
 				4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */,
 				4C9D16611C0CF04800DBF989 /* PGBSearchViewController.h */,
 				4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */,
+				CBFC218D1C1A1D62007404E7 /* PGBBookViewController.h */,
+				CBFC218E1C1A1D62007404E7 /* PGBBookViewController.m */,
 				4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarViewController.h */,
 				4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */,
 				8902002B1C0CA900001A1ECF /* PGBLoginViewController.h */,

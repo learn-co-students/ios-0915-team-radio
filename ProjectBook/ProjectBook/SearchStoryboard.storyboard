@@ -104,7 +104,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Rf-gu-qMt" userLabel="Book Cover View">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
-                                                <color key="backgroundColor" red="0.2465486566" green="0.49499482519999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pu4-tz-00q" userLabel="Book Cover">
                                                 <rect key="frame" x="165" y="20" width="270" height="200"/>
@@ -220,11 +220,12 @@
                         <outlet property="scrollview" destination="eP1-6R-3gw" id="5Vf-h3-u8A"/>
                         <outlet property="superContentView" destination="CLM-wP-2sI" id="OhF-b0-7dW"/>
                         <outlet property="titleTV" destination="04D-J7-c9I" id="GnG-2c-KmO"/>
+                        <outlet property="webViewContainer" destination="XJt-bc-X2F" id="hXd-hW-O3r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3h-AH-J4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3579" y="391"/>
+            <point key="canvasLocation" x="3989" y="397"/>
         </scene>
     </scenes>
     <resources>

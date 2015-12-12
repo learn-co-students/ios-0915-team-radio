@@ -37,6 +37,7 @@
     
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     self.bookTableView.rowHeight = 80;
+    self.bookTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.bookTableView.delegate = self;
     self.bookTableView.dataSource = self;
