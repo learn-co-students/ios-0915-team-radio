@@ -11,12 +11,10 @@
 #import "Book.h"
 #import "PGBDataStore.h"
 #import "PGBConstants.h"
-//#import <GROAuth.h>
+
 #import <XMLDictionary.h>
 #import <AFNetworking/AFNetworking.h>
 #import <Ono.h>
-
-
 
 @interface PGBGoodreadsAPIClient ()
 
@@ -25,47 +23,35 @@
 @end
 
 @implementation PGBGoodreadsAPIClient
-NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
+NSString *const GOODREADS_API_URL = @"https://www.goodreads.com";
 
 
 + (void)getReviewsForBook:(PGBRealmBook *)realmBook completion:(void (^)(NSDictionary *))completionBlock
 {
-    /* 
-     format book titles correctly by replacing spaces with the + sign
-     */
-    NSString *titleWithPluses = [realmBook.title stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString *goodreadsURL = [[NSMutableString alloc]init];
-    
-    //    PGBRealmBook *book = [[PGBRealmBook alloc]init];
+    NSString *goodreadsURL = @"";
     NSString *author = @"";
+    NSString *title = @"";
     
-    /*
-     checks if friendlytitle has author, ibrf so, parses out author
-     friendly title has the format "BookTitle by AuthorName"
-     Example "Harry Potter and the Sorcerer's Stone by J.K. Rowling"
-     */
-    
-    if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle])
-
-    {
+    if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle]) {
         author = [realmBook getAuthorFromFriendlyTitle:realmBook.friendlyTitle];
-        //        NSLog (@"author: %@", author);
     } else {
         author = [realmBook parseAuthor:realmBook.author];
     }
     
-
-    if (author && realmBook.title)
-    {
-        NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses, authorWithPluses];
-        goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:nil];
-        NSLog (@"%@", goodreadsURL);
-    } else if (realmBook.title)
-    {
-        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
-        goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:nil];
+    //LEO - strings should be encoded other wise it will crash in AFNetworking!
+    title = [realmBook.title stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    author = [author stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    
+    if (title) {
+        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, title];
+    } else if (author && title) {
+        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, title, author];
+    } else {
+        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.json?key=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, author];
     }
+    
+    goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:nil];
+    NSLog (@"%@", goodreadsURL);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:goodreadsURL parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
@@ -73,7 +59,7 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
          completionBlock(responseObject);
      } failure:^(NSURLSessionDataTask *task, NSError *error) {
          
-         //LEO - pass back nothing to completion block for failure 
+         //LEO - pass back nothing to completion block for failure
          completionBlock(nil);
          NSLog(@"Fail: %@",error.localizedDescription);
      }];
@@ -83,43 +69,31 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com/";
 
 -(NSString *)getURLForBookAndAuthor:(PGBRealmBook *)realmBook
 {
+    NSString *author = @"";
+    NSString *title = @"";
+    NSString *goodreadsURL = @"";
     
-    NSString *author = nil;
-    NSString *goodreadsURL = [[NSMutableString alloc]init];
-    NSString *titleWithPluses = [realmBook.title stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSLog(@"friendlyTitle %@ for bookTitle %@", realmBook.friendlyTitle, realmBook.title);
-   
-    /*
-     checks if friendlytitle has author, if so, parses out author
-     */
-    
-    if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle])
-    {
+    if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle]) {
         author = [realmBook getAuthorFromFriendlyTitle:realmBook.friendlyTitle];
         NSLog (@"author: %@", author);
     } else {
         author = [realmBook parseAuthor:realmBook.author];
     }
     
-    if (author && realmBook.title)
-    {
-        NSString *authorWithPluses = [author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses, authorWithPluses];
-        goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:nil];
-        NSLog (@"%@", goodreadsURL);
-        return goodreadsURL;
-    } else if (realmBook.title)
-    {
-        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, titleWithPluses];
-        goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:nil];
-        
-        return goodreadsURL;
+    title = [realmBook.title stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    author = [author stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    
+    if (title) {
+        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, title];
+    } else if (author && title) {
+        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, title, author];
     }
+    
+    goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:nil];
+    NSLog (@"%@", goodreadsURL);
     
     return goodreadsURL;
 }
-
-
 
 - (void)getDescriptionForBookTitle:(PGBRealmBook *)realmBook completion:(void (^)(NSString *description))completion
 {

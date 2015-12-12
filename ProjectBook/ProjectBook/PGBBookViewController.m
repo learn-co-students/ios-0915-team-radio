@@ -75,10 +75,6 @@
         make.centerX.equalTo(view1.mas_centerX);
     }];
     
-//    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.height.greaterThanOrEqualTo(genreLabel.mas_height);
-//    }];
-    
     UIView *view2 = [[UIView alloc]init];
     view2.backgroundColor = [UIColor whiteColor];
     [view2 setFrame:CGRectMake(0, 0, 100, 100)];
@@ -120,7 +116,7 @@
     self.bookDescriptionTV.editable = NO;
     self.bookDescriptionTV.selectable = NO;
     
-    PGBGoodreadsAPIClient *goodreadsAPI = [[PGBGoodreadsAPIClient alloc] init];
+    PGBGoodreadsAPIClient *goodreadsAPI = [[PGBGoodreadsAPIClient alloc]init];
     [goodreadsAPI getDescriptionForBookTitle:self.book completion:^(NSString *bookDescription) {
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -146,12 +142,12 @@
 {
     [super viewWillAppear:animated];
     
-    //LEO - this is causing crash when back from book detail
+    //LEO - this is causing for some books, AFNetworking crash!!!
     [self getReviewswithCompletion:^(BOOL success) {
         if (success) {
-            NSLog(@"Succed to get description from API call - LEO");
+            NSLog(@"Succed to get reviews from API call - LEO");
         } else {
-            NSLog(@"failed to get description from API call - LEO");
+            NSLog(@"failed to get reviews from API call - LEO");
             self.bookDescriptionTV.text = @"There is no review for this book.";
         }
     }];
@@ -343,8 +339,6 @@
 }
 
 - (void)dealloc {
-    //    [self.webView setDelegate:nil];
-    
     self.webView.navigationDelegate = nil;
     [self.webView stopLoading];
 }

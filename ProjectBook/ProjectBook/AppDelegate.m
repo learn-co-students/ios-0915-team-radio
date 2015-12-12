@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-
 #import "PGBDownloadHelper.h"
 #import "PGBRealmUser.h"
 #import "PGBRealmBook.h"
@@ -15,8 +14,7 @@
 #import "PGBparsingThroughText.h"
 #import "PGBDataStore.h"
 #import "PGBConstants.h"
-//#import "PGBGoodreadsAPIClient.h"
-//#import <GROAuth.h>
+#import "Reachability.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Parse/Parse.h>
@@ -121,9 +119,6 @@
 //    
 //    PGBGoodreadsAPIClient *testingXMLParsing = [[PGBGoodreadsAPIClient alloc] init];
 //    NSLog(@"%@", [testingXMLParsing methodToGetDescriptions]);
-    
-    
-    
 
     // Override point for customization after application launch.
     

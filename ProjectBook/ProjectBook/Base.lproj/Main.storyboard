@@ -95,17 +95,17 @@
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9G8-gs-hXd" userLabel="Popular Book CV">
                                                 <rect key="frame" x="0.0" y="238" width="600" height="150"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="20" id="NGJ-lH-zCM">
-                                                    <size key="itemSize" width="100" height="140"/>
+                                                    <size key="itemSize" width="90" height="140"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="bookCoverCell" id="x8Z-sB-2cv" customClass="PGBCustomBookCollectionViewCell">
-                                                        <rect key="frame" x="0.0" y="5" width="100" height="140"/>
+                                                        <rect key="frame" x="0.0" y="5" width="90" height="140"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="140"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="140"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
@@ -375,14 +375,14 @@
                                                     <constraint firstItem="Ngn-Rw-pRy" firstAttribute="height" secondItem="0Xu-l3-bbt" secondAttribute="height" multiplier="3/5" id="xqH-sv-g1U"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="CLg-IV-Yw5" userLabel="Description Review Stack View">
-                                                <rect key="frame" x="8" y="240" width="584" height="449.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="CLg-IV-Yw5" userLabel="Description Review Stack View">
+                                                <rect key="frame" x="8" y="240" width="584" height="450"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C8H-RJ-NF3" userLabel="Info Stack View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="584" height="149.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C8H-RJ-NF3" userLabel="Info Stack View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="584" height="150"/>
                                                         <subviews>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1xy-f4-kln" userLabel="Description TV">
-                                                                <rect key="frame" x="0.0" y="0.0" width="584" height="149.5"/>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1xy-f4-kln" userLabel="Description TV">
+                                                                <rect key="frame" x="0.0" y="0.0" width="584" height="150"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
@@ -393,8 +393,8 @@
                                                             <constraint firstItem="1xy-f4-kln" firstAttribute="width" secondItem="C8H-RJ-NF3" secondAttribute="width" id="IcK-pV-Za3"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-rQ-wpE" userLabel="Placeholder for WKView">
-                                                        <rect key="frame" x="0.0" y="149" width="584" height="300"/>
+                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-rQ-wpE" userLabel="Placeholder for WKView">
+                                                        <rect key="frame" x="0.0" y="150" width="584" height="300"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                 </subviews>

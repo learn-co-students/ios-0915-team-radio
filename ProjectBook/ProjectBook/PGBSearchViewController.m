@@ -36,15 +36,10 @@
     
     [self loadDefaultView];
     
-    //begin test data
-//    [PGBRealmBook generateTestBookData];
-//    self.books = [PGBRealmBook getUserBookDataInArray];
-    
     self.dataStore = [PGBDataStore sharedDataStore];
     [self.dataStore fetchData];
     
     self.books = [[NSMutableArray alloc]init];
-    //end test data
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -140,13 +135,6 @@
     [biographyButton setTitle:@"Biography" forState:UIControlStateNormal];
     biographyButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
     
-//    UIButton *shortStoryButton = [UIButton buttonWithType:UIButtonTypeSystem];
-//    [shortStoryButton addTarget:self
-//                     action:@selector(shortStoryButtonTapped:)
-//           forControlEvents:UIControlEventTouchUpInside];
-//    [shortStoryButton setTitle:@"Short Story" forState:UIControlStateNormal];
-//    shortStoryButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-    
     UIButton *childrenButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [childrenButton addTarget:self
                      action:@selector(childrenButtonTapped:)
@@ -168,7 +156,6 @@
     [genreButtonStackView addArrangedSubview:comedyButton];
     [genreButtonStackView addArrangedSubview:operaButton];
     [genreButtonStackView addArrangedSubview:biographyButton];
-//    [genreButtonStackView addArrangedSubview:shortStoryButton];
     [genreButtonStackView addArrangedSubview:childrenButton];
     [genreButtonStackView addArrangedSubview:randomButton];
     
@@ -237,14 +224,6 @@
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
-//-(void)shortStoryButtonTapped:(UIButton *)sender {
-//    NSLog(@"romance button tapped!");
-//    
-//    self.bookSearchBar.text = @"shortstory";
-//    [self.bookSearchBar becomeFirstResponder];
-//    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
-//}
-
 -(void)childrenButtonTapped:(UIButton *)sender {
     NSLog(@"romance button tapped!");
     
@@ -261,7 +240,6 @@
     [self.bookSearchBar becomeFirstResponder];
     [self generateRandomBookByCount:100];
 }
-
 
 
 - (void)generateRandomBookByCount:(NSInteger)count{

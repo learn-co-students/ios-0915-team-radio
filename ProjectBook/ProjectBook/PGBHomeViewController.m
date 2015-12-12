@@ -15,10 +15,11 @@
 #import "PGBLoginViewController.h"
 #import "PGBSignUpViewController.h"
 #import "PGBParseAPIClient.h"
-#import "Reachability.h"
 #import "PGBDataStore.h"
 #import "Book.h"
+#import "Reachability.h"
 
+#import <Masonry/Masonry.h>
 #import <AFNetworking/AFNetworking.h>
 #import <Availability.h>
 #import <UIKit/UIKit.h>
@@ -26,39 +27,16 @@
 
 static dispatch_once_t onceToken;
 
-@interface PGBHomeViewController () {
-    
-}
+@interface PGBHomeViewController ()
 
-//book arrays
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
+@property (strong, nonatomic) PGBCustomBookCollectionViewCell *bookCoverCell;
+@property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
+@property (strong, nonatomic) PGBDataStore *dataStore;
 
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) NSMutableArray *classicBooks;
 @property (strong, nonatomic) NSMutableArray *shakespeareBooks;
-
-@property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
-@property (nonatomic, assign) int currentList;
-@property (nonatomic, assign) int initialPage;
-@property (strong, nonatomic) NSMutableArray *list;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
-
-@property (strong, nonatomic) PGBCustomBookCollectionViewCell *bookCoverCell;
-
-//pagination
-//@property (strong, nonatomic) NSMutableArray *dataArray;
-@property (nonatomic) BOOL noMoreResultsAvail;
-@property (nonatomic) BOOL loading;
-
-@property (assign, nonatomic) BOOL isLoggedin;
-//@property (nonatomic, assign) dispatch_once_t *once;
-
-@property (nonatomic, strong)NSOperationQueue *bgQueue;
-@property (nonatomic, strong)NSOperationQueue *bookCoverBgQueue;
-
-@property (strong, nonatomic) PGBDataStore *dataStore;
-
-
-
 
 @end
 
@@ -66,75 +44,10 @@ static dispatch_once_t onceToken;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    
-    //logo for banner
-    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
-    
-    //coreData
-//    commented by leo
-//        [PGBRealmBook generateTestBookData];
-//        self.books = [PGBRealmBook getUserBookDataInArray];
-//        self.books = @[self.books[0], self.books[1], self.books[2]];
-    self.books = [NSMutableArray arrayWithCapacity:50];
-    self.classicBooks = [NSMutableArray arrayWithCapacity:50];
-    self.shakespeareBooks = [NSMutableArray arrayWithCapacity:50];
-
-//    [self generateRandomBookByCount:10];
-//    [self generateBook];
-//    [self generateClassics];
-//    self.books = [[PGBRealmBook getUserBookDataInArray] mutableCopy];
-//    [self.books addObject:self.books[0]];
-    
-    self.dataStore = [PGBDataStore sharedDataStore];
-    [self.dataStore fetchData];
-    
-//popular books
-    //delegate
-    [self.popularCollectionView setDelegate:self];
-    [self.popularCollectionView setDataSource:self];
-    
-    //xib
-    [self.popularCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
-    
-    self.popularCollectionView.backgroundColor = [UIColor whiteColor];
-    self.popularCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    
-//classic books
-    //delegate
-    [self.classicsCollectionView setDelegate:self];
-    [self.classicsCollectionView setDataSource:self];
-    
-    //xib
-    [self.classicsCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
-    
-    self.classicsCollectionView.backgroundColor = [UIColor whiteColor];
-    self.classicsCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    
-
-//classic books
-    //delegate
-    [self.shakespeareCollectionView setDelegate:self];
-    [self.shakespeareCollectionView setDataSource:self];
-    
-    //xib
-    [self.shakespeareCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
-    
-    self.shakespeareCollectionView.backgroundColor = [UIColor whiteColor];
-    self.shakespeareCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
-
-    //fetch from parse when the app opens for the first time
-    //user can kill the app and re-open, however they don't need to re-login
-    [self fetchBookFromParse];
-
-    
-    //Reachability to check network connection
-    // Allocate a reachability object
+    //Check network connection
     Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
     
-    // Set the blocks
     reach.reachableBlock = ^(Reachability*reach)
     {
         NSLog(@"REACHABLE!");
@@ -156,8 +69,58 @@ static dispatch_once_t onceToken;
         });
     };
     
-    // Start the notifier, which will cause the reachability object to retain itself!
     [reach startNotifier];
+    
+    //logo for banner
+    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
+    
+    
+    self.books = [NSMutableArray arrayWithCapacity:50];
+    self.classicBooks = [NSMutableArray arrayWithCapacity:50];
+    self.shakespeareBooks = [NSMutableArray arrayWithCapacity:50];
+    
+    self.dataStore = [PGBDataStore sharedDataStore];
+    [self.dataStore fetchData];
+    
+    //popular books
+    //delegate
+    [self.popularCollectionView setDelegate:self];
+    [self.popularCollectionView setDataSource:self];
+    
+    //xib
+    [self.popularCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
+    
+    self.popularCollectionView.backgroundColor = [UIColor whiteColor];
+    self.popularCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+    //classic books
+    //delegate
+    [self.classicsCollectionView setDelegate:self];
+    [self.classicsCollectionView setDataSource:self];
+    
+    //xib
+    [self.classicsCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
+    
+    self.classicsCollectionView.backgroundColor = [UIColor whiteColor];
+    self.classicsCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+    
+    //classic books
+    //delegate
+    [self.shakespeareCollectionView setDelegate:self];
+    [self.shakespeareCollectionView setDataSource:self];
+    
+    //xib
+    [self.shakespeareCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
+    
+    self.shakespeareCollectionView.backgroundColor = [UIColor whiteColor];
+    self.shakespeareCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+    //fetch from parse when the app opens for the first time
+    //user can kill the app and re-open, however they don't need to re-login
+    [self fetchBookFromParse];
+    
 }
 
 
@@ -174,8 +137,6 @@ static dispatch_once_t onceToken;
     }
 
 }
-
-
 
 
 -(void)fetchBookFromParse {
