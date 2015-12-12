@@ -100,7 +100,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLM-wP-2sI" userLabel="Overall Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="689.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Rf-gu-qMt" userLabel="Book Cover View">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
@@ -156,7 +156,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJt-bc-X2F" userLabel="Placeholder for WKView">
-                                                        <rect key="frame" x="0.0" y="149.5" width="584" height="300"/>
+                                                        <rect key="frame" x="0.0" y="149" width="584" height="300"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                 </subviews>
@@ -177,6 +177,7 @@
                                             <constraint firstItem="7Pq-yz-I4A" firstAttribute="leading" secondItem="CLM-wP-2sI" secondAttribute="leadingMargin" id="XtS-PY-AKf"/>
                                             <constraint firstItem="7Pq-yz-I4A" firstAttribute="trailing" secondItem="CLM-wP-2sI" secondAttribute="trailingMargin" id="g2q-Rd-Q5K"/>
                                             <constraint firstItem="5Rf-gu-qMt" firstAttribute="leading" secondItem="CLM-wP-2sI" secondAttribute="leading" id="pOK-nM-fRU"/>
+                                            <constraint firstAttribute="bottom" secondItem="XJt-bc-X2F" secondAttribute="bottom" id="qQx-8w-SK1"/>
                                             <constraint firstItem="Pu4-tz-00q" firstAttribute="centerX" secondItem="CLM-wP-2sI" secondAttribute="centerX" id="xlG-lI-5QI"/>
                                             <constraint firstItem="5Rf-gu-qMt" firstAttribute="top" secondItem="CLM-wP-2sI" secondAttribute="top" id="xpB-kg-Adg"/>
                                         </constraints>
@@ -184,7 +185,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.73717619239999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" secondItem="CLM-wP-2sI" secondAttribute="height" id="XTP-ag-gn2"/>
                                     <constraint firstAttribute="width" secondItem="CLM-wP-2sI" secondAttribute="width" id="cxW-4q-yju"/>
                                     <constraint firstAttribute="bottom" secondItem="CLM-wP-2sI" secondAttribute="bottom" id="fBU-cP-YZt"/>
                                     <constraint firstItem="CLM-wP-2sI" firstAttribute="top" secondItem="eP1-6R-3gw" secondAttribute="top" id="nGL-N7-3oN"/>
