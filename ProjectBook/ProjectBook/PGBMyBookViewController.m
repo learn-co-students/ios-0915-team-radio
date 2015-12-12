@@ -9,7 +9,7 @@
 #import "PGBMyBookViewController.h"
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
-#import "PGBBookPageViewController.h"
+#import "PGBBookViewController.h"
 #import "PGBParseAPIClient.h"
 #import <YYWebImage/YYWebImage.h>
 
@@ -246,7 +246,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    PGBBookPageViewController *bookPageVC = segue.destinationViewController;
+    PGBBookViewController *bookPageVC = segue.destinationViewController;
     
     NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
     PGBRealmBook *bookAtIndexPath = self.booksDisplayed[selectedIndexPath.row];

@@ -7,12 +7,11 @@
 //
 
 #import "PGBSearchViewController.h"
-//#import "PGBBookCustomTableCell.h"
+#import "PGBBookViewController.h"
 #import "PGBSearchCustomTableCell.h"
 #import "PGBRealmBook.h"
 #import "PGBDataStore.h"
 #import "Book.h"
-#import "PGBBookPageViewController.h"
 #import <Masonry/Masonry.h>
 
 @interface PGBSearchViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource>
@@ -381,7 +380,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    PGBBookPageViewController *bookPageVC = segue.destinationViewController;
+    PGBBookViewController *bookPageVC = segue.destinationViewController;
 
     NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
     PGBRealmBook *bookAtIndexPath = self.books[selectedIndexPath.row];

@@ -84,7 +84,6 @@
 		CBFC218F1C1A1D62007404E7 /* PGBBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFC218E1C1A1D62007404E7 /* PGBBookViewController.m */; };
 		CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5A1BFBA076002CE0A4 /* main.m */; };
 		CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */; };
-		CBFD3F611BFBA076002CE0A4 /* PGBBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F601BFBA076002CE0A4 /* PGBBookPageViewController.m */; };
 		CBFD3F641BFBA076002CE0A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBFD3F621BFBA076002CE0A4 /* Main.storyboard */; };
 		CBFD3F671BFBA076002CE0A4 /* ProjectBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F651BFBA076002CE0A4 /* ProjectBook.xcdatamodeld */; };
 		CBFD3F691BFBA077002CE0A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBFD3F681BFBA077002CE0A4 /* Assets.xcassets */; };
@@ -220,8 +219,6 @@
 		CBFD3F5A1BFBA076002CE0A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CBFD3F5F1BFBA076002CE0A4 /* PGBBookPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGBBookPageViewController.h; sourceTree = "<group>"; };
-		CBFD3F601BFBA076002CE0A4 /* PGBBookPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PGBBookPageViewController.m; sourceTree = "<group>"; };
 		CBFD3F631BFBA076002CE0A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CBFD3F661BFBA076002CE0A4 /* ProjectBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProjectBook.xcdatamodel; sourceTree = "<group>"; };
 		CBFD3F681BFBA077002CE0A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -279,15 +276,90 @@
 		4C25FFA81C03B7FF00B5C8E3 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
+				CBFD3F651BFBA076002CE0A4 /* ProjectBook.xcdatamodeld */,
 				4C25FFA21C03B7E200B5C8E3 /* Book+CoreDataProperties.h */,
 				4C25FFA31C03B7E200B5C8E3 /* Book+CoreDataProperties.m */,
 				4C25FFA41C03B7E200B5C8E3 /* Book.h */,
 				4C25FFA51C03B7E200B5C8E3 /* Book.m */,
-				CBFD3F651BFBA076002CE0A4 /* ProjectBook.xcdatamodeld */,
 				4C25FFA91C03B83B00B5C8E3 /* PGBDataStore.h */,
 				4C25FFAA1C03B83B00B5C8E3 /* PGBDataStore.m */,
 			);
 			name = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		4C58DDE11C1BC18F00438AB0 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */,
+				CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */,
+				CBFC218D1C1A1D62007404E7 /* PGBBookViewController.h */,
+				CBFC218E1C1A1D62007404E7 /* PGBBookViewController.m */,
+				4C5D947C1BFE389A0086DB5F /* PGBMyBookViewController.h */,
+				4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */,
+				4C9D16611C0CF04800DBF989 /* PGBSearchViewController.h */,
+				4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */,
+				4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarViewController.h */,
+				4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */,
+				8902002B1C0CA900001A1ECF /* PGBLoginViewController.h */,
+				8902002C1C0CA900001A1ECF /* PGBLoginViewController.m */,
+				8902002E1C0CAA10001A1ECF /* PGBSignUpViewController.h */,
+				8902002F1C0CAA10001A1ECF /* PGBSignUpViewController.m */,
+				890200331C0CFD08001A1ECF /* PGBProfileViewController.h */,
+				890200341C0CFD08001A1ECF /* PGBProfileViewController.m */,
+				89EE0D381C15CF9100CCA1EA /* PGBSettingsViewController.h */,
+				89EE0D391C15CF9100CCA1EA /* PGBSettingsViewController.m */,
+				899A4D0B1C11EF9C00D499C4 /* PGBMainSocialTableViewController.h */,
+				899A4D0C1C11EF9C00D499C4 /* PGBMainSocialTableViewController.m */,
+				899A4D0E1C11EFC100D499C4 /* PGBNewChatViewController.h */,
+				899A4D0F1C11EFC100D499C4 /* PGBNewChatViewController.m */,
+				899A4D051C10A77200D499C4 /* PGBChatMessageVC.h */,
+				899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */,
+				894AE4621C161227007F22A5 /* PGBSearchChatPreviewViewController.h */,
+				894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		4C58DDE21C1BC1AE00438AB0 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				CBFD3F621BFBA076002CE0A4 /* Main.storyboard */,
+				4C9D16641C0CF07600DBF989 /* SearchStoryboard.storyboard */,
+				4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */,
+				890200311C0CF4EB001A1ECF /* profile.storyboard */,
+				CBFE1CEA1C172AF800646BA9 /* social.storyboard */,
+				CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */,
+				4C0BCAB31C1B60C900D4FEFC /* PGBSearchCustomTableCell.xib */,
+				CBEFBD0A1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib */,
+				8964243B1C163C3D00FBB988 /* PGBChatTableViewCell.xib */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		4C58DDE31C1BC1FF00438AB0 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */,
+				CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */,
+				4C0BCAB11C1B60C900D4FEFC /* PGBSearchCustomTableCell.h */,
+				4C0BCAB21C1B60C900D4FEFC /* PGBSearchCustomTableCell.m */,
+				CBEFBD081C16192100D878AC /* PGBCustomBookCollectionViewCell.h */,
+				CBEFBD091C16192100D878AC /* PGBCustomBookCollectionViewCell.m */,
+				896424391C163C3D00FBB988 /* PGBChatTableViewCell.h */,
+				8964243A1C163C3D00FBB988 /* PGBChatTableViewCell.m */,
+			);
+			name = CustomCell;
+			sourceTree = "<group>";
+		};
+		4C58DDE41C1BC2C300438AB0 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				CB3C07981C05063A00235D78 /* PGBGoodreadsAPIClient.h */,
+				CB3C07991C05063A00235D78 /* PGBGoodreadsAPIClient.m */,
+				4C094AE91C167ECE00F21208 /* PGBParseAPIClient.h */,
+				4C094AEA1C167ECE00F21208 /* PGBParseAPIClient.m */,
+			);
+			name = APIClient;
 			sourceTree = "<group>";
 		};
 		4C9597AD1BFBEB2600BBD558 /* RealmModel */ = {
@@ -401,72 +473,22 @@
 		CBFD3F581BFBA076002CE0A4 /* ProjectBook */ = {
 			isa = PBXGroup;
 			children = (
-				4C766D7A1C1B3BA300FDC167 /* PGBConstants.h */,
-				4C766D7B1C1B3BB500FDC167 /* PGBConstants.m */,
+				CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */,
+				CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */,
 				A75AD6381C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf */,
+				4C58DDE21C1BC1AE00438AB0 /* Storyboard */,
+				4C58DDE11C1BC18F00438AB0 /* ViewController */,
+				4C58DDE31C1BC1FF00438AB0 /* CustomCell */,
+				4C58DDE41C1BC2C300438AB0 /* APIClient */,
+				4C25FFA81C03B7FF00B5C8E3 /* CoreDataModel */,
+				4C9597AD1BFBEB2600BBD558 /* RealmModel */,
+				CBFD3F591BFBA076002CE0A4 /* Supporting Files */,
+				CBFD3F681BFBA077002CE0A4 /* Assets.xcassets */,
 				CB3C07951C05063A00235D78 /* book.gif */,
 				CB3C07961C05063A00235D78 /* hopper.gif */,
 				CB3C07971C05063A00235D78 /* hoppers.gif */,
-				CB3C07981C05063A00235D78 /* PGBGoodreadsAPIClient.h */,
-				CB3C07991C05063A00235D78 /* PGBGoodreadsAPIClient.m */,
-				4C094AE91C167ECE00F21208 /* PGBParseAPIClient.h */,
-				4C094AEA1C167ECE00F21208 /* PGBParseAPIClient.m */,
-				4C25FFA81C03B7FF00B5C8E3 /* CoreDataModel */,
-				CBF2C6171BFD0D8B00BCBCDD /* bookInformationSet */,
-				4C9597AD1BFBEB2600BBD558 /* RealmModel */,
-				CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */,
-				CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */,
-				CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */,
-				CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */,
-				8902002B1C0CA900001A1ECF /* PGBLoginViewController.h */,
-				8902002C1C0CA900001A1ECF /* PGBLoginViewController.m */,
-				8902002E1C0CAA10001A1ECF /* PGBSignUpViewController.h */,
-				8902002F1C0CAA10001A1ECF /* PGBSignUpViewController.m */,
-				890200311C0CF4EB001A1ECF /* profile.storyboard */,
-				890200331C0CFD08001A1ECF /* PGBProfileViewController.h */,
-				890200341C0CFD08001A1ECF /* PGBProfileViewController.m */,
-				89EE0D381C15CF9100CCA1EA /* PGBSettingsViewController.h */,
-				89EE0D391C15CF9100CCA1EA /* PGBSettingsViewController.m */,
-				CBFE1CEA1C172AF800646BA9 /* social.storyboard */,
-				8964243B1C163C3D00FBB988 /* PGBChatTableViewCell.xib */,
-				896424391C163C3D00FBB988 /* PGBChatTableViewCell.h */,
-				8964243A1C163C3D00FBB988 /* PGBChatTableViewCell.m */,
-				899A4D0B1C11EF9C00D499C4 /* PGBMainSocialTableViewController.h */,
-				899A4D0C1C11EF9C00D499C4 /* PGBMainSocialTableViewController.m */,
-				899A4D0E1C11EFC100D499C4 /* PGBNewChatViewController.h */,
-				899A4D0F1C11EFC100D499C4 /* PGBNewChatViewController.m */,
-				899A4D051C10A77200D499C4 /* PGBChatMessageVC.h */,
-				899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */,
-				CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */,
-				CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */,
-				CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */,
-				CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */,
-				CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */,
-				4C0BCAB11C1B60C900D4FEFC /* PGBSearchCustomTableCell.h */,
-				4C0BCAB21C1B60C900D4FEFC /* PGBSearchCustomTableCell.m */,
-				4C0BCAB31C1B60C900D4FEFC /* PGBSearchCustomTableCell.xib */,
-				CBEFBD081C16192100D878AC /* PGBCustomBookCollectionViewCell.h */,
-				CBEFBD091C16192100D878AC /* PGBCustomBookCollectionViewCell.m */,
-				CBEFBD0A1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib */,
-				CBFD3F621BFBA076002CE0A4 /* Main.storyboard */,
-				CBFC218D1C1A1D62007404E7 /* PGBBookViewController.h */,
-				CBFC218E1C1A1D62007404E7 /* PGBBookViewController.m */,
-				CBFD3F5F1BFBA076002CE0A4 /* PGBBookPageViewController.h */,
-				CBFD3F601BFBA076002CE0A4 /* PGBBookPageViewController.m */,
-				A77A08F71BFBE78700CA62F8 /* PGBparsingThroughText.h */,
-				A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */,
-				CBFD3F681BFBA077002CE0A4 /* Assets.xcassets */,
 				CBFD3F6A1BFBA077002CE0A4 /* LaunchScreen.storyboard */,
 				CBFD3F6D1BFBA077002CE0A4 /* Info.plist */,
-				4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */,
-				4C5D947C1BFE389A0086DB5F /* PGBMyBookViewController.h */,
-				4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */,
-				4C9D16641C0CF07600DBF989 /* SearchStoryboard.storyboard */,
-				4C9D16611C0CF04800DBF989 /* PGBSearchViewController.h */,
-				4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */,
-				4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarViewController.h */,
-				4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */,
-				CBFD3F591BFBA076002CE0A4 /* Supporting Files */,
 			);
 			path = ProjectBook;
 			sourceTree = "<group>";
@@ -474,13 +496,18 @@
 		CBFD3F591BFBA076002CE0A4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				894AE4621C161227007F22A5 /* PGBSearchChatPreviewViewController.h */,
-				894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */,
+				4C766D7A1C1B3BA300FDC167 /* PGBConstants.h */,
+				4C766D7B1C1B3BB500FDC167 /* PGBConstants.m */,
+				CBF2C6171BFD0D8B00BCBCDD /* bookInformationSet */,
+				CBC050FA1C109AB200118044 /* fonts */,
+				CBFD3F5A1BFBA076002CE0A4 /* main.m */,
+				4CF789B71C15359300C82EB6 /* ProjectBook.sqlite */,
 				4C766D721C1B239600FDC167 /* Reachability.h */,
 				4C766D731C1B239600FDC167 /* Reachability.m */,
-				CBC050FA1C109AB200118044 /* fonts */,
-				4CF789B71C15359300C82EB6 /* ProjectBook.sqlite */,
-				CBFD3F5A1BFBA076002CE0A4 /* main.m */,
+				CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */,
+				CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */,
+				A77A08F71BFBE78700CA62F8 /* PGBparsingThroughText.h */,
+				A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -740,7 +767,6 @@
 				899A4D101C11EFC100D499C4 /* PGBNewChatViewController.m in Sources */,
 				4C766D741C1B239600FDC167 /* Reachability.m in Sources */,
 				CBEFBD0B1C16192100D878AC /* PGBCustomBookCollectionViewCell.m in Sources */,
-				CBFD3F611BFBA076002CE0A4 /* PGBBookPageViewController.m in Sources */,
 				4C0BCAB41C1B60C900D4FEFC /* PGBSearchCustomTableCell.m in Sources */,
 				4C5D947E1BFE389A0086DB5F /* PGBMyBookViewController.m in Sources */,
 				CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */,

@@ -9,18 +9,16 @@
 #import "PGBHomeViewController.h"
 #import "PGBBookCustomTableCell.h"
 #import "PGBDownloadHelper.h"
-#import "PGBBookPageViewController.h"
 #import "PGBRealmBook.h"
-//#import "PGBGoodreadsAPIClient.h"
 #import "PGBCustomBookCollectionViewCell.h"
-
+#import "PGBBookViewController.h"
 #import "PGBLoginViewController.h"
 #import "PGBSignUpViewController.h"
 #import "PGBParseAPIClient.h"
 #import "Reachability.h"
-
 #import "PGBDataStore.h"
 #import "Book.h"
+
 #import <AFNetworking/AFNetworking.h>
 #import <Availability.h>
 #import <UIKit/UIKit.h>
@@ -474,7 +472,7 @@ static dispatch_once_t onceToken;
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    PGBBookPageViewController *bookPageVC = segue.destinationViewController;
+    PGBBookViewController *bookPageVC = segue.destinationViewController;
     
     NSArray *arrayOfIndexPaths;
     NSArray *relevantBookArray;
