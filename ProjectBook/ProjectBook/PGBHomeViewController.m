@@ -498,36 +498,36 @@ static dispatch_once_t onceToken;
     
     else {
         
-        // user logged in; go to profile...
-        
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"profile" bundle:nil];
-//        UIViewController *vc = [storyboard instantiateInitialViewController];
-//        [self presentViewController:vc animated:YES completion:nil];
+        // user logged in
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Do you want to logout?"
                                                                        message:@""
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * _Nonnull action) {
-                                                                  //update parse when user logs out
-                                                                  [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^{
-                                                                      NSLog(@"update parse completed");
-                                                                      
-                                                                      [PFUser logOut];
-                                                                  }];
-                                                              }];
+        UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             
+                                                             self.loginButton.enabled = NO;
+                                                             
+                                                             //update parse when user logs out
+                                                             [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^{
+                                                                 
+                                                                 NSLog(@"update parse completed");
+                                                                 [PFUser logOut];
+                                                                 
+                                                                 self.loginButton.enabled = YES;
+                                                                 self.loginButton.title = @"Login";
+                                                             }];
+                                                         }];
         
         UIAlertAction *cancelAction = [UIAlertAction
                                        actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
                                        style:UIAlertActionStyleCancel
                                        handler:nil];
         
-        [alert addAction:defaultAction];
+        [alert addAction:okAction];
         [alert addAction:cancelAction];
         
-        [self presentViewController:alert animated:YES completion:^{
-            self.loginButton.title = @"Login";
-        }];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -553,6 +553,8 @@ static dispatch_once_t onceToken;
     //once logged in fetch book from parse
     [self fetchBookFromParse];
 }
+
+
 
 
 
