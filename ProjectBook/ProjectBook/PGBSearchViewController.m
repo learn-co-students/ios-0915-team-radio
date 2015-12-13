@@ -24,6 +24,8 @@
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) PGBDataStore *dataStore;
 
+@property (strong, nonatomic)UITapGestureRecognizer *dismissKeyboardGesture;
+
 @property (nonatomic, strong)NSOperationQueue *bgQueue;
 @property (nonatomic, strong)NSOperationQueue *bookCoverBgQueue;
 
@@ -40,6 +42,8 @@
     [self.dataStore fetchData];
     
     self.books = [[NSMutableArray alloc]init];
+    
+    self.dismissKeyboardGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -370,6 +374,8 @@
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     
     self.defaultContentView.hidden = YES;
+    
+    [self.bookTableView addGestureRecognizer:self.dismissKeyboardGesture];
 }
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
@@ -399,11 +405,12 @@
     }
     [self.bookTableView reloadData];
     
-    
-//    if (!searchText.length) {
-//        UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-//        [self.bookTableView addGestureRecognizer:gestureRecognizer];
-//    }
+    if (!searchText.length) {
+        [self.bookTableView addGestureRecognizer:self.dismissKeyboardGesture];
+    } else {
+        [self.bookTableView removeGestureRecognizer:self.dismissKeyboardGesture];
+    }
+        
 }
 
 - (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar {
@@ -412,10 +419,10 @@
     [searchBar resignFirstResponder];
 }
 
-//- (void) hideKeyboard {
-//    self.defaultContentView.hidden = NO;
-//    [self.bookSearchBar resignFirstResponder];
-//}
+- (void) hideKeyboard {
+    self.defaultContentView.hidden = NO;
+    [self.bookSearchBar resignFirstResponder];
+}
 
 #pragma UIScroll View Method::
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
