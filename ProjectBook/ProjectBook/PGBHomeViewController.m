@@ -509,11 +509,14 @@ static dispatch_once_t onceToken;
                                                              self.loginButton.enabled = NO;
                                                              
                                                              //update parse when user logs out
-                                                             [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^{
+                                                             [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^(BOOL success) {
+                                                                 if (success) {
+                                                                     NSLog(@"update parse completed");
+                                                                 } else {
+                                                                     NSLog(@"failed to updateParseWithRealmBookDataWithCompletion");
+                                                                 }
                                                                  
-                                                                 NSLog(@"update parse completed");
                                                                  [PFUser logOut];
-                                                                 
                                                                  self.loginButton.enabled = YES;
                                                                  self.loginButton.title = @"Login";
                                                              }];

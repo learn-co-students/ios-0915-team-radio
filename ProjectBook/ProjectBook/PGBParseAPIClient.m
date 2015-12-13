@@ -40,18 +40,23 @@
     }];
 }
 
-+(void)deleteUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)())completionBlock {
-    
++(void)deleteUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(BOOL success))completionBlock {
     PFQuery *query = [PFQuery queryWithClassName:@"book"];
     [query whereKey:@"owner" equalTo:userObject];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (!error)
-        {
+        if (!error) {
             [PFObject deleteAllInBackground:objects block:^(BOOL succeeded, NSError * _Nullable error) {
-                completionBlock();
+                if (succeeded) {
+                    completionBlock(YES);
+                } else {
+                    completionBlock(NO);
+                    NSLog(@"deleteAllInBackground: failed");
+                }
             }];
         } else {
-            NSLog(@"Unable to get book data from parse");
+            completionBlock(NO);
+            NSLog(@"deleteUserBookDataWithUserObject: Unable to get book data from parse");
         }
     }];
 }

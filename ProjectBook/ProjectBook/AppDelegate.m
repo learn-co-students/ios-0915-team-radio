@@ -148,8 +148,13 @@
     //update parse when app go into background
     NSLog(@"app will resign active background");
     if ([PFUser currentUser]) {
-        [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^{
-            NSLog(@"update parse completed");
+        [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^(BOOL success) {
+            if (success) {
+                NSLog(@"update parse completed");
+            } else {
+                NSLog(@"update parse failed");
+            }
+            
         }];
     }
 

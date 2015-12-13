@@ -39,12 +39,12 @@
 }
 - (IBAction)logoutButtonTapped:(id)sender {
     //update parse when user logs out
-    [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^{
-        NSLog(@"update parse completed");
-        
-        [PFUser logOut];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
+//    [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^{
+//        NSLog(@"update parse completed");
+//        
+//        [PFUser logOut];
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }];
     
 }
 

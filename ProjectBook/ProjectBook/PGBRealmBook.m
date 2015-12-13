@@ -670,25 +670,27 @@
     }];
 }
 
-+(void)updateParseWithRealmBookDataWithCompletion:(void (^)())completionBlock{
-    [PGBParseAPIClient deleteUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^{
-        
-        NSArray *booksInRealm = [PGBRealmBook getUserBookDataInArray];
-        
-        if (booksInRealm.count) {
-            for (PGBRealmBook *realmBook in booksInRealm) {
-                
-//                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:realmBook andCompletion:^{
-//                    completionBlock();
-//                }];
-                [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
-                    completionBlock();
-                }];
++(void)updateParseWithRealmBookDataWithCompletion:(void (^)(BOOL success))completionBlock{
+    [PGBParseAPIClient deleteUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^(BOOL success) {
+        if (success) {
+            NSArray *booksInRealm = [PGBRealmBook getUserBookDataInArray];
+            
+            if (booksInRealm.count) {
+                for (PGBRealmBook *realmBook in booksInRealm) {
+                    
+                    //                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:realmBook andCompletion:^{
+                    //                    completionBlock();
+                    //                }];
+                    [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
+                        completionBlock(YES);
+                    }];
+                }
             }
+            
+            completionBlock(YES);
         } else {
-            completionBlock();
+            completionBlock(NO);
         }
-        
     }];
 }
 
