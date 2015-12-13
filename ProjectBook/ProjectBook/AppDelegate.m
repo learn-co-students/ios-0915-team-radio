@@ -29,10 +29,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-//    UIImage *lightGreen = [UIImage imageNamed:@"NOVEL_Banner"];
-//    [[UITabBar appearance] setSelectionIndicatorImage:lightGreen];
-    
     /*
      
     [PGBGoodreadsAPIClient getReviewsForBook:@"The Adventures of Huckleberry Finn" completion:^(NSDictionary *reviewDict) {
@@ -77,41 +73,37 @@
 //    [goodReads getURLAsString:@"https://www.goodreads.com/book/title.xml?key=AckMqnduhbH8xQdja2Nw&title=Hound+of+the+Baskervilles&author=Arthur+Conan+Doyle"];
 
     
-    //for banner image
-//    UIImage *image = [[UIImage imageNamed:@"NOVEL_Banner"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
+    //Begin test array of books
+    //    PGBparsingThroughText *newTask = [[PGBparsingThroughText alloc]init];
+    //    NSArray *finalArrayOfDictionary = [newTask cleanUpArrays];
+    //
+    //    NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
     
-//    [[UINavigationBar appearance] titlevie
-    //test array of books
-//    PGBparsingThroughText *newTask = [[PGBparsingThroughText alloc]init];
-//    NSArray *finalArrayOfDictionary = [newTask cleanUpArrays];
-//
-//    NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
-//
-//    NSLog(@"Begin store to core data");
-
-//    NSLog(@"documents directory: %@", [self applicationDocumentsDirectory]);
-//    
-//    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
-////    [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
-//    [dataStore fetchData];
-//    
-//    NSMutableArray *array = [NSMutableArray new];
-//    NSInteger i = 0;
-//    for (Book *book in dataStore.managedBookObjects) {
-//        PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookContainingCoverImageWithBook:book];
-//        if (realmBook) {
-////            [array addObject:realmBook];
-//            NSLog(@"%lu",i+1);
-//            i++;
-//        }
-//
-//    }
-//    
-//    NSLog(@"%lu",array.count);
-
-//    NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
-//    NSLog(@"End store to core data");
-//    end test
+    //    NSLog(@"Begin store to core data");
+    
+    //    NSLog(@"documents directory: %@", [self applicationDocumentsDirectory]);
+    
+    //    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
+    //    [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
+    //    [dataStore fetchData];
+    
+    //    NSMutableArray *array = [NSMutableArray new];
+    //    NSInteger i = 0;
+    //    for (Book *book in dataStore.managedBookObjects) {
+    //        PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookContainingCoverImageWithBook:book];
+    //        if (realmBook) {
+    //            //            [array addObject:realmBook];
+    //            NSLog(@"%lu",i+1);
+    //            i++;
+    //        }
+    //
+    //    }
+    //
+    //    NSLog(@"%lu",array.count);
+    
+    //    NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
+    //    NSLog(@"End store to core data");
+    //End test
     
 //    PGBGoodreadsAPIClient *testGoodReadsAPI = [[PGBGoodreadsAPIClient alloc] init];
 //    NSLog(@"Goodreadsapiclient dummylogin about to be called\n.");

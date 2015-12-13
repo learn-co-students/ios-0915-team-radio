@@ -175,22 +175,23 @@
 
 + (PGBRealmBook *)createPGBRealmBookWithBook:(Book *)coreDataBook
 {
-    
     PGBRealmBook *realmBook = [[PGBRealmBook alloc]init];
     realmBook.ebookID = coreDataBook.eBookNumbers;
     realmBook.genre = coreDataBook.eBookGenres;
     realmBook.title = coreDataBook.eBookTitles;
     realmBook.friendlyTitle = coreDataBook.eBookFriendlyTitles;
     realmBook.language = coreDataBook.eBookLanguages;
+    realmBook.author = coreDataBook.eBookAuthors;
     
-    //for author
-    if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle])
-    {
-        realmBook.author = [realmBook getAuthorFromFriendlyTitle:realmBook.friendlyTitle];
-        if (!realmBook.author) {
-            realmBook.author = [realmBook parseAuthor:realmBook.author];
-        }
-    }
+
+    //LEO - preprocessor has already taken care of the issues below:
+//    if ([realmBook checkFriendlyTitleIfItHasAuthor:realmBook.friendlyTitle])
+//    {
+//        realmBook.author = [realmBook getAuthorFromFriendlyTitle:realmBook.friendlyTitle];
+//        if (!realmBook.author) {
+//            realmBook.author = [realmBook parseAuthor:realmBook.author];
+//        }
+//    }
     
         //LEO - this casue performance issue
 //    realmBook.title = [realmBook.title stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
@@ -586,7 +587,10 @@
 +(BOOL)validateBookDataWithRealmBook:(PGBRealmBook *)realmBook{
     
     if (realmBook.title.length == 0 ||
-        realmBook.author.length == 0 || [realmBook.author isEqualToString:@"Various"] || [realmBook.author isEqualToString:@"Unknown"] || realmBook.ebookID.length == 0)
+        realmBook.author.length == 0 ||
+        realmBook.ebookID.length == 0)
+//        [realmBook.author isEqualToString:@"Various"] ||
+//        [realmBook.author isEqualToString:@"Unknown"] ||
     {
         return NO;
     }
