@@ -32,7 +32,7 @@
 
 @property (strong, nonatomic) PGBRealmBook *selectedBook;
 
-@property (strong, nonatomic) PGBChatRoom *createChat;
+@property (strong, nonatomic) PGBChatRoom *createdChat;
 @property (strong, nonatomic) NSString *chatId;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topicBottomConstraint;
 
@@ -175,7 +175,7 @@
     } else if ([segue.identifier isEqualToString:@"toNewChat"]) {
 
         PGBChatMessageVC *chatMessageVC = (PGBChatMessageVC *)segue.destinationViewController;
-        chatMessageVC.currentChatRoom = self.createChat;
+        chatMessageVC.currentChatRoom = self.createdChat;
         
         
     }
@@ -191,16 +191,16 @@
         [self presentViewController:alert animated:YES completion:nil];
    
     } else {
-        self.createChat = [PGBChatRoom new];
-        self.createChat.topic = self.topicTextField.text;
-        self.createChat.bookId = self.selectedBook.ebookID;
-        self.createChat.bookTitle = self.selectedBook.title;
-        [self.createChat save];
+        self.createdChat = [PGBChatRoom new];
+        self.createdChat.topic = self.topicTextField.text;
+        self.createdChat.bookId = self.selectedBook.ebookID;
+        self.createdChat.bookTitle = self.selectedBook.title;
+        [self.createdChat save];
         
         // CALL ON DELEGATE TO MAKE IT DO STUFF
-//        [self.delegate sendNewChatBackToFirstVC];
+        [self.delegate sendNewChatToVC:self.createdChat];
         // DISMISS (or make the delegate dismiss you)
-        
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

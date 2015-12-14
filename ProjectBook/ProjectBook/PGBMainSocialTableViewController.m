@@ -24,9 +24,14 @@
 
 @implementation PGBMainSocialTableViewController
 
-- (void)sendNewChatToVC:(PGBChatRoom *)chatRoom{
-   
+- (void)sendNewChatToVC:(PGBChatRoom *)createdChatRoom{
     
+    [self.arrayOfOpenBookChats insertObject:createdChatRoom atIndex:0];
+    [self.chatTableView reloadData];
+    NSIndexPath *ipOfNewBookChat = [NSIndexPath indexPathForItem:0 inSection:0];
+    [self tableView:self.chatTableView didSelectRowAtIndexPath:ipOfNewBookChat];
+    //    [self performSegueWithIdentifier:@"goToChat" sender:self];
+    NSLog(@"******got back this:**********%@", createdChatRoom);
 }
 
 - (void)viewDidLoad {
@@ -79,8 +84,8 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
-//    tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
+    //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
+    //    tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
     PGBChatTableViewCell *cell = (PGBChatTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
     
     PGBChatRoom *bookChat = self.arrayOfOpenBookChats[indexPath.row];
@@ -100,8 +105,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if([[segue identifier] isEqualToString:@"goToChat"]) {
-//        UINavigationController *navController = segue.destinationViewController;
-//        PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)navController.topViewController;
+
         PFUser *currentUser = [PFUser currentUser];
         if (!currentUser){
             
@@ -111,21 +115,21 @@
             [self presentViewController:alert animated:YES completion:nil];
             
         } else {
+            
+            PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)segue.destinationViewController;
+            
+            NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
+            PGBChatRoom *currentChatRoom = self.arrayOfOpenBookChats[selectedIndexPath.row];
+            
+            PFUser *currentUser = [PFUser currentUser];
+            PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
+            PFObject *notChatRoom = [query getObjectWithId:currentChatRoom.objectId];
+            [notChatRoom addObject:currentUser.objectId forKey:@"usersInChat"];
+            [notChatRoom saveInBackground];
+            
+            chatViewController.currentChatRoom = currentChatRoom;
+        }
         
-        PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)segue.destinationViewController;
-
-        NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
-        PGBChatRoom *currentChatRoom = self.arrayOfOpenBookChats[selectedIndexPath.row];
-        
-        PFUser *currentUser = [PFUser currentUser];
-        PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
-        PFObject *notChatRoom = [query getObjectWithId:currentChatRoom.objectId];
-        [notChatRoom addObject:currentUser.objectId forKey:@"usersInChat"];
-        [notChatRoom saveInBackground];
-        
-        chatViewController.currentChatRoom = currentChatRoom;
-    }
-    
     }
 }
 - (IBAction)addButtonTapped:(id)sender {
@@ -136,13 +140,13 @@
         UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okayAction];
         [self presentViewController:alert animated:YES completion:nil];
-    
+        
     } else {
-    
-    PGBNewChatViewController *newChatVC = [self.storyboard instantiateViewControllerWithIdentifier:@"newChatVC"];
-    newChatVC.delegate = self;
-    [self presentViewController:newChatVC animated:YES completion:nil];
-
+        
+        PGBNewChatViewController *newChatVC = [self.storyboard instantiateViewControllerWithIdentifier:@"newChatVC"];
+        newChatVC.delegate = self;
+        [self presentViewController:newChatVC animated:YES completion:nil];
+        
     }
 }
 
