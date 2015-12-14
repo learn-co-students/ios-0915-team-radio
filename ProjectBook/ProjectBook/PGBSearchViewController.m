@@ -14,6 +14,8 @@
 #import "Book.h"
 #import <Masonry/Masonry.h>
 
+#define SEARCH_DELAY_IN_MS 100
+
 @interface PGBSearchViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *bookTableView;
@@ -28,6 +30,10 @@
 
 @property (nonatomic, strong)NSOperationQueue *bgQueue;
 @property (nonatomic, strong)NSOperationQueue *bookCoverBgQueue;
+
+@property (nonatomic, strong)dispatch_queue_t searchQueue;
+@property (nonatomic, assign)BOOL scheduledSearch;
+
 
 @end
 
@@ -44,6 +50,9 @@
     self.books = [[NSMutableArray alloc]init];
     
     self.dismissKeyboardGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    
+    self.searchQueue = dispatch_queue_create("com.queue.my", DISPATCH_QUEUE_CONCURRENT);
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -386,24 +395,32 @@
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    
     NSString *lowercaseAndUnaccentedSearchText = [searchText stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
     
-    NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"eBookSearchTerms CONTAINS %@", lowercaseAndUnaccentedSearchText];
+    if (self.scheduledSearch) return;
+    self.scheduledSearch = YES;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)((double)SEARCH_DELAY_IN_MS * NSEC_PER_MSEC));
+    dispatch_after(popTime, self.searchQueue, ^(void){
+        self.scheduledSearch = NO;
 
-    NSArray *coreDataBooks = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
-    
-    //convert core data book object into PGBRealmBook object
-    [self.books removeAllObjects];
-    
-    for (Book *coreDataBook in coreDataBooks) {
-        PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
+        NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"eBookSearchTerms CONTAINS %@", lowercaseAndUnaccentedSearchText];
+        NSArray *coreDataBooks = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
         
-        if (realmBook) {
-            [self.books addObject:realmBook];
+        [self.books removeAllObjects];
+        
+        for (Book *coreDataBook in coreDataBooks) {
+            PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
+            
+            if (realmBook) {
+                [self.books addObject:realmBook];
+            }
         }
-    }
-    [self.bookTableView reloadData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.bookTableView reloadData];
+        });
+
+    });
     
     if (!searchText.length) {
         [self.bookTableView addGestureRecognizer:self.dismissKeyboardGesture];
@@ -431,6 +448,24 @@
 }
 
 
+//- (void) scheduleSearch {
+//    if (self.scheduledSearch) return;
+//    self.scheduledSearch = YES;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)((double)SEARCH_DELAY_IN_MS * NSEC_PER_MSEC));
+//    dispatch_after(popTime, self.searchQueue, ^(void){
+//        self.scheduledSearch = NO;
+//        NSString *searchText = self.bookSearchBar.text;
+////        NSArray *tmpArray = [PublicMeathods searchInArray:searchText array:allData];
+//        
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+////            searchArray = tmpArray;
+//            [self.bookTableView reloadData];
+//        });
+//        if (![self.bookSearchBar.text isEqualToString:searchText])
+//            [self scheduleSearch];
+//    });
+//}
 
 
 
