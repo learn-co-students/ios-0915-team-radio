@@ -1,10 +1,9 @@
 # ios-0915-team-radio
 
 #Novel
-——————
+
 
 #What is it?
-_____________
 
 Novel is an iOS application that brings users all the benefits of Project Gutenberg and Goodreads into one simple application.
 
@@ -13,12 +12,10 @@ Novel was designed to allow users to search eBooks from Project Gutenbergs’ da
 All downloaded books will be exported and opened in iBooks. 
 
 #Author Information
-__________________
 
 Novel was created by four students from Flatiron School in NYC, as the final project for the program.  
 
 #How to Compile and Run
-______________________
 
 Download/Clone the project somewhere on the users drive.  Open terminal, and cd into the ProjectBook folder. 
 From here, type ‘pod install’ into terminal (without quotation marks), and after the pods have been installed, open the ‘.workspace’ file, and the project is open to be view.
@@ -26,12 +23,10 @@ From here, type ‘pod install’ into terminal (without quotation marks), and a
 To run, go to Xcode’s menubar, and look for ‘Product’.  Go into the drop down menu associated with ‘Project’ and click on ‘Run’ (alternatively, press the command Button + R).  
 
 #Design Discussions
-__________________
 
 Novel was designed to be intuitive yet simple.  All menus, and view controllers were made to be accessible via easily marked buttons on the screen, to make navigating easy.
 
 #Features
-_________
 
 - Search books from Project Gutenbergs’ database
 - Download eBooks from Project Gutenberg, and view downloaded books in iBooks
@@ -42,7 +37,6 @@ _________
 #License:
 
 Our License
-___________
 
 Copyright (c) 2015-present
 
