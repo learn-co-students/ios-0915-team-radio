@@ -447,27 +447,4 @@
     [self.bookSearchBar resignFirstResponder];
 }
 
-
-//- (void) scheduleSearch {
-//    if (self.scheduledSearch) return;
-//    self.scheduledSearch = YES;
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)((double)SEARCH_DELAY_IN_MS * NSEC_PER_MSEC));
-//    dispatch_after(popTime, self.searchQueue, ^(void){
-//        self.scheduledSearch = NO;
-//        NSString *searchText = self.bookSearchBar.text;
-////        NSArray *tmpArray = [PublicMeathods searchInArray:searchText array:allData];
-//        
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-////            searchArray = tmpArray;
-//            [self.bookTableView reloadData];
-//        });
-//        if (![self.bookSearchBar.text isEqualToString:searchText])
-//            [self scheduleSearch];
-//    });
-//}
-
-
-
-
 @end
