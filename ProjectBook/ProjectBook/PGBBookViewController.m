@@ -75,10 +75,6 @@
         make.centerX.equalTo(view1.mas_centerX);
     }];
     
-//    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.height.greaterThanOrEqualTo(genreLabel.mas_height);
-//    }];
-    
     UIView *view2 = [[UIView alloc]init];
     view2.backgroundColor = [UIColor whiteColor];
     [view2 setFrame:CGRectMake(0, 0, 100, 100)];
@@ -120,7 +116,7 @@
     self.bookDescriptionTV.editable = NO;
     self.bookDescriptionTV.selectable = NO;
     
-    PGBGoodreadsAPIClient *goodreadsAPI = [[PGBGoodreadsAPIClient alloc] init];
+    PGBGoodreadsAPIClient *goodreadsAPI = [[PGBGoodreadsAPIClient alloc]init];
     [goodreadsAPI getDescriptionForBookTitle:self.book completion:^(NSString *bookDescription) {
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -133,8 +129,7 @@
     }];
 }
 
-- (void)textViewDidChange:(UITextView *)textView
-{
+- (void)textViewDidChange:(UITextView *)textView {
     CGFloat fixedWidth = textView.frame.size.width;
     CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
     CGRect newFrame = textView.frame;
@@ -142,22 +137,21 @@
     textView.frame = newFrame;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    //LEO - this is causing crash when back from book detail
+    //LEO - this is causing for some books, AFNetworking crash!!!
     [self getReviewswithCompletion:^(BOOL success) {
         if (success) {
-            NSLog(@"Succed to get description from API call - LEO");
+            NSLog(@"Succed to get reviews from API call - LEO");
         } else {
-            NSLog(@"failed to get description from API call - LEO");
+            NSLog(@"failed to get reviews from API call - LEO");
             self.bookDescriptionTV.text = @"There is no review for this book.";
         }
     }];
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath   ofObject:(id)object   change:(NSDictionary *)change   context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath   ofObject:(id)object   change:(NSDictionary *)change   context:(void *)context {
     UITextView *tv = object;
     CGFloat topCorrect = ([tv bounds].size.height - [tv contentSize].height * [tv zoomScale])  / 2.0;
     topCorrect = ( topCorrect < 0.0 ? 0.0 : topCorrect );
@@ -168,41 +162,61 @@
     UIAlertController *view = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     //download
-    UIAlertAction *download = [UIAlertAction actionWithTitle:@"Download Book" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    NSString *downloadAlertTitle = @"";
+    if (self.book.isDownloaded) {
+        downloadAlertTitle = @"Re-download Book";
+    } else {
+        downloadAlertTitle = @"Download Book";
+    }
+    
+    UIAlertAction *download = [UIAlertAction actionWithTitle:downloadAlertTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
         
         NSString *idURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", parsedEbookID];
         
         NSURL *URL = [NSURL URLWithString:idURL];
         
-        [PGBDownloadHelper download:URL withCompletion:^{
-            
-            //after download is finished
-            UIAlertController *downloadComplete = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
-            
-            
-            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                       }];
-            
-            [downloadComplete addAction:ok];
-            [self presentViewController:downloadComplete animated:YES completion:nil];
-            
-            if (self.book.ebookID.length) {
+        [PGBDownloadHelper download:URL withCompletion:^(BOOL success) {
+            if (success) {
+                //after download is finished
+                UIAlertController *downloadCompleted = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
                 
-                [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-                    self.book.isDownloaded = YES;
-                    return self.book;
-                } andCompletion:^{
-                    //            if ([PFUser currentUser]) {
-                    //                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                    //                    NSLog(@"saved book to parse");
-                    //                }];
-                    //            }
-                }];
+                
+                UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction * _Nonnull action) {
+                                                           }];
+                
+                [downloadCompleted addAction:ok];
+                [self presentViewController:downloadCompleted animated:YES completion:nil];
+                
+                if (self.book.ebookID.length) {
+                    
+                    [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+                        self.book.isDownloaded = YES;
+                        return self.book;
+                    } andCompletion:^{
+                        //            if ([PFUser currentUser]) {
+                        //                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                        //                    NSLog(@"saved book to parse");
+                        //                }];
+                        //            }
+                    }];
+                }
+            } else {
+                UIAlertController *downloadFailed = [UIAlertController alertControllerWithTitle:@"Fail to download book" message:@"Please try again" preferredStyle:UIAlertControllerStyleAlert];
+                
+                
+                UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction * _Nonnull action) {
+                                                           }];
+                
+                [downloadFailed addAction:ok];
+                [self presentViewController:downloadFailed animated:YES completion:nil];
                 
             }
+            
         }];
     }];
     
@@ -284,8 +298,7 @@
 
 
 
--(void)getReviewswithCompletion:(void (^)(BOOL))completionBlock
-{
+- (void)getReviewswithCompletion:(void (^)(BOOL))completionBlock {
     [PGBGoodreadsAPIClient getReviewsForBook:self.book completion:^(NSDictionary *reviewDict) {
         
         if (reviewDict) {
@@ -323,7 +336,7 @@
     }];
 }
 
--(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     NSLog(@"didFinishNavigation");
     
     [webView.scrollView setZoomScale:0.6];
@@ -334,8 +347,7 @@
 
 
 
--(void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation
-{
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
     NSLog (@"didCommitNavigation");
     
     [webView.scrollView setZoomScale:0.6];
@@ -343,8 +355,6 @@
 }
 
 - (void)dealloc {
-    //    [self.webView setDelegate:nil];
-    
     self.webView.navigationDelegate = nil;
     [self.webView stopLoading];
 }

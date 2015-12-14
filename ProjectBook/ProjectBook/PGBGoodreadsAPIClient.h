@@ -12,11 +12,16 @@
 
 @interface PGBGoodreadsAPIClient : NSObject
 
+//reviews
 + (void)getReviewsForBook:(PGBRealmBook *)realmBook completion:(void (^)(NSDictionary *))completionBlock;
-- (NSDictionary *)methodToGetDescriptionsWithString:(NSString *)string;
-//- (void)getDescriptionForBookTitle:(NSString *)bookTitle completion:(void (^)(NSString *description))completion;
 
-- (void)getDescriptionForBookTitle:(PGBRealmBook *)realmBook completion:(void (^)(NSString *description))completion;
 - (NSString *)getURLForBookAndAuthor:(PGBRealmBook *)realmBook;
+//description
+- (NSDictionary *)methodToGetDescriptionsAndImageURLSWithString:(NSString *)string;
+- (void)getDescriptionForBookTitle:(PGBRealmBook *)realmBook completion:(void (^)(NSString *description))completion;
+
+//images
+- (NSString *)getImageURLWithContentsOfURLString:(NSString *)contentsOfURL;
+- (void)getImageURLForBookTitle:(PGBRealmBook *)realmBook completion:(void (^)(NSString *imageURL))completion;
 
 @end

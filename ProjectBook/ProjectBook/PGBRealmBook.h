@@ -47,7 +47,7 @@
 + (void)deleteUserBookDataForBook:(PGBRealmBook *)book andCompletion:(void (^)())completionBlock;
 + (void)deleteAllUserBookDataWithCompletion:(void (^)())completionBlock;
 
-+ (void)updateParseWithRealmBookDataWithCompletion:(void (^)())completionBlock;
++ (void)updateParseWithRealmBookDataWithCompletion:(void (^)(BOOL success))completionBlock;
 
 + (RLMResults *)getUserBookData;
 + (NSArray *)getUserBookDataInArray;
