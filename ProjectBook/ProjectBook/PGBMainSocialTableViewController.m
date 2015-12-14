@@ -10,28 +10,36 @@
 #import "PGBChatTableViewCell.h"
 #import "PGBNewChatViewController.h"
 #import "PGBChatRoom.h"
+#import "DateTools.h"
 
 @interface PGBMainSocialTableViewController ()
 
 @property (strong, nonatomic) NSMutableArray *arrayOfOpenBookChats;
 @property (weak, nonatomic) PGBChatRoom *chatRoom;
+@property (strong, nonatomic) PGBChatRoom *createdChatRoom;
 @property (strong, nonatomic) NSString *chatRoomId;
+@property (strong, nonatomic) IBOutlet UITableView *chatTableView;
 
 @end
 
 @implementation PGBMainSocialTableViewController
 
+- (void)sendNewChatToVC:(PGBChatRoom *)chatRoom{
+   
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.arrayOfOpenBookChats = [NSMutableArray new];
-    
+    self.chatTableView.rowHeight = 70;
     [self.tableView registerNib:[UINib nibWithNibName:@"PGBChatTableViewCell" bundle:nil] forCellReuseIdentifier:@"bookWithChatCell"];
     
     PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
     
     [query whereKeyExists:@"objectId"];
-    
+    [query addDescendingOrder:@"updatedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         for (PGBChatRoom *chatRoom in objects) {
             [self.arrayOfOpenBookChats addObject:chatRoom];
@@ -77,7 +85,10 @@
     
     PGBChatRoom *bookChat = self.arrayOfOpenBookChats[indexPath.row];
     cell.titleLabel.text = bookChat.bookTitle;
-    cell.chatTopicLabel.text = bookChat.topic;
+    NSString *topic = [NSString stringWithFormat:@"Topic: %@", bookChat.topic];
+    cell.chatTopicLabel.text = topic;
+    NSString *timeAgo = [NSString stringWithFormat:@"Last Active: %@", bookChat.lastMessageAt.timeAgoSinceNow];
+    cell.lastActiveLabel.text = timeAgo;
     
     return cell;
 }
@@ -87,11 +98,12 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     if([[segue identifier] isEqualToString:@"goToChat"]) {
+//        UINavigationController *navController = segue.destinationViewController;
+//        PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)navController.topViewController;
+        PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)segue.destinationViewController;
 
-        UINavigationController *navController = segue.destinationViewController;
-        PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)navController.topViewController;
-       
         NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
         PGBChatRoom *currentChatRoom = self.arrayOfOpenBookChats[selectedIndexPath.row];
         
@@ -103,6 +115,13 @@
         
         chatViewController.currentChatRoom = currentChatRoom;
     }
+    
+    
+}
+- (IBAction)addButtonTapped:(id)sender {
+    PGBNewChatViewController *newChatVC = [self.storyboard instantiateViewControllerWithIdentifier:@"newChatVC"];
+    newChatVC.delegate = self;
+    [self presentViewController:newChatVC animated:YES completion:nil];
 }
 
 - (void)didDismissPGBChatMessageVC:(PGBChatMessageVC *)vc {

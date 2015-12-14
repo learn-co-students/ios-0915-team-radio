@@ -10,12 +10,14 @@
 
 @interface PGBSearchChatPreviewViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
-@property (weak, nonatomic) IBOutlet UILabel *genreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *yearPublishedLabel;
-@property (weak, nonatomic) IBOutlet UILabel *languageLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *bookCoverImageView;
+@property (weak, nonatomic) IBOutlet UITextView *titleView;
+
+@property (weak, nonatomic) IBOutlet UITextView *authorView;
+
+//@property (weak, nonatomic) IBOutlet UILabel *genreLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *yearPublishedLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *languageLabel;
+//@property (weak, nonatomic) IBOutlet UIImageView *bookCoverImageView;
 @property (weak, nonatomic) IBOutlet UITextView *bookDescriptionTextView;
 
 
@@ -38,14 +40,13 @@
 
 -(void)updateUI
 {
-    self.titleLabel.text = self.book.title;
-    self.authorLabel.text = self.book.author;
-    self.authorLabel.text = self.book.author;
-    self.genreLabel.text = self.book.author;
+    self.titleView.text = self.book.title;
+    self.authorView.text = self.book.author;
+//    self.genreLabel.text = self.book.author;
 //    NSDateFormatter *dateFormatter = [NSDateFormatter new];
 //    NSString *datePublished = [dateFormatter stringFromDate:self.book.datePublished];
 //    self.yearPublishedLabel.text = datePublished;
-    self.languageLabel.text = self.book.language;
+//    self.languageLabel.text = self.book.language;
 }
 
 @end

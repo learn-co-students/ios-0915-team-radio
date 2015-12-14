@@ -41,7 +41,6 @@
     [[PFInstallation currentInstallation] addUniqueObject:channelName forKey:@"channels"];
     [[PFInstallation currentInstallation] saveInBackground];
     
-    
     self.title = self.currentChatRoom.topic;
     
     NSString *senderParseId = currentPerson.objectId;
@@ -59,13 +58,11 @@
 - (void)loadPastMessagesFromPriorToEnteringChat {
     
     NSMutableArray *gotMessages = [NSMutableArray new];
-    
     PFQuery *query = [PFQuery queryWithClassName:@"bookChatMessages"];
     [query whereKey:@"bookChatId" equalTo:self.currentChatRoom.objectId];
     [query orderByDescending:@"createdAt"];
     [query setLimit:100];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-
         if (!error)
         {
             // The find succeeded.
@@ -94,11 +91,6 @@
         }
         
     }];
-    
-    //grab messages newly updated or not already in messagesInConversations array
-
-    [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -109,14 +101,15 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+   
     
+    self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(closePressed:)];
 }
 
 - (void)closePressed:(UIBarButtonItem *)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(JSQMessage *)messageCreatedAt:(NSDate *)date withText:(NSString *)text
@@ -152,33 +145,11 @@
     
     if (![[notification name] isEqualToString:@"NewMessage"]) {
         NSLog(@"receiveNotification: error: notification name invalid; name=%@; expected=dGWeFofcrQ", notification.name);
-        // TODO: uncomment below after debugging...
-        //return;
+        return;
     }
     // apparently neither of these things work so TODO: fix this shit...
     self.showTypingIndicator = !self.showTypingIndicator;
     [self scrollToBottomAnimated:YES];
-    
-    //    PFQuery *messagesQuery = [PFQuery queryWithClassName:self.currentChatRoom.objectId];
-    //    [messagesQuery whereKey:@"bookChatId" equalTo:self.currentChatRoom.objectId];
-    //
-    //    [messagesQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-    //        // this is where youd stop the loading indicator
-    //
-    //        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-    //
-    //            NSDictionary *lastMessage = objects.lastObject;
-    //            JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:lastMessage[@"senderId"]
-    //                                                           senderDisplayName:lastMessage[@"senderDisplayName"]
-    //                                                                        date:lastMessage[@"date"]
-    //                                                                        text:lastMessage[@"text"]];
-    //
-    //            [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
-    //            [self.messagesInConversation addObject:latestMessage];
-    //            [self finishReceivingMessageAnimated:YES];
-    //        }];
-    //    }];
-    
     PFQuery *query = [PFQuery queryWithClassName:@"bookChatMessages"];
     [query whereKey:@"bookChatId" equalTo:self.currentChatRoom.objectId];
     [query orderByDescending:@"createdAt"];
@@ -213,12 +184,6 @@
             }
     
     }];
-    
-    //grab messages newly updated or not already in messagesInConversations array
-    
-    
-    
-    [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
 }
 
 - (void)pushMainViewController {
@@ -268,6 +233,14 @@
             NSLog(@"Problem saving: %@", error.description);
         }
     }];
+
+    PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
+    [query getObjectInBackgroundWithId:self.currentChatRoom.objectId block:^(PFObject * _Nullable bookChat, NSError * _Nullable error) {
+        
+        bookChat[@"lastMessageAt"] = [NSDate date];
+        [bookChat saveInBackground];
+    }];
+    
     [self finishSendingMessageAnimated:YES];
 }
 
@@ -286,7 +259,7 @@
     JSQMessagesBubbleImage *outgoingBubbleImage = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor lightGrayColor]];
     
     
-    JSQMessagesBubbleImage *incomingBubbleImage = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor blueColor]];
+    JSQMessagesBubbleImage *incomingBubbleImage = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor colorWithRed:0 green:136.0f/255.0f blue:62.0f/255.0 alpha:1.0]];
     
     
     

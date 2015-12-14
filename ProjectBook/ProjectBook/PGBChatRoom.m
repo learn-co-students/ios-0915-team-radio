@@ -14,6 +14,7 @@
 @dynamic bookId;
 @dynamic bookTitle;
 @dynamic topic;
+@dynamic lastMessageAt;
 
 + (void)load {
     [self registerSubclass];

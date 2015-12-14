@@ -11,8 +11,18 @@
 #import <Parse/Parse.h>
 @class PGBChatRoom;
 
+@protocol PGBNewChatVCDelegate <NSObject>
+
+- (void)sendNewChatToVC:(PGBChatRoom *)chatRoom;
+
+@end
+
 @interface PGBNewChatViewController : UIViewController
 
+@property (nonatomic, assign) id <PGBNewChatVCDelegate> delegate;
 @property (nonatomic, strong) PGBChatRoom *chatRoom;
+
+- (IBAction)creatChatTouched:(id)sender;
+
 
 @end

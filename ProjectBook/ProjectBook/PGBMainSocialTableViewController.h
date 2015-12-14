@@ -8,11 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-
+#import "PGBNewChatViewController.h"
 #import "PGBChatMessageVC.h"
 
-@interface PGBMainSocialTableViewController : UITableViewController <PGBChatMessageVCDelegate>
-
-
-
+@interface PGBMainSocialTableViewController : UITableViewController <PGBNewChatVCDelegate>
 @end

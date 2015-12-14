@@ -54,6 +54,13 @@
                                       imageSize:CGSizeMake(90.0f, 90.0f)];
     [self.tabBar.items[2] setTitle:@"Library"];
     [self.tabBar.items[2] setImage:libraryIcon];
+    
+    UIImage *chatIcon = [IonIcons imageWithIcon:ion_chatbubbles
+                                      iconColor:[UIColor colorWithRed:0 green:136.0f/255.0f blue:62.0f/255.0 alpha:1.0]
+                                       iconSize:30.0f
+                                      imageSize:CGSizeMake(90.0f, 90.0f)];
+    [self.tabBar.items[3] setTitle:@"Conversation"];
+    [self.tabBar.items[3] setImage:chatIcon];
 
 }
 @end

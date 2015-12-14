@@ -12,8 +12,9 @@
 #import "PGBDataStore.h"
 #import "PGBChatRoom.h"
 #import "PGBSearchChatPreviewViewController.h"
+#import "PGBChatMessageVC.h"
 
-@interface PGBNewChatViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource>
+@interface PGBNewChatViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *bookSearchTableView;
 @property (weak, nonatomic) IBOutlet UIView *searchview;
@@ -31,6 +32,10 @@
 
 @property (strong, nonatomic) PGBRealmBook *selectedBook;
 
+@property (strong, nonatomic) PGBChatRoom *createChat;
+@property (strong, nonatomic) NSString *chatId;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topicBottomConstraint;
+
 @end
 
 @implementation PGBNewChatViewController
@@ -43,11 +48,24 @@
     [self.dataStore fetchData];
     self.books = [NSMutableArray new];
     
+    self.topicTextField.delegate = self;
+    [self.topicTextField setReturnKeyType:UIReturnKeyDone];
+
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    [self.topicTextField becomeFirstResponder];
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)topicTextField{
+    
+    [self.topicTextField resignFirstResponder];
+    return YES;
 }
 
 - (void)loadDefaultView {
     self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    self.searchBar.placeholder = @"Search for Book";
+    self.searchBar.placeholder = @"Search for a book...";
     self.searchBar.delegate = self;
     [self.navigationController.navigationBar addSubview:self.searchBar];
     
@@ -154,6 +172,12 @@
 {
     if([segue.identifier isEqualToString:@"PreviewEmbedSegue"]) {
         self.previewVC = segue.destinationViewController;
+    } else if ([segue.identifier isEqualToString:@"toNewChat"]) {
+
+        PGBChatMessageVC *chatMessageVC = (PGBChatMessageVC *)segue.destinationViewController;
+        chatMessageVC.currentChatRoom = self.createChat;
+        
+        
     }
 }
 
@@ -167,27 +191,23 @@
         [self presentViewController:alert animated:YES completion:nil];
    
     } else {
-    
-        PGBChatRoom *newChat = [PGBChatRoom new];
-        newChat.topic = self.topicTextField.text;
-        newChat.bookId = self.selectedBook.ebookID;
-        newChat.bookTitle = self.selectedBook.title;
+        self.createChat = [PGBChatRoom new];
+        self.createChat.topic = self.topicTextField.text;
+        self.createChat.bookId = self.selectedBook.ebookID;
+        self.createChat.bookTitle = self.selectedBook.title;
+        [self.createChat save];
         
-        [newChat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                // The object has been saved.
-                NSLog(@"New Chat created!!!");
-            } else {
-                NSLog(@"Failure to create new chat");
-            }
-        }];
-        // this is where i'll go to the new chat or something....
+        // CALL ON DELEGATE TO MAKE IT DO STUFF
+        [self.delegate sendNewChatBackToFirstVC];
+        // DISMISS (or make the delegate dismiss you)
+        
     }
 }
+
+
 
 - (IBAction)returnToActiveChats:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 @end

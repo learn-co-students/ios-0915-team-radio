@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSString *bookId;
 @property (strong, nonatomic) NSString *bookTitle;
 @property (strong, nonatomic) NSString *topic;
+@property (strong, nonatomic) NSDate *lastMessageAt;
 
 //+ (NSString *)parseClassName;
 
