@@ -215,9 +215,10 @@
                 //format change of author to first name lastname
                 if (eBookAuthors) {
                     eBookAuthors = [self parseAuthor:eBookAuthors];
-                } else if (eBookFriendlyTitle) {
-                    eBookAuthors = [self getAuthorFromFriendlyTitle:eBookFriendlyTitle];
                 }
+//                else if (eBookFriendlyTitle) {
+//                    eBookAuthors = [self getAuthorFromFriendlyTitle:eBookFriendlyTitle];
+//                }
                 
                 //languages
                 if ([eBookLanguage isEqualToString:@"en"]){
@@ -525,7 +526,7 @@
 
 -(NSString *)parseAuthor:(NSString *)author {
     author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSLog(@"before change: %@", author);
+//    NSLog(@"before change: %@", author);
     
     NSArray *unnecesssary = @[ @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"0", @"?", @"BC"];
     
@@ -575,7 +576,7 @@
     author = [newAuthorName mutableCopy];
     author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    NSLog(@"after change: %@", author);
+//    NSLog(@"after change: %@", author);
     
 //    if ([author hasSuffix:@","]){
 //        author = [author substringToIndex:[author length]-1];
