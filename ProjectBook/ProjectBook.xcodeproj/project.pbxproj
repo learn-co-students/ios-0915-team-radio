@@ -18,7 +18,6 @@
 		4C9597AC1BFBEB2000BBD558 /* PGBRealmBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9597AA1BFBEB2000BBD558 /* PGBRealmBook.m */; };
 		4C9D16631C0CF04800DBF989 /* PGBSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */; };
 		4C9D16651C0CF07600DBF989 /* SearchStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9D16641C0CF07600DBF989 /* SearchStoryboard.storyboard */; };
-		4CF789B81C15359300C82EB6 /* ProjectBook.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4CF789B71C15359300C82EB6 /* ProjectBook.sqlite */; };
 		7AA794A04ED5426536CC6469 /* libPods-ProjectBook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */; };
 		8902002D1C0CA900001A1ECF /* PGBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8902002C1C0CA900001A1ECF /* PGBLoginViewController.m */; };
 		890200301C0CAA10001A1ECF /* PGBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8902002F1C0CAA10001A1ECF /* PGBSignUpViewController.m */; };
@@ -33,6 +32,7 @@
 		89560A4C1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89560A4A1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.xib */; };
 		8964243C1C163C3D00FBB988 /* PGBChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8964243A1C163C3D00FBB988 /* PGBChatTableViewCell.m */; };
 		8964243D1C163C3D00FBB988 /* PGBChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8964243B1C163C3D00FBB988 /* PGBChatTableViewCell.xib */; };
+		89986BB31C1F7011004FB4F9 /* ProjectBook.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 89986BB21C1F7011004FB4F9 /* ProjectBook.sqlite */; };
 		899A4D071C10A77200D499C4 /* PGBChatMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */; };
 		899A4D0D1C11EF9C00D499C4 /* PGBMainSocialTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899A4D0C1C11EF9C00D499C4 /* PGBMainSocialTableViewController.m */; };
 		899A4D101C11EFC100D499C4 /* PGBNewChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899A4D0F1C11EFC100D499C4 /* PGBNewChatViewController.m */; };
@@ -135,7 +135,6 @@
 		4C9D16611C0CF04800DBF989 /* PGBSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBSearchViewController.h; sourceTree = "<group>"; };
 		4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBSearchViewController.m; sourceTree = "<group>"; };
 		4C9D16641C0CF07600DBF989 /* SearchStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchStoryboard.storyboard; sourceTree = "<group>"; };
-		4CF789B71C15359300C82EB6 /* ProjectBook.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = ProjectBook.sqlite; path = fonts/ProjectBook.sqlite; sourceTree = "<group>"; };
 		8902002B1C0CA900001A1ECF /* PGBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBLoginViewController.h; sourceTree = "<group>"; };
 		8902002C1C0CA900001A1ECF /* PGBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBLoginViewController.m; sourceTree = "<group>"; };
 		8902002E1C0CAA10001A1ECF /* PGBSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBSignUpViewController.h; sourceTree = "<group>"; };
@@ -158,6 +157,7 @@
 		896424391C163C3D00FBB988 /* PGBChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBChatTableViewCell.h; sourceTree = "<group>"; };
 		8964243A1C163C3D00FBB988 /* PGBChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBChatTableViewCell.m; sourceTree = "<group>"; };
 		8964243B1C163C3D00FBB988 /* PGBChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBChatTableViewCell.xib; sourceTree = "<group>"; };
+		89986BB21C1F7011004FB4F9 /* ProjectBook.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ProjectBook.sqlite; sourceTree = "<group>"; };
 		899A4D051C10A77200D499C4 /* PGBChatMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBChatMessageVC.h; sourceTree = "<group>"; };
 		899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBChatMessageVC.m; sourceTree = "<group>"; };
 		899A4D0B1C11EF9C00D499C4 /* PGBMainSocialTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBMainSocialTableViewController.h; sourceTree = "<group>"; };
@@ -487,7 +487,7 @@
 				894AE4621C161227007F22A5 /* PGBSearchChatPreviewViewController.h */,
 				894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */,
 				CBC050FA1C109AB200118044 /* fonts */,
-				4CF789B71C15359300C82EB6 /* ProjectBook.sqlite */,
+				89986BB21C1F7011004FB4F9 /* ProjectBook.sqlite */,
 				CBFD3F5A1BFBA076002CE0A4 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -637,6 +637,7 @@
 				89B2FE0E1C1CCE070048889B /* PGBSearchCustomTableCell.xib in Resources */,
 				890200321C0CF4EB001A1ECF /* profile.storyboard in Resources */,
 				A7DD40001C03717100D13A4B /* bookInformationSet6.txt in Resources */,
+				89986BB31C1F7011004FB4F9 /* ProjectBook.sqlite in Resources */,
 				CBC051081C109AB200118044 /* OpenSans-Bold.ttf in Resources */,
 				CBC0510F1C109AB200118044 /* OpenSans-Regular.ttf in Resources */,
 				CBFD3F641BFBA076002CE0A4 /* Main.storyboard in Resources */,
@@ -673,7 +674,6 @@
 				A7DD40041C03717100D13A4B /* bookInformationSet10.txt in Resources */,
 				A7DD3FFE1C03717100D13A4B /* bookInformationSet4.txt in Resources */,
 				A7DD400B1C03717100D13A4B /* bookInformationSet17.txt in Resources */,
-				4CF789B81C15359300C82EB6 /* ProjectBook.sqlite in Resources */,
 				89560A4C1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.xib in Resources */,
 				CBC051101C109AB200118044 /* OpenSans-Semibold.ttf in Resources */,
 			);

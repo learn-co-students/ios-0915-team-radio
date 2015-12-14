@@ -116,7 +116,7 @@
                                     <action selector="returnToActiveChats:" destination="JjB-Zu-oh6" eventType="touchUpInside" id="u5V-yL-cDY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIi-Ur-cNp">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIi-Ur-cNp">
                                 <rect key="frame" x="137" y="617" width="102" height="28"/>
                                 <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="15"/>
                                 <state key="normal" title="Create Chat">

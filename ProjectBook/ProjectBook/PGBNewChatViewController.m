@@ -198,7 +198,7 @@
         [self.createChat save];
         
         // CALL ON DELEGATE TO MAKE IT DO STUFF
-        [self.delegate sendNewChatBackToFirstVC];
+//        [self.delegate sendNewChatBackToFirstVC];
         // DISMISS (or make the delegate dismiss you)
         
     }

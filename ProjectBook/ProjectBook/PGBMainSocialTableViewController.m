@@ -102,6 +102,16 @@
     if([[segue identifier] isEqualToString:@"goToChat"]) {
 //        UINavigationController *navController = segue.destinationViewController;
 //        PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)navController.topViewController;
+        PFUser *currentUser = [PFUser currentUser];
+        if (!currentUser){
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Uh oh!" message:@"You need to login to use this feature." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okayAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+        } else {
+        
         PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)segue.destinationViewController;
 
         NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
@@ -116,12 +126,24 @@
         chatViewController.currentChatRoom = currentChatRoom;
     }
     
-    
+    }
 }
 - (IBAction)addButtonTapped:(id)sender {
+    PFUser *currentUser = [PFUser currentUser];
+    if (!currentUser){
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Uh oh!" message:@"You need to login to use this feature." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okayAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    
+    } else {
+    
     PGBNewChatViewController *newChatVC = [self.storyboard instantiateViewControllerWithIdentifier:@"newChatVC"];
     newChatVC.delegate = self;
     [self presentViewController:newChatVC animated:YES completion:nil];
+
+    }
 }
 
 - (void)didDismissPGBChatMessageVC:(PGBChatMessageVC *)vc {
