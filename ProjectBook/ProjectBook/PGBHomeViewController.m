@@ -18,6 +18,7 @@
 #import "PGBDataStore.h"
 #import "Book.h"
 #import "Reachability.h"
+#import "PGBGoodreadsAPIClient.h"
 
 #import <Masonry/Masonry.h>
 #import <AFNetworking/AFNetworking.h>
@@ -33,6 +34,7 @@ static dispatch_once_t onceToken;
 @property (strong, nonatomic) PGBCustomBookCollectionViewCell *bookCoverCell;
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
 @property (strong, nonatomic) PGBDataStore *dataStore;
+@property (strong, nonatomic) PGBGoodreadsAPIClient *APIClient;
 
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) NSMutableArray *classicBooks;
@@ -82,6 +84,8 @@ static dispatch_once_t onceToken;
     
     self.dataStore = [PGBDataStore sharedDataStore];
     [self.dataStore fetchData];
+    
+    self.APIClient = [[PGBGoodreadsAPIClient alloc]init];
     
     //popular books
     //delegate
@@ -196,10 +200,26 @@ static dispatch_once_t onceToken;
             for (NSString *ebookNumber in mostPopularBooks) {
                 PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
                 if (book) {
-                    [self.books addObject:book];
-                    //                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    //                    [self.popularCollectionView reloadData];
-                    //                }];
+                    
+                    [self.APIClient getImageURLForBookTitle:book completion:^(NSString *imageURL) {
+                        if (imageURL && ![imageURL containsString:@"nophoto"] && ![imageURL containsString:@"<>"]) {
+                            NSURL *url = [NSURL URLWithString:imageURL];
+                            NSData *data = [NSData dataWithContentsOfURL:url];
+                            book.bookCoverData = data;
+                        }
+                            [self.books addObject:book];
+                        
+//                        if ([imageURL containsString:@"nophoto"]){
+//                            [self.books addObject:book];
+//                        } else {
+//                            
+                        
+                        NSLog(@"hiiiiiii: %lu", self.books.count);
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            [self.popularCollectionView reloadData];
+                        }];
+                    }];
+                    
                 }
             }
             
@@ -228,7 +248,6 @@ static dispatch_once_t onceToken;
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.classicsCollectionView reloadData];
-                [self.popularCollectionView reloadData];
                 [self.shakespeareCollectionView reloadData];
                 
             }];
@@ -366,14 +385,17 @@ static dispatch_once_t onceToken;
             if (indexPath.row < self.books.count)
             {
                 PGBRealmBook *book = self.books[indexPath.row];
-                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+                
+                    UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
                 
                 if (bookCoverImage) {
                     cell.bookCover.image = bookCoverImage;
                 } else {
+                    NSLog(@"title %@, author %@\n\n\n\n\n", book.title, book.author);
                     cell.titleTV.text = book.title;
                     cell.authorLabel.text = book.author;
                 }
+                
                 //            cell.titleTV.adjustsFontSizeToFitWidth = YES;
                 //            cell.titleTV.minimumFontSize = 0;
                 //            cell.authorLabel.adjustsFontSizeToFitWidth = YES;
@@ -386,14 +408,21 @@ static dispatch_once_t onceToken;
             if (indexPath.row < self.classicBooks.count)
             {
                 PGBRealmBook *book = self.classicBooks[indexPath.row];
-                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+//                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
                 
-                if (bookCoverImage) {
-                    cell.bookCover.image = bookCoverImage;
-                } else {
+                [self.APIClient getImageURLForBookTitle:book completion:^(NSString *imageURL) {
+                    NSURL *url = [NSURL URLWithString:imageURL];
+                    NSData *data = [NSData dataWithContentsOfURL:url];
+                    UIImage *bookCoverFromAPI = [UIImage imageWithData:data];
+                    
+                    cell.bookCover.image = bookCoverFromAPI;
+                }];
+                
+                if (!cell.bookCover.image) {
                     cell.titleTV.text = book.title;
                     cell.authorLabel.text = book.author;
                 }
+                
                 //cell.titleTV.adjustsFontSizeToFitWidth = YES;
                 //cell.titleTV.minimumFontSize = 0;
                 //cell.authorLabel.adjustsFontSizeToFitWidth = YES;
@@ -406,17 +435,31 @@ static dispatch_once_t onceToken;
             if (indexPath.row < self.shakespeareBooks.count)
             {
                 PGBRealmBook *book = self.shakespeareBooks[indexPath.row];
-                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+                //                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
                 
-                if (bookCoverImage) {
-                    cell.bookCover.image = bookCoverImage;
-                } else {
-                    cell.titleTV.text = book.title;
-                    cell.authorLabel.text = @"William Shakespeare";
-                }
-                //cell.titleTV.adjustsFontSizeToFitWidth = YES;
-                //cell.titleTV.minimumFontSize = 0;
-                //cell.authorLabel.adjustsFontSizeToFitWidth = YES;
+                [self.APIClient getImageURLForBookTitle:book completion:^(NSString *imageURL) {
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        if ([imageURL isEqual:@""]) {
+                            cell.titleTV.text = book.title;
+                            cell.authorLabel.text = book.author;
+                        } else{
+                            NSURL *url = [NSURL URLWithString:imageURL];
+                            NSData *data = [NSData dataWithContentsOfURL:url];
+                            UIImage *bookCoverFromAPI = [UIImage imageWithData:data];
+                            cell.bookCover.image = bookCoverFromAPI;
+                        }
+                        
+                    }];
+                    
+                    //                if (!cell.bookCover.image) {
+                    //                    cell.titleTV.text = book.title;
+                    //                    cell.authorLabel.text = book.author;
+                    //                }
+                    
+                    //cell.titleTV.adjustsFontSizeToFitWidth = YES;
+                    //cell.titleTV.minimumFontSize = 0;
+                    //cell.authorLabel.adjustsFontSizeToFitWidth = YES;
+                }];
             }
         }
         return cell;
