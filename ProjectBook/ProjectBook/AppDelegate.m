@@ -74,19 +74,19 @@
 
     
     //Begin test array of books
-    //    PGBparsingThroughText *newTask = [[PGBparsingThroughText alloc]init];
-    //    NSArray *finalArrayOfDictionary = [newTask cleanUpArrays];
-    //
-    //    NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
-    
-    //    NSLog(@"Begin store to core data");
+//        PGBparsingThroughText *newTask = [[PGBparsingThroughText alloc]init];
+//        NSArray *finalArrayOfDictionary = [newTask cleanUpArrays];
+//    
+//        NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
+//    
+//        NSLog(@"Begin store to core data");
     
     //    NSLog(@"documents directory: %@", [self applicationDocumentsDirectory]);
     
-    //    PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
-    //    [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
-    //    [dataStore fetchData];
-    
+//        PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
+//        [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
+//        [dataStore fetchData];
+//    
     //    NSMutableArray *array = [NSMutableArray new];
     //    NSInteger i = 0;
     //    for (Book *book in dataStore.managedBookObjects) {
@@ -99,10 +99,10 @@
     //
     //    }
     //
-    //    NSLog(@"%lu",array.count);
+    //       NSLog(@"%lu",array.count);
     
-    //    NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
-    //    NSLog(@"End store to core data");
+//        NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
+//        NSLog(@"End store to core data");
     //End test
     
 //    PGBGoodreadsAPIClient *testGoodReadsAPI = [[PGBGoodreadsAPIClient alloc] init];
