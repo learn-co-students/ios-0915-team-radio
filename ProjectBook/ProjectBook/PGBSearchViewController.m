@@ -50,10 +50,11 @@
     self.books = [[NSMutableArray alloc]init];
     
     self.dismissKeyboardGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    
-    self.searchQueue = dispatch_queue_create("com.queue.my", DISPATCH_QUEUE_CONCURRENT);
+    [self.view addGestureRecognizer:self.dismissKeyboardGesture];
 
+    self.searchQueue = dispatch_queue_create("com.queue.my", DISPATCH_QUEUE_CONCURRENT);
 }
+
 
 -(void)viewWillAppear:(BOOL)animated{
     
@@ -170,7 +171,7 @@
     [genreButtonStackView addArrangedSubview:operaButton];
     [genreButtonStackView addArrangedSubview:biographyButton];
     [genreButtonStackView addArrangedSubview:childrenButton];
-    [genreButtonStackView addArrangedSubview:randomButton];
+//    [genreButtonStackView addArrangedSubview:randomButton];
     
     genreButtonStackView.translatesAutoresizingMaskIntoConstraints = false;
     [self.defaultContentView addSubview:genreButtonStackView];
@@ -380,71 +381,85 @@
 }
 
 #pragma UISearchBar Method::
--(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    
-    self.defaultContentView.hidden = YES;
-    
-    [self.bookTableView addGestureRecognizer:self.dismissKeyboardGesture];
-}
+
+
+//-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+//    if (searchBar == self.bookSearchBar) {
+//        self.defaultContentView.hidden = YES;
+//    }
+//}
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    
-    if (!self.bookSearchBar.text.length) {
-        self.defaultContentView.hidden = NO;
+    if (searchBar == self.bookSearchBar) {
+        if (!self.bookSearchBar.text.length) {
+            self.defaultContentView.hidden = NO;
+        }
     }
+    
+        NSLog(@"text end");
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSString *lowercaseAndUnaccentedSearchText = [searchText stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
-    
-    if (self.scheduledSearch) return;
-    self.scheduledSearch = YES;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)((double)SEARCH_DELAY_IN_MS * NSEC_PER_MSEC));
-    dispatch_after(popTime, self.searchQueue, ^(void){
-        self.scheduledSearch = NO;
+    NSLog(@"text changed");
 
-        NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"eBookSearchTerms CONTAINS %@", lowercaseAndUnaccentedSearchText];
-        NSArray *coreDataBooks = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
+    if (searchBar == self.bookSearchBar) {
+        if (self.bookSearchBar.isFirstResponder) {
+            self.defaultContentView.hidden = YES;
+        }
+
+        NSString *lowercaseAndUnaccentedSearchText = [searchText stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
         
-        [self.books removeAllObjects];
-        
-        for (Book *coreDataBook in coreDataBooks) {
-            PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
+        if (self.scheduledSearch) return;
+        self.scheduledSearch = YES;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)((double)SEARCH_DELAY_IN_MS * NSEC_PER_MSEC));
+        dispatch_after(popTime, self.searchQueue, ^(void){
+            self.scheduledSearch = NO;
             
-            if (realmBook) {
-                [self.books addObject:realmBook];
+            NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"eBookSearchTerms CONTAINS %@", lowercaseAndUnaccentedSearchText];
+            NSArray *coreDataBooks = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
+            
+            [self.books removeAllObjects];
+            
+            for (Book *coreDataBook in coreDataBooks) {
+                PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
+                
+                if (realmBook) {
+                    [self.books addObject:realmBook];
+                }
             }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.bookTableView reloadData];
+            });
+            
+            NSString *newSearchText = [self.bookSearchBar.text stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
+            if (![newSearchText isEqualToString:searchText])
+                [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
+        });
+        
+        if (!searchText.length) {
+            self.dismissKeyboardGesture.enabled = YES;
+        } else {
+            self.dismissKeyboardGesture.enabled = NO;
         }
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.bookTableView reloadData];
-        });
-
-    });
-    
-    if (!searchText.length) {
-        [self.bookTableView addGestureRecognizer:self.dismissKeyboardGesture];
-    } else {
-        [self.bookTableView removeGestureRecognizer:self.dismissKeyboardGesture];
     }
-        
-}
-
-- (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar {
-    
-    self.defaultContentView.hidden = NO;
-    [searchBar resignFirstResponder];
 }
 
 - (void) hideKeyboard {
     self.defaultContentView.hidden = NO;
     [self.bookSearchBar resignFirstResponder];
+    
+        NSLog(@"hide keyboard");
 }
 
 #pragma UIScroll View Method::
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView == self.bookTableView && self.bookSearchBar.text.length) {
+        [self.bookSearchBar resignFirstResponder];
+        NSLog(@"did scroll");
+    }
     
-    [self.bookSearchBar resignFirstResponder];
 }
 
 @end
