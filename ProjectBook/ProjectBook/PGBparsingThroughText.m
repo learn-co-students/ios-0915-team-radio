@@ -215,9 +215,10 @@
                 //format change of author to first name lastname
                 if (eBookAuthors) {
                     eBookAuthors = [self parseAuthor:eBookAuthors];
-                } else if (eBookFriendlyTitle) {
-                    eBookAuthors = [self getAuthorFromFriendlyTitle:eBookFriendlyTitle];
                 }
+//                else if (eBookFriendlyTitle) {
+//                    eBookAuthors = [self getAuthorFromFriendlyTitle:eBookFriendlyTitle];
+//                }
                 
                 //languages
                 if ([eBookLanguage isEqualToString:@"en"]){
@@ -309,7 +310,7 @@
                 } else if ([eBookLanguage isEqualToString:@"yi"]){
                     eBookLanguage = @"Yiddish";
                 } else {
-                    eBookLanguage = nil;
+                    eBookLanguage = @"";
                 }
                 
                                     
@@ -427,7 +428,7 @@
                 } else if ([eBookGenre containsString:@"poetry"]){
                     eBookGenre = @"Poetry";
                 } else {
-                    eBookGenre = nil;
+                    eBookGenre = @"";
                 }
                 
                 //create dictionary of processed data
@@ -525,8 +526,9 @@
 
 -(NSString *)parseAuthor:(NSString *)author {
     author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    NSLog(@"before change: %@", author);
     
-    NSArray *unnecesssary = @[ @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"0", @"-", @"?", @"(", @")", @"BC"];
+    NSArray *unnecesssary = @[ @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"0", @"?", @"BC"];
     
     for (NSString *thing in unnecesssary) {
         if ([author containsString:thing]) {
@@ -534,40 +536,80 @@
             author = [author stringByReplacingOccurrencesOfString:thing withString:@""];
         }
     }
+    
+    author = [author stringByReplacingOccurrencesOfString:@"-" withString:@" "];
+
     author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    if ([author hasSuffix:@","]){
-        author = [author substringToIndex:[author length]-1];
+    unichar lastChar = [author characterAtIndex:[author length] - 1];
+    NSString *lastCharStr = [NSString stringWithFormat:@"%c", lastChar];
+    
+    if ([lastCharStr isEqualToString:@","]) {
+        author = [author substringToIndex:[author length] - 1];
     }
     
-    NSMutableArray *wordsInAuthorInArray = [[author componentsSeparatedByString: @" "] mutableCopy];
-    NSMutableArray *authorArray = [[NSMutableArray alloc]init];
+    NSArray *arrayOfAuthorName = [author componentsSeparatedByString:@", "];
+    NSMutableString *newAuthorName = [[NSMutableString alloc]init];
     
-    for (NSString *string in wordsInAuthorInArray) {
-        BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[string characterAtIndex:0]];
-        if (isUppercase) {
-            [authorArray addObject:string];
+    for (NSInteger i = arrayOfAuthorName.count-1; i >= 0; i--) {
+        
+        NSString *newStr = @"";
+        
+        if ([arrayOfAuthorName[i] containsString:@"th cent."]) {
+            continue;
         }
+        
+        if ([arrayOfAuthorName[i] containsString:@"("]) {
+            NSArray *splitStringArray = [arrayOfAuthorName[i] componentsSeparatedByString:@"("];
+            newStr = [splitStringArray objectAtIndex:0];
+        } else {
+            newStr = arrayOfAuthorName[i];
+        }
+        
+        newStr = [newStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+        [newAuthorName appendString:newStr];
+        [newAuthorName appendString:@" "];
     }
-    if ([authorArray.firstObject containsString:@","]) {
-        NSString *lastName = authorArray.firstObject;
-        [authorArray removeObject:lastName];
-        [authorArray insertObject:lastName atIndex:authorArray.count];
-    }
     
-    NSMutableString *newAuthor = [[NSMutableString alloc]init];
     
-    for (NSString *name in authorArray) {
-        [newAuthor appendString:name];
-        [newAuthor appendString:@" "];
-    }
-    
-    author = newAuthor;
-    
+    author = [newAuthorName mutableCopy];
     author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if ([author hasSuffix:@","]){
-        author = [author substringToIndex:[author length]-1];
-    }
+    
+//    NSLog(@"after change: %@", author);
+    
+//    if ([author hasSuffix:@","]){
+//        author = [author substringToIndex:[author length]-1];
+//    }
+//    
+//    NSMutableArray *wordsInAuthorInArray = [[author componentsSeparatedByString: @" "] mutableCopy];
+//    NSMutableArray *authorArray = [[NSMutableArray alloc]init];
+//    
+//    for (NSString *string in wordsInAuthorInArray) {
+//        BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[string characterAtIndex:0]];
+//        if (isUppercase) {
+//            [authorArray addObject:string];
+//        }
+//    }
+//    if ([authorArray.firstObject containsString:@","]) {
+//        NSString *lastName = authorArray.firstObject;
+//        [authorArray removeObject:lastName];
+//        [authorArray insertObject:lastName atIndex:authorArray.count];
+//    }
+//    
+//    NSMutableString *newAuthor = [[NSMutableString alloc]init];
+//    
+//    for (NSString *name in authorArray) {
+//        [newAuthor appendString:name];
+//        [newAuthor appendString:@" "];
+//    }
+//    
+//    author = newAuthor;
+//    
+//    author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    if ([author hasSuffix:@","]){
+//        author = [author substringToIndex:[author length]-1];
+//    }
     
     return author;
 }

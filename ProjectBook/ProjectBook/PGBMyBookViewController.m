@@ -7,7 +7,8 @@
 //
 
 #import "PGBMyBookViewController.h"
-#import "PGBBookCustomTableCell.h"
+//#import "PGBBookCustomTableCell.h"
+#import "PGBSearchCustomTableCell.h"
 #import "PGBRealmBook.h"
 #import "PGBBookViewController.h"
 #import "PGBParseAPIClient.h"
@@ -35,9 +36,8 @@
 //    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];;
 //    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     
-    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
+    [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBSearchCustomTableCell" bundle:nil] forCellReuseIdentifier:@"SearchCustomCell"];
     self.bookTableView.rowHeight = 80;
-    self.bookTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.bookTableView.delegate = self;
     self.bookTableView.dataSource = self;
@@ -84,7 +84,10 @@
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
             self.books = [[PGBRealmBook getUserBookDataInArray] mutableCopy];
             [self loadTableViewContent];
-            [self.bookTableView reloadData];
+            
+            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                [self.bookTableView reloadData];
+            }];
         }];
     }];
 }
@@ -190,7 +193,7 @@
     
     if (tableView == self.bookTableView) {
         
-        PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
+        PGBSearchCustomTableCell *cell = (PGBSearchCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"SearchCustomCell" forIndexPath:indexPath];
         
         PGBRealmBook *book = self.booksDisplayed[indexPath.row];
 
@@ -204,16 +207,16 @@
 //            cell.bookCover.image = bookCoverImage;
 //        }
 //        
-        NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:book.ebookID]];
-        
-        if (bookCoverData)
-        {
-            cell.bookCover.image = [UIImage imageWithData:bookCoverData];
-        } else {
-            cell.bookCover.image = [UIImage imageNamed:@"no_book_cover"];
-        }
-
-        
+//        NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:book.ebookID]];
+//        
+//        if (bookCoverData)
+//        {
+//            cell.bookCover.image = [UIImage imageWithData:bookCoverData];
+//        } else {
+//            cell.bookCover.image = [UIImage imageNamed:@"no_book_cover"];
+//        }
+//
+//        
         return cell;
     }
     

@@ -14,9 +14,9 @@
 		4C25FFA71C03B7E200B5C8E3 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFA51C03B7E200B5C8E3 /* Book.m */; };
 		4C25FFAB1C03B83B00B5C8E3 /* PGBDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFAA1C03B83B00B5C8E3 /* PGBDataStore.m */; };
 		4C3FDE911C0FD95F00F5B8FA /* PGBTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */; };
-		4C4501EF1C1E31F300CD6BF1 /* ProjectBook.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4C4501EE1C1E31F300CD6BF1 /* ProjectBook.sqlite */; };
 		4C5D94791BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */; };
 		4C5D947E1BFE389A0086DB5F /* PGBMyBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */; };
+		4C6D176C1C1F3C35003071F4 /* ProjectBook.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D176B1C1F3C35003071F4 /* ProjectBook.sqlite */; };
 		4C766D741C1B239600FDC167 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C766D731C1B239600FDC167 /* Reachability.m */; };
 		4C766D761C1B23ED00FDC167 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C766D751C1B23ED00FDC167 /* SystemConfiguration.framework */; };
 		4C766D7C1C1B3BB500FDC167 /* PGBConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C766D7B1C1B3BB500FDC167 /* PGBConstants.m */; };
@@ -125,10 +125,10 @@
 		4C25FFAA1C03B83B00B5C8E3 /* PGBDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBDataStore.m; sourceTree = "<group>"; };
 		4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBTabBarViewController.h; sourceTree = "<group>"; };
 		4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBTabBarViewController.m; sourceTree = "<group>"; };
-		4C4501EE1C1E31F300CD6BF1 /* ProjectBook.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ProjectBook.sqlite; sourceTree = "<group>"; };
 		4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyBooksStoryboard.storyboard; sourceTree = "<group>"; };
 		4C5D947C1BFE389A0086DB5F /* PGBMyBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBMyBookViewController.h; sourceTree = "<group>"; };
 		4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBMyBookViewController.m; sourceTree = "<group>"; };
+		4C6D176B1C1F3C35003071F4 /* ProjectBook.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ProjectBook.sqlite; sourceTree = "<group>"; };
 		4C766D721C1B239600FDC167 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		4C766D731C1B239600FDC167 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		4C766D751C1B23ED00FDC167 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -507,7 +507,7 @@
 				CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */,
 				A77A08F71BFBE78700CA62F8 /* PGBparsingThroughText.h */,
 				A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */,
-				4C4501EE1C1E31F300CD6BF1 /* ProjectBook.sqlite */,
+				4C6D176B1C1F3C35003071F4 /* ProjectBook.sqlite */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -600,7 +600,7 @@
 				TargetAttributes = {
 					CBFD3F551BFBA076002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 652FKRA3R9;
+						DevelopmentTeam = 9YUT5P277S;
 					};
 					CBFD3F711BFBA077002CE0A4 = {
 						CreatedOnToolsVersion = 7.1;
@@ -641,7 +641,7 @@
 			files = (
 				CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */,
 				4C9D16651C0CF07600DBF989 /* SearchStoryboard.storyboard in Resources */,
-				4C4501EF1C1E31F300CD6BF1 /* ProjectBook.sqlite in Resources */,
+				4C6D176C1C1F3C35003071F4 /* ProjectBook.sqlite in Resources */,
 				CBEFBD031C1606DC00D878AC /* Moon Bold.otf in Resources */,
 				CBFE1CEB1C172AF800646BA9 /* social.storyboard in Resources */,
 				A7DD400A1C03717100D13A4B /* bookInformationSet16.txt in Resources */,
@@ -937,7 +937,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ProjectBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github-olivialim.learn-co-students.ios-0915-team-radio.ProjectBook";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github-wojunfeng.learn-co-students.ios-0915-team-radio.ProjectBook";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -953,7 +953,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ProjectBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github-olivialim.learn-co-students.ios-0915-team-radio.ProjectBook";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github-wojunfeng.learn-co-students.ios-0915-team-radio.ProjectBook";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

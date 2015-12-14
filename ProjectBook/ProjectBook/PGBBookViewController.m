@@ -162,7 +162,14 @@
     UIAlertController *view = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     //download
-    UIAlertAction *download = [UIAlertAction actionWithTitle:@"Download Book" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    NSString *downloadAlertTitle = @"";
+    if (self.book.isDownloaded) {
+        downloadAlertTitle = @"Re-download Book";
+    } else {
+        downloadAlertTitle = @"Download Book";
+    }
+    
+    UIAlertAction *download = [UIAlertAction actionWithTitle:downloadAlertTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
         
         NSString *idURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", parsedEbookID];
