@@ -307,8 +307,6 @@
 //        realmBook.genre = @"Mathematics";
 //    } else if ([realmBook.genre containsString:@"Folklore"]){
 //        realmBook.genre = @"Folklore";
-//    } else if ([realmBook.genre containsString:@"Folklore"]){
-//        realmBook.genre = @"Folklore";
 //    } else if ([realmBook.genre containsString:@"Adventure"]){
 //        realmBook.genre = @"Adventure";
 //    } else if ([realmBook.genre containsString:@"Psychology"]){
