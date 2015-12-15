@@ -14,6 +14,7 @@
 #import "JSQMessagesTypingIndicatorFooterView.h"
 #import "UIImage+JSQMessages.h"
 #import "JSQSystemSoundPlayer+JSQMessages.h"
+#import "PGBMyBookViewController.h"
 
 @interface PGBChatMessageVC ()
 
@@ -105,15 +106,21 @@
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(closePressed:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(viewBook:)];
+
 }
 
-- (void)closePressed:(UIBarButtonItem *)sender
-{
+- (void)closePressed:(UIBarButtonItem *)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
--(JSQMessage *)messageCreatedAt:(NSDate *)date withText:(NSString *)text
-{
+- (void)viewBook:(UIBarButtonItem *)sender {
+//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+//    PGBMyBookViewController *bookView = (PGBMyBookViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"bookView"];
+//    [self presentModalViewController:bookView animated:YES];
+}
+
+-(JSQMessage *)messageCreatedAt:(NSDate *)date withText:(NSString *)text {
     for(JSQMessage *message in self.messagesInConversation) {
         if([message.date isEqual:date] && [message.text isEqualToString:text]) {
             return message;
@@ -123,8 +130,7 @@
     return nil;
 }
 
--(void)removeLocallySentMessagesAndMergeNewMessages:(NSArray *)messages
-{
+-(void)removeLocallySentMessagesAndMergeNewMessages:(NSArray *)messages {
     [self.messagesInConversation removeObjectsInArray:self.locallySentMessages];
     [self.locallySentMessages removeAllObjects];
     
@@ -239,8 +245,8 @@
         
         bookChat[@"lastMessageAt"] = [NSDate date];
         [bookChat saveInBackground];
+        [self.delegate newMessageUpdateTableView:self.currentChatRoom];
     }];
-    [self.delegate newMessageUpdateTableView:self.currentChatRoom];
     [self finishSendingMessageAnimated:YES];
 }
 

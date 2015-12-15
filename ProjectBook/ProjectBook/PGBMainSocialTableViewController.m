@@ -24,12 +24,77 @@
 
 @implementation PGBMainSocialTableViewController
 
+//TODO: 
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.arrayOfOpenBookChats = [NSMutableArray new];
+    self.chatTableView.rowHeight = 70;
+    [self.tableView registerNib:[UINib nibWithNibName:@"PGBChatTableViewCell" bundle:nil] forCellReuseIdentifier:@"bookWithChatCell"];
+    [self getArrayOfBookChatsFromParse];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor colorWithRed:0 green:136.0f/255.0f blue:62.0f/255.0 alpha:1.0];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(reloadTableViewWithBackgroundUpdatesFromParse)
+                  forControlEvents:UIControlEventValueChanged];
+    
+    // TODO: Ask tim about this...
+    [[PFInstallation currentInstallation] removeObjectForKey:@"channels"];
+    [[PFInstallation currentInstallation] saveInBackground];
+}
+
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+}
+
+- (void)reloadTableViewWithBackgroundUpdatesFromParse {
+    
+    [self getArrayOfBookChatsFromParse];
+    if (self.refreshControl) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MMM d, h:mm a"];
+        NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                    forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+    }
+    [self.refreshControl endRefreshing];
+}
+
+- (void)getArrayOfBookChatsFromParse {
+    PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
+    
+//    [query whereKeyExists:@"objectId"];
+    [query addDescendingOrder:@"updatedAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        [self.arrayOfOpenBookChats removeAllObjects];
+        for (PGBChatRoom *chatRoom in objects) {
+            [self.arrayOfOpenBookChats addObject:chatRoom];
+        }
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView reloadData];
+        }];
+    }];
+}
+
 -(void)newMessageUpdateTableView:(PGBChatRoom *)currentChatRoom{
     [self resortChatsAndReloadTable];
 }
 
 -(void) resortChatsAndReloadTable{
-    NSSortDescriptor *byDate = [NSSortDescriptor sortDescriptorWithKey:@"lastMessageAt" ascending:YES];
+    NSSortDescriptor *byDate = [NSSortDescriptor sortDescriptorWithKey:@"lastMessageAt" ascending:NO];
+    
     [self.arrayOfOpenBookChats sortUsingDescriptors:@[byDate]];
     [self.tableView reloadData];
 }
@@ -41,46 +106,6 @@
     NSIndexPath *ipOfNewBookChat = [NSIndexPath indexPathForItem:0 inSection:0];
     [self tableView:self.chatTableView didSelectRowAtIndexPath:ipOfNewBookChat];
 }
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.arrayOfOpenBookChats = [NSMutableArray new];
-    self.chatTableView.rowHeight = 70;
-    [self.tableView registerNib:[UINib nibWithNibName:@"PGBChatTableViewCell" bundle:nil] forCellReuseIdentifier:@"bookWithChatCell"];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
-    
-    [query whereKeyExists:@"objectId"];
-    [query addDescendingOrder:@"updatedAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        for (PGBChatRoom *chatRoom in objects) {
-            [self.arrayOfOpenBookChats addObject:chatRoom];
-        }
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self.tableView reloadData];
-        }];
-    }];
-    
-    [[PFInstallation currentInstallation] removeObjectForKey:@"channels"];
-    [[PFInstallation currentInstallation] saveInBackground];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
