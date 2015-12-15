@@ -18,7 +18,7 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Parse/Parse.h>
-
+#import <ChameleonFramework/Chameleon.h>
 
 
 @interface AppDelegate ()
@@ -29,8 +29,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    [Chameleon setGlobalThemeUsingPrimaryColor:FlatGreenDark withContentStyle:UIContentStyleDark];
     /*
-     
     [PGBGoodreadsAPIClient getReviewsForBook:@"The Adventures of Huckleberry Finn" completion:^(NSDictionary *reviewDict) {
         
         self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];

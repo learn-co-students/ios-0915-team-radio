@@ -8,6 +8,7 @@
 
 #import "PGBTabBarViewController.h"
 #import <IonIcons.h>
+#import <ChameleonFramework/Chameleon.h>
 
 @interface PGBTabBarViewController ()
 
@@ -29,31 +30,61 @@
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithRed:0 green:136.0f/255.0f blue:62.0f/255.0 alpha:1.0] }
+
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : FlatGreenDark }
                                              forState:UIControlStateNormal];
     
-    UIImage *homeIcon = [IonIcons imageWithIcon:ion_ios_home
-                                  iconColor:[UIColor colorWithRed:0 green:136.0f/255.0f blue:62.0f/255.0 alpha:1.0]
-                                   iconSize:30.0f
-                                  imageSize:CGSizeMake(90.0f, 90.0f)];
-    [self.tabBar.items[0] setTitle:@"Home"];
+    UIImage *homeIcon = [IonIcons imageWithIcon:ion_ios_home_outline
+                                      iconColor:FlatGreenDark
+                                       iconSize:40.0f
+                                      imageSize:CGSizeMake(90.0f, 90.0f)];
+    
+    [self.tabBar.items[0] setTitle:nil];
     [self.tabBar.items[0] setImage:homeIcon];
-
+    self.tabBar.items[0].imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     
-    UIImage *searchIcon = [IonIcons imageWithIcon:ion_ios_search_strong
-                                        iconColor:[UIColor colorWithRed:0 green:136.0f/255.0f blue:62.0f/255.0 alpha:1.0]
-                                       iconSize:30.0f
-                                      imageSize:CGSizeMake(90.0f, 90.0f)];
-    [self.tabBar.items[1] setTitle:@"Search"];
+    UIImage *selectedHomeIcon = [IonIcons imageWithIcon:ion_ios_home
+                                              iconColor:FlatGreenDark
+                                               iconSize:40.0f
+                                              imageSize:CGSizeMake(90.0f, 90.0f)];
+    
+    self.tabBar.items[0].selectedImage = selectedHomeIcon;
+    
+    
+    UIImage *searchIcon = [IonIcons imageWithIcon:ion_ios_search
+                                        iconColor:FlatGreenDark
+                                         iconSize:40.0f
+                                        imageSize:CGSizeMake(90.0f, 90.0f)];
+    
+    [self.tabBar.items[1] setTitle:nil];
     [self.tabBar.items[1] setImage:searchIcon];
+    self.tabBar.items[1].imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     
-    UIImage *libraryIcon = [IonIcons imageWithIcon:ion_ios_book
-                                         iconColor:[UIColor colorWithRed:0 green:136.0f/255.0f blue:62.0f/255.0 alpha:1.0]
-                                       iconSize:30.0f
-                                      imageSize:CGSizeMake(90.0f, 90.0f)];
-    [self.tabBar.items[2] setTitle:@"Library"];
+    UIImage *selectedSearchIcon = [IonIcons imageWithIcon:ion_ios_search_strong
+                                                iconColor:FlatGreenDark
+                                                 iconSize:40.0f
+                                                imageSize:CGSizeMake(90.0f, 90.0f)];
+    
+    self.tabBar.items[1].selectedImage = selectedSearchIcon;
+    
+    UIImage *libraryIcon = [IonIcons imageWithIcon:ion_ios_bookmarks_outline
+                                         iconColor:FlatGreenDark
+                                          iconSize:40.0f
+                                         imageSize:CGSizeMake(90.0f, 90.0f)];
+    [self.tabBar.items[2] setTitle:nil];
     [self.tabBar.items[2] setImage:libraryIcon];
+    self.tabBar.items[2].imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+    
+    
+    UIImage *selectedLibraryIcon = [IonIcons imageWithIcon:ion_ios_bookmarks
+                                                 iconColor:FlatGreenDark
+                                                  iconSize:40.0f
+                                                 imageSize:CGSizeMake(90.0f, 90.0f)];
+    
+    self.tabBar.items[2].selectedImage = selectedLibraryIcon;
 
+    
+    
+ 
 }
 @end

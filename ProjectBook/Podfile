@@ -18,6 +18,7 @@ pod 'Ono'
 pod 'Goodreads-Oauth'
 pod 'ionicons'
 pod 'JSQMessagesViewController'
+pod 'ChameleonFramework'
 
 end
 
