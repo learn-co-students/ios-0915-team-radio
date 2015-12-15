@@ -83,8 +83,16 @@
     
     self.tabBar.items[2].selectedImage = selectedLibraryIcon;
 
+    UIImage *chatIcon = [IonIcons imageWithIcon:ion_ios_chatbubble_outline
+                                      iconColor:FlatGreenDark
+                                       iconSize:40.0f
+                                      imageSize:CGSizeMake(90.0f, 90.0f)];
+    [self.tabBar.items[3] setTitle:nil];
+    [self.tabBar.items[3] setImage:chatIcon];
+    self.tabBar.items[3].imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     
+    UIImage *selectedChatIcon = [IonIcons imageWithIcon:ion_ios_chatbubble iconColor:FlatGreenDark iconSize:40.0f imageSize:CGSizeMake(90.0f, 90.0f)];
+    self.tabBar.items[3].selectedImage = selectedChatIcon;
     
- 
 }
 @end
