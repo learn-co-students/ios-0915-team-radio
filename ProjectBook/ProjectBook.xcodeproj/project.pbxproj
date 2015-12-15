@@ -62,10 +62,11 @@
 		A7DD400C1C03717100D13A4B /* bookInformationSet18.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FF81C03717100D13A4B /* bookInformationSet18.txt */; };
 		A7DD400D1C03717100D13A4B /* bookInformationSet19.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FF91C03717100D13A4B /* bookInformationSet19.txt */; };
 		A7DD400E1C03717100D13A4B /* bookInformationSet20.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7DD3FFA1C03717100D13A4B /* bookInformationSet20.txt */; };
-		CB3C079C1C05063A00235D78 /* book.gif in Resources */ = {isa = PBXBuildFile; fileRef = CB3C07951C05063A00235D78 /* book.gif */; };
 		CB3C079D1C05063A00235D78 /* hopper.gif in Resources */ = {isa = PBXBuildFile; fileRef = CB3C07961C05063A00235D78 /* hopper.gif */; };
 		CB3C079E1C05063A00235D78 /* hoppers.gif in Resources */ = {isa = PBXBuildFile; fileRef = CB3C07971C05063A00235D78 /* hoppers.gif */; };
 		CB3C079F1C05063A00235D78 /* PGBGoodreadsAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3C07991C05063A00235D78 /* PGBGoodreadsAPIClient.m */; };
+		CB6383611C1F6FC000D13000 /* PGBReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6383601C1F6FC000D13000 /* PGBReviewViewController.m */; };
+		CBA13F461C20A01E0091344F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CBA13F451C20A01E0091344F /* Settings.bundle */; };
 		CBC051071C109AB200118044 /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = CBC050FC1C109AB200118044 /* Apache License.txt */; };
 		CBC051081C109AB200118044 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBC050FD1C109AB200118044 /* OpenSans-Bold.ttf */; };
 		CBC051091C109AB200118044 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBC050FE1C109AB200118044 /* OpenSans-BoldItalic.ttf */; };
@@ -196,11 +197,13 @@
 		A7DD3FF81C03717100D13A4B /* bookInformationSet18.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet18.txt; sourceTree = "<group>"; };
 		A7DD3FF91C03717100D13A4B /* bookInformationSet19.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet19.txt; sourceTree = "<group>"; };
 		A7DD3FFA1C03717100D13A4B /* bookInformationSet20.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookInformationSet20.txt; sourceTree = "<group>"; };
-		CB3C07951C05063A00235D78 /* book.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = book.gif; sourceTree = "<group>"; };
 		CB3C07961C05063A00235D78 /* hopper.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hopper.gif; sourceTree = "<group>"; };
 		CB3C07971C05063A00235D78 /* hoppers.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hoppers.gif; sourceTree = "<group>"; };
 		CB3C07981C05063A00235D78 /* PGBGoodreadsAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBGoodreadsAPIClient.h; sourceTree = "<group>"; };
 		CB3C07991C05063A00235D78 /* PGBGoodreadsAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBGoodreadsAPIClient.m; sourceTree = "<group>"; };
+		CB63835F1C1F6FC000D13000 /* PGBReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBReviewViewController.h; sourceTree = "<group>"; };
+		CB6383601C1F6FC000D13000 /* PGBReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBReviewViewController.m; sourceTree = "<group>"; };
+		CBA13F451C20A01E0091344F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CBC050FC1C109AB200118044 /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
 		CBC050FD1C109AB200118044 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		CBC050FE1C109AB200118044 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -295,6 +298,85 @@
 			name = CoreDataModel;
 			sourceTree = "<group>";
 		};
+
+		4C58DDE11C1BC18F00438AB0 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */,
+				CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */,
+				4C5D947C1BFE389A0086DB5F /* PGBMyBookViewController.h */,
+				4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */,
+				4C9D16611C0CF04800DBF989 /* PGBSearchViewController.h */,
+				4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */,
+				CBFC218D1C1A1D62007404E7 /* PGBBookViewController.h */,
+				CBFC218E1C1A1D62007404E7 /* PGBBookViewController.m */,
+				CB63835F1C1F6FC000D13000 /* PGBReviewViewController.h */,
+				CB6383601C1F6FC000D13000 /* PGBReviewViewController.m */,
+				4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarViewController.h */,
+				4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */,
+				8902002B1C0CA900001A1ECF /* PGBLoginViewController.h */,
+				8902002C1C0CA900001A1ECF /* PGBLoginViewController.m */,
+				8902002E1C0CAA10001A1ECF /* PGBSignUpViewController.h */,
+				8902002F1C0CAA10001A1ECF /* PGBSignUpViewController.m */,
+				890200331C0CFD08001A1ECF /* PGBProfileViewController.h */,
+				890200341C0CFD08001A1ECF /* PGBProfileViewController.m */,
+				89EE0D381C15CF9100CCA1EA /* PGBSettingsViewController.h */,
+				89EE0D391C15CF9100CCA1EA /* PGBSettingsViewController.m */,
+				899A4D0B1C11EF9C00D499C4 /* PGBMainSocialTableViewController.h */,
+				899A4D0C1C11EF9C00D499C4 /* PGBMainSocialTableViewController.m */,
+				899A4D0E1C11EFC100D499C4 /* PGBNewChatViewController.h */,
+				899A4D0F1C11EFC100D499C4 /* PGBNewChatViewController.m */,
+				899A4D051C10A77200D499C4 /* PGBChatMessageVC.h */,
+				899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */,
+				894AE4621C161227007F22A5 /* PGBSearchChatPreviewViewController.h */,
+				894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		4C58DDE21C1BC1AE00438AB0 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				CBFD3F621BFBA076002CE0A4 /* Main.storyboard */,
+				4C9D16641C0CF07600DBF989 /* SearchStoryboard.storyboard */,
+				4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */,
+				890200311C0CF4EB001A1ECF /* profile.storyboard */,
+				CBFE1CEA1C172AF800646BA9 /* social.storyboard */,
+				CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */,
+				4C0BCAB31C1B60C900D4FEFC /* PGBSearchCustomTableCell.xib */,
+				CBEFBD0A1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib */,
+				8964243B1C163C3D00FBB988 /* PGBChatTableViewCell.xib */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		4C58DDE31C1BC1FF00438AB0 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */,
+				CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */,
+				4C0BCAB11C1B60C900D4FEFC /* PGBSearchCustomTableCell.h */,
+				4C0BCAB21C1B60C900D4FEFC /* PGBSearchCustomTableCell.m */,
+				CBEFBD081C16192100D878AC /* PGBCustomBookCollectionViewCell.h */,
+				CBEFBD091C16192100D878AC /* PGBCustomBookCollectionViewCell.m */,
+				896424391C163C3D00FBB988 /* PGBChatTableViewCell.h */,
+				8964243A1C163C3D00FBB988 /* PGBChatTableViewCell.m */,
+			);
+			name = CustomCell;
+			sourceTree = "<group>";
+		};
+		4C58DDE41C1BC2C300438AB0 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				CB3C07981C05063A00235D78 /* PGBGoodreadsAPIClient.h */,
+				CB3C07991C05063A00235D78 /* PGBGoodreadsAPIClient.m */,
+				4C094AE91C167ECE00F21208 /* PGBParseAPIClient.h */,
+				4C094AEA1C167ECE00F21208 /* PGBParseAPIClient.m */,
+			);
+			name = APIClient;
+			sourceTree = "<group>";
+		};
+
 		4C9597AD1BFBEB2600BBD558 /* RealmModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,7 +491,16 @@
 				8926BEBC1C1CBC8300093C00 /* Reachability.h */,
 				8926BEBD1C1CBC8300093C00 /* Reachability.m */,
 				A75AD6381C0C8FE600D4F77F /* DictionaryOfBooksFinal.rtf */,
-				CB3C07951C05063A00235D78 /* book.gif */,
+
+				4C58DDE21C1BC1AE00438AB0 /* Storyboard */,
+				4C58DDE11C1BC18F00438AB0 /* ViewController */,
+				4C58DDE31C1BC1FF00438AB0 /* CustomCell */,
+				4C58DDE41C1BC2C300438AB0 /* APIClient */,
+				4C25FFA81C03B7FF00B5C8E3 /* CoreDataModel */,
+				4C9597AD1BFBEB2600BBD558 /* RealmModel */,
+				CBFD3F591BFBA076002CE0A4 /* Supporting Files */,
+				CBFD3F681BFBA077002CE0A4 /* Assets.xcassets */,
+
 				CB3C07961C05063A00235D78 /* hopper.gif */,
 				CB3C07971C05063A00235D78 /* hoppers.gif */,
 				CB3C07981C05063A00235D78 /* PGBGoodreadsAPIClient.h */,
@@ -468,6 +559,7 @@
 				CBFD3F681BFBA077002CE0A4 /* Assets.xcassets */,
 				CBFD3F6A1BFBA077002CE0A4 /* LaunchScreen.storyboard */,
 				CBFD3F6D1BFBA077002CE0A4 /* Info.plist */,
+
 				4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */,
 				4C5D947C1BFE389A0086DB5F /* PGBMyBookViewController.h */,
 				4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */,
@@ -479,6 +571,8 @@
 				4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarViewController.h */,
 				4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */,
 				CBFD3F591BFBA076002CE0A4 /* Supporting Files */,
+				CBA13F451C20A01E0091344F /* Settings.bundle */,
+
 			);
 			path = ProjectBook;
 			sourceTree = "<group>";
@@ -648,6 +742,7 @@
 				A7DD3FFC1C03717100D13A4B /* bookInformationSet2.txt in Resources */,
 				CBEFBD0C1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib in Resources */,
 				A7DD400C1C03717100D13A4B /* bookInformationSet18.txt in Resources */,
+				CBA13F461C20A01E0091344F /* Settings.bundle in Resources */,
 				CBC0510D1C109AB200118044 /* OpenSans-Light.ttf in Resources */,
 				CBEFBD041C1606DC00D878AC /* Moon Light.otf in Resources */,
 				A7DD40081C03717100D13A4B /* bookInformationSet14.txt in Resources */,
@@ -658,7 +753,6 @@
 				A7DD3FFF1C03717100D13A4B /* bookInformationSet5.txt in Resources */,
 				A7DD3FFD1C03717100D13A4B /* bookInformationSet3.txt in Resources */,
 				CB3C079D1C05063A00235D78 /* hopper.gif in Resources */,
-				CB3C079C1C05063A00235D78 /* book.gif in Resources */,
 				A7DD40091C03717100D13A4B /* bookInformationSet15.txt in Resources */,
 				4C5D94791BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard in Resources */,
 				CBC0510A1C109AB200118044 /* OpenSans-ExtraBold.ttf in Resources */,
@@ -755,6 +849,10 @@
 				8926BEBE1C1CBC8300093C00 /* Reachability.m in Sources */,
 				89560A4B1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.m in Sources */,
 				CBEFBD0B1C16192100D878AC /* PGBCustomBookCollectionViewCell.m in Sources */,
+
+				CB6383611C1F6FC000D13000 /* PGBReviewViewController.m in Sources */,
+				4C0BCAB41C1B60C900D4FEFC /* PGBSearchCustomTableCell.m in Sources */,
+
 				4C5D947E1BFE389A0086DB5F /* PGBMyBookViewController.m in Sources */,
 				CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */,
 				CBFD3F911BFBB250002CE0A4 /* PGBDownloadHelper.m in Sources */,

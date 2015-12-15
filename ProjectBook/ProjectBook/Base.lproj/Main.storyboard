@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EtB-Vp-Xzm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EtB-Vp-Xzm">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -8,6 +8,10 @@
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Moon Bold.otf">
+            <string>Moon-Bold</string>
+            <string>Moon-Bold</string>
+            <string>Moon-Bold</string>
+            <string>Moon-Bold</string>
             <string>Moon-Bold</string>
             <string>Moon-Bold</string>
             <string>Moon-Bold</string>
@@ -45,14 +49,13 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nrl-qm-fpw" userLabel="Content View">
                                                         <rect key="frame" x="0.0" y="0.0" width="1200" height="200"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sky" translatesAutoresizingMaskIntoConstraints="NO" id="X4Z-PS-Kyq" userLabel="1">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girlimage" translatesAutoresizingMaskIntoConstraints="NO" id="X4Z-PS-Kyq" userLabel="1">
                                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                                             </imageView>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bear" translatesAutoresizingMaskIntoConstraints="NO" id="hXW-zu-IFf" userLabel="2">
                                                                 <rect key="frame" x="600" y="0.0" width="600" height="200"/>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.78430957199999995" green="1" blue="0.90738587059999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="X4Z-PS-Kyq" firstAttribute="top" secondItem="Nrl-qm-fpw" secondAttribute="top" id="0H7-g0-NSi"/>
                                                             <constraint firstItem="hXW-zu-IFf" firstAttribute="bottom" secondItem="Nrl-qm-fpw" secondAttribute="bottom" id="7Uv-es-GTG"/>
@@ -79,7 +82,7 @@
                                                 <rect key="frame" x="0.0" y="200" width="600" height="38"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvT-bp-eHT">
-                                                        <rect key="frame" x="20" y="4" width="88.5" height="31"/>
+                                                        <rect key="frame" x="20" y="4" width="89" height="31"/>
                                                         <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="19"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -95,17 +98,17 @@
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9G8-gs-hXd" userLabel="Popular Book CV">
                                                 <rect key="frame" x="0.0" y="238" width="600" height="150"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="20" id="NGJ-lH-zCM">
-                                                    <size key="itemSize" width="100" height="140"/>
+                                                    <size key="itemSize" width="90" height="140"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="bookCoverCell" id="x8Z-sB-2cv" customClass="PGBCustomBookCollectionViewCell">
-                                                        <rect key="frame" x="0.0" y="5" width="100" height="140"/>
+                                                        <rect key="frame" x="0.0" y="5" width="90" height="140"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="140"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="140"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
@@ -190,7 +193,6 @@
                                                 </cells>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="nQt-7j-xmt" firstAttribute="bottom" secondItem="9OG-6H-cgF" secondAttribute="bottom" id="75Y-e0-Grq"/>
                                             <constraint firstItem="gWm-Va-sYU" firstAttribute="bottom" secondItem="nQt-7j-xmt" secondAttribute="top" id="AUE-SK-IB3"/>
@@ -269,37 +271,26 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0qD-tS-ts8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3021.5" y="916"/>
+            <point key="canvasLocation" x="3137.5" y="929"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="xjl-Hl-bhT">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="EtB-Vp-Xzm" customClass="PGBTabBarViewController" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="A9m-Yf-jY9">
+                    <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="fill" id="A9m-Yf-jY9">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="oFE-1N-4Me" kind="relationship" relationship="viewControllers" id="7D3-tX-F79"/>
                         <segue destination="qyr-2M-mSD" kind="relationship" relationship="viewControllers" id="xgU-4B-DS1"/>
                         <segue destination="E2z-KQ-fOa" kind="relationship" relationship="viewControllers" id="TPf-HV-mbC"/>
-                        <segue destination="HW3-81-wHo" kind="relationship" relationship="viewControllers" id="Ntt-a7-CQd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lb6-5v-GJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3210" y="379"/>
-        </scene>
-        <!--social-->
-        <scene sceneID="qZE-9K-h1a">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="social.storyboard" storyboardName="social" id="HW3-81-wHo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="11R-AA-myD"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qUH-qa-JmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3396" y="916"/>
         </scene>
         <!--MyBooksStoryboard-->
         <scene sceneID="n93-AP-P8t">
@@ -309,7 +300,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nw4-Fh-Pvw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3210" y="916"/>
+            <point key="canvasLocation" x="3325" y="924"/>
         </scene>
         <!--Item-->
         <scene sceneID="zLM-EI-SJa">
@@ -336,7 +327,7 @@
         <!--Book View Controller-->
         <scene sceneID="nuC-CE-hoM">
             <objects>
-                <viewController storyboardIdentifier="bookView" id="fPe-XH-aFU" customClass="PGBBookViewController" sceneMemberID="viewController">
+                <viewController id="fPe-XH-aFU" customClass="PGBBookViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KUJ-Qh-UV4"/>
                         <viewControllerLayoutGuide type="bottom" id="KkS-Av-NVw"/>
@@ -348,9 +339,13 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGY-Rr-0aw" userLabel="Overall Scroll View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RrD-px-c9s" userLabel="Overall Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="689.5"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RrD-px-c9s" userLabel="Overall Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwd-A0-7vd" userLabel="Book Cover View">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Xu-l3-bbt" userLabel="Book Cover">
                                                 <rect key="frame" x="165" y="20" width="270" height="200"/>
                                                 <subviews>
@@ -362,7 +357,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Title" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ngn-Rw-pRy" userLabel="Title">
-                                                        <rect key="frame" x="8" y="8" width="254" height="120"/>
+                                                        <rect key="frame" x="8" y="8" width="254" height="140"/>
                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="20"/>
@@ -379,18 +374,24 @@
                                                     <constraint firstItem="Ngn-Rw-pRy" firstAttribute="trailing" secondItem="0Xu-l3-bbt" secondAttribute="trailingMargin" id="rP5-1J-HfP"/>
                                                     <constraint firstItem="1xM-5L-2rf" firstAttribute="height" secondItem="0Xu-l3-bbt" secondAttribute="height" multiplier="1/5" id="tuW-Le-Lbn"/>
                                                     <constraint firstItem="Ngn-Rw-pRy" firstAttribute="top" secondItem="0Xu-l3-bbt" secondAttribute="topMargin" id="vUO-uP-joX"/>
-                                                    <constraint firstItem="Ngn-Rw-pRy" firstAttribute="height" secondItem="0Xu-l3-bbt" secondAttribute="height" multiplier="3/5" id="xqH-sv-g1U"/>
+                                                    <constraint firstItem="Ngn-Rw-pRy" firstAttribute="height" secondItem="0Xu-l3-bbt" secondAttribute="height" multiplier="7/10" id="xqH-sv-g1U"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="CLg-IV-Yw5" userLabel="Description Review Stack View">
-                                                <rect key="frame" x="8" y="240" width="584" height="450"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CLg-IV-Yw5" userLabel="Description Review Stack View">
+                                                <rect key="frame" x="8" y="240" width="584" height="283"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C8H-RJ-NF3" userLabel="Info Stack View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="584" height="150"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfX-jZ-h8J" userLabel="Description">
+                                                        <rect key="frame" x="224" y="0.0" width="136" height="21"/>
+                                                        <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="C8H-RJ-NF3" userLabel="Info Stack View">
+                                                        <rect key="frame" x="0.0" y="31" width="584" height="150"/>
                                                         <subviews>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1xy-f4-kln" userLabel="Description TV">
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1xy-f4-kln" userLabel="Description TV">
                                                                 <rect key="frame" x="0.0" y="0.0" width="584" height="150"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -400,31 +401,74 @@
                                                             <constraint firstItem="1xy-f4-kln" firstAttribute="width" secondItem="C8H-RJ-NF3" secondAttribute="width" id="IcK-pV-Za3"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-rQ-wpE" userLabel="Placeholder for WKView">
-                                                        <rect key="frame" x="0.0" y="150" width="584" height="300"/>
-                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="UaU-ch-Nej">
+                                                        <rect key="frame" x="0.0" y="191" width="584" height="30"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yG-Ci-Nx0">
+                                                                <rect key="frame" x="0.0" y="0.0" width="289" height="30"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="17"/>
+                                                                <state key="normal" title="Download">
+                                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="downloadButtonTapped:" destination="fPe-XH-aFU" eventType="touchUpInside" id="QAH-3v-UlB"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2Y-qc-72L">
+                                                                <rect key="frame" x="296" y="0.0" width="289" height="30"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="17"/>
+                                                                <state key="normal" title="Read">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="readButtonTapped:" destination="fPe-XH-aFU" eventType="touchUpInside" id="LYK-vS-gqy"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-rQ-wpE" userLabel="Placeholder for WKView">
+                                                        <rect key="frame" x="0.0" y="231" width="584" height="52"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnk-I7-o0E">
+                                                                <rect key="frame" x="196" y="0.0" width="192" height="30"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="17"/>
+                                                                <state key="normal" title="   Read Reviews   ">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <segue destination="0wO-iD-WlI" kind="show" id="aWb-e1-0ob"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" secondItem="Mnk-I7-o0E" secondAttribute="height" constant="20" id="n0J-al-Iac"/>
+                                                            <constraint firstItem="Mnk-I7-o0E" firstAttribute="centerY" secondItem="NKd-rQ-wpE" secondAttribute="centerY" constant="-10" id="s6R-oW-XIn"/>
+                                                            <constraint firstItem="Mnk-I7-o0E" firstAttribute="centerX" secondItem="NKd-rQ-wpE" secondAttribute="centerX" id="xlV-m3-sgu"/>
+                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="NKd-rQ-wpE" firstAttribute="leading" secondItem="CLg-IV-Yw5" secondAttribute="leading" id="1kj-Vh-QVH"/>
-                                                    <constraint firstAttribute="trailing" secondItem="1xy-f4-kln" secondAttribute="trailing" id="Byh-4m-fyB"/>
+                                                    <constraint firstItem="UaU-ch-Nej" firstAttribute="leading" secondItem="CLg-IV-Yw5" secondAttribute="leading" id="2WU-AF-cna"/>
+                                                    <constraint firstItem="1xy-f4-kln" firstAttribute="trailing" secondItem="CLg-IV-Yw5" secondAttribute="trailing" id="Byh-4m-fyB"/>
                                                     <constraint firstItem="NKd-rQ-wpE" firstAttribute="trailing" secondItem="CLg-IV-Yw5" secondAttribute="trailing" id="RQZ-XO-3mD"/>
-                                                    <constraint firstAttribute="leading" secondItem="1xy-f4-kln" secondAttribute="leading" id="sTP-Qq-9NT"/>
+                                                    <constraint firstItem="UaU-ch-Nej" firstAttribute="trailing" secondItem="CLg-IV-Yw5" secondAttribute="trailing" id="d6m-tn-hj6"/>
+                                                    <constraint firstItem="1xy-f4-kln" firstAttribute="leading" secondItem="CLg-IV-Yw5" secondAttribute="leading" id="sTP-Qq-9NT"/>
                                                 </constraints>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwd-A0-7vd" userLabel="Book Cover View">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.28627450980000002" green="0.71764705880000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="CLg-IV-Yw5" firstAttribute="leading" secondItem="RrD-px-c9s" secondAttribute="leadingMargin" id="0FA-Ym-DJv"/>
+                                            <constraint firstItem="CLg-IV-Yw5" firstAttribute="bottom" secondItem="RrD-px-c9s" secondAttribute="bottom" constant="-10" id="9eU-gF-nWw"/>
                                             <constraint firstItem="0Xu-l3-bbt" firstAttribute="top" secondItem="RrD-px-c9s" secondAttribute="top" constant="20" id="E1b-Oz-jmN"/>
                                             <constraint firstItem="qwd-A0-7vd" firstAttribute="top" secondItem="RrD-px-c9s" secondAttribute="top" id="aLD-aI-OhY"/>
                                             <constraint firstItem="CLg-IV-Yw5" firstAttribute="trailing" secondItem="RrD-px-c9s" secondAttribute="trailingMargin" id="aMV-FK-dvB"/>
                                             <constraint firstItem="CLg-IV-Yw5" firstAttribute="top" secondItem="0Xu-l3-bbt" secondAttribute="bottom" constant="20" id="bLf-pz-PeH"/>
-                                            <constraint firstAttribute="bottom" secondItem="NKd-rQ-wpE" secondAttribute="bottom" id="kZt-Vd-6HT"/>
                                             <constraint firstItem="0Xu-l3-bbt" firstAttribute="centerX" secondItem="RrD-px-c9s" secondAttribute="centerX" id="loX-tU-kfm"/>
                                             <constraint firstItem="qwd-A0-7vd" firstAttribute="leading" secondItem="RrD-px-c9s" secondAttribute="leading" id="pHC-0n-2Wi"/>
                                             <constraint firstItem="qwd-A0-7vd" firstAttribute="height" secondItem="0Xu-l3-bbt" secondAttribute="height" multiplier="1/2" constant="20" id="rl2-A8-55W"/>
@@ -432,12 +476,12 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.50196081400000003" green="0.73717619239999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.28627450980000002" green="0.71764705880000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="RrD-px-c9s" secondAttribute="trailing" id="8vJ-dk-7c9"/>
-                                    <constraint firstAttribute="width" secondItem="RrD-px-c9s" secondAttribute="width" id="9hJ-dX-QfN"/>
-                                    <constraint firstAttribute="bottom" secondItem="RrD-px-c9s" secondAttribute="bottom" id="BIe-nk-TfL"/>
-                                    <constraint firstAttribute="leading" secondItem="RrD-px-c9s" secondAttribute="leading" id="XgI-vr-pcC"/>
+                                    <constraint firstItem="RrD-px-c9s" firstAttribute="trailing" secondItem="xGY-Rr-0aw" secondAttribute="trailing" id="8vJ-dk-7c9"/>
+                                    <constraint firstItem="RrD-px-c9s" firstAttribute="width" secondItem="xGY-Rr-0aw" secondAttribute="width" id="9hJ-dX-QfN"/>
+                                    <constraint firstItem="RrD-px-c9s" firstAttribute="bottom" secondItem="xGY-Rr-0aw" secondAttribute="bottom" id="BIe-nk-TfL"/>
+                                    <constraint firstItem="RrD-px-c9s" firstAttribute="leading" secondItem="xGY-Rr-0aw" secondAttribute="leading" id="XgI-vr-pcC"/>
                                     <constraint firstItem="RrD-px-c9s" firstAttribute="top" secondItem="xGY-Rr-0aw" secondAttribute="top" id="ohR-cg-IMf"/>
                                 </constraints>
                             </scrollView>
@@ -447,25 +491,20 @@
                             <constraint firstItem="xGY-Rr-0aw" firstAttribute="leading" secondItem="ieV-TC-wiy" secondAttribute="leading" id="Iky-eL-PvG"/>
                             <constraint firstItem="xGY-Rr-0aw" firstAttribute="trailing" secondItem="ieV-TC-wiy" secondAttribute="trailing" id="McN-sr-bmd"/>
                             <constraint firstItem="0Xu-l3-bbt" firstAttribute="width" secondItem="ieV-TC-wiy" secondAttribute="width" multiplier="9/20" id="Okt-AE-QET"/>
-                            <constraint firstItem="xGY-Rr-0aw" firstAttribute="top" secondItem="KUJ-Qh-UV4" secondAttribute="bottom" id="dc3-3a-kEf"/>
-                            <constraint firstItem="xGY-Rr-0aw" firstAttribute="bottom" secondItem="KkS-Av-NVw" secondAttribute="top" id="gbi-qL-RDf"/>
+                            <constraint firstItem="xGY-Rr-0aw" firstAttribute="bottom" secondItem="KkS-Av-NVw" secondAttribute="top" id="VDe-Um-Pfa"/>
                             <constraint firstItem="0Xu-l3-bbt" firstAttribute="height" secondItem="ieV-TC-wiy" secondAttribute="height" multiplier="1/3" id="hoA-7P-tLU"/>
-                            <constraint firstItem="NKd-rQ-wpE" firstAttribute="height" secondItem="ieV-TC-wiy" secondAttribute="height" multiplier="1/2" id="qIU-LH-4DT"/>
+                            <constraint firstItem="xGY-Rr-0aw" firstAttribute="top" secondItem="KUJ-Qh-UV4" secondAttribute="bottom" id="iDu-iQ-VMd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="m8B-Ew-rJq">
-                        <barButtonItem key="rightBarButtonItem" image="moreOptions" id="LuF-YA-RFU" userLabel="Options">
-                            <connections>
-                                <action selector="optionsButtonTapped:" destination="fPe-XH-aFU" id="rsc-Sr-WPs"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="m8B-Ew-rJq"/>
                     <connections>
                         <outlet property="authorLabel" destination="1xM-5L-2rf" id="gLu-ce-5wv"/>
                         <outlet property="bookCover" destination="0Xu-l3-bbt" id="6eC-de-KVw"/>
                         <outlet property="bookDescriptionTV" destination="1xy-f4-kln" id="1pO-Ob-c2G"/>
+                        <outlet property="downloadButton" destination="7yG-Ci-Nx0" id="KRD-yC-P0d"/>
                         <outlet property="infoStackView" destination="C8H-RJ-NF3" id="B2t-Zm-qFc"/>
-                        <outlet property="moreOptions" destination="LuF-YA-RFU" id="hAd-eT-y1l"/>
+                        <outlet property="readButton" destination="e2Y-qc-72L" id="2Pc-r4-KYb"/>
+                        <outlet property="reviewsButton" destination="Mnk-I7-o0E" id="w6G-Bc-Gyy"/>
                         <outlet property="scrollview" destination="xGY-Rr-0aw" id="9mp-rc-mbA"/>
                         <outlet property="superContentView" destination="RrD-px-c9s" id="T3X-ay-JoX"/>
                         <outlet property="titleTV" destination="Ngn-Rw-pRy" id="0Hd-bF-IZ8"/>
@@ -474,12 +513,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X0y-am-rkG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5574" y="379"/>
+            <point key="canvasLocation" x="5633" y="379"/>
+        </scene>
+        <!--Review View Controller-->
+        <scene sceneID="e9V-c5-NF0">
+            <objects>
+                <viewController id="0wO-iD-WlI" customClass="PGBReviewViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oC2-Qd-ZE1"/>
+                        <viewControllerLayoutGuide type="bottom" id="r8S-cQ-UnH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uZ1-Ma-67l">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Q7-tB-iIu" userLabel="webViewContainer">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Q7-tB-iIu" firstAttribute="top" secondItem="oC2-Qd-ZE1" secondAttribute="bottom" id="72G-OE-0v6"/>
+                            <constraint firstItem="4Q7-tB-iIu" firstAttribute="leading" secondItem="uZ1-Ma-67l" secondAttribute="leading" id="FX1-TR-l2g"/>
+                            <constraint firstItem="r8S-cQ-UnH" firstAttribute="top" secondItem="4Q7-tB-iIu" secondAttribute="bottom" id="NeR-bj-NW8"/>
+                            <constraint firstAttribute="trailing" secondItem="4Q7-tB-iIu" secondAttribute="trailing" id="kYQ-43-h8r"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="0zT-jT-6QG"/>
+                    <connections>
+                        <outlet property="webViewContainer" destination="4Q7-tB-iIu" id="NEU-Ra-xzf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wv2-bz-6qh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6425" y="379"/>
         </scene>
     </scenes>
     <resources>
         <image name="bear" width="500" height="334"/>
+        <image name="girlimage" width="1120" height="840"/>
         <image name="moreOptions" width="30" height="7"/>
-        <image name="sky" width="500" height="493"/>
     </resources>
 </document>

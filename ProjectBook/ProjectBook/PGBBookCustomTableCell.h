@@ -10,7 +10,6 @@
 
 @interface PGBBookCustomTableCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *bookCover;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *genreLabel;

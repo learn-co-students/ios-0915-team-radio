@@ -18,7 +18,6 @@
 #import "PGBDataStore.h"
 #import "Book.h"
 #import "Reachability.h"
-#import "PGBGoodreadsAPIClient.h"
 
 #import <Masonry/Masonry.h>
 #import <AFNetworking/AFNetworking.h>
@@ -34,7 +33,6 @@ static dispatch_once_t onceToken;
 @property (strong, nonatomic) PGBCustomBookCollectionViewCell *bookCoverCell;
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
 @property (strong, nonatomic) PGBDataStore *dataStore;
-@property (strong, nonatomic) PGBGoodreadsAPIClient *APIClient;
 
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) NSMutableArray *classicBooks;
@@ -84,8 +82,6 @@ static dispatch_once_t onceToken;
     
     self.dataStore = [PGBDataStore sharedDataStore];
     [self.dataStore fetchData];
-    
-    self.APIClient = [[PGBGoodreadsAPIClient alloc]init];
     
     //popular books
     //delegate
@@ -159,20 +155,6 @@ static dispatch_once_t onceToken;
                     
                         [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
                             NSLog(@"successfully fetch book from parse");
-                            
-//                            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-//                                //alert user that their library is update????
-//                                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Hello"
-//                                                                                               message:@"Your library is now updated!"
-//                                                                                        preferredStyle:UIAlertControllerStyleAlert];
-//                                
-//                                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-//                                                                                      handler:^(UIAlertAction * action) {}];
-//                                
-//                                [alert addAction:defaultAction];
-//                                [self presentViewController:alert animated:YES completion:nil];
-//                            }];
-                            
                             NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
                             [center postNotificationName:@"StoringDataFromParseToRealm" object:nil];
                         }];
@@ -200,26 +182,7 @@ static dispatch_once_t onceToken;
             for (NSString *ebookNumber in mostPopularBooks) {
                 PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
                 if (book) {
-                    
-                    [self.APIClient getImageURLForBookTitle:book completion:^(NSString *imageURL) {
-                        if (imageURL && ![imageURL containsString:@"nophoto"] && ![imageURL containsString:@"<>"]) {
-                            NSURL *url = [NSURL URLWithString:imageURL];
-                            NSData *data = [NSData dataWithContentsOfURL:url];
-                            book.bookCoverData = data;
-                        }
-                            [self.books addObject:book];
-                        
-//                        if ([imageURL containsString:@"nophoto"]){
-//                            [self.books addObject:book];
-//                        } else {
-//                            
-                        
-                        NSLog(@"hiiiiiii: %lu", self.books.count);
-                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                            [self.popularCollectionView reloadData];
-                        }];
-                    }];
-                    
+                    [self.books addObject:book];
                 }
             }
             
@@ -229,9 +192,6 @@ static dispatch_once_t onceToken;
                 PGBRealmBook *book =[PGBRealmBook generateBooksWitheBookID:ebookNumber];
                 if (book) {
                     [self.classicBooks addObject:book];
-                    //                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    //                    [self.classicsCollectionView reloadData];
-                    //                }];
                 }
             }
             
@@ -248,6 +208,7 @@ static dispatch_once_t onceToken;
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.classicsCollectionView reloadData];
+                [self.popularCollectionView reloadData];
                 [self.shakespeareCollectionView reloadData];
                 
             }];
@@ -260,9 +221,6 @@ static dispatch_once_t onceToken;
     PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
     [dataStore fetchData];
     
-//    for (Book *coreDataBook in dataStore.managedBookObjects) {
-//        [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
-//    }
     for (NSInteger i = 0; i < 30; i++) {
         PGBRealmBook *newBook = [PGBRealmBook createPGBRealmBookWithBook:dataStore.managedBookObjects[i]];
         if (newBook) {
@@ -273,95 +231,18 @@ static dispatch_once_t onceToken;
     [self.popularCollectionView reloadData];
 }
 
-//- (void)generateRandomBookByCount:(NSInteger)count{
-//    NSLog(@"genraing books");
-//    //bg Queue
-//    self.bgQueue = [[NSOperationQueue alloc]init];
-//    self.bookCoverBgQueue = [[NSOperationQueue alloc]init];
-//    
-//    self.bgQueue.maxConcurrentOperationCount = 1;
-//    self.bookCoverBgQueue.maxConcurrentOperationCount = 5;
-//    
-//    NSOperation *fetchBookOperation = [NSBlockOperation blockOperationWithBlock:^{
-//        PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
-//        [dataStore fetchData];
-//        
-//        NSMutableArray *booksGeneratedSoFar = [NSMutableArray new];
-//        
-//        for (NSInteger i = 0; i < count; i++) {
-//            NSInteger randomNumber = arc4random_uniform((u_int32_t)dataStore.managedBookObjects.count);
-//            
-//            Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
-//            
-//            //if a book has already been shown, itll be added into the mutable array
-//            //if the same book is called again, then i is lowered by 1, the for loops starts again, and so i is increased by 1
-//            //this makes sure that there will always be 100 random numbers to check
-//            if ([booksGeneratedSoFar containsObject:coreDataBook]) {
-//                i--;
-//                continue;
-//            }
-//            
-//            PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
-//            
-//            if (realmBook) {
-//                
-//                NSOperation *fetchBookCoverOperation = [NSBlockOperation blockOperationWithBlock:^{
-//                    
-//                    NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:coreDataBook.eBookNumbers]];
-//                    realmBook.bookCoverData = bookCoverData;
-//                    
-//                     if (i < self.books.count && self.books[i]) {  //fixed a crash bug
-//                        
-//                        PGBRealmBook *realmBook = self.books[i];
-//                        realmBook.bookCoverData = bookCoverData;
-//                        
-//                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                            [self.popularCollectionView reloadData];
-//                        }];
-//                        
-//                    }
-//                }];
-//                
-//                
-//                [self.books addObject:realmBook];
-//                [booksGeneratedSoFar addObject:coreDataBook]; //add to list of shown books
-//                
-//                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                    
-//                    [self.popularCollectionView reloadData];
-//                    
-//                    [self.bookCoverBgQueue addOperation:fetchBookCoverOperation];
-//                }];
-//            } else {
-//                
-//                //Didn't find a book that we should display to user, resetting counter down by 1
-//                i--;
-//            }
-//            
-//        }
-//    }];
-//    
-//    [self.bgQueue addOperation:fetchBookOperation];
-//}
 
 - (NSURL *)createBookCoverURL:(NSString *)eBookNumber{
     NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
     NSString *bookCoverURL = [NSString stringWithFormat:@"https://www.gutenberg.org/cache/epub/%@/pg%@.cover.medium.jpg", eBookNumberParsed, eBookNumberParsed];
     
     NSURL *url = [NSURL URLWithString:bookCoverURL];
-    //    NSData *data = [NSData dataWithContentsOfURL:url];
-    //    UIImage *img = [[UIImage alloc]initWithData:data];
-    //    CGSize size = img.size;
-    
-    //    [self.bgQueue addOperation:fetchBookOperation];
     return url;
 }
 
 //collection view
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-//    NSLog(@"popular book count %lu", self.books.count);
-//    NSLog(@"classic book count %lu", self.classicBooks.count);
     
     if (collectionView == self.popularCollectionView) {
         return self.books.count;
@@ -385,17 +266,14 @@ static dispatch_once_t onceToken;
             if (indexPath.row < self.books.count)
             {
                 PGBRealmBook *book = self.books[indexPath.row];
-                
-                    UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
                 
                 if (bookCoverImage) {
                     cell.bookCover.image = bookCoverImage;
                 } else {
-                    NSLog(@"title %@, author %@\n\n\n\n\n", book.title, book.author);
                     cell.titleTV.text = book.title;
                     cell.authorLabel.text = book.author;
                 }
-                
                 //            cell.titleTV.adjustsFontSizeToFitWidth = YES;
                 //            cell.titleTV.minimumFontSize = 0;
                 //            cell.authorLabel.adjustsFontSizeToFitWidth = YES;
@@ -408,21 +286,14 @@ static dispatch_once_t onceToken;
             if (indexPath.row < self.classicBooks.count)
             {
                 PGBRealmBook *book = self.classicBooks[indexPath.row];
-//                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
                 
-                [self.APIClient getImageURLForBookTitle:book completion:^(NSString *imageURL) {
-                    NSURL *url = [NSURL URLWithString:imageURL];
-                    NSData *data = [NSData dataWithContentsOfURL:url];
-                    UIImage *bookCoverFromAPI = [UIImage imageWithData:data];
-                    
-                    cell.bookCover.image = bookCoverFromAPI;
-                }];
-                
-                if (!cell.bookCover.image) {
+                if (bookCoverImage) {
+                    cell.bookCover.image = bookCoverImage;
+                } else {
                     cell.titleTV.text = book.title;
                     cell.authorLabel.text = book.author;
                 }
-                
                 //cell.titleTV.adjustsFontSizeToFitWidth = YES;
                 //cell.titleTV.minimumFontSize = 0;
                 //cell.authorLabel.adjustsFontSizeToFitWidth = YES;
@@ -435,31 +306,14 @@ static dispatch_once_t onceToken;
             if (indexPath.row < self.shakespeareBooks.count)
             {
                 PGBRealmBook *book = self.shakespeareBooks[indexPath.row];
-                //                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
+                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
                 
-                [self.APIClient getImageURLForBookTitle:book completion:^(NSString *imageURL) {
-                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                        if ([imageURL isEqual:@""]) {
-                            cell.titleTV.text = book.title;
-                            cell.authorLabel.text = book.author;
-                        } else{
-                            NSURL *url = [NSURL URLWithString:imageURL];
-                            NSData *data = [NSData dataWithContentsOfURL:url];
-                            UIImage *bookCoverFromAPI = [UIImage imageWithData:data];
-                            cell.bookCover.image = bookCoverFromAPI;
-                        }
-                        
-                    }];
-                    
-                    //                if (!cell.bookCover.image) {
-                    //                    cell.titleTV.text = book.title;
-                    //                    cell.authorLabel.text = book.author;
-                    //                }
-                    
-                    //cell.titleTV.adjustsFontSizeToFitWidth = YES;
-                    //cell.titleTV.minimumFontSize = 0;
-                    //cell.authorLabel.adjustsFontSizeToFitWidth = YES;
-                }];
+                if (bookCoverImage) {
+                    cell.bookCover.image = bookCoverImage;
+                } else {
+                    cell.titleTV.text = book.title;
+                    cell.authorLabel.text = @"William Shakespeare";
+                }
             }
         }
         return cell;

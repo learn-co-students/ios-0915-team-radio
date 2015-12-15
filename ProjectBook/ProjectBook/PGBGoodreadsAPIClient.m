@@ -12,9 +12,8 @@
 #import "PGBDataStore.h"
 #import "PGBConstants.h"
 
-#import <XMLDictionary.h>
 #import <AFNetworking/AFNetworking.h>
-#import <Ono.h>
+
 
 @interface PGBGoodreadsAPIClient ()
 
@@ -49,7 +48,6 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com";
     }
     
     goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:nil];
-    NSLog (@"%@", goodreadsURL);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:goodreadsURL parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
@@ -81,10 +79,10 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com";
     title = [realmBook.title stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     author = [author stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     
-    if (title) {
-        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, title];
-    } else if (author && title) {
+    if (author && title) {
         goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@&author=%@", GOODREADS_API_URL, GOODREADS_KEY, title, author];
+    } else if (title) {
+        goodreadsURL = [NSString stringWithFormat:@"%@/book/title.xml?key=%@&title=%@", GOODREADS_API_URL, GOODREADS_KEY, title];
     }
     
     goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:nil];

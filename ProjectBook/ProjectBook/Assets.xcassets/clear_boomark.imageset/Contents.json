@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "clear_boomark.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "NOVEL_Banner@2x.png",
       "scale" : "2x"
     },
     {
