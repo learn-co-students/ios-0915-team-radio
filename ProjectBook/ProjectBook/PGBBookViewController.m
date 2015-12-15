@@ -227,6 +227,7 @@
     
     [PGBDownloadHelper download:URL withCompletion:^(BOOL success) {
         if (success) {
+            self.readButton.hidden = NO;
             
             UIAlertController *downloadCompleted = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:@"Open in iBooks?" preferredStyle:UIAlertControllerStyleAlert];
             
