@@ -11,5 +11,5 @@
 #import "PGBNewChatViewController.h"
 #import "PGBChatMessageVC.h"
 
-@interface PGBMainSocialTableViewController : UITableViewController <PGBNewChatVCDelegate>
+@interface PGBMainSocialTableViewController : UITableViewController <PGBNewChatVCDelegate, PGBChatMessageVCDelegate>
 @end

@@ -34,7 +34,7 @@
 
 @property (strong, nonatomic) PGBChatRoom *createdChat;
 @property (strong, nonatomic) NSString *chatId;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topicBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
 @end
 

@@ -24,14 +24,22 @@
 
 @implementation PGBMainSocialTableViewController
 
+-(void)newMessageUpdateTableView:(PGBChatRoom *)currentChatRoom{
+    [self resortChatsAndReloadTable];
+}
+
+-(void) resortChatsAndReloadTable{
+    NSSortDescriptor *byDate = [NSSortDescriptor sortDescriptorWithKey:@"lastMessageAt" ascending:YES];
+    [self.arrayOfOpenBookChats sortUsingDescriptors:@[byDate]];
+    [self.tableView reloadData];
+}
+
 - (void)sendNewChatToVC:(PGBChatRoom *)createdChatRoom{
     
     [self.arrayOfOpenBookChats insertObject:createdChatRoom atIndex:0];
     [self.chatTableView reloadData];
     NSIndexPath *ipOfNewBookChat = [NSIndexPath indexPathForItem:0 inSection:0];
     [self tableView:self.chatTableView didSelectRowAtIndexPath:ipOfNewBookChat];
-    //    [self performSegueWithIdentifier:@"goToChat" sender:self];
-    NSLog(@"******got back this:**********%@", createdChatRoom);
 }
 
 - (void)viewDidLoad {
@@ -126,12 +134,13 @@
             PFObject *notChatRoom = [query getObjectWithId:currentChatRoom.objectId];
             [notChatRoom addObject:currentUser.objectId forKey:@"usersInChat"];
             [notChatRoom saveInBackground];
-            
+            chatViewController.delegate = self;
             chatViewController.currentChatRoom = currentChatRoom;
         }
-        
+
     }
 }
+
 - (IBAction)addButtonTapped:(id)sender {
     PFUser *currentUser = [PFUser currentUser];
     if (!currentUser){

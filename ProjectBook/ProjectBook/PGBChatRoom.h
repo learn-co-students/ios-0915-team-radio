@@ -17,6 +17,4 @@
 @property (strong, nonatomic) NSString *topic;
 @property (strong, nonatomic) NSDate *lastMessageAt;
 
-//+ (NSString *)parseClassName;
-
 @end

@@ -15,13 +15,13 @@
 
 @protocol PGBChatMessageVCDelegate <NSObject>
 
-- (void)didDismissPGBChatMessageVC:(PGBChatMessageVC *)vc;
+- (void)newMessageUpdateTableView:(PGBChatRoom *)updatedChatRoom;
 
 @end
 
 @interface PGBChatMessageVC : JSQMessagesViewController <UIActionSheetDelegate, JSQMessagesComposerTextViewPasteDelegate>
 
-@property (weak, nonatomic) id<PGBChatMessageVCDelegate> delegateModal;
+@property (assign, nonatomic) id<PGBChatMessageVCDelegate> delegate;
 
 @property (strong, nonatomic) NSMutableArray *randomArray;
 @property (strong, nonatomic) PGBChatRoom *currentChatRoom;

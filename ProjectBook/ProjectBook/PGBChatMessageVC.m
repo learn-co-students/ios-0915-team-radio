@@ -240,7 +240,7 @@
         bookChat[@"lastMessageAt"] = [NSDate date];
         [bookChat saveInBackground];
     }];
-    
+    [self.delegate newMessageUpdateTableView:self.currentChatRoom];
     [self finishSendingMessageAnimated:YES];
 }
 
