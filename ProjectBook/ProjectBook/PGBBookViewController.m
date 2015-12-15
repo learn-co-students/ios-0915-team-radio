@@ -56,11 +56,12 @@
     
     //check file exist
     if (![self checkFileExists]) {
-//        self.readButton.enabled = NO;
-//        self.readButton.backgroundColor = [UIColor lightGrayColor];
         self.readButton.hidden = YES;
     }
-
+    
+    [self.readButton setShowsTouchWhenHighlighted:YES];
+    [self.downloadButton setShowsTouchWhenHighlighted:YES];
+    [self.reviewsButton setShowsTouchWhenHighlighted:YES];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -82,7 +83,6 @@
     if (self.book.genre.length != 0) {
         
         UIView *view1 = [[UIView alloc]init];
-        view1.backgroundColor = [UIColor whiteColor];
         view1.backgroundColor = [UIColor whiteColor];
         [view1.heightAnchor constraintEqualToConstant:30].active = true;
         
@@ -108,7 +108,6 @@
     if (self.book.language.length != 0) {
         
         UIView *view2 = [[UIView alloc]init];
-        view2.backgroundColor = [UIColor whiteColor];
         view2.backgroundColor = [UIColor whiteColor];
         [view2.heightAnchor constraintEqualToConstant:30].active = true;
         
