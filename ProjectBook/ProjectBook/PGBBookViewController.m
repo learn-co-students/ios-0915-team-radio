@@ -36,12 +36,18 @@
 @property (weak, nonatomic) IBOutlet UIButton *readButton;
 @property (weak, nonatomic) IBOutlet UIButton *reviewsButton;
 
+@property (strong, nonatomic) UIImage *clearBookmark;
+@property (strong, nonatomic) UIImage *redBookmark;
+@property (strong, nonatomic) UIButton *bookmarkButton;
+@property (strong, nonatomic) UIBarButtonItem *bookmarkBarItem;
+
 @end
 
 @implementation PGBBookViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.titleTV.editable = NO;
     self.titleTV.selectable = NO;
@@ -51,9 +57,6 @@
     //    [self.titleTV addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
     
     self.authorLabel.text = self.book.author;
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
     self.authorLabel.adjustsFontSizeToFitWidth = YES;
     
     self.bookCover.layer.borderColor = [UIColor blackColor].CGColor;
@@ -148,26 +151,56 @@
         }];
     }];
     
-    //download and read buttons
-//    self.downloadButton.layer.borderColor = [[UIColor whiteColor] CGColor];
-//    self.downloadButton.layer.borderWidth = 3;
+    [PGBRealmBook crea]
+    
+    
+    self.clearBookmark = [UIImage imageNamed:@"clear_boomark"];
+    self.redBookmark = [UIImage imageNamed:@"red_bookmark"];
+
+    CGRect frame = CGRectMake(0, 0, self.clearBookmark.size.width+5, self.clearBookmark.size.height+5);
+
+    self.bookmarkButton =  [[UIButton alloc] initWithFrame:frame];
+//    [self.bookmarkButton setBackgroundImage:self.clearBookmark forState:UIControlStateNormal];
+//    [self.bookmarkButton setShowsTouchWhenHighlighted:YES];
 //    
-//    self.readButton.layer.borderColor = [[UIColor whiteColor] CGColor];
-//    self.readButton.layer.borderWidth = 3;
+//    [self.bookmarkButton addTarget:self action:@selector(bookmarkButtonTapped) forControlEvents:(UIControlEventTouchDown)];
+//    
+//   self.bookmarkBarItem = [[UIBarButtonItem alloc]initWithCustomView:self.bookmarkButton];
+//    
+//    [self.navigationItem setRightBarButtonItem:self.bookmarkBarItem];
+    
+    if (!self.book.isBookmarked) {
+        [self.bookmarkButton setBackgroundImage:self.clearBookmark forState:UIControlStateNormal];
+        [self.bookmarkButton setShowsTouchWhenHighlighted:YES];
+        
+        [self.bookmarkButton addTarget:self action:@selector(bookmarkButtonTapped) forControlEvents:(UIControlEventTouchDown)];
+        
+        self.bookmarkBarItem = [[UIBarButtonItem alloc]initWithCustomView:self.bookmarkButton];
+        
+        [self.navigationItem setRightBarButtonItem:self.bookmarkBarItem];
+    } else {
+        [self.bookmarkButton setBackgroundImage:self.redBookmark forState:UIControlStateNormal];
+        [self.bookmarkButton setShowsTouchWhenHighlighted:YES];
+        
+        [self.bookmarkButton addTarget:self action:@selector(bookmarkButtonTapped) forControlEvents:(UIControlEventTouchDown)];
+        
+        self.bookmarkBarItem = [[UIBarButtonItem alloc]initWithCustomView:self.bookmarkButton];
+        
+        [self.navigationItem setRightBarButtonItem:self.bookmarkBarItem];
+    }
+
+
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
-    //LEO - this is causing for some books, AFNetworking crash!!!
-    //    [self getReviewswithCompletion:^(BOOL success) {
-    //        if (success) {
-    //            NSLog(@"Succed to get reviews from API call - LEO");
-    //        } else {
-    //            NSLog(@"failed to get reviews from API call - LEO");
-    //            self.bookDescriptionTV.text = @"There is no review for this book.";
-    //        }
-    //    }];
+    //bookmark button
+//    UIImage *clearBookmark = [UIImage imageNamed:@"clear_bookmark"];
+//    //    [self.bookmarkButton setImage:clearBookmark forState:UIControlStateNormal];
+//
+//    [self.bookmarkButton setImage:clearBookmark];
+    
 }
 
 - (IBAction)downloadButtonTapped:(id)sender {
@@ -206,7 +239,7 @@
                                                                  NSLog(@"iBooks installed");
                                                                  
                                                              } else {
-                                                                 UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"iBooks not installed." message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
+                                                                 UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"iBooks not installed" message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
                                                                  UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                                                                               style:UIAlertActionStyleDefault
                                                                                                             handler:^(UIAlertAction * _Nonnull action) {
@@ -241,7 +274,7 @@
             }
         } else {
             
-            UIAlertController *downloadFailed = [UIAlertController alertControllerWithTitle:@"Fail to download book" message:@"Please try again" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *downloadFailed = [UIAlertController alertControllerWithTitle:@"Failed to download book" message:@"Please try again" preferredStyle:UIAlertControllerStyleAlert];
             
             
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
@@ -277,7 +310,7 @@
         NSLog(@"iBooks installed");
         
     } else {
-        UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"iBooks not installed." message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"iBooks not installed" message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                      style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * _Nonnull action) {
@@ -289,16 +322,37 @@
     
     NSLog(@"iBooks not installed");
 }
+                                            
+- (void)bookmarkButtonTapped {
 
-- (IBAction)optionsButtonTapped:(id)sender {
-    UIAlertController *view = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    //bookmark
-    UIAlertAction *save = [UIAlertAction actionWithTitle:@"Bookmark" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if (self.book.ebookID.length) {
             
             [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-                self.book.isBookmarked = YES;
+                if (!self.book.isBookmarked) {
+                    self.book.isBookmarked = YES;
+                    
+                    [self.bookmarkButton setBackgroundImage:self.redBookmark forState:UIControlStateNormal];
+                    [self.bookmarkButton setShowsTouchWhenHighlighted:YES];
+                    
+                    [self.bookmarkButton addTarget:self action:@selector(bookmarkButtonTapped) forControlEvents:(UIControlEventTouchDown)];
+                    
+                    self.bookmarkBarItem = [[UIBarButtonItem alloc]initWithCustomView:self.bookmarkButton];
+                    
+                    [self.navigationItem setRightBarButtonItem:self.bookmarkBarItem];
+                } else {
+                    self.book.isBookmarked = NO;
+                    
+                    [self.bookmarkButton setBackgroundImage:self.clearBookmark forState:UIControlStateNormal];
+                    [self.bookmarkButton setShowsTouchWhenHighlighted:YES];
+                    
+                    [self.bookmarkButton addTarget:self action:@selector(bookmarkButtonTapped) forControlEvents:(UIControlEventTouchDown)];
+                    
+                    self.bookmarkBarItem = [[UIBarButtonItem alloc]initWithCustomView:self.bookmarkButton];
+                    
+                    [self.navigationItem setRightBarButtonItem:self.bookmarkBarItem];
+                }
+                
+                
                 return self.book;
             } andCompletion:^{
                 //            if ([PFUser currentUser]) {
@@ -308,23 +362,8 @@
                 //            }
                 
             }];
-            
-            NSString *bookIsBookmarked = [NSString stringWithFormat:@"%@ bookmarked", self.book.title];
-            
-            UIAlertController *bookmarked = [UIAlertController alertControllerWithTitle:bookIsBookmarked message:nil preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                       }];
-            [bookmarked addAction:ok];
-            [self presentViewController:bookmarked animated:YES completion:nil];
-            
         }
-    }];
-    
-    [view addAction:save];
-    [self presentViewController:view animated:YES completion:nil];
-    
+
 }
 
 

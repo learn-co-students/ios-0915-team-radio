@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EtB-Vp-Xzm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EtB-Vp-Xzm">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -341,7 +341,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGY-Rr-0aw" userLabel="Overall Scroll View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RrD-px-c9s" userLabel="Overall Content View">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RrD-px-c9s" userLabel="Overall Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwd-A0-7vd" userLabel="Book Cover View">
@@ -379,8 +379,8 @@
                                                     <constraint firstItem="Ngn-Rw-pRy" firstAttribute="height" secondItem="0Xu-l3-bbt" secondAttribute="height" multiplier="7/10" id="xqH-sv-g1U"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CLg-IV-Yw5" userLabel="Description Review Stack View">
-                                                <rect key="frame" x="8" y="240" width="584" height="281"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CLg-IV-Yw5" userLabel="Description Review Stack View">
+                                                <rect key="frame" x="8" y="240" width="584" height="283"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfX-jZ-h8J" userLabel="Description">
                                                         <rect key="frame" x="224" y="0.0" width="136" height="21"/>
@@ -430,8 +430,8 @@
                                                             </button>
                                                         </subviews>
                                                     </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-rQ-wpE" userLabel="Placeholder for WKView">
-                                                        <rect key="frame" x="0.0" y="231" width="584" height="50"/>
+                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-rQ-wpE" userLabel="Placeholder for WKView">
+                                                        <rect key="frame" x="0.0" y="231" width="584" height="52"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnk-I7-o0E">
                                                                 <rect key="frame" x="196" y="0.0" width="192" height="30"/>
@@ -498,20 +498,13 @@
                             <constraint firstItem="xGY-Rr-0aw" firstAttribute="top" secondItem="KUJ-Qh-UV4" secondAttribute="bottom" id="iDu-iQ-VMd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="m8B-Ew-rJq">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="LuF-YA-RFU" userLabel="Options">
-                            <connections>
-                                <action selector="optionsButtonTapped:" destination="fPe-XH-aFU" id="rsc-Sr-WPs"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="m8B-Ew-rJq"/>
                     <connections>
                         <outlet property="authorLabel" destination="1xM-5L-2rf" id="gLu-ce-5wv"/>
                         <outlet property="bookCover" destination="0Xu-l3-bbt" id="6eC-de-KVw"/>
                         <outlet property="bookDescriptionTV" destination="1xy-f4-kln" id="1pO-Ob-c2G"/>
                         <outlet property="downloadButton" destination="7yG-Ci-Nx0" id="KRD-yC-P0d"/>
                         <outlet property="infoStackView" destination="C8H-RJ-NF3" id="B2t-Zm-qFc"/>
-                        <outlet property="moreOptions" destination="LuF-YA-RFU" id="hAd-eT-y1l"/>
                         <outlet property="readButton" destination="e2Y-qc-72L" id="2Pc-r4-KYb"/>
                         <outlet property="reviewsButton" destination="Mnk-I7-o0E" id="w6G-Bc-Gyy"/>
                         <outlet property="scrollview" destination="xGY-Rr-0aw" id="9mp-rc-mbA"/>
