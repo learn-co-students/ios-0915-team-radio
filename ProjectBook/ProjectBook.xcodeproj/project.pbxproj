@@ -62,6 +62,7 @@
 		CB3C079E1C05063A00235D78 /* hoppers.gif in Resources */ = {isa = PBXBuildFile; fileRef = CB3C07971C05063A00235D78 /* hoppers.gif */; };
 		CB3C079F1C05063A00235D78 /* PGBGoodreadsAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3C07991C05063A00235D78 /* PGBGoodreadsAPIClient.m */; };
 		CB6383611C1F6FC000D13000 /* PGBReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6383601C1F6FC000D13000 /* PGBReviewViewController.m */; };
+		CBA13F461C20A01E0091344F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CBA13F451C20A01E0091344F /* Settings.bundle */; };
 		CBC051071C109AB200118044 /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = CBC050FC1C109AB200118044 /* Apache License.txt */; };
 		CBC051081C109AB200118044 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBC050FD1C109AB200118044 /* OpenSans-Bold.ttf */; };
 		CBC051091C109AB200118044 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBC050FE1C109AB200118044 /* OpenSans-BoldItalic.ttf */; };
@@ -192,6 +193,7 @@
 		CB3C07991C05063A00235D78 /* PGBGoodreadsAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBGoodreadsAPIClient.m; sourceTree = "<group>"; };
 		CB63835F1C1F6FC000D13000 /* PGBReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBReviewViewController.h; sourceTree = "<group>"; };
 		CB6383601C1F6FC000D13000 /* PGBReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBReviewViewController.m; sourceTree = "<group>"; };
+		CBA13F451C20A01E0091344F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CBC050FC1C109AB200118044 /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
 		CBC050FD1C109AB200118044 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		CBC050FE1C109AB200118044 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 				CB3C07971C05063A00235D78 /* hoppers.gif */,
 				CBFD3F6A1BFBA077002CE0A4 /* LaunchScreen.storyboard */,
 				CBFD3F6D1BFBA077002CE0A4 /* Info.plist */,
+				CBA13F451C20A01E0091344F /* Settings.bundle */,
 			);
 			path = ProjectBook;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				A7DD3FFC1C03717100D13A4B /* bookInformationSet2.txt in Resources */,
 				CBEFBD0C1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib in Resources */,
 				A7DD400C1C03717100D13A4B /* bookInformationSet18.txt in Resources */,
+				CBA13F461C20A01E0091344F /* Settings.bundle in Resources */,
 				CBC0510D1C109AB200118044 /* OpenSans-Light.ttf in Resources */,
 				CBEFBD041C1606DC00D878AC /* Moon Light.otf in Resources */,
 				A7DD40081C03717100D13A4B /* bookInformationSet14.txt in Resources */,
