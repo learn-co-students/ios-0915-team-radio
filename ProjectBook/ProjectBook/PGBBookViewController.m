@@ -60,45 +60,57 @@
     self.bookCover.layer.borderWidth = 3.0f;
     
     // genre and language stack view
-    UIView *view1 = [[UIView alloc]init];
-    view1.backgroundColor = [UIColor whiteColor];
-    [view1 setFrame:CGRectMake(0, 0, 100, 100)];
     
-    NSLog (@"%@", self.book.genre);
-    UILabel *genreLabel = [[UILabel alloc]init];
-    genreLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    genreLabel.text = self.book.genre;
-    genreLabel.adjustsFontSizeToFitWidth = YES;
-    genreLabel.font = [UIFont fontWithName:@"Open Sans" size:13.0f];
-    
-    [view1 addSubview:genreLabel];
-    
-    [genreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(view1.mas_top);
-        make.bottom.equalTo(view1.mas_bottom);
-        make.centerX.equalTo(view1.mas_centerX);
-    }];
-    
-    UIView *view2 = [[UIView alloc]init];
-    view2.backgroundColor = [UIColor whiteColor];
-    [view2 setFrame:CGRectMake(0, 0, 100, 100)];
-    
-    UILabel *languageLabel = [[UILabel alloc]init];
-    languageLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    languageLabel.text = self.book.language;
-    languageLabel.adjustsFontSizeToFitWidth = YES;
-    languageLabel.font = [UIFont fontWithName:@"Open Sans" size:13.0f];
-    
-    [view2 addSubview:languageLabel];
-    
-    [languageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(view2.mas_top);
-        make.bottom.equalTo(view2.mas_bottom);
-        make.centerX.equalTo(view2.mas_centerX);
-    }];
-    
-    [self.infoStackView addArrangedSubview:view1];
-    [self.infoStackView addArrangedSubview:view2];
+    if (self.book.genre.length != 0) {
+        
+        UIView *view1 = [[UIView alloc]init];
+        view1.backgroundColor = [UIColor whiteColor];
+        view1.backgroundColor = [UIColor whiteColor];
+        [view1.heightAnchor constraintEqualToConstant:30].active = true;
+        
+        NSLog (@"%@", self.book.genre);
+        UILabel *genreLabel = [[UILabel alloc]init];
+        genreLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        genreLabel.text = self.book.genre;
+        genreLabel.adjustsFontSizeToFitWidth = YES;
+        genreLabel.font = [UIFont fontWithName:@"Moon-Bold" size:13.0f];
+        genreLabel.textColor = [UIColor blackColor];
+        
+        [view1 addSubview:genreLabel];
+        
+        [genreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(view1.mas_top);
+            make.bottom.equalTo(view1.mas_bottom);
+            make.centerX.equalTo(view1.mas_centerX);
+        }];
+        
+        [self.infoStackView addArrangedSubview:view1];
+    }
+
+    if (self.book.language.length != 0) {
+        
+        UIView *view2 = [[UIView alloc]init];
+        view2.backgroundColor = [UIColor whiteColor];
+        view2.backgroundColor = [UIColor whiteColor];
+        [view2.heightAnchor constraintEqualToConstant:30].active = true;
+        
+        UILabel *languageLabel = [[UILabel alloc]init];
+        languageLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        languageLabel.text = self.book.language;
+        languageLabel.adjustsFontSizeToFitWidth = YES;
+        languageLabel.font = [UIFont fontWithName:@"Moon-Bold" size:13.0f];
+        languageLabel.textColor = [UIColor blackColor];
+        
+        [view2 addSubview:languageLabel];
+        
+        [languageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(view2.mas_top);
+            make.bottom.equalTo(view2.mas_bottom);
+            make.centerX.equalTo(view2.mas_centerX);
+        }];
+        
+        [self.infoStackView addArrangedSubview:view2];
+    }
     
     //book description height and description
     //    [self.view addSubview:self.bookDescriptionTV];
@@ -128,6 +140,7 @@
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             if ([bookDescription isEqual:@""]) {
+                self.bookDescriptionTV.textAlignment = NSTextAlignmentCenter;
                 self.bookDescriptionTV.text = @"There is no description for this book.";
             }else{
                 self.bookDescriptionTV.text = bookDescription;
@@ -136,11 +149,11 @@
     }];
     
     //download and read buttons
-    self.downloadButton.layer.borderColor = [[UIColor whiteColor] CGColor];
-    self.downloadButton.layer.borderWidth = 3;
-    
-    self.readButton.layer.borderColor = [[UIColor whiteColor] CGColor];
-    self.readButton.layer.borderWidth = 3;
+//    self.downloadButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+//    self.downloadButton.layer.borderWidth = 3;
+//    
+//    self.readButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+//    self.readButton.layer.borderWidth = 3;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -193,7 +206,7 @@
                                                                  NSLog(@"iBooks installed");
                                                                  
                                                              } else {
-                                                                 UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"You don't have iBooks installed." message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
+                                                                 UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"iBooks not installed." message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
                                                                  UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                                                                               style:UIAlertActionStyleDefault
                                                                                                             handler:^(UIAlertAction * _Nonnull action) {
@@ -264,7 +277,7 @@
         NSLog(@"iBooks installed");
         
     } else {
-        UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"You don't have iBooks installed." message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"iBooks not installed." message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                      style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * _Nonnull action) {
@@ -316,9 +329,7 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-
-        
+            
         PGBReviewViewController *reviewVC = segue.destinationViewController;
         
         reviewVC.book = self.book;

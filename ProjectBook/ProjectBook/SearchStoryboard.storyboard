@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xj9-Ar-JtB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xj9-Ar-JtB">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -42,7 +42,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p4x-ZS-RV0" id="ypt-Vp-ge2">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -103,7 +103,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpS-Ti-J4a" userLabel="Overall Scroll View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IDo-oq-XyP" userLabel="Overall Content View">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IDo-oq-XyP" userLabel="Overall Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8Y-0o-dZP" userLabel="Book Cover View">
@@ -142,13 +142,13 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wd5-vW-VMl" userLabel="Description Review Stack View">
-                                                <rect key="frame" x="8" y="240" width="584" height="281"/>
+                                                <rect key="frame" x="8" y="240" width="584" height="253"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sL4-sj-n3J">
-                                                        <rect key="frame" x="0.0" y="0.0" width="584" height="30"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sL4-sj-n3J">
+                                                        <rect key="frame" x="0.0" y="0.0" width="584" height="32"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3A-vQ-FHO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="292" height="30"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3A-vQ-FHO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="292" height="32"/>
                                                                 <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="17"/>
                                                                 <state key="normal" title="Download">
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -157,8 +157,8 @@
                                                                     <action selector="downloadButtonTapped:" destination="ZYP-3g-sYO" eventType="touchUpInside" id="XVa-X0-oXB"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOg-P2-Egk">
-                                                                <rect key="frame" x="292" y="0.0" width="292" height="30"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOg-P2-Egk">
+                                                                <rect key="frame" x="292" y="0.0" width="292" height="32"/>
                                                                 <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="17"/>
                                                                 <state key="normal" title="Read">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -169,17 +169,17 @@
                                                             </button>
                                                         </subviews>
                                                     </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBV-qu-O5e" userLabel="Description">
-                                                        <rect key="frame" x="224" y="40" width="136" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBV-qu-O5e" userLabel="Description">
+                                                        <rect key="frame" x="241" y="42" width="102" height="24"/>
                                                         <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="0kL-hH-ZZc" userLabel="Info Stack View">
-                                                        <rect key="frame" x="0.0" y="71" width="584" height="150"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="0kL-hH-ZZc" userLabel="Info Stack View">
+                                                        <rect key="frame" x="0.0" y="76" width="584" height="117"/>
                                                         <subviews>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bPT-J7-iA5" userLabel="Description TV">
-                                                                <rect key="frame" x="0.0" y="0.0" width="584" height="150"/>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bPT-J7-iA5" userLabel="Description TV">
+                                                                <rect key="frame" x="0.0" y="0.0" width="584" height="117"/>
                                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
@@ -191,9 +191,9 @@
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U8L-jH-rzC" userLabel="Placeholder for WKView">
-                                                        <rect key="frame" x="0.0" y="231" width="584" height="50"/>
+                                                        <rect key="frame" x="0.0" y="203" width="584" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyO-pA-f7z">
+                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyO-pA-f7z">
                                                                 <rect key="frame" x="229" y="0.0" width="125" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="17"/>

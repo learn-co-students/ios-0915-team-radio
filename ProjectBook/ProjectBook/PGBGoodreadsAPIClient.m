@@ -12,9 +12,8 @@
 #import "PGBDataStore.h"
 #import "PGBConstants.h"
 
-#import <XMLDictionary.h>
 #import <AFNetworking/AFNetworking.h>
-#import <Ono.h>
+
 
 @interface PGBGoodreadsAPIClient ()
 
