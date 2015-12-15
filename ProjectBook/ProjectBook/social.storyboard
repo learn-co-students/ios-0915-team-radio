@@ -106,9 +106,14 @@
                                     <constraint firstItem="EnG-AA-aNs" firstAttribute="leading" secondItem="JLC-2s-vSk" secondAttribute="leading" id="opl-2w-ibh"/>
                                     <constraint firstItem="EnG-AA-aNs" firstAttribute="width" secondItem="JLC-2s-vSk" secondAttribute="width" id="pwv-fe-OH2"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="eGZ-rg-Khq"/>
+                                    </mask>
+                                </variation>
                             </view>
-                            <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rhQ-Gv-xv2">
-                                <rect key="frame" x="-8" y="20" width="391" height="518"/>
+                            <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rhQ-Gv-xv2">
+                                <rect key="frame" x="16" y="20" width="343" height="518"/>
                                 <connections>
                                     <segue destination="IN7-YM-FMv" kind="embed" identifier="PreviewEmbedSegue" id="wYc-SF-Utr"/>
                                 </connections>
@@ -138,6 +143,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="click:" destination="JjB-Zu-oh6" eventType="editingDidEnd" id="Xn0-8E-Opi"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -151,6 +159,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="pe9-qI-ozD" secondAttribute="trailing" constant="86" id="E7x-7z-ngQ"/>
                             <constraint firstItem="JLC-2s-vSk" firstAttribute="centerX" secondItem="pIi-Ur-cNp" secondAttribute="centerX" id="KQ8-Su-Cpz"/>
                             <constraint firstItem="JLC-2s-vSk" firstAttribute="leading" secondItem="b82-Jj-Erk" secondAttribute="leadingMargin" constant="-20" id="KUm-KS-oCq"/>
+                            <constraint firstItem="kRh-PL-CUX" firstAttribute="top" secondItem="EnG-AA-aNs" secondAttribute="bottom" constant="100" id="NwT-pb-QEN"/>
                             <constraint firstItem="JLC-2s-vSk" firstAttribute="top" secondItem="7eF-Ey-4wX" secondAttribute="bottom" id="Oyr-fr-1fV"/>
                             <constraint firstItem="pe9-qI-ozD" firstAttribute="bottom" secondItem="wLJ-l0-SPS" secondAttribute="top" id="Q2W-KB-F0L"/>
                             <constraint firstItem="JLC-2s-vSk" firstAttribute="top" secondItem="rhQ-Gv-xv2" secondAttribute="top" id="QdC-Am-VN9"/>
@@ -241,26 +250,26 @@
                         <viewControllerLayoutGuide type="bottom" id="wLl-xP-ZZI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ViO-zs-lb9">
-                        <rect key="frame" x="0.0" y="0.0" width="391" height="518"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Gr-Kq-Kzn" userLabel="Overall Content View">
-                                <rect key="frame" x="0.0" y="0.0" width="391" height="518"/>
+                                <rect key="frame" x="0.0" y="0.0" width="343" height="518"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wue-Sm-baf" userLabel="Description Review Stack View">
-                                        <rect key="frame" x="8" y="213" width="375" height="295"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wue-Sm-baf" userLabel="Description Review Stack View">
+                                        <rect key="frame" x="8" y="209" width="327" height="295"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAM-jD-Ynb">
-                                                <rect key="frame" x="119" y="0.0" width="136" height="21"/>
+                                                <rect key="frame" x="96" y="0.0" width="136" height="21"/>
                                                 <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2PX-RV-VCY" userLabel="Info Stack View">
-                                                <rect key="frame" x="0.0" y="31" width="375" height="264"/>
+                                                <rect key="frame" x="0.0" y="31" width="327" height="264"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekT-Vl-7ey" userLabel="Description TV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="264"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="264"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="264" id="cEY-h5-7ZN"/>
                                                         </constraints>
@@ -281,7 +290,7 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z75-yv-rtF" userLabel="Book Cover View">
-                                        <rect key="frame" x="0.0" y="0.0" width="391" height="86.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="86.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="pz0-8z-hYk"/>
@@ -292,18 +301,18 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Taa-zw-5Em" userLabel="Book Cover">
-                                        <rect key="frame" x="109" y="20" width="172.5" height="172.5"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Taa-zw-5Em" userLabel="Book Cover">
+                                        <rect key="frame" x="83" y="20" width="169" height="172.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgi-SC-Ea2" userLabel="Author">
-                                                <rect key="frame" x="8" y="130" width="156.5" height="34.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgi-SC-Ea2" userLabel="Author">
+                                                <rect key="frame" x="8" y="130" width="153" height="34.5"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="15"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Title" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VLx-Mc-1ep" userLabel="Title">
-                                                <rect key="frame" x="8" y="8" width="156.5" height="103.5"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" text="Title" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VLx-Mc-1ep" userLabel="Title">
+                                                <rect key="frame" x="8" y="8" width="153" height="103.5"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="20"/>

@@ -14,13 +14,12 @@
 #import "PGBSearchChatPreviewViewController.h"
 #import "PGBChatMessageVC.h"
 
-@interface PGBNewChatViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate>
+@interface PGBNewChatViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *bookSearchTableView;
 @property (weak, nonatomic) IBOutlet UIView *searchview;
 @property (weak, nonatomic) IBOutlet UITextField *topicTextField;
 @property (weak, nonatomic) IBOutlet UIButton *createChatButton;
-
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) UIView *defaultView;
@@ -34,7 +33,10 @@
 
 @property (strong, nonatomic) PGBChatRoom *createdChat;
 @property (strong, nonatomic) NSString *chatId;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (nonatomic) double originalBottomConstraint;
+
 
 @end
 
@@ -48,19 +50,34 @@
     [self.dataStore fetchData];
     self.books = [NSMutableArray new];
     
-    self.topicTextField.delegate = self;
-    [self.topicTextField setReturnKeyType:UIReturnKeyDone];
-
+    self.originalBottomConstraint = self.bottomConstraint.constant;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardBroughtUp:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardBroughtDown)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField {
-    [self.topicTextField becomeFirstResponder];
-}
-
--(BOOL) textFieldShouldReturn:(UITextField *)topicTextField{
+-(void)keyboardBroughtUp:(NSNotification *)notification{
     
+    
+    NSDictionary *keyboardInfo = [notification userInfo];
+    NSValue *keyboardFramebegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
+    
+    CGRect keyboardFrameBeginRect = [keyboardFramebegin CGRectValue];
+    
+    self.bottomConstraint.constant = -keyboardFrameBeginRect.size.height;
+}
+
+- (IBAction)click:(id)sender {
     [self.topicTextField resignFirstResponder];
-    return YES;
+}
+
+- (void)keyboardBroughtDown {
+    self.bottomConstraint.constant = self.originalBottomConstraint;
 }
 
 - (void)loadDefaultView {
