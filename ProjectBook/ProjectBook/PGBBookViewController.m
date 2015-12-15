@@ -12,6 +12,8 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Masonry/Masonry.h>
 #import <YYWebImage/YYWebImage.h>
+#import <QuartzCore/QuartzCore.h>
+#import "PGBDownloadViewController.h"
 
 @interface PGBBookViewController () <UIScrollViewDelegate>
 
@@ -30,6 +32,11 @@
 @property (strong, nonatomic) PGBDownloadHelper *downloadHelper;
 @property UIDocumentInteractionController *docController;
 
+@property (weak, nonatomic) IBOutlet UIButton *downloadButton;
+@property (weak, nonatomic) IBOutlet UIButton *readButton;
+
+@property (strong, nonatomic) PGBDownloadViewController *modalVC;
+
 @end
 
 @implementation PGBBookViewController
@@ -45,8 +52,6 @@
 //    [self.titleTV addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
     
     self.authorLabel.text = self.book.author;
-//    self.genreLabel.text = self.book.genre;
-//    self.languageLabel.text = self.book.language;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -57,15 +62,19 @@
 
 // genre and language stack view
     UIView *view1 = [[UIView alloc]init];
-    view1.backgroundColor = [UIColor whiteColor];
-    [view1 setFrame:CGRectMake(0, 0, 100, 100)];
+    view1.backgroundColor = [UIColor clearColor];
+    view1.layer.borderColor = [[UIColor whiteColor]CGColor];
+    view1.layer.borderWidth = 3;
+    
+    [view1 setFrame:CGRectMake(0, 0, 200, 200)];
     
     NSLog (@"%@", self.book.genre);
     UILabel *genreLabel = [[UILabel alloc]init];
     genreLabel.translatesAutoresizingMaskIntoConstraints = NO;
     genreLabel.text = self.book.genre;
     genreLabel.adjustsFontSizeToFitWidth = YES;
-    genreLabel.font = [UIFont fontWithName:@"Open Sans" size:13.0f];
+    genreLabel.font = [UIFont fontWithName:@"Open Sans-Bold" size:13.0f];
+    genreLabel.textColor = [UIColor whiteColor];
     
     [view1 addSubview:genreLabel];
     
@@ -76,14 +85,17 @@
     }];
     
     UIView *view2 = [[UIView alloc]init];
-    view2.backgroundColor = [UIColor whiteColor];
+    view2.backgroundColor = [UIColor clearColor];
+    view2.layer.borderColor = [[UIColor whiteColor]CGColor];
+    view2.layer.borderWidth = 3;
     [view2 setFrame:CGRectMake(0, 0, 100, 100)];
     
     UILabel *languageLabel = [[UILabel alloc]init];
     languageLabel.translatesAutoresizingMaskIntoConstraints = NO;
     languageLabel.text = self.book.language;
     languageLabel.adjustsFontSizeToFitWidth = YES;
-    languageLabel.font = [UIFont fontWithName:@"Open Sans" size:13.0f];
+    languageLabel.font = [UIFont fontWithName:@"Open Sans-Bold" size:13.0f];
+    languageLabel.textColor = [UIColor whiteColor];
     
     [view2 addSubview:languageLabel];
     
@@ -105,8 +117,6 @@
     rect.size.height = self.bookDescriptionTV.contentSize.height;
     self.bookDescriptionTV.frame = rect;
     
-//    [self textViewDidChange:self.bookDescriptionTV];
-    
     
     CGFloat totalHeight = 0.0f;
     for (UIView *view in self.superContentView.subviews)
@@ -115,6 +125,9 @@
     self.bookDescriptionTV.text = @"";
     self.bookDescriptionTV.editable = NO;
     self.bookDescriptionTV.selectable = NO;
+    self.bookDescriptionTV.layer.borderWidth = 3;
+    self.bookDescriptionTV.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.bookDescriptionTV.textContainerInset = UIEdgeInsetsMake(8, 8, 8, 8);
     
     PGBGoodreadsAPIClient *goodreadsAPI = [[PGBGoodreadsAPIClient alloc]init];
     [goodreadsAPI getDescriptionForBookTitle:self.book completion:^(NSString *bookDescription) {
@@ -127,14 +140,13 @@
             }
         }];
     }];
-}
-
-- (void)textViewDidChange:(UITextView *)textView {
-    CGFloat fixedWidth = textView.frame.size.width;
-    CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
-    CGRect newFrame = textView.frame;
-    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
-    textView.frame = newFrame;
+    
+    //download and read buttons
+    self.downloadButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.downloadButton.layer.borderWidth = 3;
+    
+    self.readButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.readButton.layer.borderWidth = 3;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -151,77 +163,94 @@
     }];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath   ofObject:(id)object   change:(NSDictionary *)change   context:(void *)context {
-    UITextView *tv = object;
-    CGFloat topCorrect = ([tv bounds].size.height - [tv contentSize].height * [tv zoomScale])  / 2.0;
-    topCorrect = ( topCorrect < 0.0 ? 0.0 : topCorrect );
-    tv.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
+- (IBAction)downloadButtonTapped:(id)sender {
+    
+//    [self performSegueWithIdentifier:@"downloadSegue" sender:sender];
+    
+    NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
+    
+    NSString *idURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", parsedEbookID];
+    
+    NSURL *URL = [NSURL URLWithString:idURL];
+    
+    [PGBDownloadHelper download:URL withCompletion:^(BOOL success) {
+        if (success) {
+            
+            UIAlertController *downloadCompleted = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:@"Open in iBooks?" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *open = [UIAlertAction actionWithTitle:@"Open"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             
+                                                             NSString *litFileName = [NSString stringWithFormat:@"pg%@-images.epub", parsedEbookID];
+                                                             
+                                                             //    NSString *litFileName = [NSString stringWithFormat:@"pg%@", self.ebookIndex];
+                                                             NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];
+                                                             NSURL *targetURL = [NSURL fileURLWithPath:filePath];
+                                                             
+                                                             self.docController = [UIDocumentInteractionController interactionControllerWithURL:targetURL];
+                                                             
+                                                             if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"itms-books:"]]) {
+                                                                 
+                                                                 [self.docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+                                                                 
+                                                                 //        [self.docController presentOpenInMenuFromRect:_openInIBooksButton.bounds inView:self.openInIBooksButton animated:YES];
+                                                                 
+                                                                 NSLog(@"iBooks installed");
+                                                                 
+                                                             } else {
+                                                                 UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"You don't have iBooks installed." message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
+                                                                 UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                              style:UIAlertActionStyleDefault
+                                                                                                            handler:^(UIAlertAction * _Nonnull action) {
+                                                                                                            }];
+                                                                 [invalid addAction:ok];
+                                                                 [self presentViewController:invalid animated:YES completion:nil];
+                                                                 
+                                                             }
+                                                             
+                                                         }];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                       }];
+            [downloadCompleted addAction:open];
+            [downloadCompleted addAction:cancel];
+            [self presentViewController:downloadCompleted animated:YES completion:nil];
+            
+            if (self.book.ebookID.length) {
+                
+                [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+                    self.book.isDownloaded = YES;
+                    return self.book;
+                } andCompletion:^{
+                    //            if ([PFUser currentUser]) {
+                    //                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
+                    //                    NSLog(@"saved book to parse");
+                    //                }];
+                    //            }
+                    
+                }];
+            }
+        } else {
+            
+            UIAlertController *downloadFailed = [UIAlertController alertControllerWithTitle:@"Fail to download book" message:@"Please try again" preferredStyle:UIAlertControllerStyleAlert];
+            
+            
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                       }];
+            
+            [downloadFailed addAction:ok];
+            [self presentViewController:downloadFailed animated:YES completion:nil];
+//
+        }
+        
+    }];
 }
 
-- (IBAction)optionsButtonTapped:(id)sender {
-    UIAlertController *view = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    //download
-    NSString *downloadAlertTitle = @"";
-    if (self.book.isDownloaded) {
-        downloadAlertTitle = @"Re-download Book";
-    } else {
-        downloadAlertTitle = @"Download Book";
-    }
-    
-    UIAlertAction *download = [UIAlertAction actionWithTitle:downloadAlertTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
-        
-        NSString *idURL = [NSString stringWithFormat:@"http://www.gutenberg.org/ebooks/%@.epub.images", parsedEbookID];
-        
-        NSURL *URL = [NSURL URLWithString:idURL];
-        
-        [PGBDownloadHelper download:URL withCompletion:^(BOOL success) {
-            if (success) {
-                //after download is finished
-                UIAlertController *downloadCompleted = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
-                
-                
-                UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-                                                             style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction * _Nonnull action) {
-                                                           }];
-                
-                [downloadCompleted addAction:ok];
-                [self presentViewController:downloadCompleted animated:YES completion:nil];
-                
-                if (self.book.ebookID.length) {
-                    
-                    [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-                        self.book.isDownloaded = YES;
-                        return self.book;
-                    } andCompletion:^{
-                        //            if ([PFUser currentUser]) {
-                        //                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                        //                    NSLog(@"saved book to parse");
-                        //                }];
-                        //            }
-                    }];
-                }
-            } else {
-                UIAlertController *downloadFailed = [UIAlertController alertControllerWithTitle:@"Fail to download book" message:@"Please try again" preferredStyle:UIAlertControllerStyleAlert];
-                
-                
-                UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-                                                             style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction * _Nonnull action) {
-                                                           }];
-                
-                [downloadFailed addAction:ok];
-                [self presentViewController:downloadFailed animated:YES completion:nil];
-                
-            }
-            
-        }];
-    }];
-    
-    //open in iBook
-    UIAlertAction *open = [UIAlertAction actionWithTitle:@"Open in iBooks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+- (IBAction)readButtonTapped:(id)sender {
         NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
         
         NSString *litFileName = [NSString stringWithFormat:@"pg%@-images.epub", parsedEbookID];
@@ -252,7 +281,10 @@
         }
         
         NSLog(@"iBooks not installed");
-    }];
+}
+
+- (IBAction)optionsButtonTapped:(id)sender {
+    UIAlertController *view = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     //bookmark
     UIAlertAction *save = [UIAlertAction actionWithTitle:@"Bookmark" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -283,19 +315,20 @@
         }
     }];
     
-    UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
-                             style:UIAlertActionStyleCancel
-                             handler:nil];
-    
-    [view addAction:download];
-    [view addAction:open];
     [view addAction:save];
-    [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
     
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"downloadSegue"]) {
+
+        PGBDownloadViewController *downloadVC = segue.destinationViewController;
+        
+        downloadVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    }
+}
 
 
 - (void)getReviewswithCompletion:(void (^)(BOOL))completionBlock {
