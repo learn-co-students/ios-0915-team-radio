@@ -151,6 +151,12 @@
         }];
     }];
     
+    //find book in Realmboook
+    PGBRealmBook *bookFound = [PGBRealmBook findRealmBookInRealDatabaseWithRealmBook:self.book];
+    if (bookFound) {
+        self.book = bookFound;
+    }
+
     self.clearBookmark = [UIImage imageNamed:@"clear_boomark"];
     self.redBookmark = [UIImage imageNamed:@"red_bookmark"];
 

@@ -427,4 +427,10 @@
     }];
 }
 
++(PGBRealmBook *)findRealmBookInRealDatabaseWithRealmBook:(PGBRealmBook *)bookToBeFound {
+    RLMResults *result = [PGBRealmBook objectsWhere:@"ebookID = %@",bookToBeFound.ebookID];
+    
+    return [result firstObject];
+}
+
 @end

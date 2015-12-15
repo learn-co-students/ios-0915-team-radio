@@ -80,7 +80,7 @@
 //        NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
 //    
 //        NSLog(@"Begin store to core data");
-    
+//    
 //        NSLog(@"documents directory: %@", [self applicationDocumentsDirectory]);
     
 //        PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
