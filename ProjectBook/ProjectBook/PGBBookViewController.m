@@ -87,7 +87,7 @@
     view2.backgroundColor = [UIColor clearColor];
     view2.layer.borderColor = [[UIColor whiteColor]CGColor];
     view2.layer.borderWidth = 3;
-    [view2 setFrame:CGRectMake(0, 0, 100, 100)];
+    [view2 setFrame:CGRectMake(0, 0, 200, 200)];
     
     UILabel *languageLabel = [[UILabel alloc]init];
     languageLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -321,19 +321,15 @@
     
 }
 
-- (IBAction)reviewsButtonTapped:(id)sender {
-    [self performSegueWithIdentifier:@"reviewSegue" sender:self];
-    
-}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if ([segue.identifier isEqualToString:@"reviewSegue"]) {
+
         
         PGBReviewViewController *reviewVC = segue.destinationViewController;
         
         reviewVC.book = self.book;
-    }
+
 }
 
 @end

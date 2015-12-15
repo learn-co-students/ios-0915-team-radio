@@ -26,6 +26,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+
     //LEO - this is causing for some books, AFNetworking crash!!!
 //    [self getReviewswithCompletion:^(BOOL success) {
 //        if (success) {
@@ -38,6 +39,8 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    NSLog(@"LEO view will appear");
     
     [self getReviewswithCompletion:^(BOOL success) {
         if (success) {
