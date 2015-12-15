@@ -452,6 +452,8 @@
 				899A4D0F1C11EFC100D499C4 /* PGBNewChatViewController.m */,
 				899A4D051C10A77200D499C4 /* PGBChatMessageVC.h */,
 				899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */,
+				894AE4621C161227007F22A5 /* PGBSearchChatPreviewViewController.h */,
+				894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */,
 				CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */,
 				CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */,
 				CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */,
@@ -484,8 +486,6 @@
 		CBFD3F591BFBA076002CE0A4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				894AE4621C161227007F22A5 /* PGBSearchChatPreviewViewController.h */,
-				894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */,
 				CBC050FA1C109AB200118044 /* fonts */,
 				89986BB21C1F7011004FB4F9 /* ProjectBook.sqlite */,
 				CBFD3F5A1BFBA076002CE0A4 /* main.m */,
