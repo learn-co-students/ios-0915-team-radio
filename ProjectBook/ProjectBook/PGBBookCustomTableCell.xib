@@ -81,7 +81,6 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="authorLabel" destination="DER-c3-RD0" id="aNF-Zv-tDA"/>
-                <outlet property="bookCover" destination="G4Y-td-MIl" id="FNe-jW-0dM"/>
                 <outlet property="genreLabel" destination="39j-Ry-nkx" id="HWa-Gm-VHN"/>
                 <outlet property="titleLabel" destination="2Hu-Xi-y3A" id="5zh-5P-JWR"/>
             </connections>

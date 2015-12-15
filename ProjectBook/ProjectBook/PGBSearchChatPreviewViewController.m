@@ -44,11 +44,16 @@
     [goodreadsAPI getDescriptionForBookTitle:self.book completion:^(NSString *bookDescription) {
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if ([bookDescription isEqual:@""]) {
+            
+
+            if (![bookDescription isEqual:@""]) {
+               
                 self.bookDescriptionTextView.text = @"There is no description for this book.";
                 self.bookDescriptionTextView.textAlignment = NSTextAlignmentCenter;
+                self.bookDescriptionTextView.font = [UIFont fontWithName:@"OpenSans-Light" size:14.0f];
             }else{
                 self.bookDescriptionTextView.text = bookDescription;
+                self.bookDescriptionTextView.font = [UIFont fontWithName:@"OpenSans-Light" size:14.0f];
             }
         }];
     }];

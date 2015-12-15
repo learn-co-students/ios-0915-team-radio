@@ -155,17 +155,19 @@
 //            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 //                
                 PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)segue.destinationViewController;
+            
                 
                 NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
                 PGBChatRoom *currentChatRoom = self.arrayOfOpenBookChats[selectedIndexPath.row];
-                
-                PFUser *currentUser = [PFUser currentUser];
-                PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
-                PFObject *notChatRoom = [query getObjectWithId:currentChatRoom.objectId];
-                [notChatRoom addObject:currentUser.objectId forKey:@"usersInChat"];
-                [notChatRoom saveInBackground];
-                chatViewController.delegate = self;
-                chatViewController.currentChatRoom = currentChatRoom;
+            chatViewController.currentChatRoom = currentChatRoom;
+            chatViewController.delegate = self;
+            
+               
+//                chatViewController.delegate = self;
+//                chatViewController.currentChatRoom = currentChatRoom;
+            
+            
+            
                 // hide MBProgressHUD
 //                [MBProgressHUD hideHUDForView:self.view animated:YES];
 //            });

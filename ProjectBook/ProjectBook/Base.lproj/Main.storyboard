@@ -338,7 +338,7 @@
         <!--Book View Controller-->
         <scene sceneID="nuC-CE-hoM">
             <objects>
-                <viewController id="fPe-XH-aFU" customClass="PGBBookViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="bookDescription" storyboardIdentifier="bookDescription" id="fPe-XH-aFU" customClass="PGBBookViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KUJ-Qh-UV4"/>
                         <viewControllerLayoutGuide type="bottom" id="KkS-Av-NVw"/>

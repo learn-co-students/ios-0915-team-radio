@@ -14,7 +14,8 @@
 #import "JSQMessagesTypingIndicatorFooterView.h"
 #import "UIImage+JSQMessages.h"
 #import "JSQSystemSoundPlayer+JSQMessages.h"
-#import "PGBMyBookViewController.h"
+#import "PGBBookViewController.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface PGBChatMessageVC ()
 
@@ -23,14 +24,68 @@
 
 @property (nonatomic, strong) NSMutableArray *locallySentMessages; // ones to be cleared when we get a push notification
 
+@property (nonatomic) BOOL tookOverASecond;
+
 @end
 
 @implementation PGBChatMessageVC
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     PFUser *currentPerson = [PFUser currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
+    
+    //START PROGRESS HUD HERE!!!!
+    
+    
+    self.tookOverASecond = YES;
+    
+    [self performSelector:@selector(startProgressHud)
+               withObject:nil
+               afterDelay:1.0];
+    
+    
+    //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    
+    [query getObjectInBackgroundWithId:self.currentChatRoom.objectId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        
+        PFObject *notChatRoom = object;
+        [notChatRoom addObject:currentPerson.objectId forKey:@"usersInChat"];
+        
+        [notChatRoom saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            
+            
+            self.tookOverASecond = NO;
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            
+            //            [self animateAlphaOfView];
+            //            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            //            self.view.alpha = 1.0;
+            
+            
+            //END PROGRESS HUD HERE!!!!!
+            
+        }];
+    }];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     self.messagesInConversation = [NSMutableArray new];
     self.locallySentMessages = [NSMutableArray new];
@@ -54,7 +109,36 @@
     [self loadPastMessagesFromPriorToEnteringChat];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"NewMessage" object:nil];
+    
+    
+    
+    
+    
+    
+    
 }
+
+- (void)startProgressHud {
+    
+    if (self.tookOverASecond) {
+        
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    }
+    
+    
+}
+
+- (void)animateAlphaOfView {
+    
+    [UIView animateWithDuration:2.0
+                     animations:^{
+                         
+                         self.view.alpha = 1.0;
+                         
+                     }];
+}
+
+
 
 - (void)loadPastMessagesFromPriorToEnteringChat {
     
@@ -94,6 +178,15 @@
     }];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    
+    
+    
+    
+}
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -102,11 +195,16 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-   
+    
+    
+    
+    
+    
+    
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(closePressed:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(viewBook:)];
-
+    
 }
 
 - (void)closePressed:(UIBarButtonItem *)sender {
@@ -114,10 +212,19 @@
 }
 
 - (void)viewBook:(UIBarButtonItem *)sender {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PGBMyBookViewController *bookView = (PGBMyBookViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"bookView"];
-     [self presentViewController:bookView animated:YES completion:nil];
-     
+    
+    [self performSegueWithIdentifier:@"bookDetailFun" sender:self];
+    
+//    NSArray *alltheViewControllers = self.tabBarController.viewControllers;
+//    
+//    
+//    
+//    
+//    
+//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    PGBMyBookViewController *bookView = (PGBMyBookViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"bookView"];
+//    [self presentViewController:bookView animated:YES completion:nil];
+    
 }
 
 -(JSQMessage *)messageCreatedAt:(NSDate *)date withText:(NSString *)text {
@@ -161,34 +268,34 @@
     [query orderByDescending:@"createdAt"];
     [query setLimit:100];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+        if (!error)
+        {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu objects.", objects.count);
             
-            if (!error)
-            {
-                // The find succeeded.
-                NSLog(@"Successfully retrieved %lu objects.", objects.count);
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
                 
-                for (PFObject *object in objects) {
-                    NSLog(@"%@", object.objectId);
-                    
-                    
-                    JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:object[@"senderId"]
-                                                                   senderDisplayName:object[@"senderDisplayName"]
-                                                                                date:object.createdAt
-                                                                                text:object[@"text"]];
-                    
-                    
-                    [gotMessages addObject:latestMessage];
-                }
                 
-                NSLog(@"got messages array>>> %@", gotMessages);
-                [self removeLocallySentMessagesAndMergeNewMessages:gotMessages];
-                [self finishReceivingMessageAnimated:YES];
+                JSQMessage *latestMessage = [[JSQMessage alloc] initWithSenderId:object[@"senderId"]
+                                                               senderDisplayName:object[@"senderDisplayName"]
+                                                                            date:object.createdAt
+                                                                            text:object[@"text"]];
                 
-            } else {
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                
+                [gotMessages addObject:latestMessage];
             }
-    
+            
+            NSLog(@"got messages array>>> %@", gotMessages);
+            [self removeLocallySentMessagesAndMergeNewMessages:gotMessages];
+            [self finishReceivingMessageAnimated:YES];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        
     }];
 }
 
@@ -202,11 +309,7 @@
     
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    //    self.collectionView.collectionViewLayout.springinessEnabled = [NSUserDefaults springinessSetting];
-    
-}
+
 
 -(void)didPressSendButton:(UIButton *)button
           withMessageText:(NSString *)text
@@ -239,7 +342,7 @@
             NSLog(@"Problem saving: %@", error.description);
         }
     }];
-
+    
     PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
     [query getObjectInBackgroundWithId:self.currentChatRoom.objectId block:^(PFObject * _Nullable bookChat, NSError * _Nullable error) {
         
@@ -500,6 +603,14 @@
         return NO;
     }
     return YES;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    PGBBookViewController *destVC = segue.destinationViewController;
+    
+    
+    
 }
 
 

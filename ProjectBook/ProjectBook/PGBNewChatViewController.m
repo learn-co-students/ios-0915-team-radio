@@ -206,7 +206,7 @@
         UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okayAction];
         [self presentViewController:alert animated:YES completion:nil];
-   
+        
     } else {
         self.createdChat = [PGBChatRoom new];
         self.createdChat.topic = self.topicTextField.text;

@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -217,10 +216,21 @@
                     </view>
                     <navigationItem key="navigationItem" title="Book Chat" id="BdY-dG-RTQ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="HFO-cB-rQg" kind="show" identifier="bookDetailFun" id="wKi-db-Aer"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4R4-wb-ube" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2332.5" y="836.5"/>
+        </scene>
+        <!--bookDescription-->
+        <scene sceneID="A60-qb-DBB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="bookDescription" id="HFO-cB-rQg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nP4-CQ-fTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2699.5" y="576"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nc2-ZB-jAP">
@@ -257,23 +267,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="343" height="518"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wue-Sm-baf" userLabel="Description Review Stack View">
-                                        <rect key="frame" x="8" y="213" width="327" height="295"/>
+                                        <rect key="frame" x="8" y="270" width="327" height="237.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAM-jD-Ynb">
-                                                <rect key="frame" x="96" y="0.0" width="136" height="21"/>
+                                                <rect key="frame" x="95.5" y="0.0" width="136" height="21"/>
                                                 <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2PX-RV-VCY" userLabel="Info Stack View">
-                                                <rect key="frame" x="0.0" y="31" width="327" height="264"/>
+                                                <rect key="frame" x="0.0" y="31" width="327" height="206.5"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekT-Vl-7ey" userLabel="Description TV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="264"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="206.5"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="264" id="cEY-h5-7ZN"/>
-                                                        </constraints>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -290,7 +297,7 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z75-yv-rtF" userLabel="Book Cover View">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="86.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="138"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="pz0-8z-hYk"/>
@@ -302,17 +309,17 @@
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Taa-zw-5Em" userLabel="Book Cover">
-                                        <rect key="frame" x="85" y="20" width="172.5" height="172.5"/>
+                                        <rect key="frame" x="85.5" y="20" width="171.5" height="230"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgi-SC-Ea2" userLabel="Author">
-                                                <rect key="frame" x="8" y="130" width="156.5" height="34.5"/>
+                                                <rect key="frame" x="8" y="176" width="155.5" height="46"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Moon-Light" family="Moon" pointSize="15"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Title" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VLx-Mc-1ep" userLabel="Title">
-                                                <rect key="frame" x="8" y="8" width="156.5" height="103.5"/>
+                                                <rect key="frame" x="8" y="8" width="155.5" height="161.5"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="20"/>
@@ -325,8 +332,7 @@
                                             <constraint firstItem="kgi-SC-Ea2" firstAttribute="trailing" secondItem="Taa-zw-5Em" secondAttribute="trailingMargin" id="XDD-go-TDl"/>
                                             <constraint firstItem="kgi-SC-Ea2" firstAttribute="bottom" secondItem="Taa-zw-5Em" secondAttribute="bottomMargin" id="beT-we-F8t"/>
                                             <constraint firstItem="kgi-SC-Ea2" firstAttribute="height" secondItem="Taa-zw-5Em" secondAttribute="height" multiplier="1/5" id="fAX-rv-b4f"/>
-                                            <constraint firstItem="VLx-Mc-1ep" firstAttribute="height" secondItem="Taa-zw-5Em" secondAttribute="height" multiplier="3/5" id="ocj-kY-Q6e"/>
-                                            <constraint firstAttribute="width" secondItem="Taa-zw-5Em" secondAttribute="height" id="pmD-mq-ZPw"/>
+                                            <constraint firstItem="VLx-Mc-1ep" firstAttribute="height" secondItem="Taa-zw-5Em" secondAttribute="height" multiplier="7/10" id="ocj-kY-Q6e"/>
                                             <constraint firstItem="VLx-Mc-1ep" firstAttribute="leading" secondItem="Taa-zw-5Em" secondAttribute="leadingMargin" id="rRm-Os-QvC"/>
                                             <constraint firstItem="VLx-Mc-1ep" firstAttribute="centerX" secondItem="Taa-zw-5Em" secondAttribute="centerX" id="taw-Pd-IDc"/>
                                             <constraint firstItem="kgi-SC-Ea2" firstAttribute="leading" secondItem="Taa-zw-5Em" secondAttribute="leadingMargin" id="wgm-0b-DFG"/>
@@ -337,12 +343,12 @@
                                 <color key="backgroundColor" red="0.28627450980000002" green="0.71764705880000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="ekT-Vl-7ey" secondAttribute="bottom" constant="10.5" id="2zQ-vd-n97"/>
-                                    <constraint firstItem="z75-yv-rtF" firstAttribute="height" secondItem="Taa-zw-5Em" secondAttribute="height" multiplier="1/2" id="CXW-8B-JV3"/>
+                                    <constraint firstItem="z75-yv-rtF" firstAttribute="height" secondItem="Taa-zw-5Em" secondAttribute="height" multiplier="12/20" id="CXW-8B-JV3"/>
                                     <constraint firstItem="wue-Sm-baf" firstAttribute="leading" secondItem="4Gr-Kq-Kzn" secondAttribute="leadingMargin" id="Lvo-7d-kjW"/>
                                     <constraint firstItem="wue-Sm-baf" firstAttribute="trailing" secondItem="4Gr-Kq-Kzn" secondAttribute="trailingMargin" id="NxE-aw-Ok1"/>
                                     <constraint firstItem="z75-yv-rtF" firstAttribute="trailing" secondItem="4Gr-Kq-Kzn" secondAttribute="trailing" id="SIy-Nt-y9a"/>
                                     <constraint firstItem="z75-yv-rtF" firstAttribute="leading" secondItem="4Gr-Kq-Kzn" secondAttribute="leading" id="VD0-zE-St5"/>
-                                    <constraint firstItem="Taa-zw-5Em" firstAttribute="height" secondItem="4Gr-Kq-Kzn" secondAttribute="height" multiplier="1/3" id="e7S-oZ-aSy"/>
+                                    <constraint firstItem="Taa-zw-5Em" firstAttribute="height" secondItem="4Gr-Kq-Kzn" secondAttribute="height" multiplier="4/9" id="e7S-oZ-aSy"/>
                                     <constraint firstItem="wue-Sm-baf" firstAttribute="top" secondItem="Taa-zw-5Em" secondAttribute="bottom" constant="20" id="iJY-ZD-lEp"/>
                                     <constraint firstItem="Taa-zw-5Em" firstAttribute="centerX" secondItem="4Gr-Kq-Kzn" secondAttribute="centerX" id="k9e-6b-AWx"/>
                                     <constraint firstItem="Taa-zw-5Em" firstAttribute="top" secondItem="4Gr-Kq-Kzn" secondAttribute="top" constant="20" id="o4r-on-9Jr"/>
@@ -353,6 +359,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4Gr-Kq-Kzn" firstAttribute="leading" secondItem="ViO-zs-lb9" secondAttribute="leading" id="BmB-tF-X1j"/>
+                            <constraint firstItem="Taa-zw-5Em" firstAttribute="width" secondItem="ViO-zs-lb9" secondAttribute="width" multiplier="1/2" id="Ffa-FH-oQT"/>
                             <constraint firstAttribute="trailing" secondItem="4Gr-Kq-Kzn" secondAttribute="trailing" id="Txu-jh-xFz"/>
                             <constraint firstItem="4Gr-Kq-Kzn" firstAttribute="top" secondItem="ViO-zs-lb9" secondAttribute="top" id="s5l-xd-hWB"/>
                             <constraint firstAttribute="bottom" secondItem="4Gr-Kq-Kzn" secondAttribute="bottom" id="uTr-sU-rYV"/>
