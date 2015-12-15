@@ -34,6 +34,7 @@
 @property (nonatomic, strong)dispatch_queue_t searchQueue;
 @property (nonatomic, assign)BOOL scheduledSearch;
 
+@property (nonatomic, strong) NSTimer *searchTimer;
 
 @end
 
@@ -409,33 +410,37 @@
 
         NSString *lowercaseAndUnaccentedSearchText = [searchText stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
         
-        if (self.scheduledSearch) return;
-        self.scheduledSearch = YES;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)((double)SEARCH_DELAY_IN_MS * NSEC_PER_MSEC));
-        dispatch_after(popTime, self.searchQueue, ^(void){
-            self.scheduledSearch = NO;
-            
-            NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"eBookSearchTerms CONTAINS %@", lowercaseAndUnaccentedSearchText];
-            NSArray *coreDataBooks = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
-            
-            [self.books removeAllObjects];
-            
-            for (Book *coreDataBook in coreDataBooks) {
-                PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
-                
-                if (realmBook) {
-                    [self.books addObject:realmBook];
-                }
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.bookTableView reloadData];
-            });
-            
-            NSString *newSearchText = [self.bookSearchBar.text stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
-            if (![newSearchText isEqualToString:searchText])
-                [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
-        });
+        [self.searchTimer invalidate];
+        self.searchTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(searchTimerFired:) userInfo:@{ @"searchString": lowercaseAndUnaccentedSearchText } repeats:NO];
+        
+//        if (self.scheduledSearch) return;
+//        self.scheduledSearch = YES;
+//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)((double)SEARCH_DELAY_IN_MS * NSEC_PER_MSEC));
+//        dispatch_after(popTime, self.searchQueue, ^(void){
+//            self.scheduledSearch = NO;
+//            
+//            NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"eBookSearchTerms CONTAINS %@", lowercaseAndUnaccentedSearchText];
+//            NSArray *coreDataBooks = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
+//            
+//            [self.books removeAllObjects];
+//            
+//            for (Book *coreDataBook in coreDataBooks) {
+//                PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
+//                
+//                if (realmBook) {
+//                    [self.books addObject:realmBook];
+//                }
+//            }
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self.bookTableView reloadData];
+//            });
+//            
+//            NSString *newSearchText = [self.bookSearchBar.text stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
+////            NSString *newSearchText = self.bookSearchBar.text;
+//            if (![newSearchText isEqualToString:searchText])
+//                [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
+//        });
         
         if (!searchText.length) {
             self.dismissKeyboardGesture.enabled = YES;
@@ -444,6 +449,28 @@
         }
         
     }
+}
+
+-(void)searchTimerFired:(NSTimer *)timer
+{
+    NSString *searchText = timer.userInfo[@"searchString"];
+    
+    NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"eBookSearchTerms CONTAINS %@", searchText];
+    NSArray *coreDataBooks = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
+
+    [self.books removeAllObjects];
+
+    for (Book *coreDataBook in coreDataBooks) {
+        PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
+
+        if (realmBook) {
+            [self.books addObject:realmBook];
+        }
+    }
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.bookTableView reloadData];
+    });
 }
 
 - (void) hideKeyboard {
