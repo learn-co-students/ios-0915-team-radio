@@ -73,8 +73,7 @@ static dispatch_once_t onceToken;
     
     //logo for banner
     
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 100.0, 40.0)];
-    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)gst];
+    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     
     

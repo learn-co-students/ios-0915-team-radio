@@ -226,7 +226,7 @@
 		CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBBookCustomTableCell.xib; sourceTree = "<group>"; };
 		CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBHomeViewController.h; sourceTree = "<group>"; };
 		CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBHomeViewController.m; sourceTree = "<group>"; };
-		CBFD3F561BFBA076002CE0A4 /* ProjectBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBFD3F561BFBA076002CE0A4 /* NOVEL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOVEL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFD3F5A1BFBA076002CE0A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -235,10 +235,10 @@
 		CBFD3F681BFBA077002CE0A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBFD3F6B1BFBA077002CE0A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBFD3F6D1BFBA077002CE0A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CBFD3F721BFBA077002CE0A4 /* ProjectBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBFD3F721BFBA077002CE0A4 /* NOVEL.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NOVEL.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFD3F761BFBA077002CE0A4 /* ProjectBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectBookTests.m; sourceTree = "<group>"; };
 		CBFD3F781BFBA077002CE0A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CBFD3F7D1BFBA077002CE0A4 /* ProjectBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBFD3F7D1BFBA077002CE0A4 /* NOVEL.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NOVEL.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFD3F811BFBA077002CE0A4 /* ProjectBookUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectBookUITests.m; sourceTree = "<group>"; };
 		CBFD3F831BFBA077002CE0A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBDownloadHelper.h; sourceTree = "<group>"; };
@@ -429,9 +429,9 @@
 		CBFD3F571BFBA076002CE0A4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CBFD3F561BFBA076002CE0A4 /* ProjectBook.app */,
-				CBFD3F721BFBA077002CE0A4 /* ProjectBookTests.xctest */,
-				CBFD3F7D1BFBA077002CE0A4 /* ProjectBookUITests.xctest */,
+				CBFD3F561BFBA076002CE0A4 /* NOVEL.app */,
+				CBFD3F721BFBA077002CE0A4 /* NOVEL.xctest */,
+				CBFD3F7D1BFBA077002CE0A4 /* NOVEL.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -551,9 +551,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CBFD3F551BFBA076002CE0A4 /* ProjectBook */ = {
+		CBFD3F551BFBA076002CE0A4 /* NOVEL */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CBFD3F861BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "ProjectBook" */;
+			buildConfigurationList = CBFD3F861BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "NOVEL" */;
 			buildPhases = (
 				46C146BD0D81A8587F41E81D /* Check Pods Manifest.lock */,
 				CBFD3F521BFBA076002CE0A4 /* Sources */,
@@ -566,14 +566,14 @@
 			);
 			dependencies = (
 			);
-			name = ProjectBook;
+			name = NOVEL;
 			productName = ProjectBook;
-			productReference = CBFD3F561BFBA076002CE0A4 /* ProjectBook.app */;
+			productReference = CBFD3F561BFBA076002CE0A4 /* NOVEL.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CBFD3F711BFBA077002CE0A4 /* ProjectBookTests */ = {
+		CBFD3F711BFBA077002CE0A4 /* NOVELTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CBFD3F891BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "ProjectBookTests" */;
+			buildConfigurationList = CBFD3F891BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "NOVELTests" */;
 			buildPhases = (
 				CBFD3F6E1BFBA077002CE0A4 /* Sources */,
 				CBFD3F6F1BFBA077002CE0A4 /* Frameworks */,
@@ -584,14 +584,14 @@
 			dependencies = (
 				CBFD3F741BFBA077002CE0A4 /* PBXTargetDependency */,
 			);
-			name = ProjectBookTests;
+			name = NOVELTests;
 			productName = ProjectBookTests;
-			productReference = CBFD3F721BFBA077002CE0A4 /* ProjectBookTests.xctest */;
+			productReference = CBFD3F721BFBA077002CE0A4 /* NOVEL.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CBFD3F7C1BFBA077002CE0A4 /* ProjectBookUITests */ = {
+		CBFD3F7C1BFBA077002CE0A4 /* NOVELUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CBFD3F8C1BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "ProjectBookUITests" */;
+			buildConfigurationList = CBFD3F8C1BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "NOVELUITests" */;
 			buildPhases = (
 				CBFD3F791BFBA077002CE0A4 /* Sources */,
 				CBFD3F7A1BFBA077002CE0A4 /* Frameworks */,
@@ -602,9 +602,9 @@
 			dependencies = (
 				CBFD3F7F1BFBA077002CE0A4 /* PBXTargetDependency */,
 			);
-			name = ProjectBookUITests;
+			name = NOVELUITests;
 			productName = ProjectBookUITests;
-			productReference = CBFD3F7D1BFBA077002CE0A4 /* ProjectBookUITests.xctest */;
+			productReference = CBFD3F7D1BFBA077002CE0A4 /* NOVEL.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -637,7 +637,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CBFD3F511BFBA076002CE0A4 /* Build configuration list for PBXProject "ProjectBook" */;
+			buildConfigurationList = CBFD3F511BFBA076002CE0A4 /* Build configuration list for PBXProject "NOVEL" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -650,9 +650,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CBFD3F551BFBA076002CE0A4 /* ProjectBook */,
-				CBFD3F711BFBA077002CE0A4 /* ProjectBookTests */,
-				CBFD3F7C1BFBA077002CE0A4 /* ProjectBookUITests */,
+				CBFD3F551BFBA076002CE0A4 /* NOVEL */,
+				CBFD3F711BFBA077002CE0A4 /* NOVELTests */,
+				CBFD3F7C1BFBA077002CE0A4 /* NOVELUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -843,12 +843,12 @@
 /* Begin PBXTargetDependency section */
 		CBFD3F741BFBA077002CE0A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CBFD3F551BFBA076002CE0A4 /* ProjectBook */;
+			target = CBFD3F551BFBA076002CE0A4 /* NOVEL */;
 			targetProxy = CBFD3F731BFBA077002CE0A4 /* PBXContainerItemProxy */;
 		};
 		CBFD3F7F1BFBA077002CE0A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CBFD3F551BFBA076002CE0A4 /* ProjectBook */;
+			target = CBFD3F551BFBA076002CE0A4 /* NOVEL */;
 			targetProxy = CBFD3F7E1BFBA077002CE0A4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -965,7 +965,7 @@
 				INFOPLIST_FILE = ProjectBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.novel;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NOVEL;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -981,7 +981,7 @@
 				INFOPLIST_FILE = ProjectBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.novel;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NOVEL;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -994,8 +994,8 @@
 				INFOPLIST_FILE = ProjectBookTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.learn-co-students.ios-0915-team-radio.ProjectBookTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ProjectBook.app/ProjectBook";
+				PRODUCT_NAME = NOVEL;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NOVEL.app/NOVEL";
 			};
 			name = Debug;
 		};
@@ -1006,8 +1006,8 @@
 				INFOPLIST_FILE = ProjectBookTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.learn-co-students.ios-0915-team-radio.ProjectBookTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ProjectBook.app/ProjectBook";
+				PRODUCT_NAME = NOVEL;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NOVEL.app/NOVEL";
 			};
 			name = Release;
 		};
@@ -1017,7 +1017,7 @@
 				INFOPLIST_FILE = ProjectBookUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.learn-co-students.ios-0915-team-radio.ProjectBookUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NOVEL;
 				TEST_TARGET_NAME = ProjectBook;
 				USES_XCTRUNNER = YES;
 			};
@@ -1029,7 +1029,7 @@
 				INFOPLIST_FILE = ProjectBookUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.learn-co-students.ios-0915-team-radio.ProjectBookUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NOVEL;
 				TEST_TARGET_NAME = ProjectBook;
 				USES_XCTRUNNER = YES;
 			};
@@ -1038,7 +1038,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CBFD3F511BFBA076002CE0A4 /* Build configuration list for PBXProject "ProjectBook" */ = {
+		CBFD3F511BFBA076002CE0A4 /* Build configuration list for PBXProject "NOVEL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBFD3F841BFBA077002CE0A4 /* Debug */,
@@ -1047,7 +1047,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CBFD3F861BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "ProjectBook" */ = {
+		CBFD3F861BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "NOVEL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBFD3F871BFBA077002CE0A4 /* Debug */,
@@ -1056,7 +1056,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CBFD3F891BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "ProjectBookTests" */ = {
+		CBFD3F891BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "NOVELTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBFD3F8A1BFBA077002CE0A4 /* Debug */,
@@ -1065,7 +1065,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CBFD3F8C1BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "ProjectBookUITests" */ = {
+		CBFD3F8C1BFBA077002CE0A4 /* Build configuration list for PBXNativeTarget "NOVELUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBFD3F8D1BFBA077002CE0A4 /* Debug */,
