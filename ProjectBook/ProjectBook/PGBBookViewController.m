@@ -165,6 +165,7 @@
         }];
     }];
     
+
     self.clearBookmark = [UIImage imageNamed:@"clear_boomark"];
     self.redBookmark = [UIImage imageNamed:@"red_bookmark"];
 
