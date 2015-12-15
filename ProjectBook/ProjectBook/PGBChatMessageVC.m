@@ -15,6 +15,7 @@
 #import "UIImage+JSQMessages.h"
 #import "JSQSystemSoundPlayer+JSQMessages.h"
 #import "PGBBookViewController.h"
+#import "PGBRealmBook.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
 @interface PGBChatMessageVC ()
@@ -609,8 +610,8 @@
     
     PGBBookViewController *destVC = segue.destinationViewController;
     
-    
-    
+    PGBRealmBook *bookFromRealm = [PGBRealmBook generateBooksWitheBookID:self.currentChatRoom.bookId];
+    destVC.book = bookFromRealm;
 }
 
 
