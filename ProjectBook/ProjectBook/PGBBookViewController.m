@@ -61,19 +61,15 @@
     
     // genre and language stack view
     UIView *view1 = [[UIView alloc]init];
-    view1.backgroundColor = [UIColor clearColor];
-    view1.layer.borderColor = [[UIColor whiteColor]CGColor];
-    view1.layer.borderWidth = 3;
-    
-    [view1 setFrame:CGRectMake(0, 0, 200, 200)];
+    view1.backgroundColor = [UIColor whiteColor];
+    [view1 setFrame:CGRectMake(0, 0, 100, 100)];
     
     NSLog (@"%@", self.book.genre);
     UILabel *genreLabel = [[UILabel alloc]init];
     genreLabel.translatesAutoresizingMaskIntoConstraints = NO;
     genreLabel.text = self.book.genre;
     genreLabel.adjustsFontSizeToFitWidth = YES;
-    genreLabel.font = [UIFont fontWithName:@"Moon-Bold" size:13.0f];
-    genreLabel.textColor = [UIColor whiteColor];
+    genreLabel.font = [UIFont fontWithName:@"Open Sans" size:13.0f];
     
     [view1 addSubview:genreLabel];
     
@@ -84,17 +80,14 @@
     }];
     
     UIView *view2 = [[UIView alloc]init];
-    view2.backgroundColor = [UIColor clearColor];
-    view2.layer.borderColor = [[UIColor whiteColor]CGColor];
-    view2.layer.borderWidth = 3;
-    [view2 setFrame:CGRectMake(0, 0, 200, 200)];
+    view2.backgroundColor = [UIColor whiteColor];
+    [view2 setFrame:CGRectMake(0, 0, 100, 100)];
     
     UILabel *languageLabel = [[UILabel alloc]init];
     languageLabel.translatesAutoresizingMaskIntoConstraints = NO;
     languageLabel.text = self.book.language;
     languageLabel.adjustsFontSizeToFitWidth = YES;
-    languageLabel.font = [UIFont fontWithName:@"Moon-Bold" size:13.0f];
-    languageLabel.textColor = [UIColor whiteColor];
+    languageLabel.font = [UIFont fontWithName:@"Open Sans" size:13.0f];
     
     [view2 addSubview:languageLabel];
     
