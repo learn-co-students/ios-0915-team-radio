@@ -49,7 +49,6 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com";
     }
     
     goodreadsURL = [goodreadsURL stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:nil];
-    NSLog (@"%@", goodreadsURL);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:goodreadsURL parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)

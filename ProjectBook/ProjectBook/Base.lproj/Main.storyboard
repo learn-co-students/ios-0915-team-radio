@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EtB-Vp-Xzm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EtB-Vp-Xzm">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Moon Bold.otf">
+            <string>Moon-Bold</string>
             <string>Moon-Bold</string>
             <string>Moon-Bold</string>
             <string>Moon-Bold</string>
@@ -340,7 +341,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGY-Rr-0aw" userLabel="Overall Scroll View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RrD-px-c9s" userLabel="Overall Content View">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RrD-px-c9s" userLabel="Overall Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="791"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwd-A0-7vd" userLabel="Book Cover View">
@@ -429,7 +430,25 @@
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-rQ-wpE" userLabel="Placeholder for WKView">
                                                         <rect key="frame" x="0.0" y="231" width="584" height="300"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnk-I7-o0E">
+                                                                <rect key="frame" x="229" y="135" width="125" height="30"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="17"/>
+                                                                <state key="normal" title="Read Reviews">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="reviewsButtonTapped:" destination="fPe-XH-aFU" eventType="touchUpInside" id="AkZ-o3-jj7"/>
+                                                                    <segue destination="0wO-iD-WlI" kind="push" identifier="reviewSegue" id="Du5-Oo-h71"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstItem="Mnk-I7-o0E" firstAttribute="centerY" secondItem="NKd-rQ-wpE" secondAttribute="centerY" id="s6R-oW-XIn"/>
+                                                            <constraint firstItem="Mnk-I7-o0E" firstAttribute="centerX" secondItem="NKd-rQ-wpE" secondAttribute="centerX" id="xlV-m3-sgu"/>
+                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -493,6 +512,7 @@
                         <outlet property="infoStackView" destination="C8H-RJ-NF3" id="B2t-Zm-qFc"/>
                         <outlet property="moreOptions" destination="LuF-YA-RFU" id="hAd-eT-y1l"/>
                         <outlet property="readButton" destination="e2Y-qc-72L" id="2Pc-r4-KYb"/>
+                        <outlet property="reviewsButton" destination="Mnk-I7-o0E" id="w6G-Bc-Gyy"/>
                         <outlet property="scrollview" destination="xGY-Rr-0aw" id="9mp-rc-mbA"/>
                         <outlet property="superContentView" destination="RrD-px-c9s" id="T3X-ay-JoX"/>
                         <outlet property="titleTV" destination="Ngn-Rw-pRy" id="0Hd-bF-IZ8"/>
@@ -502,6 +522,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X0y-am-rkG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5633" y="379"/>
+        </scene>
+        <!--Review View Controller-->
+        <scene sceneID="e9V-c5-NF0">
+            <objects>
+                <viewController id="0wO-iD-WlI" customClass="PGBReviewViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oC2-Qd-ZE1"/>
+                        <viewControllerLayoutGuide type="bottom" id="r8S-cQ-UnH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uZ1-Ma-67l">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Q7-tB-iIu" userLabel="webViewContainer">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Q7-tB-iIu" firstAttribute="top" secondItem="oC2-Qd-ZE1" secondAttribute="bottom" id="72G-OE-0v6"/>
+                            <constraint firstItem="4Q7-tB-iIu" firstAttribute="leading" secondItem="uZ1-Ma-67l" secondAttribute="leading" id="FX1-TR-l2g"/>
+                            <constraint firstItem="r8S-cQ-UnH" firstAttribute="top" secondItem="4Q7-tB-iIu" secondAttribute="bottom" id="NeR-bj-NW8"/>
+                            <constraint firstAttribute="trailing" secondItem="4Q7-tB-iIu" secondAttribute="trailing" id="kYQ-43-h8r"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="0zT-jT-6QG"/>
+                    <connections>
+                        <outlet property="webViewContainer" destination="4Q7-tB-iIu" id="NEU-Ra-xzf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wv2-bz-6qh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6425" y="379"/>
         </scene>
     </scenes>
     <resources>

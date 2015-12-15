@@ -14,7 +14,7 @@
 #import "PGBRealmBook.h"
 #import "PGBGoodreadsAPIClient.h"
 
-@interface PGBBookViewController : UIViewController <WKUIDelegate, WKNavigationDelegate, UIActionSheetDelegate>
+@interface PGBBookViewController : UIViewController<UIActionSheetDelegate>
 
 @property (strong, nonatomic)PGBRealmBook *book;
 

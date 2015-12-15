@@ -13,9 +13,9 @@
 #import <Masonry/Masonry.h>
 #import <YYWebImage/YYWebImage.h>
 #import <QuartzCore/QuartzCore.h>
-#import "PGBDownloadViewController.h"
+#import "PGBReviewViewController.h"
 
-@interface PGBBookViewController () <UIScrollViewDelegate>
+@interface PGBBookViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *titleTV;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
@@ -34,8 +34,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *downloadButton;
 @property (weak, nonatomic) IBOutlet UIButton *readButton;
-
-@property (strong, nonatomic) PGBDownloadViewController *modalVC;
+@property (weak, nonatomic) IBOutlet UIButton *reviewsButton;
 
 @end
 
@@ -43,13 +42,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.titleTV.editable = NO;
     self.titleTV.selectable = NO;
     
     self.titleTV.text = self.book.title;
     self.titleTV.layoutManager.hyphenationFactor = 1;
-//    [self.titleTV addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
+    //    [self.titleTV addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
     
     self.authorLabel.text = self.book.author;
     
@@ -59,8 +58,8 @@
     
     self.bookCover.layer.borderColor = [UIColor blackColor].CGColor;
     self.bookCover.layer.borderWidth = 3.0f;
-
-// genre and language stack view
+    
+    // genre and language stack view
     UIView *view1 = [[UIView alloc]init];
     view1.backgroundColor = [UIColor clearColor];
     view1.layer.borderColor = [[UIColor whiteColor]CGColor];
@@ -73,7 +72,7 @@
     genreLabel.translatesAutoresizingMaskIntoConstraints = NO;
     genreLabel.text = self.book.genre;
     genreLabel.adjustsFontSizeToFitWidth = YES;
-    genreLabel.font = [UIFont fontWithName:@"Open Sans-Bold" size:13.0f];
+    genreLabel.font = [UIFont fontWithName:@"Moon-Bold" size:13.0f];
     genreLabel.textColor = [UIColor whiteColor];
     
     [view1 addSubview:genreLabel];
@@ -94,7 +93,7 @@
     languageLabel.translatesAutoresizingMaskIntoConstraints = NO;
     languageLabel.text = self.book.language;
     languageLabel.adjustsFontSizeToFitWidth = YES;
-    languageLabel.font = [UIFont fontWithName:@"Open Sans-Bold" size:13.0f];
+    languageLabel.font = [UIFont fontWithName:@"Moon-Bold" size:13.0f];
     languageLabel.textColor = [UIColor whiteColor];
     
     [view2 addSubview:languageLabel];
@@ -107,9 +106,9 @@
     
     [self.infoStackView addArrangedSubview:view1];
     [self.infoStackView addArrangedSubview:view2];
-
-//book description height and description
-//    [self.view addSubview:self.bookDescriptionTV];
+    
+    //book description height and description
+    //    [self.view addSubview:self.bookDescriptionTV];
     [self.bookDescriptionTV sizeToFit];
     [self.bookDescriptionTV layoutIfNeeded];
     
@@ -125,6 +124,8 @@
     self.bookDescriptionTV.text = @"";
     self.bookDescriptionTV.editable = NO;
     self.bookDescriptionTV.selectable = NO;
+    self.bookDescriptionTV.textAlignment = NSTextAlignmentJustified;
+    
     self.bookDescriptionTV.layer.borderWidth = 3;
     self.bookDescriptionTV.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.bookDescriptionTV.textContainerInset = UIEdgeInsetsMake(8, 8, 8, 8);
@@ -153,19 +154,19 @@
     [super viewWillAppear:animated];
     
     //LEO - this is causing for some books, AFNetworking crash!!!
-    [self getReviewswithCompletion:^(BOOL success) {
-        if (success) {
-            NSLog(@"Succed to get reviews from API call - LEO");
-        } else {
-            NSLog(@"failed to get reviews from API call - LEO");
-            self.bookDescriptionTV.text = @"There is no review for this book.";
-        }
-    }];
+    //    [self getReviewswithCompletion:^(BOOL success) {
+    //        if (success) {
+    //            NSLog(@"Succed to get reviews from API call - LEO");
+    //        } else {
+    //            NSLog(@"failed to get reviews from API call - LEO");
+    //            self.bookDescriptionTV.text = @"There is no review for this book.";
+    //        }
+    //    }];
 }
 
 - (IBAction)downloadButtonTapped:(id)sender {
     
-//    [self performSegueWithIdentifier:@"downloadSegue" sender:sender];
+    //    [self performSegueWithIdentifier:@"downloadSegue" sender:sender];
     
     NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
     
@@ -211,9 +212,9 @@
                                                              
                                                          }];
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
-                                                         style:UIAlertActionStyleCancel
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                       }];
+                                                             style:UIAlertActionStyleCancel
+                                                           handler:^(UIAlertAction * _Nonnull action) {
+                                                           }];
             [downloadCompleted addAction:open];
             [downloadCompleted addAction:cancel];
             [self presentViewController:downloadCompleted animated:YES completion:nil];
@@ -244,43 +245,43 @@
             
             [downloadFailed addAction:ok];
             [self presentViewController:downloadFailed animated:YES completion:nil];
-//
+            //
         }
         
     }];
 }
 
 - (IBAction)readButtonTapped:(id)sender {
-        NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
+    NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
+    
+    NSString *litFileName = [NSString stringWithFormat:@"pg%@-images.epub", parsedEbookID];
+    
+    //    NSString *litFileName = [NSString stringWithFormat:@"pg%@", self.ebookIndex];
+    NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];
+    NSURL *targetURL = [NSURL fileURLWithPath:filePath];
+    
+    self.docController = [UIDocumentInteractionController interactionControllerWithURL:targetURL];
+    
+    if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"itms-books:"]]) {
         
-        NSString *litFileName = [NSString stringWithFormat:@"pg%@-images.epub", parsedEbookID];
+        [self.docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
         
-        //    NSString *litFileName = [NSString stringWithFormat:@"pg%@", self.ebookIndex];
-        NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];
-        NSURL *targetURL = [NSURL fileURLWithPath:filePath];
+        //        [self.docController presentOpenInMenuFromRect:_openInIBooksButton.bounds inView:self.openInIBooksButton animated:YES];
         
-        self.docController = [UIDocumentInteractionController interactionControllerWithURL:targetURL];
+        NSLog(@"iBooks installed");
         
-        if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"itms-books:"]]) {
-            
-            [self.docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
-            
-            //        [self.docController presentOpenInMenuFromRect:_openInIBooksButton.bounds inView:self.openInIBooksButton animated:YES];
-            
-            NSLog(@"iBooks installed");
-            
-        } else {
-            UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"You don't have iBooks installed." message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                       }];
-            [invalid addAction:ok];
-            [self presentViewController:invalid animated:YES completion:nil];
-            
-        }
+    } else {
+        UIAlertController *invalid = [UIAlertController alertControllerWithTitle:@"You don't have iBooks installed." message:@" Download iBooks and try again"preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * _Nonnull action) {
+                                                   }];
+        [invalid addAction:ok];
+        [self presentViewController:invalid animated:YES completion:nil];
         
-        NSLog(@"iBooks not installed");
+    }
+    
+    NSLog(@"iBooks not installed");
 }
 
 - (IBAction)optionsButtonTapped:(id)sender {
@@ -320,76 +321,19 @@
     
 }
 
+- (IBAction)reviewsButtonTapped:(id)sender {
+    [self performSegueWithIdentifier:@"reviewSegue" sender:self];
+    
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if ([segue.identifier isEqualToString:@"downloadSegue"]) {
-
-        PGBDownloadViewController *downloadVC = segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"reviewSegue"]) {
         
-        downloadVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        PGBReviewViewController *reviewVC = segue.destinationViewController;
+        
+        reviewVC.book = self.book;
     }
-}
-
-
-- (void)getReviewswithCompletion:(void (^)(BOOL))completionBlock {
-    [PGBGoodreadsAPIClient getReviewsForBook:self.book completion:^(NSDictionary *reviewDict) {
-        
-        if (reviewDict) {
-            
-            self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];
-            
-            NSData *htmlData = [self.htmlString dataUsingEncoding:NSUTF8StringEncoding];
-            
-            NSURL *baseURL = [NSURL URLWithString:@"https://www.goodreads.com"];
-            
-            // make / constrain webview
-            
-            CGRect webViewFrame = CGRectMake(0, 0, self.webViewContainer.frame.size.width, self.webViewContainer.frame.size.height);
-            
-            self.webView = [[WKWebView alloc]initWithFrame: webViewFrame];
-            [self.webViewContainer addSubview:self.webView];
-            //                self.webView.translatesAutoresizingMaskIntoConstraints = NO;
-            //
-            //                [self.webView.leftAnchor constraintEqualToAnchor:self.webViewContainer.leftAnchor].active = YES;
-            //                [self.webView.rightAnchor constraintEqualToAnchor:self.webViewContainer.rightAnchor].active = YES;
-            //                [self.webView.topAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
-            //                [self.webView.bottomAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
-            
-            
-            [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
-            
-            self.webView.navigationDelegate = self;
-            
-            //            [self.webView.heightAnchor constraintEqualToConstant:300];
-            //            [self.webViewContainer layoutSubviews];
-            completionBlock(YES);
-        } else {
-            completionBlock(NO);
-        }
-    }];
-}
-
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    NSLog(@"didFinishNavigation");
-    
-    [webView.scrollView setZoomScale:0.6];
-    [webView.scrollView setContentOffset:CGPointMake(0, 0)];
-    
-    //    [webView.scrollView zoomToRect:CGRectMake(0, 0, 20, 20) animated:YES];
-}
-
-
-
-- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
-    NSLog (@"didCommitNavigation");
-    
-    [webView.scrollView setZoomScale:0.6];
-    [webView.scrollView setContentOffset:CGPointMake(0, 0)];
-}
-
-- (void)dealloc {
-    self.webView.navigationDelegate = nil;
-    [self.webView stopLoading];
 }
 
 @end
