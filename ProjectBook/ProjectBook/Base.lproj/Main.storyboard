@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EtB-Vp-Xzm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EtB-Vp-Xzm">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -56,7 +56,6 @@
                                                                 <rect key="frame" x="600" y="0.0" width="600" height="200"/>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.78430957199999995" green="1" blue="0.90738587059999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="X4Z-PS-Kyq" firstAttribute="top" secondItem="Nrl-qm-fpw" secondAttribute="top" id="0H7-g0-NSi"/>
                                                             <constraint firstItem="hXW-zu-IFf" firstAttribute="bottom" secondItem="Nrl-qm-fpw" secondAttribute="bottom" id="7Uv-es-GTG"/>
@@ -194,7 +193,6 @@
                                                 </cells>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="nQt-7j-xmt" firstAttribute="bottom" secondItem="9OG-6H-cgF" secondAttribute="bottom" id="75Y-e0-Grq"/>
                                             <constraint firstItem="gWm-Va-sYU" firstAttribute="bottom" secondItem="nQt-7j-xmt" secondAttribute="top" id="AUE-SK-IB3"/>
@@ -288,6 +286,7 @@
                         <segue destination="oFE-1N-4Me" kind="relationship" relationship="viewControllers" id="7D3-tX-F79"/>
                         <segue destination="qyr-2M-mSD" kind="relationship" relationship="viewControllers" id="xgU-4B-DS1"/>
                         <segue destination="E2z-KQ-fOa" kind="relationship" relationship="viewControllers" id="TPf-HV-mbC"/>
+                        <segue destination="Jk5-bX-GDx" kind="relationship" relationship="viewControllers" id="hXb-yM-gCs"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lb6-5v-GJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -303,6 +302,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nw4-Fh-Pvw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3325" y="924"/>
+        </scene>
+        <!--social-->
+        <scene sceneID="g4X-rY-Ifb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="social" id="Jk5-bX-GDx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="uwU-3v-fc5"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZXH-O6-hxS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3583.5" y="969"/>
         </scene>
         <!--Item-->
         <scene sceneID="zLM-EI-SJa">
@@ -329,7 +338,7 @@
         <!--Book View Controller-->
         <scene sceneID="nuC-CE-hoM">
             <objects>
-                <viewController id="fPe-XH-aFU" customClass="PGBBookViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="bookDescription" storyboardIdentifier="bookDescription" id="fPe-XH-aFU" customClass="PGBBookViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KUJ-Qh-UV4"/>
                         <viewControllerLayoutGuide type="bottom" id="KkS-Av-NVw"/>
@@ -382,16 +391,16 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CLg-IV-Yw5" userLabel="Description Review Stack View">
                                                 <rect key="frame" x="8" y="240" width="584" height="283"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfX-jZ-h8J" userLabel="Description">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfX-jZ-h8J" userLabel="Description">
                                                         <rect key="frame" x="224" y="0.0" width="136" height="21"/>
                                                         <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="C8H-RJ-NF3" userLabel="Info Stack View">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="C8H-RJ-NF3" userLabel="Info Stack View">
                                                         <rect key="frame" x="0.0" y="31" width="584" height="150"/>
                                                         <subviews>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1xy-f4-kln" userLabel="Description TV">
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1xy-f4-kln" userLabel="Description TV">
                                                                 <rect key="frame" x="0.0" y="0.0" width="584" height="150"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -403,10 +412,10 @@
                                                             <constraint firstItem="1xy-f4-kln" firstAttribute="width" secondItem="C8H-RJ-NF3" secondAttribute="width" id="IcK-pV-Za3"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="UaU-ch-Nej">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="UaU-ch-Nej">
                                                         <rect key="frame" x="0.0" y="191" width="584" height="30"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yG-Ci-Nx0">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yG-Ci-Nx0">
                                                                 <rect key="frame" x="0.0" y="0.0" width="289" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="17"/>
@@ -417,8 +426,8 @@
                                                                     <action selector="downloadButtonTapped:" destination="fPe-XH-aFU" eventType="touchUpInside" id="QAH-3v-UlB"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2Y-qc-72L">
-                                                                <rect key="frame" x="296" y="0.0" width="288" height="30"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2Y-qc-72L">
+                                                                <rect key="frame" x="296" y="0.0" width="289" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="Moon-Bold" family="Moon" pointSize="17"/>
                                                                 <state key="normal" title="Read">

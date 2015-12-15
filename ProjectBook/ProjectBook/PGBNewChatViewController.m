@@ -10,14 +10,16 @@
 #import "PGBBookCustomTableCell.h"
 #import "PGBRealmBook.h"
 #import "PGBDataStore.h"
+#import "PGBChatRoom.h"
 #import "PGBSearchChatPreviewViewController.h"
+#import "PGBChatMessageVC.h"
 
 @interface PGBNewChatViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *bookSearchTableView;
 @property (weak, nonatomic) IBOutlet UIView *searchview;
 @property (weak, nonatomic) IBOutlet UITextField *topicTextField;
-
+@property (weak, nonatomic) IBOutlet UIButton *createChatButton;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) UIView *defaultView;
@@ -28,6 +30,13 @@
 @property (nonatomic, weak) PGBSearchChatPreviewViewController *previewVC;
 
 @property (strong, nonatomic) PGBRealmBook *selectedBook;
+
+@property (strong, nonatomic) PGBChatRoom *createdChat;
+@property (strong, nonatomic) NSString *chatId;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (nonatomic) double originalBottomConstraint;
+
 
 @end
 
@@ -40,20 +49,50 @@
     self.dataStore = [PGBDataStore sharedDataStore];
     [self.dataStore fetchData];
     self.books = [NSMutableArray new];
+    
+    self.originalBottomConstraint = self.bottomConstraint.constant;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardBroughtUp:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardBroughtDown)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
 
+-(void)keyboardBroughtUp:(NSNotification *)notification{
+    
+    
+    NSDictionary *keyboardInfo = [notification userInfo];
+    NSValue *keyboardFramebegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
+    
+    CGRect keyboardFrameBeginRect = [keyboardFramebegin CGRectValue];
+    
+    self.bottomConstraint.constant = -keyboardFrameBeginRect.size.height;
+}
+
+- (IBAction)click:(id)sender {
+    [self.topicTextField resignFirstResponder];
+}
+
+- (void)keyboardBroughtDown {
+    self.bottomConstraint.constant = self.originalBottomConstraint;
 }
 
 - (void)loadDefaultView {
     self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    self.searchBar.placeholder = @"Search for Book";
+    self.searchBar.placeholder = @"Search for a book...";
     self.searchBar.delegate = self;
     [self.navigationController.navigationBar addSubview:self.searchBar];
-
+    
     [self.bookSearchTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
     self.bookSearchTableView.rowHeight = 70;
     
     self.bookSearchTableView.delegate = self;
     self.bookSearchTableView.dataSource = self;
+    
+    self.createChatButton.hidden = YES;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -92,7 +131,8 @@
     [self.searchBar resignFirstResponder];
     self.searchBar.hidden = YES;
     tableView.hidden = YES;
-   //show book details in a sec
+    self.createChatButton.hidden = NO;
+    //show book details in a sec
     self.previewVC.book = self.books[indexPath.row];
     [UIView animateWithDuration:0.25 animations:^{
         self.previewContainerView.alpha = 1;
@@ -105,7 +145,7 @@
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-
+    
     if ([self.searchBar.text length] == 0) {
         self.defaultView.hidden = NO;
     }
@@ -149,51 +189,42 @@
 {
     if([segue.identifier isEqualToString:@"PreviewEmbedSegue"]) {
         self.previewVC = segue.destinationViewController;
+    } else if ([segue.identifier isEqualToString:@"toNewChat"]) {
+
+        PGBChatMessageVC *chatMessageVC = (PGBChatMessageVC *)segue.destinationViewController;
+        chatMessageVC.currentChatRoom = self.createdChat;
+        
+        
     }
 }
 
 - (IBAction)creatChatTouched:(id)sender {
-  
+    
     if (self.topicTextField.text.length == 0){
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Uh oh!" message:@"Please include a topic!" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+     
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Uh oh!" message:@"Please include a topic!" preferredStyle:UIAlertControllerStyleAlert];
-        // create action
         UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-        // add action
         [alert addAction:okayAction];
-        // present controller
         [self presentViewController:alert animated:YES completion:nil];
+        
     } else {
-        PFObject *newChat = [PFObject objectWithClassName:@"bookChat"];
-        newChat[@"topic"] = self.topicTextField.text;
-        newChat[@"bookId"] = self.selectedBook.ebookID;
-        newChat[@"bookTitle"] = self.selectedBook.title;
-        [newChat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                // The object has been saved.
-                NSLog(@"New Chat created!!!");
-            } else {
-                NSLog(@"Failure to create new chat");
-            }
-        }];
-        // this is where i'll go to the new chat or something....
+        self.createdChat = [PGBChatRoom new];
+        self.createdChat.topic = self.topicTextField.text;
+        self.createdChat.bookId = self.selectedBook.ebookID;
+        self.createdChat.bookTitle = self.selectedBook.title;
+        [self.createdChat save];
+        
+        // CALL ON DELEGATE TO MAKE IT DO STUFF
+        [self.delegate sendNewChatToVC:self.createdChat];
+        // DISMISS (or make the delegate dismiss you)
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+- (IBAction)returnToActiveChats:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

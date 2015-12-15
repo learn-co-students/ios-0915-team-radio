@@ -47,6 +47,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //find book in Realmboook
+    PGBRealmBook *bookFound = [PGBRealmBook findRealmBookInRealDatabaseWithRealmBook:self.book];
+    if (bookFound) {
+        self.book = bookFound;
+    }
+    
+    //check file exist
+    if (![self checkFileExists]) {
+        self.readButton.hidden = YES;
+    }
+    
+    [self.readButton setShowsTouchWhenHighlighted:YES];
+    [self.downloadButton setShowsTouchWhenHighlighted:YES];
+    [self.reviewsButton setShowsTouchWhenHighlighted:YES];
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.titleTV.editable = NO;
@@ -67,7 +83,6 @@
     if (self.book.genre.length != 0) {
         
         UIView *view1 = [[UIView alloc]init];
-        view1.backgroundColor = [UIColor whiteColor];
         view1.backgroundColor = [UIColor whiteColor];
         [view1.heightAnchor constraintEqualToConstant:30].active = true;
         
@@ -93,7 +108,6 @@
     if (self.book.language.length != 0) {
         
         UIView *view2 = [[UIView alloc]init];
-        view2.backgroundColor = [UIColor whiteColor];
         view2.backgroundColor = [UIColor whiteColor];
         [view2.heightAnchor constraintEqualToConstant:30].active = true;
         
@@ -129,7 +143,7 @@
     for (UIView *view in self.superContentView.subviews)
         if (totalHeight < view.frame.origin.y + view.frame.size.height) totalHeight = view.frame.origin.y + view.frame.size.height;
     
-    self.bookDescriptionTV.text = @"";
+    self.bookDescriptionTV.text = @"Loading description...";
     self.bookDescriptionTV.editable = NO;
     self.bookDescriptionTV.selectable = NO;
     self.bookDescriptionTV.textAlignment = NSTextAlignmentJustified;
@@ -151,11 +165,6 @@
         }];
     }];
     
-    //find book in Realmboook
-    PGBRealmBook *bookFound = [PGBRealmBook findRealmBookInRealDatabaseWithRealmBook:self.book];
-    if (bookFound) {
-        self.book = bookFound;
-    }
 
     self.clearBookmark = [UIImage imageNamed:@"clear_boomark"];
     self.redBookmark = [UIImage imageNamed:@"red_bookmark"];
@@ -218,6 +227,7 @@
     
     [PGBDownloadHelper download:URL withCompletion:^(BOOL success) {
         if (success) {
+            self.readButton.hidden = NO;
             
             UIAlertController *downloadCompleted = [UIAlertController alertControllerWithTitle:@"Book Downloaded" message:@"Open in iBooks?" preferredStyle:UIAlertControllerStyleAlert];
             
@@ -323,7 +333,7 @@
         
     }
     
-    NSLog(@"iBooks not installed");
+//    NSLog(@"iBooks not installed");
 }
                                             
 - (void)bookmarkButtonTapped {
@@ -376,6 +386,17 @@
         
         reviewVC.book = self.book;
 
+}
+
+- (BOOL)checkFileExists {
+    NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
+    
+    NSString *litFileName = [NSString stringWithFormat:@"pg%@-images.epub", parsedEbookID];
+    
+    NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];
+
+    //check see if file exist
+    return [[NSFileManager defaultManager] fileExistsAtPath:filePath];
 }
 
 @end

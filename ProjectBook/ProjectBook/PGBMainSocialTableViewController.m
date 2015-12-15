@@ -8,57 +8,104 @@
 
 #import "PGBMainSocialTableViewController.h"
 #import "PGBChatTableViewCell.h"
+#import "PGBNewChatViewController.h"
+#import "PGBChatRoom.h"
+#import "DateTools.h"
 
 @interface PGBMainSocialTableViewController ()
 
 @property (strong, nonatomic) NSMutableArray *arrayOfOpenBookChats;
+@property (weak, nonatomic) PGBChatRoom *chatRoom;
+@property (strong, nonatomic) PGBChatRoom *createdChatRoom;
+@property (strong, nonatomic) NSString *chatRoomId;
+@property (strong, nonatomic) IBOutlet UITableView *chatTableView;
 
 @end
 
 @implementation PGBMainSocialTableViewController
 
+//TODO:
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.arrayOfOpenBookChats = [NSMutableArray new];
+    self.chatTableView.rowHeight = 70;
     [self.tableView registerNib:[UINib nibWithNibName:@"PGBChatTableViewCell" bundle:nil] forCellReuseIdentifier:@"bookWithChatCell"];
+    [self getArrayOfBookChatsFromParse];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor colorWithRed:0.40 green:0.74 blue:0.33 alpha:1.0];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(reloadTableViewWithBackgroundUpdatesFromParse)
+                  forControlEvents:UIControlEventValueChanged];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // TODO: Ask tim about this...
+    [[PFInstallation currentInstallation] removeObjectForKey:@"channels"];
+    [[PFInstallation currentInstallation] saveInBackground];
+}
+
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+}
+
+- (void)reloadTableViewWithBackgroundUpdatesFromParse {
+    
+    [self getArrayOfBookChatsFromParse];
+    if (self.refreshControl) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MMM d, h:mm a"];
+        NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                    forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+    }
+    [self.refreshControl endRefreshing];
+}
+
+- (void)getArrayOfBookChatsFromParse {
     PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
     
-    [query whereKeyExists:@"objectId"];
-    
+    //    [query whereKeyExists:@"objectId"];
+    [query addDescendingOrder:@"updatedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        
+        [self.arrayOfOpenBookChats removeAllObjects];
+        for (PGBChatRoom *chatRoom in objects) {
+            [self.arrayOfOpenBookChats addObject:chatRoom];
+        }
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            
-            for (PFObject *object in objects) {
-                
-//                NSDictionary *chatRoomInfo = [NSDictionary new];
-//                chatRoomInfo = @{ @"chatRoomId" : object.objectId,
-//                                  @"bookId" : object.bookId,
-//                                  @"bookTitle" : object.booktitle,
-//                                  @"topic" : objec.topic };
-//                
-//                
-                
-//                [self.arrayOfOpenBookChats addObject:chatRoomInfo];
-                [self.arrayOfOpenBookChats addObject:objects];
-            }
-            [self.tableView reloadData];
+            [self resortChatsAndReloadTable];
         }];
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)newMessageUpdateTableView:(PGBChatRoom *)currentChatRoom{
+    [self resortChatsAndReloadTable];
 }
 
-#pragma mark - Table view data source
+-(void) resortChatsAndReloadTable{
+    NSSortDescriptor *byDate = [NSSortDescriptor sortDescriptorWithKey:@"lastMessageAt" ascending:NO];
+    
+    [self.arrayOfOpenBookChats sortUsingDescriptors:@[byDate]];
+    [self.tableView reloadData];
+}
+
+- (void)sendNewChatToVC:(PGBChatRoom *)createdChatRoom{
+    
+    [self.arrayOfOpenBookChats insertObject:createdChatRoom atIndex:0];
+    [self.chatTableView reloadData];
+    NSIndexPath *ipOfNewBookChat = [NSIndexPath indexPathForItem:0 inSection:0];
+    [self tableView:self.chatTableView didSelectRowAtIndexPath:ipOfNewBookChat];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -70,55 +117,88 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
-//    tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
+    //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
+    //    tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
     PGBChatTableViewCell *cell = (PGBChatTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"bookWithChatCell" forIndexPath:indexPath];
+    
+    PGBChatRoom *bookChat = self.arrayOfOpenBookChats[indexPath.row];
+    cell.titleLabel.text = bookChat.bookTitle;
+    NSString *topic = [NSString stringWithFormat:@"Topic: %@", bookChat.topic];
+    cell.chatTopicLabel.text = topic;
+    NSString *timeAgo = [NSString stringWithFormat:@"Last Active: %@", bookChat.lastMessageAt.timeAgoSinceNow];
+    cell.lastActiveLabel.text = timeAgo;
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"goToChat" sender:nil];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    if([[segue identifier] isEqualToString:@"goToChat"]) {
+        
+        PFUser *currentUser = [PFUser currentUser];
+        if (!currentUser){
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Uh oh!" message:@"You need to login to use this feature." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okayAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+        } else {
+//            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+//            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+//            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//                
+                PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)segue.destinationViewController;
+            
+                
+                NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
+                PGBChatRoom *currentChatRoom = self.arrayOfOpenBookChats[selectedIndexPath.row];
+            chatViewController.currentChatRoom = currentChatRoom;
+            chatViewController.delegate = self;
+            
+               
+//                chatViewController.delegate = self;
+//                chatViewController.currentChatRoom = currentChatRoom;
+            
+            
+            
+                // hide MBProgressHUD
+//                [MBProgressHUD hideHUDForView:self.view animated:YES];
+//            });
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+//                });
+//            });
+        }
+    }
 }
-*/
+
+- (IBAction)addButtonTapped:(id)sender {
+    PFUser *currentUser = [PFUser currentUser];
+    if (!currentUser){
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Uh oh!" message:@"You need to login to use this feature." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okayAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    } else {
+        
+        PGBNewChatViewController *newChatVC = [self.storyboard instantiateViewControllerWithIdentifier:@"newChatVC"];
+        newChatVC.delegate = self;
+        [self presentViewController:newChatVC animated:YES completion:nil];
+        
+    }
+}
+
+- (void)didDismissPGBChatMessageVC:(PGBChatMessageVC *)vc {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

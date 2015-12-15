@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Novel_Logo_small.png",
+      "filename" : "fruit-trees-spring.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Novel_Logo_small@2x.png",
       "scale" : "2x"
     },
     {
