@@ -72,7 +72,9 @@ static dispatch_once_t onceToken;
     [reach startNotifier];
     
     //logo for banner
-    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
+    
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 100.0, 40.0)];
+    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)gst];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     
     
