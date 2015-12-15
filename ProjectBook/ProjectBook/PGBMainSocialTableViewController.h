@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "PGBNewChatViewController.h"
 #import "PGBChatMessageVC.h"
 

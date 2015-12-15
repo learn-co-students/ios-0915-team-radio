@@ -24,7 +24,7 @@
 
 @implementation PGBMainSocialTableViewController
 
-//TODO: 
+//TODO:
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,7 +35,7 @@
     [self getArrayOfBookChatsFromParse];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor colorWithRed:0 green:136.0f/255.0f blue:62.0f/255.0 alpha:1.0];
+    self.refreshControl.backgroundColor = [UIColor colorWithRed:0.40 green:0.74 blue:0.33 alpha:1.0];
     self.refreshControl.tintColor = [UIColor whiteColor];
     [self.refreshControl addTarget:self
                             action:@selector(reloadTableViewWithBackgroundUpdatesFromParse)
@@ -75,7 +75,7 @@
 - (void)getArrayOfBookChatsFromParse {
     PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
     
-//    [query whereKeyExists:@"objectId"];
+    //    [query whereKeyExists:@"objectId"];
     [query addDescendingOrder:@"updatedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         [self.arrayOfOpenBookChats removeAllObjects];
@@ -83,7 +83,7 @@
             [self.arrayOfOpenBookChats addObject:chatRoom];
         }
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self.tableView reloadData];
+            [self resortChatsAndReloadTable];
         }];
     }];
 }
@@ -138,7 +138,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if([[segue identifier] isEqualToString:@"goToChat"]) {
-
+        
         PFUser *currentUser = [PFUser currentUser];
         if (!currentUser){
             
@@ -148,21 +148,32 @@
             [self presentViewController:alert animated:YES completion:nil];
             
         } else {
-            
-            PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)segue.destinationViewController;
-            
-            NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
-            PGBChatRoom *currentChatRoom = self.arrayOfOpenBookChats[selectedIndexPath.row];
-            
-            PFUser *currentUser = [PFUser currentUser];
-            PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
-            PFObject *notChatRoom = [query getObjectWithId:currentChatRoom.objectId];
-            [notChatRoom addObject:currentUser.objectId forKey:@"usersInChat"];
-            [notChatRoom saveInBackground];
-            chatViewController.delegate = self;
-            chatViewController.currentChatRoom = currentChatRoom;
+//            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+//            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+//            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//                
+                PGBChatMessageVC *chatViewController = (PGBChatMessageVC *)segue.destinationViewController;
+                
+                NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
+                PGBChatRoom *currentChatRoom = self.arrayOfOpenBookChats[selectedIndexPath.row];
+                
+                PFUser *currentUser = [PFUser currentUser];
+                PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
+                PFObject *notChatRoom = [query getObjectWithId:currentChatRoom.objectId];
+                [notChatRoom addObject:currentUser.objectId forKey:@"usersInChat"];
+                [notChatRoom saveInBackground];
+                chatViewController.delegate = self;
+                chatViewController.currentChatRoom = currentChatRoom;
+                // hide MBProgressHUD
+//                [MBProgressHUD hideHUDForView:self.view animated:YES];
+//            });
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+//                });
+//            });
         }
-
     }
 }
 

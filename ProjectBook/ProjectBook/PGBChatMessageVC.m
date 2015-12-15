@@ -103,7 +103,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
    
-    
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(closePressed:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(viewBook:)];
@@ -115,9 +114,10 @@
 }
 
 - (void)viewBook:(UIBarButtonItem *)sender {
-//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"main" bundle:nil];
-//    PGBMyBookViewController *bookView = (PGBMyBookViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"bookView"];
-//    [self presentModalViewController:bookView animated:YES];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PGBMyBookViewController *bookView = (PGBMyBookViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"bookView"];
+     [self presentViewController:bookView animated:YES completion:nil];
+     
 }
 
 -(JSQMessage *)messageCreatedAt:(NSDate *)date withText:(NSString *)text {

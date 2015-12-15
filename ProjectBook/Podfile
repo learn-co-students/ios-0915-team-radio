@@ -19,6 +19,7 @@ pod 'Goodreads-Oauth'
 pod 'ionicons'
 pod 'JSQMessagesViewController'
 pod 'DateTools'
+pod 'MBProgressHUD', '~> 0.9.1'
 
 end
 
