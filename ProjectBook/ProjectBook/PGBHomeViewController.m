@@ -7,7 +7,6 @@
 //
 
 #import "PGBHomeViewController.h"
-#import "PGBBookCustomTableCell.h"
 #import "PGBDownloadHelper.h"
 #import "PGBRealmBook.h"
 #import "PGBCustomBookCollectionViewCell.h"

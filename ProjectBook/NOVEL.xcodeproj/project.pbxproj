@@ -84,8 +84,6 @@
 		CBEFBD041C1606DC00D878AC /* Moon Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CBEFBD011C1606DC00D878AC /* Moon Light.otf */; };
 		CBEFBD0B1C16192100D878AC /* PGBCustomBookCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEFBD091C16192100D878AC /* PGBCustomBookCollectionViewCell.m */; };
 		CBEFBD0C1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBEFBD0A1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib */; };
-		CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */; };
-		CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */; };
 		CBF2C61F1BFD1FF300BCBCDD /* PGBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */; };
 		CBFD3F5B1BFBA076002CE0A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5A1BFBA076002CE0A4 /* main.m */; };
 		CBFD3F5E1BFBA076002CE0A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */; };
@@ -224,9 +222,6 @@
 		CBEFBD081C16192100D878AC /* PGBCustomBookCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBCustomBookCollectionViewCell.h; sourceTree = "<group>"; };
 		CBEFBD091C16192100D878AC /* PGBCustomBookCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBCustomBookCollectionViewCell.m; sourceTree = "<group>"; };
 		CBEFBD0A1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBCustomBookCollectionViewCell.xib; sourceTree = "<group>"; };
-		CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBBookCustomTableCell.h; sourceTree = "<group>"; };
-		CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBBookCustomTableCell.m; sourceTree = "<group>"; };
-		CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBBookCustomTableCell.xib; sourceTree = "<group>"; };
 		CBF2C61D1BFD1FF300BCBCDD /* PGBHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBHomeViewController.h; sourceTree = "<group>"; };
 		CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBHomeViewController.m; sourceTree = "<group>"; };
 		CBFD3F561BFBA076002CE0A4 /* NOVEL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOVEL.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -500,9 +495,6 @@
 				894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */,
 				CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */,
 				CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */,
-				CBF2C6181BFD0DC600BCBCDD /* PGBBookCustomTableCell.h */,
-				CBF2C6191BFD0DC600BCBCDD /* PGBBookCustomTableCell.m */,
-				CBF2C61B1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib */,
 				CBEFBD081C16192100D878AC /* PGBCustomBookCollectionViewCell.h */,
 				CBEFBD091C16192100D878AC /* PGBCustomBookCollectionViewCell.m */,
 				CBEFBD0A1C16192100D878AC /* PGBCustomBookCollectionViewCell.xib */,
@@ -673,7 +665,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBF2C61C1BFD0E0300BCBCDD /* PGBBookCustomTableCell.xib in Resources */,
 				4C9D16651C0CF07600DBF989 /* SearchStoryboard.storyboard in Resources */,
 				CBEFBD031C1606DC00D878AC /* Moon Bold.otf in Resources */,
 				CBFE1CEB1C172AF800646BA9 /* social.storyboard in Resources */,
@@ -798,7 +789,6 @@
 			files = (
 				CBF2C61F1BFD1FF300BCBCDD /* PGBHomeViewController.m in Sources */,
 				4C9D16631C0CF04800DBF989 /* PGBSearchViewController.m in Sources */,
-				CBF2C61A1BFD0DC600BCBCDD /* PGBBookCustomTableCell.m in Sources */,
 				899A4D101C11EFC100D499C4 /* PGBNewChatViewController.m in Sources */,
 				8926BEBE1C1CBC8300093C00 /* Reachability.m in Sources */,
 				89560A4B1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.m in Sources */,

@@ -7,7 +7,7 @@
 //
 
 #import "PGBNewChatViewController.h"
-#import "PGBBookCustomTableCell.h"
+#import "PGBSearchCustomTableCell.h"
 #import "PGBRealmBook.h"
 #import "PGBDataStore.h"
 #import "PGBChatRoom.h"
@@ -86,7 +86,7 @@
     self.searchBar.delegate = self;
     [self.navigationController.navigationBar addSubview:self.searchBar];
     
-    [self.bookSearchTableView registerNib:[UINib nibWithNibName:@"PGBBookCustomTableCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
+    [self.bookSearchTableView registerNib:[UINib nibWithNibName:@"PGBSearchCustomTableCell" bundle:nil] forCellReuseIdentifier:@"SearchCustomCell"];
     self.bookSearchTableView.rowHeight = 70;
     
     self.bookSearchTableView.delegate = self;
@@ -107,7 +107,7 @@
     
     if (tableView == self.bookSearchTableView) {
         
-        PGBBookCustomTableCell *cell = (PGBBookCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
+        PGBSearchCustomTableCell *cell = (PGBSearchCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"SearchCustomCell" forIndexPath:indexPath];
         
         //pagination
         PGBRealmBook *realmBook = self.books[indexPath.row];
