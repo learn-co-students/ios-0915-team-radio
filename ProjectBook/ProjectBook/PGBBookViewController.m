@@ -147,6 +147,7 @@
     self.bookDescriptionTV.editable = NO;
     self.bookDescriptionTV.selectable = NO;
     self.bookDescriptionTV.textAlignment = NSTextAlignmentJustified;
+    self.bookDescriptionTV.font = [UIFont fontWithName:@"OpenSans-Light" size:14.0f];
     
     self.bookDescriptionTV.layer.borderWidth = 3;
     self.bookDescriptionTV.layer.borderColor = [[UIColor whiteColor] CGColor];
@@ -156,16 +157,21 @@
     [goodreadsAPI getDescriptionForBookTitle:self.book completion:^(NSString *bookDescription) {
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if ([bookDescription isEqual:@""]) {
-                self.bookDescriptionTV.textAlignment = NSTextAlignmentCenter;
+            if (bookDescription.length) {
+                if ([bookDescription isEqualToString:@"There is no description for this book."]) {
+                    self.bookDescriptionTV.textAlignment = NSTextAlignmentCenter;
+                    self.bookDescriptionTV.text = @"There is no description for this book.";
+                } else {
+                    self.bookDescriptionTV.text = bookDescription;
+                }
+            } else {
                 self.bookDescriptionTV.text = @"There is no description for this book.";
-            }else{
-                self.bookDescriptionTV.text = bookDescription;
+                self.bookDescriptionTV.textAlignment = NSTextAlignmentCenter;
             }
         }];
     }];
     
-
+    
     self.clearBookmark = [UIImage imageNamed:@"clear_boomark"];
     self.redBookmark = [UIImage imageNamed:@"red_bookmark"];
 

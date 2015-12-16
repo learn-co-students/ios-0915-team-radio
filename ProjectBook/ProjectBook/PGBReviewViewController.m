@@ -54,6 +54,15 @@
             NSLog(@"Succed to get reviews from API call - LEO");
         } else {
             NSLog(@"failed to get reviews from API call - LEO");
+            
+            UIAlertController *fail = [UIAlertController alertControllerWithTitle:@"There are no reviews for this book" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                           
+                                                       }];
+            [fail addAction:ok];
+            [self presentViewController:fail animated:YES completion:nil];
         }
     }];
     
@@ -84,7 +93,6 @@
             
             
             [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
-            NSLog (@"how many times are you alloc initiingn1?!?!?!?!");
 //            self.webView.navigationDelegate = self;
             
             //            [self.webView.heightAnchor constraintEqualToConstant:300];

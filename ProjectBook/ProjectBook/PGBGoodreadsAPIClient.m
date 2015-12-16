@@ -126,9 +126,11 @@ NSString *const GOODREADS_API_URL = @"https://www.goodreads.com";
                             bookDescription = [bookDescription stringByReplacingOccurrencesOfString:@"\">" withString:@""];
                         }
                     }
-                    
                     completion(bookDescription);
                 }
+            } else {
+                completion(nil);
+                
             }
     }] resume];
     

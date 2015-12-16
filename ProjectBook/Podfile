@@ -3,7 +3,7 @@
 # Uncomment this line if you're using Swift
 # use_frameworks!
 
-target 'ProjectBook' do
+target 'NOVEL' do
 
 pod 'Realm'
 pod 'Parse'
@@ -22,10 +22,10 @@ pod 'ChameleonFramework'
 
 end
 
-target 'ProjectBookTests' do
+target 'NOVELTests' do
 
 end
 
-target 'ProjectBookUITests' do
+target 'NOVELUITests' do
 
 end

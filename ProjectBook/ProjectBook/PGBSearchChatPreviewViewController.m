@@ -51,7 +51,10 @@
                 self.bookDescriptionTextView.text = @"There is no description for this book.";
                 self.bookDescriptionTextView.textAlignment = NSTextAlignmentCenter;
                 self.bookDescriptionTextView.font = [UIFont fontWithName:@"OpenSans-Light" size:14.0f];
-            }else{
+            } else if ([bookDescription isEqualToString:@"There is no description for this book."]) {
+                self.bookDescriptionTextView.textAlignment = NSTextAlignmentCenter;
+                self.bookDescriptionTextView.font = [UIFont fontWithName:@"OpenSans-Light" size:14.0f];
+            }else {
                 self.bookDescriptionTextView.text = bookDescription;
                 self.bookDescriptionTextView.font = [UIFont fontWithName:@"OpenSans-Light" size:14.0f];
             }
