@@ -58,7 +58,7 @@
     if (![self checkFileExists]) {
         self.readButton.hidden = YES;
     }
-    
+
     [self.readButton setShowsTouchWhenHighlighted:YES];
     [self.downloadButton setShowsTouchWhenHighlighted:YES];
     [self.reviewsButton setShowsTouchWhenHighlighted:YES];
@@ -70,7 +70,6 @@
     
     self.titleTV.text = self.book.title;
     self.titleTV.layoutManager.hyphenationFactor = 1;
-    //    [self.titleTV addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
     
     self.authorLabel.text = self.book.author;
     self.authorLabel.adjustsFontSizeToFitWidth = YES;
@@ -79,7 +78,6 @@
     self.bookCover.layer.borderWidth = 3.0f;
     
     // genre and language stack view
-    
     if (self.book.genre.length != 0) {
         
         UIView *view1 = [[UIView alloc]init];
@@ -210,20 +208,8 @@
 
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    //bookmark button
-//    UIImage *clearBookmark = [UIImage imageNamed:@"clear_bookmark"];
-//    //    [self.bookmarkButton setImage:clearBookmark forState:UIControlStateNormal];
-//
-//    [self.bookmarkButton setImage:clearBookmark];
-    
-}
 
 - (IBAction)downloadButtonTapped:(id)sender {
-    
-    //    [self performSegueWithIdentifier:@"downloadSegue" sender:sender];
     
     NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
     
@@ -243,7 +229,6 @@
                                                              
                                                              NSString *litFileName = [NSString stringWithFormat:@"pg%@-images.epub", parsedEbookID];
                                                              
-                                                             //    NSString *litFileName = [NSString stringWithFormat:@"pg%@", self.ebookIndex];
                                                              NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];
                                                              NSURL *targetURL = [NSURL fileURLWithPath:filePath];
                                                              
@@ -252,9 +237,7 @@
                                                              if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"itms-books:"]]) {
                                                                  
                                                                  [self.docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
-                                                                 
-                                                                 //        [self.docController presentOpenInMenuFromRect:_openInIBooksButton.bounds inView:self.openInIBooksButton animated:YES];
-                                                                 
+                                                        
                                                                  NSLog(@"iBooks installed");
                                                                  
                                                              } else {
@@ -282,14 +265,7 @@
                 [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
                     self.book.isDownloaded = YES;
                     return self.book;
-                } andCompletion:^{
-                    //            if ([PFUser currentUser]) {
-                    //                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                    //                    NSLog(@"saved book to parse");
-                    //                }];
-                    //            }
-                    
-                }];
+                } andCompletion:nil];
             }
         } else {
             
@@ -303,7 +279,7 @@
             
             [downloadFailed addAction:ok];
             [self presentViewController:downloadFailed animated:YES completion:nil];
-            //
+            
         }
         
     }];
@@ -323,8 +299,6 @@
     if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"itms-books:"]]) {
         
         [self.docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
-        
-        //        [self.docController presentOpenInMenuFromRect:_openInIBooksButton.bounds inView:self.openInIBooksButton animated:YES];
         
         NSLog(@"iBooks installed");
         
@@ -373,14 +347,7 @@
                 
                 
                 return self.book;
-            } andCompletion:^{
-                //            if ([PFUser currentUser]) {
-                //                [PGBRealmBook storeUserBookDataFromRealmStoreToParseWithRealmBook:self.book andCompletion:^{
-                //                    NSLog(@"saved book to parse");
-                //                }];
-                //            }
-                
-            }];
+            } andCompletion:nil];
         }
 
 }
