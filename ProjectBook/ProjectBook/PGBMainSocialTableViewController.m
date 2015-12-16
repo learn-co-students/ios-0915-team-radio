@@ -42,8 +42,8 @@
                   forControlEvents:UIControlEventValueChanged];
     
     // TODO: Ask tim about this...
-    [[PFInstallation currentInstallation] removeObjectForKey:@"channels"];
-    [[PFInstallation currentInstallation] saveInBackground];
+//    [[PFInstallation currentInstallation] removeObjectForKey:@"channels"];
+//    [[PFInstallation currentInstallation] saveInBackground];
 }
 
 

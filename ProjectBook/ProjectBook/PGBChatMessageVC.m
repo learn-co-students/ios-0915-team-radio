@@ -160,6 +160,8 @@
 }
 
 - (void)closePressed:(UIBarButtonItem *)sender {
+    [[PFInstallation currentInstallation] removeObjectForKey:@"channels"];
+    [[PFInstallation currentInstallation] saveInBackground];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
