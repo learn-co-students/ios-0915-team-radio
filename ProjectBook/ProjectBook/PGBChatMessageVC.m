@@ -37,20 +37,13 @@
     
     PFUser *currentPerson = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"bookChat"];
-    
-    //START PROGRESS HUD HERE!!!!
-    
-    
+
     self.tookOverASecond = YES;
     
     [self performSelector:@selector(startProgressHud)
                withObject:nil
                afterDelay:1.0];
-    
-    
-    //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    
+
     [query getObjectInBackgroundWithId:self.currentChatRoom.objectId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
         
         PFObject *notChatRoom = object;
@@ -61,32 +54,9 @@
             
             self.tookOverASecond = NO;
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
-            
-            //            [self animateAlphaOfView];
-            //            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            //            self.view.alpha = 1.0;
-            
-            
-            //END PROGRESS HUD HERE!!!!!
-            
+
         }];
     }];
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     self.messagesInConversation = [NSMutableArray new];
     self.locallySentMessages = [NSMutableArray new];
@@ -105,18 +75,9 @@
     self.senderId = senderParseId;
     self.senderDisplayName = senderUserName;
     
-    //    self.inputToolbar.contentView.textView.pasteDelegate = self;
-    
     [self loadPastMessagesFromPriorToEnteringChat];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"NewMessage" object:nil];
-    
-    
-    
-    
-    
-    
-    
 }
 
 - (void)startProgressHud {
@@ -181,11 +142,6 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    
-    
-    
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -196,12 +152,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    
-    
-    
-    
-    
+
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(closePressed:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(viewBook:)];
@@ -215,17 +166,6 @@
 - (void)viewBook:(UIBarButtonItem *)sender {
     
     [self performSegueWithIdentifier:@"bookDetailFun" sender:self];
-    
-//    NSArray *alltheViewControllers = self.tabBarController.viewControllers;
-//    
-//    
-//    
-//    
-//    
-//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    PGBMyBookViewController *bookView = (PGBMyBookViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"bookView"];
-//    [self presentViewController:bookView animated:YES completion:nil];
-    
 }
 
 -(JSQMessage *)messageCreatedAt:(NSDate *)date withText:(NSString *)text {
@@ -261,8 +201,6 @@
         NSLog(@"receiveNotification: error: notification name invalid; name=%@; expected=dGWeFofcrQ", notification.name);
         return;
     }
-    // apparently neither of these things work so TODO: fix this shit...
-    self.showTypingIndicator = !self.showTypingIndicator;
     [self scrollToBottomAnimated:YES];
     PFQuery *query = [PFQuery queryWithClassName:@"bookChatMessages"];
     [query whereKey:@"bookChatId" equalTo:self.currentChatRoom.objectId];

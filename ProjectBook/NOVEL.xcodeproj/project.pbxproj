@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D8E432FC945DE03BCD3EBFF /* libPods-NOVEL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82F23B7C88E0C899E5158E /* libPods-NOVEL.a */; };
 		4C094AEB1C167ECE00F21208 /* PGBParseAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C094AEA1C167ECE00F21208 /* PGBParseAPIClient.m */; };
 		4C25FFA61C03B7E200B5C8E3 /* Book+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFA31C03B7E200B5C8E3 /* Book+CoreDataProperties.m */; };
 		4C25FFA71C03B7E200B5C8E3 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFA51C03B7E200B5C8E3 /* Book.m */; };
@@ -40,6 +39,7 @@
 		89B2FE0D1C1CCE070048889B /* PGBSearchCustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B2FE0B1C1CCE070048889B /* PGBSearchCustomTableCell.m */; };
 		89B2FE0E1C1CCE070048889B /* PGBSearchCustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89B2FE0C1C1CCE070048889B /* PGBSearchCustomTableCell.xib */; };
 		89EE0D3A1C15CF9100CCA1EA /* PGBSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EE0D391C15CF9100CCA1EA /* PGBSettingsViewController.m */; };
+		A51315ED41F97C52AAAD16F4 /* libPods-NOVEL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82F23B7C88E0C899E5158E /* libPods-NOVEL.a */; };
 		A77A08F91BFBE78700CA62F8 /* PGBparsingThroughText.m in Sources */ = {isa = PBXBuildFile; fileRef = A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */; };
 		CB3C079D1C05063A00235D78 /* hopper.gif in Resources */ = {isa = PBXBuildFile; fileRef = CB3C07961C05063A00235D78 /* hopper.gif */; };
 		CB3C079E1C05063A00235D78 /* hoppers.gif in Resources */ = {isa = PBXBuildFile; fileRef = CB3C07971C05063A00235D78 /* hoppers.gif */; };
@@ -136,6 +136,8 @@
 		896424391C163C3D00FBB988 /* PGBChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBChatTableViewCell.h; sourceTree = "<group>"; };
 		8964243A1C163C3D00FBB988 /* PGBChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBChatTableViewCell.m; sourceTree = "<group>"; };
 		8964243B1C163C3D00FBB988 /* PGBChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBChatTableViewCell.xib; sourceTree = "<group>"; };
+		8980A4F71C21CF290097D907 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8980A4F81C21CF5F0097D907 /* PGBConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBConstants.m; sourceTree = "<group>"; };
 		899A4D051C10A77200D499C4 /* PGBChatMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBChatMessageVC.h; sourceTree = "<group>"; };
 		899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBChatMessageVC.m; sourceTree = "<group>"; };
 		899A4D0B1C11EF9C00D499C4 /* PGBMainSocialTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBMainSocialTableViewController.h; sourceTree = "<group>"; };
@@ -183,7 +185,6 @@
 		CBF2C61E1BFD1FF300BCBCDD /* PGBHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBHomeViewController.m; sourceTree = "<group>"; };
 		CBFD3F561BFBA076002CE0A4 /* NOVEL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOVEL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFD3F5A1BFBA076002CE0A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CBFD3F631BFBA076002CE0A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CBFD3F661BFBA076002CE0A4 /* ProjectBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProjectBook.xcdatamodel; sourceTree = "<group>"; };
@@ -210,7 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8926BEBB1C1CBA5D00093C00 /* SystemConfiguration.framework in Frameworks */,
-				2D8E432FC945DE03BCD3EBFF /* libPods-NOVEL.a in Frameworks */,
+				A51315ED41F97C52AAAD16F4 /* libPods-NOVEL.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,8 +421,9 @@
 		CBFD3F581BFBA076002CE0A4 /* NOVEL */ = {
 			isa = PBXGroup;
 			children = (
-				CBFD3F5C1BFBA076002CE0A4 /* AppDelegate.h */,
+				8980A4F71C21CF290097D907 /* AppDelegate.h */,
 				CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */,
+				8980A4F81C21CF5F0097D907 /* PGBConstants.m */,
 				4C58DDE21C1BC1AE00438AB0 /* Storyboard */,
 				4C58DDE11C1BC18F00438AB0 /* ViewController */,
 				4C58DDE31C1BC1FF00438AB0 /* CustomCell */,
@@ -543,7 +545,7 @@
 		CBFD3F4E1BFBA076002CE0A4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = FIS;
 				TargetAttributes = {
 					CBFD3F551BFBA076002CE0A4 = {
@@ -817,6 +819,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_MAP_FILE_PATH = "$(TARGET_TEMP_DIR)/$(PRODUCT_NAME) -LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
