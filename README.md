@@ -15,6 +15,14 @@ All downloaded books will be exported and opened in iBooks.
 
 Novel was created by four students from Flatiron School in NYC, as the final project for the program.  
 
+Laurren Reed - https://github.com/laurrenreed
+
+Leo Feng - https://github.com/wleofeng
+
+Olivia Lim - https://github.com/olivialim
+
+Priyansh Chordia - https://github.com/pri8771
+
 #How to Compile and Run
 
 Download/Clone the project somewhere on the users drive.  Open terminal, and cd into the ProjectBook folder. 
