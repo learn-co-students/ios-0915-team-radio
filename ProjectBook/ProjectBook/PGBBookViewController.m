@@ -265,7 +265,9 @@
                 [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
                     self.book.isDownloaded = YES;
                     return self.book;
-                } andCompletion:nil];
+                } andCompletion:^{
+                    //no action
+                }];
             }
         } else {
             
@@ -347,7 +349,9 @@
                 
                 
                 return self.book;
-            } andCompletion:nil];
+            } andCompletion:^{
+               //no action
+            }];
         }
 
 }
