@@ -14,6 +14,7 @@
 #import <YYWebImage/YYWebImage.h>
 #import <QuartzCore/QuartzCore.h>
 #import "PGBReviewViewController.h"
+#import "MBProgressHUD.h"
 
 @interface PGBBookViewController ()
 
@@ -210,6 +211,10 @@
 
 
 - (IBAction)downloadButtonTapped:(id)sender {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"Downloading Books";
+    hud.labelFont = [UIFont fontWithName:@"Moon-Bold" size:14.0f];
     
     NSString *parsedEbookID = [self.book.ebookID substringFromIndex:5];
     
@@ -218,6 +223,8 @@
     NSURL *URL = [NSURL URLWithString:idURL];
     
     [PGBDownloadHelper download:URL withCompletion:^(BOOL success) {
+        [hud setHidden:YES];
+        
         if (success) {
             self.readButton.hidden = NO;
             
