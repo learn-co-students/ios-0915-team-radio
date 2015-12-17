@@ -23,6 +23,7 @@
 #import <Availability.h>
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 static dispatch_once_t onceToken;
 
@@ -128,14 +129,14 @@ static dispatch_once_t onceToken;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
     if ([PFUser currentUser] && ![self.loginButton.title isEqual: @"👤"]) {
         [self changeLoginButtonToProfileIcon];
         
     } else if (![PFUser currentUser] && ![self.loginButton.title isEqual: @"Login"]){
         [self.loginButton setTitle:@"Login"];
     }
-
+    
 }
 
 
@@ -150,9 +151,9 @@ static dispatch_once_t onceToken;
                 
                 PFObject *user = data;
                 if (user) {
-            
-                    [PGBRealmBook deleteAllUserBookDataWithCompletion:^{
                     
+                    [PGBRealmBook deleteAllUserBookDataWithCompletion:^{
+                        
                         [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
                             NSLog(@"successfully fetch book from parse");
                             NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
@@ -163,16 +164,21 @@ static dispatch_once_t onceToken;
                 }
             }];
             
-        } 
+        }
     }];
 }
 
 
 -(void)viewDidAppear:(BOOL)animated {
+    
     [super viewDidAppear:animated];
     
     //do it once
     dispatch_once (&onceToken, ^{
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeIndeterminate;
+        hud.labelText = @"Loading Books";
+        hud.labelFont = [UIFont fontWithName:@"Moon-Bold" size:14.0f];
         
         NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
         
@@ -207,6 +213,9 @@ static dispatch_once_t onceToken;
                 }
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                
+//                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [hud setHidden:YES];
                 [self.classicsCollectionView reloadData];
                 [self.popularCollectionView reloadData];
                 [self.shakespeareCollectionView reloadData];
@@ -215,6 +224,8 @@ static dispatch_once_t onceToken;
         }];
         
     });
+    
+    
 }
 
 - (void)generateBook {
@@ -224,7 +235,7 @@ static dispatch_once_t onceToken;
     for (NSInteger i = 0; i < 30; i++) {
         PGBRealmBook *newBook = [PGBRealmBook createPGBRealmBookWithBook:dataStore.managedBookObjects[i]];
         if (newBook) {
-             [self.books addObject:newBook];
+            [self.books addObject:newBook];
         }
     }
     
@@ -323,7 +334,7 @@ static dispatch_once_t onceToken;
 
 //segue
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    [self performSegueWithIdentifier:@"bookPageSegue" sender:collectionView];
+    //    [self performSegueWithIdentifier:@"bookPageSegue" sender:collectionView];
     [self performSegueWithIdentifier:@"bookSegue" sender:collectionView];
     
 }
@@ -352,13 +363,13 @@ static dispatch_once_t onceToken;
     NSIndexPath *selectedIndexPath = [arrayOfIndexPaths firstObject];
     
     NSLog(@"selectedIndexPath: %@", selectedIndexPath);
-
     
-//    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
+    
+    //    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
     PGBRealmBook *bookAtIndexPath = relevantBookArray[selectedIndexPath.row];
     
     NSLog(@"bookAtIndexPath: %@", bookAtIndexPath);
-
+    
     
     bookPageVC.book = bookAtIndexPath;
     
@@ -468,7 +479,7 @@ static dispatch_once_t onceToken;
                                delegate:nil
                       cancelButtonTitle:@"ok"
                       otherButtonTitles:nil] show];
-
+    
 }
 
 // Sent to the delegate when the log in screen is dismissed.
@@ -519,7 +530,7 @@ static dispatch_once_t onceToken;
 }
 
 - (void)changeLoginButtonToProfileIcon {
-//    self.loginButton.title = @"👤";
+    //    self.loginButton.title = @"👤";
     self.loginButton.title = @"Logout";
 }
 

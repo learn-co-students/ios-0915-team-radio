@@ -137,7 +137,6 @@
 		8964243A1C163C3D00FBB988 /* PGBChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBChatTableViewCell.m; sourceTree = "<group>"; };
 		8964243B1C163C3D00FBB988 /* PGBChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGBChatTableViewCell.xib; sourceTree = "<group>"; };
 		8980A4F71C21CF290097D907 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		8980A4F81C21CF5F0097D907 /* PGBConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBConstants.m; sourceTree = "<group>"; };
 		899A4D051C10A77200D499C4 /* PGBChatMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBChatMessageVC.h; sourceTree = "<group>"; };
 		899A4D061C10A77200D499C4 /* PGBChatMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBChatMessageVC.m; sourceTree = "<group>"; };
 		899A4D0B1C11EF9C00D499C4 /* PGBMainSocialTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBMainSocialTableViewController.h; sourceTree = "<group>"; };
@@ -423,7 +422,6 @@
 			children = (
 				8980A4F71C21CF290097D907 /* AppDelegate.h */,
 				CBFD3F5D1BFBA076002CE0A4 /* AppDelegate.m */,
-				8980A4F81C21CF5F0097D907 /* PGBConstants.m */,
 				4C58DDE21C1BC1AE00438AB0 /* Storyboard */,
 				4C58DDE11C1BC18F00438AB0 /* ViewController */,
 				4C58DDE31C1BC1FF00438AB0 /* CustomCell */,
