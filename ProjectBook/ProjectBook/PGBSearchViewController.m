@@ -14,15 +14,14 @@
 #import "Book.h"
 #import <Masonry/Masonry.h>
 
-#define SEARCH_DELAY_IN_MS 100
 
 @interface PGBSearchViewController () <UISearchBarDelegate, UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *bookTableView;
 @property (strong, nonatomic) IBOutlet UIView *contentView;
-
 @property (strong, nonatomic) UISearchBar *bookSearchBar;
 @property (strong, nonatomic) UIView *defaultContentView;
+
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) PGBDataStore *dataStore;
 
@@ -30,9 +29,6 @@
 
 @property (nonatomic, strong)NSOperationQueue *bgQueue;
 @property (nonatomic, strong)NSOperationQueue *bookCoverBgQueue;
-
-@property (nonatomic, strong)dispatch_queue_t searchQueue;
-@property (nonatomic, assign)BOOL scheduledSearch;
 
 @property (nonatomic, strong) NSTimer *searchTimer;
 
@@ -52,13 +48,10 @@
     
     self.dismissKeyboardGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:self.dismissKeyboardGesture];
-
-    self.searchQueue = dispatch_queue_create("com.queue.my", DISPATCH_QUEUE_CONCURRENT);
 }
 
 
--(void)viewWillAppear:(BOOL)animated{
-    
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.bookSearchBar.hidden = NO;
 }
@@ -135,14 +128,6 @@
     [operaButton setTitle:@"Opera" forState:UIControlStateNormal];
     operaButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
     
-    
-    UIButton *randomButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [randomButton addTarget:self
-                     action:@selector(randomButtonTapped:)
-           forControlEvents:UIControlEventTouchUpInside];
-    [randomButton setTitle:@"Random" forState:UIControlStateNormal];
-    randomButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-    
     UIButton *biographyButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [biographyButton addTarget:self
                      action:@selector(biographyButtonTapped:)
@@ -172,7 +157,6 @@
     [genreButtonStackView addArrangedSubview:operaButton];
     [genreButtonStackView addArrangedSubview:biographyButton];
     [genreButtonStackView addArrangedSubview:childrenButton];
-//    [genreButtonStackView addArrangedSubview:randomButton];
     
     genreButtonStackView.translatesAutoresizingMaskIntoConstraints = false;
     [self.defaultContentView addSubview:genreButtonStackView];
@@ -184,167 +168,69 @@
 
 
 -(void)fictionButtonTapped:(UIButton *)sender {
-    NSLog(@"fiction button Tapped!");
-    
     self.bookSearchBar.text = @"fiction";
     [self.bookSearchBar becomeFirstResponder];
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
 -(void)romanceButtonTapped:(UIButton *)sender {
-    NSLog(@"romance button tapped!");
-    
     self.bookSearchBar.text = @"romance";
     [self.bookSearchBar becomeFirstResponder];
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
 -(void)dramaButtonTapped:(UIButton *)sender {
-    NSLog(@"romance button tapped!");
-    
     self.bookSearchBar.text = @"drama";
     [self.bookSearchBar becomeFirstResponder];
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
 -(void)historyButtonTapped:(UIButton *)sender {
-    NSLog(@"romance button tapped!");
-    
     self.bookSearchBar.text = @"history";
     [self.bookSearchBar becomeFirstResponder];
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
 -(void)comedyButtonTapped:(UIButton *)sender {
-    NSLog(@"romance button tapped!");
-    
     self.bookSearchBar.text = @"comedy";
     [self.bookSearchBar becomeFirstResponder];
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
 -(void)operaButtonTapped:(UIButton *)sender {
-    NSLog(@"romance button tapped!");
-    
     self.bookSearchBar.text = @"opera";
     [self.bookSearchBar becomeFirstResponder];
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
 -(void)biographyButtonTapped:(UIButton *)sender {
-    NSLog(@"romance button tapped!");
-    
     self.bookSearchBar.text = @"biography";
     [self.bookSearchBar becomeFirstResponder];
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
 -(void)childrenButtonTapped:(UIButton *)sender {
-    NSLog(@"romance button tapped!");
-    
     self.bookSearchBar.text = @"children";
     [self.bookSearchBar becomeFirstResponder];
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
 
--(void)randomButtonTapped:(UIButton *)sender {
-    NSLog(@"random button tapped");
-    
-    self.bookSearchBar.text = @"random";
-    [self.bookSearchBar becomeFirstResponder];
-    [self generateRandomBookByCount:100];
-}
-
-
-- (void)generateRandomBookByCount:(NSInteger)count{
-    //bg Queue
-    self.bgQueue = [[NSOperationQueue alloc]init];
-    self.bookCoverBgQueue = [[NSOperationQueue alloc]init];
-    
-    self.bgQueue.maxConcurrentOperationCount = 1;
-    self.bookCoverBgQueue.maxConcurrentOperationCount = 5;
-    
-    NSOperation *fetchBookOperation = [NSBlockOperation blockOperationWithBlock:^{
-        PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
-        [dataStore fetchData];
-        
-        NSMutableArray *booksGeneratedSoFar = [NSMutableArray new];
-        
-        for (NSInteger i = 0; i < count; i++) {
-            NSInteger randomNumber = arc4random_uniform((u_int32_t)dataStore.managedBookObjects.count);
-            
-            Book *coreDataBook = dataStore.managedBookObjects[randomNumber];
-            
-            //if a book has already been shown, itll be added into the mutable array
-            //if the same book is called again, then i is lowered by 1, the for loops starts again, and so i is increased by 1
-            //this makes sure that there will always be 100 random numbers to check
-            if ([booksGeneratedSoFar containsObject:coreDataBook]) {
-                i--;
-                continue;
-            }
-            
-            PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
-            
-            if (realmBook) {
-                
-                NSOperation *fetchBookCoverOperation = [NSBlockOperation blockOperationWithBlock:^{
-                    
-                    NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:coreDataBook.eBookNumbers]];
-                    realmBook.bookCoverData = bookCoverData;
-                    
-                    if (i < self.books.count && self.books[i]) {  //fixed a crash bug
-                        
-                        PGBRealmBook *realmBook = self.books[i];
-                        realmBook.bookCoverData = bookCoverData;
-                        
-                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                            [self.bookTableView reloadData];
-                        }];
-                        
-                    }
-                }];
-                
-                
-                [self.books addObject:realmBook];
-                [booksGeneratedSoFar addObject:coreDataBook]; //add to list of shown books
-                
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    
-                    [self.bookTableView reloadData];
-                    
-                    [self.bookCoverBgQueue addOperation:fetchBookCoverOperation];
-                }];
-            } else {
-                
-                //Didn't find a book that we should display to user, resetting counter down by 1
-                i--;
-            }
-            
-        }
-    }];
-    
-    [self.bgQueue addOperation:fetchBookOperation];
-}
-
-
 #pragma UITableView DataSource Method ::
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.books.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (tableView == self.bookTableView) {
         
         PGBSearchCustomTableCell *cell = (PGBSearchCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"SearchCustomCell" forIndexPath:indexPath];
         
-        //pagination
         PGBRealmBook *realmBook = self.books[indexPath.row];
         
         if (realmBook.title.length != 0) {
@@ -383,26 +269,15 @@
 
 #pragma UISearchBar Method::
 
-
-//-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-//    if (searchBar == self.bookSearchBar) {
-//        self.defaultContentView.hidden = YES;
-//    }
-//}
-
--(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
     if (searchBar == self.bookSearchBar) {
         if (!self.bookSearchBar.text.length) {
             self.defaultContentView.hidden = NO;
         }
     }
-    
-        NSLog(@"text end");
 }
 
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"text changed");
-
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchBar == self.bookSearchBar) {
         if (self.bookSearchBar.isFirstResponder) {
             self.defaultContentView.hidden = YES;
@@ -413,35 +288,6 @@
         [self.searchTimer invalidate];
         self.searchTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(searchTimerFired:) userInfo:@{ @"searchString": lowercaseAndUnaccentedSearchText } repeats:NO];
         
-//        if (self.scheduledSearch) return;
-//        self.scheduledSearch = YES;
-//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)((double)SEARCH_DELAY_IN_MS * NSEC_PER_MSEC));
-//        dispatch_after(popTime, self.searchQueue, ^(void){
-//            self.scheduledSearch = NO;
-//            
-//            NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"eBookSearchTerms CONTAINS %@", lowercaseAndUnaccentedSearchText];
-//            NSArray *coreDataBooks = [self.dataStore.managedBookObjects filteredArrayUsingPredicate:searchFilter];
-//            
-//            [self.books removeAllObjects];
-//            
-//            for (Book *coreDataBook in coreDataBooks) {
-//                PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
-//                
-//                if (realmBook) {
-//                    [self.books addObject:realmBook];
-//                }
-//            }
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self.bookTableView reloadData];
-//            });
-//            
-//            NSString *newSearchText = [self.bookSearchBar.text stringByFoldingWithOptions:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch locale:nil];
-////            NSString *newSearchText = self.bookSearchBar.text;
-//            if (![newSearchText isEqualToString:searchText])
-//                [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
-//        });
-        
         if (!searchText.length) {
             self.dismissKeyboardGesture.enabled = YES;
         } else {
@@ -451,7 +297,7 @@
     }
 }
 
--(void)searchTimerFired:(NSTimer *)timer
+- (void)searchTimerFired:(NSTimer *)timer
 {
     NSString *searchText = timer.userInfo[@"searchString"];
     
@@ -476,15 +322,12 @@
 - (void) hideKeyboard {
     self.defaultContentView.hidden = NO;
     [self.bookSearchBar resignFirstResponder];
-    
-        NSLog(@"hide keyboard");
 }
 
 #pragma UIScroll View Method::
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView == self.bookTableView && self.bookSearchBar.text.length) {
         [self.bookSearchBar resignFirstResponder];
-        NSLog(@"did scroll");
     }
     
 }
