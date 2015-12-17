@@ -25,7 +25,7 @@
     [self.signUpView addSubview:self.backgroundImageView];
     [self.signUpView sendSubviewToBack:self.backgroundImageView];
     
-    [self.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NOVEL_Logo_Green.png"]]];
+    [self.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NOVEL_Logo_small"]]];
     
     [self.signUpView.dismissButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
     [self.signUpView.dismissButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateHighlighted];

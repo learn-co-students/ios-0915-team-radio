@@ -153,7 +153,6 @@
 		89EE0D391C15CF9100CCA1EA /* PGBSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBSettingsViewController.m; sourceTree = "<group>"; };
 		8B82F23B7C88E0C899E5158E /* libPods-NOVEL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NOVEL.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		959E6BCC90E8DFE41732C0C1 /* Pods-NOVEL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NOVEL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NOVEL/Pods-NOVEL.debug.xcconfig"; sourceTree = "<group>"; };
-		9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook.release.xcconfig"; sourceTree = "<group>"; };
 		A77A08F71BFBE78700CA62F8 /* PGBparsingThroughText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBparsingThroughText.h; sourceTree = "<group>"; };
 		A77A08F81BFBE78700CA62F8 /* PGBparsingThroughText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBparsingThroughText.m; sourceTree = "<group>"; };
 		CB3C07961C05063A00235D78 /* hopper.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hopper.gif; sourceTree = "<group>"; };
@@ -199,9 +198,7 @@
 		CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBDownloadHelper.h; sourceTree = "<group>"; };
 		CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBDownloadHelper.m; sourceTree = "<group>"; };
 		CBFE1CEA1C172AF800646BA9 /* social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = social.storyboard; sourceTree = "<group>"; };
-		CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ProjectBook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF3911CF2A4C42990A27A090 /* Pods-NOVEL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NOVEL.release.xcconfig"; path = "Pods/Target Support Files/Pods-NOVEL/Pods-NOVEL.release.xcconfig"; sourceTree = "<group>"; };
-		F6D5D825C0751CEEFFC1E7B5 /* Pods-ProjectBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectBook/Pods-ProjectBook.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,8 +231,6 @@
 		4106D733AAA830B3691BDA27 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F6D5D825C0751CEEFFC1E7B5 /* Pods-ProjectBook.debug.xcconfig */,
-				9F9EB7044D37743BC3F8BBF8 /* Pods-ProjectBook.release.xcconfig */,
 				959E6BCC90E8DFE41732C0C1 /* Pods-NOVEL.debug.xcconfig */,
 				DF3911CF2A4C42990A27A090 /* Pods-NOVEL.release.xcconfig */,
 			);
@@ -351,7 +346,6 @@
 			children = (
 				8926BEBA1C1CBA5D00093C00 /* SystemConfiguration.framework */,
 				89DF0C4F1BFCDF1500E0096F /* ParseFacebookUtils.framework */,
-				CFBD00D8A34A37FEA507AA3C /* libPods-ProjectBook.a */,
 				8B82F23B7C88E0C899E5158E /* libPods-NOVEL.a */,
 			);
 			name = Frameworks;

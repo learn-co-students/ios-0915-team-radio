@@ -25,7 +25,7 @@
     [self.logInView addSubview:self.backgroundImageView];
     [self.logInView sendSubviewToBack:self.backgroundImageView];
     
-    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NOVEL_Logo_Green.png"]]];
+    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NOVEL_Logo_small"]]];
 
     // Set buttons appearance
     [self.logInView.dismissButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
