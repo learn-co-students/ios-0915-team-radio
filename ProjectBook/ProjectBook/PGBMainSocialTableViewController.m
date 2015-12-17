@@ -24,8 +24,6 @@
 
 @implementation PGBMainSocialTableViewController
 
-//TODO:
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -41,7 +39,6 @@
                             action:@selector(reloadTableViewWithBackgroundUpdatesFromParse)
                   forControlEvents:UIControlEventValueChanged];
     
-    // TODO: Ask tim about this...
 //    [[PFInstallation currentInstallation] removeObjectForKey:@"channels"];
 //    [[PFInstallation currentInstallation] saveInBackground];
 }

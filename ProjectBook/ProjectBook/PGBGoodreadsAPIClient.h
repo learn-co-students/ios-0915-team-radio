@@ -14,8 +14,8 @@
 
 //reviews
 + (void)getReviewsForBook:(PGBRealmBook *)realmBook completion:(void (^)(NSDictionary *))completionBlock;
-
 - (NSString *)getURLForBookAndAuthor:(PGBRealmBook *)realmBook;
+
 //description
 - (NSDictionary *)methodToGetDescriptionsAndImageURLSWithString:(NSString *)string;
 - (void)getDescriptionForBookTitle:(PGBRealmBook *)realmBook completion:(void (^)(NSString *description))completion;

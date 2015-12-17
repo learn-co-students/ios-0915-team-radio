@@ -17,7 +17,6 @@
 @property (strong, nonatomic)NSString *lastname;
 @property (strong, nonatomic)NSString *location;
 @property (strong, nonatomic)NSString *email;
-//@property RLMArray<PGBRealmBook *><PGBRealmBook> *books;
 
 - (instancetype)init;
 - (instancetype)initWithUsername:(NSString *)username

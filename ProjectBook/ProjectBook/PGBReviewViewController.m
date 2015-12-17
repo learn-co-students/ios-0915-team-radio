@@ -20,40 +20,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-
-    //LEO - this is causing for some books, AFNetworking crash!!!
-//    [self getReviewswithCompletion:^(BOOL success) {
-//        if (success) {
-//            NSLog(@"Succed to get reviews from API call - LEO");
-//        } else {
-//            NSLog(@"failed to get reviews from API call - LEO");
-//        }
-//    }];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSLog(@"LEO view will appear");
-    
     [self getReviewswithCompletion:^(BOOL success) {
         if (success) {
-            NSLog(@"start block");
-
             self.webView.navigationDelegate = self;
-            
-            //            [self.webView.heightAnchor constraintEqualToConstant:300];
-            //            [self.webViewContainer layoutSubviews];
-            
-            NSLog(@"Succed to get reviews from API call - LEO");
+        
         } else {
-            NSLog(@"failed to get reviews from API call - LEO");
             
             UIAlertController *fail = [UIAlertController alertControllerWithTitle:@"There are no reviews for this book" message:nil preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
@@ -79,24 +59,12 @@
             
             NSURL *baseURL = [NSURL URLWithString:@"https://www.goodreads.com"];
             
-            // make / constrain webview
-            
             CGRect webViewFrame = CGRectMake(0, 0, self.webViewContainer.frame.size.width, self.view.frame.size.height);
             
             self.webView = [[WKWebView alloc]initWithFrame: webViewFrame];
             [self.webViewContainer addSubview:self.webView];
-            //                self.webView.translatesAutoresizingMaskIntoConstraints = NO;
-            //                [self.webView.leftAnchor constraintEqualToAnchor:self.webViewContainer.leftAnchor].active = YES;
-            //                [self.webView.rightAnchor constraintEqualToAnchor:self.webViewContainer.rightAnchor].active = YES;
-            //                [self.webView.topAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
-            //                [self.webView.bottomAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
-            
-            
             [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
-//            self.webView.navigationDelegate = self;
-            
-            //            [self.webView.heightAnchor constraintEqualToConstant:300];
-            //            [self.webViewContainer layoutSubviews];
+
             completionBlock(YES);
         } else {
             completionBlock(NO);
@@ -112,7 +80,6 @@
         [webView.scrollView setContentOffset:CGPointMake(0, 0)];
     }
     
-    //    [webView.scrollView zoomToRect:CGRectMake(0, 0, 20, 20) animated:YES];
 }
 
 

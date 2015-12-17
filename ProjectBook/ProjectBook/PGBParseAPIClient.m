@@ -67,7 +67,7 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eBookID = %@", realmBook.ebookID];
     
     PFQuery *query = [PFQuery queryWithClassName:@"book" predicate:predicate];
-
+    
     [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable bookObject, NSError * _Nullable error) {
         
         if (bookObject)
@@ -89,9 +89,6 @@
                     completionBlock(bookObject);
                 }
             }];
-
-//            completionBlock(bookObject);
-            
         }else {
             
             NSLog(@"book doesn't exist- new book");
@@ -106,19 +103,17 @@
             newBook[@"eBookDescription"] = realmBook.bookDescription;
             newBook[@"isDownloaded"] = [NSNumber numberWithBool:realmBook.isDownloaded];
             newBook[@"isBookmarked"] = [NSNumber numberWithBool:realmBook.isBookmarked];
-    
+            
             [newBook saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if (succeeded) {
                     completionBlock(bookObject);
                 }
             }];
             
-//            completionBlock(newBook);
-
         }
         NSLog(@"New book is being stored in parse, ignore this error: %@",error.localizedDescription);
     }];
-
+    
 }
 
 

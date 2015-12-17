@@ -14,6 +14,7 @@
 		4C3FDE911C0FD95F00F5B8FA /* PGBTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */; };
 		4C5D94791BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */; };
 		4C5D947E1BFE389A0086DB5F /* PGBMyBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */; };
+		4C6476A61C23687F0087DA9A /* PGBConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6476A51C23687F0087DA9A /* PGBConstants.m */; };
 		4C9597AB1BFBEB2000BBD558 /* PGBRealmUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9597A81BFBEB2000BBD558 /* PGBRealmUser.m */; };
 		4C9597AC1BFBEB2000BBD558 /* PGBRealmBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9597AA1BFBEB2000BBD558 /* PGBRealmBook.m */; };
 		4C9D16631C0CF04800DBF989 /* PGBSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */; };
@@ -24,7 +25,6 @@
 		890200351C0CFD08001A1ECF /* PGBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890200341C0CFD08001A1ECF /* PGBProfileViewController.m */; };
 		8926BEBB1C1CBA5D00093C00 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8926BEBA1C1CBA5D00093C00 /* SystemConfiguration.framework */; };
 		8926BEBE1C1CBC8300093C00 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8926BEBD1C1CBC8300093C00 /* Reachability.m */; };
-		8926BEC11C1CBCB800093C00 /* PGBConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8926BEC01C1CBCB800093C00 /* PGBConstants.m */; };
 		894255AD1C20B51E004C6F09 /* ProjectBook.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 894255AC1C20B51E004C6F09 /* ProjectBook.sqlite */; };
 		894AE4641C161227007F22A5 /* PGBSearchChatPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */; };
 		894D292F1C172E48003A7D95 /* PGBChatRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 894D292E1C172E48003A7D95 /* PGBChatRoom.m */; };
@@ -106,6 +106,7 @@
 		4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyBooksStoryboard.storyboard; sourceTree = "<group>"; };
 		4C5D947C1BFE389A0086DB5F /* PGBMyBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBMyBookViewController.h; sourceTree = "<group>"; };
 		4C5D947D1BFE389A0086DB5F /* PGBMyBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBMyBookViewController.m; sourceTree = "<group>"; };
+		4C6476A51C23687F0087DA9A /* PGBConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBConstants.m; sourceTree = "<group>"; };
 		4C9597A71BFBEB2000BBD558 /* PGBRealmUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBRealmUser.h; sourceTree = "<group>"; };
 		4C9597A81BFBEB2000BBD558 /* PGBRealmUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBRealmUser.m; sourceTree = "<group>"; };
 		4C9597A91BFBEB2000BBD558 /* PGBRealmBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBRealmBook.h; sourceTree = "<group>"; };
@@ -124,7 +125,6 @@
 		8926BEBC1C1CBC8300093C00 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8926BEBD1C1CBC8300093C00 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		8926BEBF1C1CBCB800093C00 /* PGBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBConstants.h; sourceTree = "<group>"; };
-		8926BEC01C1CBCB800093C00 /* PGBConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBConstants.m; sourceTree = "<group>"; };
 		894255AC1C20B51E004C6F09 /* ProjectBook.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ProjectBook.sqlite; sourceTree = "<group>"; };
 		894AE4621C161227007F22A5 /* PGBSearchChatPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBSearchChatPreviewViewController.h; sourceTree = "<group>"; };
 		894AE4631C161227007F22A5 /* PGBSearchChatPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBSearchChatPreviewViewController.m; sourceTree = "<group>"; };
@@ -446,7 +446,7 @@
 				CB3C07961C05063A00235D78 /* hopper.gif */,
 				CB3C07971C05063A00235D78 /* hoppers.gif */,
 				8926BEBF1C1CBCB800093C00 /* PGBConstants.h */,
-				8926BEC01C1CBCB800093C00 /* PGBConstants.m */,
+				4C6476A51C23687F0087DA9A /* PGBConstants.m */,
 				CBFD3F8F1BFBB250002CE0A4 /* PGBDownloadHelper.h */,
 				CBFD3F901BFBB250002CE0A4 /* PGBDownloadHelper.m */,
 				A77A08F71BFBE78700CA62F8 /* PGBparsingThroughText.h */,
@@ -697,6 +697,7 @@
 				4C9D16631C0CF04800DBF989 /* PGBSearchViewController.m in Sources */,
 				899A4D101C11EFC100D499C4 /* PGBNewChatViewController.m in Sources */,
 				8926BEBE1C1CBC8300093C00 /* Reachability.m in Sources */,
+				4C6476A61C23687F0087DA9A /* PGBConstants.m in Sources */,
 				89560A4B1C18CA5A00035A00 /* PGBProfileBooksCustomCollectionViewCell.m in Sources */,
 				CBEFBD0B1C16192100D878AC /* PGBCustomBookCollectionViewCell.m in Sources */,
 				CB6383611C1F6FC000D13000 /* PGBReviewViewController.m in Sources */,
@@ -711,7 +712,6 @@
 				4C25FFAB1C03B83B00B5C8E3 /* PGBDataStore.m in Sources */,
 				899A4D071C10A77200D499C4 /* PGBChatMessageVC.m in Sources */,
 				CBFD3F671BFBA076002CE0A4 /* ProjectBook.xcdatamodeld in Sources */,
-				8926BEC11C1CBCB800093C00 /* PGBConstants.m in Sources */,
 				4C25FFA71C03B7E200B5C8E3 /* Book.m in Sources */,
 				899A4D0D1C11EF9C00D499C4 /* PGBMainSocialTableViewController.m in Sources */,
 				89B2FE0D1C1CCE070048889B /* PGBSearchCustomTableCell.m in Sources */,

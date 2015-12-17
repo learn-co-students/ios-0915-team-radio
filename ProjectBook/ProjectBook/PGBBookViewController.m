@@ -129,7 +129,6 @@
     }
     
     //book description height and description
-    //    [self.view addSubview:self.bookDescriptionTV];
     [self.bookDescriptionTV sizeToFit];
     [self.bookDescriptionTV layoutIfNeeded];
     
@@ -177,14 +176,6 @@
     CGRect frame = CGRectMake(0, 0, self.clearBookmark.size.width+5, self.clearBookmark.size.height+5);
 
     self.bookmarkButton =  [[UIButton alloc] initWithFrame:frame];
-//    [self.bookmarkButton setBackgroundImage:self.clearBookmark forState:UIControlStateNormal];
-//    [self.bookmarkButton setShowsTouchWhenHighlighted:YES];
-//    
-//    [self.bookmarkButton addTarget:self action:@selector(bookmarkButtonTapped) forControlEvents:(UIControlEventTouchDown)];
-//    
-//   self.bookmarkBarItem = [[UIBarButtonItem alloc]initWithCustomView:self.bookmarkButton];
-//    
-//    [self.navigationItem setRightBarButtonItem:self.bookmarkBarItem];
     
     if (!self.book.isBookmarked) {
         [self.bookmarkButton setBackgroundImage:self.clearBookmark forState:UIControlStateNormal];
@@ -299,7 +290,6 @@
     
     NSString *litFileName = [NSString stringWithFormat:@"pg%@-images.epub", parsedEbookID];
     
-    //    NSString *litFileName = [NSString stringWithFormat:@"pg%@", self.ebookIndex];
     NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:litFileName];
     NSURL *targetURL = [NSURL fileURLWithPath:filePath];
     
@@ -321,8 +311,6 @@
         [self presentViewController:invalid animated:YES completion:nil];
         
     }
-    
-//    NSLog(@"iBooks not installed");
 }
                                             
 - (void)bookmarkButtonTapped {

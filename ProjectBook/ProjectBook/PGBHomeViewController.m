@@ -71,8 +71,6 @@ static dispatch_once_t onceToken;
     
     [reach startNotifier];
     
-    //logo for banner
-    
     UIImage *logo = [[UIImage imageNamed:@"NOVEL_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
     
@@ -119,7 +117,6 @@ static dispatch_once_t onceToken;
     self.shakespeareCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
     
     //fetch from parse when the app opens for the first time
-    //user can kill the app and re-open, however they don't need to re-login
     [self fetchBookFromParse];
     
 }
@@ -213,8 +210,6 @@ static dispatch_once_t onceToken;
                 }
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                
-//                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [hud setHidden:YES];
                 [self.classicsCollectionView reloadData];
                 [self.popularCollectionView reloadData];
@@ -285,9 +280,6 @@ static dispatch_once_t onceToken;
                     cell.titleTV.text = book.title;
                     cell.authorLabel.text = book.author;
                 }
-                //            cell.titleTV.adjustsFontSizeToFitWidth = YES;
-                //            cell.titleTV.minimumFontSize = 0;
-                //            cell.authorLabel.adjustsFontSizeToFitWidth = YES;
             }
         }
         return cell;
@@ -305,9 +297,6 @@ static dispatch_once_t onceToken;
                     cell.titleTV.text = book.title;
                     cell.authorLabel.text = book.author;
                 }
-                //cell.titleTV.adjustsFontSizeToFitWidth = YES;
-                //cell.titleTV.minimumFontSize = 0;
-                //cell.authorLabel.adjustsFontSizeToFitWidth = YES;
             }
         }
         return cell;
@@ -332,9 +321,8 @@ static dispatch_once_t onceToken;
     return nil;
 }
 
-//segue
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    //    [self performSegueWithIdentifier:@"bookPageSegue" sender:collectionView];
     [self performSegueWithIdentifier:@"bookSegue" sender:collectionView];
     
 }
@@ -357,20 +345,10 @@ static dispatch_once_t onceToken;
         relevantBookArray = self.shakespeareBooks;
     }
     
-    NSLog(@"arrayOfIndexPaths: %@", arrayOfIndexPaths);
-    
-    
     NSIndexPath *selectedIndexPath = [arrayOfIndexPaths firstObject];
     
-    NSLog(@"selectedIndexPath: %@", selectedIndexPath);
-    
-    
-    //    NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
     PGBRealmBook *bookAtIndexPath = relevantBookArray[selectedIndexPath.row];
-    
-    NSLog(@"bookAtIndexPath: %@", bookAtIndexPath);
-    
-    
+
     bookPageVC.book = bookAtIndexPath;
     
 }
@@ -465,11 +443,6 @@ static dispatch_once_t onceToken;
     [self fetchBookFromParse];
 }
 
-
-
-
-
-
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
     NSLog(@"Failed to log in...");
@@ -520,8 +493,6 @@ static dispatch_once_t onceToken;
 // Sent to the delegate when the sign up attempt fails.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
     NSLog(@"Failed to sign up...");
-    
-    
 }
 
 // Sent to the delegate when the sign up screen is dismissed.
@@ -530,7 +501,6 @@ static dispatch_once_t onceToken;
 }
 
 - (void)changeLoginButtonToProfileIcon {
-    //    self.loginButton.title = @"👤";
     self.loginButton.title = @"Logout";
 }
 

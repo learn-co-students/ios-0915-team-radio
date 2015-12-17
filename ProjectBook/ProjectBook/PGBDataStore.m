@@ -87,24 +87,7 @@
 
 - (void) generateTestDataWithArrayOfBooks:(NSArray *)arrayOfDictioanries
 {
-//    NSArray *testArray = @[   @{
-//                                  @"eBookAuthors" : @"Wolfensberger, Arnold",
-//                                  @"eBookFriendlyTitles" : @"Theory of Silk Weaving by Arnold Wolfensberger",
-//                                  @"eBookGenres" : @"Silk industry",
-//                                  @"eBookLanguages" : @"en",
-//                                  @"eBookNumbers" : @"etext14600@",
-//                                  @"eBookTitles" : @"",
-//                                  },
-//                              @{
-//                                  @"eBookAuthors" : @"LEO",
-//                                  @"eBookFriendlyTitles" : @"Theory of Silk Weaving by Arnold Wolfensberger",
-//                                  @"eBookGenres" : @"Silk industry",
-//                                  @"eBookLanguages" : @"en",
-//                                  @"eBookNumbers" : @"etext14600@",
-//                                  @"eBookTitles" : @"",
-//                                  }
-//                              ];
-    
+
     for (NSDictionary *book in arrayOfDictioanries) {
         Book *newBook = [NSEntityDescription insertNewObjectForEntityForName:@"Book" inManagedObjectContext:self.managedObjectContext];
         newBook.eBookAuthors = book[@"eBookAuthors"];

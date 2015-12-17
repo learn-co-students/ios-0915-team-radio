@@ -32,9 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    UIImage *logo = [[UIImage imageNamed:@"Novel_Logo_small"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];;
-//    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
-    
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBSearchCustomTableCell" bundle:nil] forCellReuseIdentifier:@"SearchCustomCell"];
     self.bookTableView.rowHeight = 80;
     
@@ -53,16 +50,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-//    self.books = [PGBRealmBook getUserBookDataInArray];
-//    [self loadDefaultContent];
-//    [self fetchBookFromParse];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    //    [self.bookTableView setContentOffset:CGPointMake(0, 44) animated:NO];
-    //    [self.bookTableView setContentOffset:CGPointZero animated:YES];
+
     self.bookSearchBar.text = @"";
     
     [self fetchBookFromRealm];
@@ -104,8 +96,6 @@
                 PFObject *user = data;
                 if (user) {
                     
-                    //                    [PGBRealmBook deleteAllUserBookData];
-                    
                     [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
                         NSLog(@"successfully fetch book from parse");
                         
@@ -129,8 +119,6 @@
 }
 
 - (void)loadTableViewContent{
-//    self.bookSegmentControl.selectedSegmentIndex = 0;
-//    self.bookSearchBar.text = @"";
     
     if (self.bookSegmentControl.selectedSegmentIndex == 0) {
         self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
@@ -140,7 +128,6 @@
         self.booksDisplayed = [[self.books filteredArrayUsingPredicate:self.searchFilter] mutableCopy];
     }
 
-//    [self.bookTableView reloadData];
 }
 
 - (IBAction)bookSegmentedControlSelected:(UISegmentedControl *)sender {
@@ -199,23 +186,7 @@
         cell.titleLabel.text = book.title;
         cell.authorLabel.text = book.author;
         cell.genreLabel.text = book.genre;
-        
-//        UIImage *bookCoverImage = [UIImage imageWithData: book.bookCoverData];
-//        
-//        if (bookCoverImage) {
-//            cell.bookCover.image = bookCoverImage;
-//        }
-//        
-//        NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:book.ebookID]];
-//        
-//        if (bookCoverData)
-//        {
-//            cell.bookCover.image = [UIImage imageWithData:bookCoverData];
-//        } else {
-//            cell.bookCover.image = [UIImage imageNamed:@"no_book_cover"];
-//        }
-//
-//        
+
         return cell;
     }
     
@@ -300,7 +271,6 @@
 
     }
     
-    NSLog(@"Deleted row.");
 }
 
 @end

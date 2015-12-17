@@ -12,7 +12,6 @@
 
 @interface PGBRealmBook : RLMObject
 
-//@property (assign, nonatomic)NSInteger id;
 @property (strong, nonatomic)NSString *title;
 @property (strong, nonatomic)NSString *author;
 @property (strong, nonatomic)NSString *genre;
@@ -55,23 +54,17 @@
 + (NSArray *)getUserBookDataInArrayIncludingCoverData;
 + (PGBRealmBook *)createPGBRealmBookWithBook:(Book *)book;
 + (PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook;
++ (PGBRealmBook *)generateBooksWitheBookID:(NSString *)ebookID;
 + (NSURL *)createBookCoverURL:(NSString *)eBookNumber;
 + (BOOL)validateBookDataWithRealmBook:(PGBRealmBook *)realmBook;
 
 - (NSString *)getAuthorFromFriendlyTitle:(NSString *)friendlyTitle;
 - (BOOL)checkFriendlyTitleIfItHasAuthor:(NSString *)friendlyTitle;
-
-
+- (NSString *)parseAuthor:(NSString *)author;
 
 //override primary key
 + (NSString *)primaryKey;
 
-+ (void)generateTestBookData;
-+(PGBRealmBook *)generateBooksWitheBookID:(NSString *)ebookID;
-- (NSString *)parseAuthor:(NSString *)author;
-
 @end
 
-// This protocol enables typed collections. i.e.:
-// RLMArray<PGBRealmBook>
 RLM_ARRAY_TYPE(PGBRealmBook)

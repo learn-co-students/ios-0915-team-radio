@@ -76,7 +76,6 @@
     
     CGFloat widthOfBottomButtons = 30.0f;
     
-    // CGRectMake(x, y, width, height)
     // Set frame for elements
     
     [self.logInView.dismissButton setFrame:CGRectMake(15.0f, 25.0f, 30.5f, 30.5f)];

@@ -29,93 +29,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    [Chameleon setGlobalThemeUsingPrimaryColor:FlatGreenDark withContentStyle:UIContentStyleDark];
-    /*
-    [PGBGoodreadsAPIClient getReviewsForBook:@"The Adventures of Huckleberry Finn" completion:^(NSDictionary *reviewDict) {
-        
-        self.htmlString = [reviewDict[@"reviews_widget"] mutableCopy];
-        
-        NSData *htmlData = [self.htmlString dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSURL *baseURL = [NSURL URLWithString:@"https://www.goodreads.com"];
-        
-        // make / constrain webview
-        
-        CGRect webViewFrame = CGRectMake(0, 0, self.webViewContainer.frame.size.width, self.webViewContainer.frame.size.height);
-        
-        self.webView = [[WKWebView alloc]initWithFrame: webViewFrame];
-        [self.webViewContainer addSubview:self.webView];
-        //                self.webView.translatesAutoresizingMaskIntoConstraints = NO;
-        //
-        //                [self.webView.leftAnchor constraintEqualToAnchor:self.webViewContainer.leftAnchor].active = YES;
-        //                [self.webView.rightAnchor constraintEqualToAnchor:self.webViewContainer.rightAnchor].active = YES;
-        //                [self.webView.topAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
-        //                [self.webView.bottomAnchor constraintEqualToAnchor:self.webViewContainer.bottomAnchor].active = YES;
-        
-        
-        [self.webView loadData:htmlData MIMEType:@"text/html" characterEncodingName:@"utf-8" baseURL:baseURL];
-        
-        self.webView.UIDelegate = self;
-        self.webView.navigationDelegate = self;
-        self.webView.scrollView.delegate = self;
-        
-        //            [self.webView.heightAnchor constraintEqualToConstant:300];
-        //            [self.webViewContainer layoutSubviews];
-        completionBlock(YES);
-    }];
-    
-    */
 
-
-//    PGBGoodreadsAPIClient *goodReads = [[PGBGoodreadsAPIClient alloc] init];
-//    //    [goodReads methodToGetDescriptions];
-//    //    NSLog(@"%@", [goodReads methodToGetDescriptions]);
-//    [goodReads getURLAsString:@"https://www.goodreads.com/book/title.xml?key=AckMqnduhbH8xQdja2Nw&title=Hound+of+the+Baskervilles&author=Arthur+Conan+Doyle"];
-
-    
-    //Begin test array of books
-//        PGBparsingThroughText *newTask = [[PGBparsingThroughText alloc]init];
-//        NSArray *finalArrayOfDictionary = [newTask cleanUpArrays];
-//
-//        NSLog(@"THIS IS THE FINAL DICTIONARY: %@", finalArrayOfDictionary);
-//    
-//        NSLog(@"Begin store to core data");
-//    
-//        NSLog(@"documents directory: %@", [self applicationDocumentsDirectory]);
-    
-//        PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
-//        [dataStore generateTestDataWithArrayOfBooks:finalArrayOfDictionary];
-//        [dataStore fetchData];
-//
-    //    NSMutableArray *array = [NSMutableArray new];
-    //    NSInteger i = 0;
-    //    for (Book *book in dataStore.managedBookObjects) {
-    //        PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookContainingCoverImageWithBook:book];
-    //        if (realmBook) {
-    //            //            [array addObject:realmBook];
-    //            NSLog(@"%lu",i+1);
-    //            i++;
-    //        }
-    //
-    //    }
-    //
-    //       NSLog(@"%lu",array.count);
-    
-//        NSLog(@"Final book data from core data: %@",dataStore.managedBookObjects);
-//        NSLog(@"End store to core data");
-    //End test
-    
-//    PGBGoodreadsAPIClient *testGoodReadsAPI = [[PGBGoodreadsAPIClient alloc] init];
-//    NSLog(@"Goodreadsapiclient dummylogin about to be called\n.");
-//    [PGBGoodreadsAPIClient getReviewsWithCompletion:@"Haruki Murakami" bookTitle:@"Norwegian Wood" completion:nil];
-//    
-//    PGBGoodreadsAPIClient *testingXMLParsing = [[PGBGoodreadsAPIClient alloc] init];
-//    NSLog(@"%@", [testingXMLParsing methodToGetDescriptions]);
-
-    // Override point for customization after application launch.
-    
-    // [Optional] Power your app with Local Datastore. For more info, go to
-    // https://parse.com/docs/ios_guide#localdatastore/iOS
     [Parse enableLocalDatastore];
     
     
@@ -134,11 +48,6 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    
-    //update parse when app go into background
-    NSLog(@"app will resign active background");
     if ([PFUser currentUser]) {
         [PGBRealmBook updateParseWithRealmBookDataWithCompletion:^(BOOL success) {
             if (success) {
@@ -156,7 +65,7 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -166,8 +75,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    // Saves changes in the application's managed object context before the application terminates.
+
     [self saveContext];
 }
 
@@ -178,12 +86,10 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (NSURL *)applicationDocumentsDirectory {
-    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.github.learn-co-students.ios-0915-team-radio.ProjectBook" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 - (NSManagedObjectModel *)managedObjectModel {
-    // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
@@ -193,12 +99,10 @@
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-    // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it.
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
     
-    // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"ProjectBook.sqlite"];
@@ -212,8 +116,7 @@
         dict[NSLocalizedFailureReasonErrorKey] = failureReason;
         dict[NSUnderlyingErrorKey] = error;
         error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
-        // Replace this with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
@@ -223,7 +126,6 @@
 
 
 - (NSManagedObjectContext *)managedObjectContext {
-    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
     }
@@ -244,8 +146,7 @@
     if (managedObjectContext != nil) {
         NSError *error = nil;
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
@@ -266,15 +167,9 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
-    NSLog(@"What is in userInfo here: %@", userInfo);
-    // NOTE: while stepping through this comes back to the first line after running through
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NewMessage"
                                                         object:self
                                                       userInfo:userInfo];
-    
-    //send a notification to NSNotificationCenter:
-//    [[NSNotificationCenter defaultCenter] postNotificationName: self.currentChatRoom.objectId object:self];
 }
 
 @end
