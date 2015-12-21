@@ -9,8 +9,8 @@ Novel was designed to allow users to search eBooks from Project Gutenbergs’ da
 
 All downloaded books will be exported and opened in iBooks. 
 
-+# Demo
- +[![IMAGE ALT TEXT](demo.png)](https://vimeo.com/149596939 "Demo Video")
+#Demo
+[![IMAGE ALT TEXT](demo.png)](https://vimeo.com/149596939 "Demo Video")
 
 #Author Information
 
