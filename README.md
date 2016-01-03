@@ -1,5 +1,5 @@
 #Novel
-
+Available at App Store - https://itunes.apple.com/us/app/id1069162476
 
 #What is it?
 
