@@ -35,8 +35,8 @@
 @end
 
 @implementation PGBSearchViewController
-- (void)viewDidLoad {
-    
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     [self loadDefaultView];
@@ -51,12 +51,14 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     self.bookSearchBar.hidden = NO;
 }
 
-- (void)loadDefaultView{
+- (void)loadDefaultView
+{
     //create search bar
     self.bookSearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 10, self.navigationController.navigationBar.bounds.size.width, self.navigationController.navigationBar.bounds.size.height/2)];
     self.bookSearchBar.searchBarStyle = UISearchBarStyleMinimal;
@@ -86,61 +88,14 @@
     }];
     
     //create book genre buttons into stack view
-    UIButton *fictionButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [fictionButton addTarget:self
-                      action:@selector(fictionButtonTapped:)
-            forControlEvents:UIControlEventTouchUpInside];
-    [fictionButton setTitle:@"Fiction" forState:UIControlStateNormal];
-    fictionButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-    
-    UIButton *romanceButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [romanceButton addTarget:self
-                      action:@selector(romanceButtonTapped:)
-            forControlEvents:UIControlEventTouchUpInside];
-    [romanceButton setTitle:@"Romance" forState:UIControlStateNormal];
-    romanceButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-    
-    UIButton *dramaButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [dramaButton addTarget:self
-                     action:@selector(dramaButtonTapped:)
-           forControlEvents:UIControlEventTouchUpInside];
-    [dramaButton setTitle:@"Drama" forState:UIControlStateNormal];
-    dramaButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-    
-    UIButton *historyButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [historyButton addTarget:self
-                    action:@selector(historyButtonTapped:)
-          forControlEvents:UIControlEventTouchUpInside];
-    [historyButton setTitle:@"History" forState:UIControlStateNormal];
-    historyButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-    
-    UIButton *comedyButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [comedyButton addTarget:self
-                      action:@selector(comedyButtonTapped:)
-            forControlEvents:UIControlEventTouchUpInside];
-    [comedyButton setTitle:@"Comedy" forState:UIControlStateNormal];
-    comedyButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-    
-    UIButton *operaButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [operaButton addTarget:self
-                     action:@selector(operaButtonTapped:)
-           forControlEvents:UIControlEventTouchUpInside];
-    [operaButton setTitle:@"Opera" forState:UIControlStateNormal];
-    operaButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-    
-    UIButton *biographyButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [biographyButton addTarget:self
-                     action:@selector(biographyButtonTapped:)
-           forControlEvents:UIControlEventTouchUpInside];
-    [biographyButton setTitle:@"Biography" forState:UIControlStateNormal];
-    biographyButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-    
-    UIButton *childrenButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [childrenButton addTarget:self
-                     action:@selector(childrenButtonTapped:)
-           forControlEvents:UIControlEventTouchUpInside];
-    [childrenButton setTitle:@"Children" forState:UIControlStateNormal];
-    childrenButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    UIButton *fictionButton = [self createGenreButtonWithTitle:@"Fiction"];
+    UIButton *romanceButton = [self createGenreButtonWithTitle:@"Romance"];
+    UIButton *dramaButton = [self createGenreButtonWithTitle:@"Drama"];
+    UIButton *historyButton = [self createGenreButtonWithTitle:@"History"];
+    UIButton *comedyButton = [self createGenreButtonWithTitle:@"Comedy"];
+    UIButton *operaButton = [self createGenreButtonWithTitle:@"Opera"];
+    UIButton *biographyButton = [self createGenreButtonWithTitle:@"Biography"];
+    UIButton *childrenButton = [self createGenreButtonWithTitle:@"Children"];
     
     //adding buttons to stack view
     UIStackView *genreButtonStackView = [[UIStackView alloc]init];
@@ -167,65 +122,39 @@
 }
 
 
--(void)fictionButtonTapped:(UIButton *)sender {
-    self.bookSearchBar.text = @"fiction";
+- (void)genreButtonTapped:(UIButton *)sender
+{
+    self.bookSearchBar.text = sender.titleLabel.text;
     [self.bookSearchBar becomeFirstResponder];
     [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
 }
 
--(void)romanceButtonTapped:(UIButton *)sender {
-    self.bookSearchBar.text = @"romance";
-    [self.bookSearchBar becomeFirstResponder];
-    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
+- (UIButton *)createGenreButtonWithTitle:(NSString *)title
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setTitle:title forState:UIControlStateNormal];
+    button.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    
+    [button addTarget:self
+                      action:@selector(genreButtonTapped:)
+            forControlEvents:UIControlEventTouchUpInside];
+    
+    return button;
 }
-
--(void)dramaButtonTapped:(UIButton *)sender {
-    self.bookSearchBar.text = @"drama";
-    [self.bookSearchBar becomeFirstResponder];
-    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
-}
-
--(void)historyButtonTapped:(UIButton *)sender {
-    self.bookSearchBar.text = @"history";
-    [self.bookSearchBar becomeFirstResponder];
-    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
-}
-
--(void)comedyButtonTapped:(UIButton *)sender {
-    self.bookSearchBar.text = @"comedy";
-    [self.bookSearchBar becomeFirstResponder];
-    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
-}
-
--(void)operaButtonTapped:(UIButton *)sender {
-    self.bookSearchBar.text = @"opera";
-    [self.bookSearchBar becomeFirstResponder];
-    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
-}
-
--(void)biographyButtonTapped:(UIButton *)sender {
-    self.bookSearchBar.text = @"biography";
-    [self.bookSearchBar becomeFirstResponder];
-    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
-}
-
--(void)childrenButtonTapped:(UIButton *)sender {
-    self.bookSearchBar.text = @"children";
-    [self.bookSearchBar becomeFirstResponder];
-    [self searchBar:self.bookSearchBar textDidChange:self.bookSearchBar.text];
-}
-
 
 #pragma UITableView DataSource Method ::
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.books.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     if (tableView == self.bookTableView) {
         
@@ -248,7 +177,8 @@
     return [[UITableViewCell alloc]init];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     [self.bookSearchBar resignFirstResponder];
     self.bookSearchBar.hidden = YES;
@@ -257,7 +187,8 @@
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     
     PGBBookViewController *bookPageVC = segue.destinationViewController;
 
@@ -269,7 +200,8 @@
 
 #pragma UISearchBar Method::
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
     if (searchBar == self.bookSearchBar) {
         if (!self.bookSearchBar.text.length) {
             self.defaultContentView.hidden = NO;
@@ -277,7 +209,8 @@
     }
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
     if (searchBar == self.bookSearchBar) {
         if (self.bookSearchBar.isFirstResponder) {
             self.defaultContentView.hidden = YES;
@@ -319,13 +252,15 @@
     });
 }
 
-- (void) hideKeyboard {
+- (void) hideKeyboard
+{
     self.defaultContentView.hidden = NO;
     [self.bookSearchBar resignFirstResponder];
 }
 
 #pragma UIScroll View Method::
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
     if (scrollView == self.bookTableView && self.bookSearchBar.text.length) {
         [self.bookSearchBar resignFirstResponder];
     }
