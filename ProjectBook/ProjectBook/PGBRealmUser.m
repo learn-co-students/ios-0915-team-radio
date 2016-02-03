@@ -10,7 +10,8 @@
 
 @implementation PGBRealmUser
 
-- (instancetype)init{
+- (instancetype)init
+{
     self = [self initWithUsername:@"" firstname:@"" lastname:@"" location:@"" email:@""];
     return self;
 }
@@ -19,7 +20,8 @@
                        firstname:(NSString *)firstname
                         lastname:(NSString *)lastname
                         location:(NSString *)location
-                           email:(NSString *)email{
+                           email:(NSString *)email
+{
     self = [super init];
     if (self) {
         _username = username;
@@ -32,7 +34,8 @@
 }
 
 
-+ (void)storeUserProbileDataWithUser:(PGBRealmUser *)user{
++ (void)storeUserProbileDataWithUser:(PGBRealmUser *)user
+{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
@@ -40,7 +43,8 @@
     [realm commitWriteTransaction];
 }
 
-+ (void)deleteUserProfileDataForUser:(PGBRealmUser *)user{
++ (void)deleteUserProfileDataForUser:(PGBRealmUser *)user
+{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
@@ -48,7 +52,8 @@
     [realm commitWriteTransaction];
 }
 
-+ (void)deleteAllUserProfileData{
++ (void)deleteAllUserProfileData
+{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
@@ -56,21 +61,11 @@
     [realm commitWriteTransaction];
 }
 
-+ (RLMResults *)getUserProfileData{
++ (RLMResults *)getUserProfileData
+{
     RLMResults *user = (RLMResults *)[[PGBRealmUser allObjects]firstObject];
     return user;
 }
-
-
-//// books should presist in the phone, one to many relationship is not really needed
-//- (void)storeUserBookDataWith:(PGBRealmBook *)book{
-//    RLMRealm *realm = [RLMRealm defaultRealm];
-//
-//    [realm beginWriteTransaction];
-//   // PGBRealmBook *newBook = [[PGBRealmBook alloc]initWithTitle:@"Hunger Games"];
-//    [realm addObject:book];
-//    [realm commitWriteTransaction];
-//}
 
 
 @end

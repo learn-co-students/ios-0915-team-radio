@@ -12,7 +12,8 @@
 @implementation PGBDataStore
 @synthesize managedObjectContext = _managedObjectContext;
 
-+ (instancetype)sharedDataStore {
++ (instancetype)sharedDataStore
+{
     static PGBDataStore *_sharedDataStore = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -87,7 +88,6 @@
 
 - (void) generateTestDataWithArrayOfBooks:(NSArray *)arrayOfDictioanries
 {
-
     for (NSDictionary *book in arrayOfDictioanries) {
         Book *newBook = [NSEntityDescription insertNewObjectForEntityForName:@"Book" inManagedObjectContext:self.managedObjectContext];
         newBook.eBookAuthors = book[@"eBookAuthors"];
@@ -108,7 +108,6 @@
         newBook.eBookSearchTerms = [NSString stringWithFormat:@"%@ %@ %@ %@", lowerCaseTitles, lowerCaseFriendlyTitles, lowerCaseAuthors, lowerCaseGenres];
     }
     
-    // save and refetch
     [self saveContext];
     [self fetchData];
 }

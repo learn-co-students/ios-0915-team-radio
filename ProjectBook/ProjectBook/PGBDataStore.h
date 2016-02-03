@@ -14,12 +14,14 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSArray *managedBookObjects;
 
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
-- (void)fetchData;
-
 + (instancetype) sharedDataStore;
+
+- (void)saveContext;
+- (void)fetchData;
+- (NSURL *)applicationDocumentsDirectory;
 - (void) generateTestDataWithArrayOfBooks:(NSArray *)arrayOfDictioanries;
+
+
 @end
 
 

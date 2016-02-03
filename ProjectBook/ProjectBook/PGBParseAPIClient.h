@@ -12,8 +12,8 @@
 
 @interface PGBParseAPIClient : NSObject
 
-+(void)fetchUserProfileDataWithUserObject:(PFObject *)user andCompletion:(void (^)(PFObject *data))completionBlock;
-+(void)fetchUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(NSArray *books))completionBlock;
-+(void)storeUserBookDataWithUserObject:(PFObject *)userObject realmBookObject:(PGBRealmBook *)realmBook andCompletion:(void (^)(PFObject *bookObject))completionBlock;
-+(void)deleteUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(BOOL success))completionBlock;
++ (void)fetchUserProfileDataWithUserObject:(PFObject *)user andCompletion:(void (^)(PFObject *data))completionBlock;
++ (void)fetchUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(NSArray *books))completionBlock;
++ (void)storeUserBookDataWithUserObject:(PFObject *)userObject realmBookObject:(PGBRealmBook *)realmBook andCompletion:(void (^)(PFObject *bookObject))completionBlock;
++ (void)deleteUserBookDataWithUserObject:(PFObject *)userObject andCompletion:(void (^)(BOOL success))completionBlock;
 @end

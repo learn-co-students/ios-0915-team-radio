@@ -13,8 +13,10 @@
 
 @implementation PGBRealmBook
 
-- (instancetype)init{
+- (instancetype)init
+{
     self = [self initWithTitle:@"" author:@"" genre:@"" language:@"" friendlyTitle:@"" downloadURL:@"" bookDescription:@"" ebookID:@"" isDownloaded:0 isBookmarked:0 bookCoverData:[[NSData alloc]init]];
+    
     return self;
 }
 
@@ -28,7 +30,8 @@
                       ebookID:(NSString *)ebookID
                  isDownloaded:(BOOL)isDownloaded
                  isBookmarked:(BOOL)isBookmarked
-                bookCoverData:(NSData *)bookCoverData {
+                bookCoverData:(NSData *)bookCoverData
+{
     
     self = [super init];
     if (self) {
@@ -44,8 +47,8 @@
         _isBookmarked = isBookmarked;
         _bookCoverData = bookCoverData;
     }
-    return self;
     
+    return self;
 }
 
 + (NSString *)primaryKey
@@ -53,11 +56,12 @@
     return @"ebookID";
 }
 
-+ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock andCompletion:(void (^)())completionBlock{
++ (void)storeUserBookDataWithBookwithUpdateBlock:(PGBRealmBook *(^)())updateBlock andCompletion:(void (^)())completionBlock
+{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
-
+    
     PGBRealmBook *book = updateBlock();
     [realm addOrUpdateObject:book];
     
@@ -66,7 +70,8 @@
     completionBlock();
 }
 
-+ (void)storeUserBookDataWithBooks:(NSArray *)books andCompletion:(void (^)())completionBlock{
++ (void)storeUserBookDataWithBooks:(NSArray *)books andCompletion:(void (^)())completionBlock
+{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
@@ -74,13 +79,14 @@
     for (PGBRealmBook *book in books) {
         [realm addOrUpdateObject:book];
     }
-
+    
     [realm commitWriteTransaction];
     
     completionBlock();
 }
 
-+ (void)storeUserBookDataWithBook:(PGBRealmBook *)book{
++ (void)storeUserBookDataWithBook:(PGBRealmBook *)book
+{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
@@ -90,7 +96,8 @@
     [realm commitWriteTransaction];
 }
 
-+ (void)deleteUserBookDataForBook:(PGBRealmBook *)book andCompletion:(void (^)())completionBlock{
++ (void)deleteUserBookDataForBook:(PGBRealmBook *)book andCompletion:(void (^)())completionBlock
+{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
@@ -100,7 +107,8 @@
     completionBlock();
 }
 
-+ (void)deleteAllUserBookDataWithCompletion:(void (^)())completionBlock{
++ (void)deleteAllUserBookDataWithCompletion:(void (^)())completionBlock
+{
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm beginWriteTransaction];
@@ -110,12 +118,14 @@
     completionBlock();
 }
 
-+ (RLMResults *)getUserBookData{
++ (RLMResults *)getUserBookData
+{
     RLMResults *books = [PGBRealmBook allObjects];
     return books;
 }
 
-+ (NSArray *)getUserBookDataInArray{
++ (NSArray *)getUserBookDataInArray
+{
     RLMResults *books = [PGBRealmBook allObjects];
     
     NSMutableArray *result = [[NSMutableArray alloc]init];
@@ -125,25 +135,8 @@
     return result;
 }
 
-+ (NSArray *)getUserBookDataInArrayIncludingCoverData{
-    RLMResults *books = [PGBRealmBook allObjects];
-    
-    NSMutableArray *result = [[NSMutableArray alloc]init];
-    for (PGBRealmBook *book in books) {
-        
-        NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:book.ebookID]];
-        
-        if (bookCoverData) {
-            book.bookCoverData = bookCoverData;
-        }
-        
-        [result addObject:book];
-    }
-    return result;
-}
-
-+(PGBRealmBook *)generateBooksWitheBookID:(NSString *)ebookID {
-    
++ (PGBRealmBook *)generateBooksWitheBookID:(NSString *)ebookID
+{
     PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
     
     NSPredicate *filter = [NSPredicate predicateWithFormat:@"eBookNumbers == %@", ebookID];
@@ -173,13 +166,12 @@
 
 - (BOOL)checkFriendlyTitleIfItHasAuthor:(NSString *)friendlyTitle
 {
-    if ([friendlyTitle containsString:@"by"])
-    {
+    if ([friendlyTitle containsString:@"by"]) {
         NSMutableArray *wordsInFriendlyTitleInArray = [[friendlyTitle componentsSeparatedByString: @" "] mutableCopy];
         NSInteger index = [wordsInFriendlyTitleInArray indexOfObject:@"by"];
         NSInteger afterIndex = index + 1;
-        if (afterIndex < wordsInFriendlyTitleInArray.count)
-        {
+        
+        if (afterIndex < wordsInFriendlyTitleInArray.count) {
             return YES;
         }
     }
@@ -194,25 +186,22 @@
     NSMutableString *authorName = [NSMutableString new];
     NSMutableArray *newArray = [[NSMutableArray alloc]init];
     
-    
-    
-    
     /*
      if (![coreDataBook.eBookFriendlyTitles isEqualToString:@""])
-    
-    here, the friendly title does contain the string "by", and so is of the correct format
-    next step is to get the author of the book without the title
-    this means we must get all the strings after the word "by"
-    
-    we find the index of element "by", and then append every element after that index to a string, in order to get the book title
+     
+     here, the friendly title does contain the string "by", and so is of the correct format
+     next step is to get the author of the book without the title
+     this means we must get all the strings after the word "by"
+     
+     we find the index of element "by", and then append every element after that index to a string, in order to get the book title
      */
     NSUInteger indexOfStringBy = [wordsInFriendlyTitleInArray indexOfObject:@"by"];
     
     /*
      here we remove by, and everything before it, now the array is just the authors name
      */
-        [wordsInFriendlyTitleInArray removeObjectsInRange:NSMakeRange (0, indexOfStringBy+1)];
-
+    [wordsInFriendlyTitleInArray removeObjectsInRange:NSMakeRange (0, indexOfStringBy+1)];
+    
     for (NSString *string in wordsInFriendlyTitleInArray) {
         if (![string isEqualToString:@""]){
             BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[string characterAtIndex:0]];
@@ -221,7 +210,7 @@
             }
         }
     }
-//      append the array elements (authors name) to a string
+    //      append the array elements (authors name) to a string
     if (newArray.count > 1) {
         for (NSString *nameOfAuthor in newArray)
         {
@@ -242,9 +231,8 @@
     return nil;
 }
 
-
-
--(NSString *)parseAuthor:(NSString *)author {
+- (NSString *)parseAuthor:(NSString *)author
+{
     author = [author stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     NSArray *unnecesssary = @[ @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"0", @"-", @"?", @"(", @")", @"BC"];
@@ -293,46 +281,19 @@
     return author;
 }
 
-+(BOOL)validateBookDataWithRealmBook:(PGBRealmBook *)realmBook{
-    
-    if (realmBook.title.length == 0 ||
-        realmBook.author.length == 0 ||
-        realmBook.ebookID.length == 0)
-    {
++ (BOOL)validateBookDataWithRealmBook:(PGBRealmBook *)realmBook
+{
+    if (!realmBook.title.length ||
+        !realmBook.author.length ||
+        !realmBook.ebookID.length) {
         return NO;
     }
     
     return YES;
 }
 
-
-+(PGBRealmBook *)createPGBRealmBookContainingCoverImageWithBook:(Book *)coreDataBook {
-    
-    PGBRealmBook *realmBook = [PGBRealmBook createPGBRealmBookWithBook:coreDataBook];
-    
-    NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:coreDataBook.eBookNumbers]];
-    realmBook.bookCoverData = bookCoverData;
-    
-    return realmBook;
-}
-
-+(NSURL *)createBookCoverURL:(NSString *)eBookNumber {
-    
-    if (eBookNumber.length) {
-        
-        NSString *eBookNumberParsed = [eBookNumber substringFromIndex:5];
-        NSString *bookCoverURL = [NSString stringWithFormat:@"https://www.gutenberg.org/cache/epub/%@/pg%@.cover.medium.jpg", eBookNumberParsed, eBookNumberParsed];
-        
-        NSURL *url = [NSURL URLWithString:bookCoverURL];
-        
-        return url;
-    }
-    
-    return nil;
-}
-
-+(void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock {
-    
++ (void)fetchUserBookDataFromParseStoreToRealmWithCompletion:(void (^)())completionBlock
+{
     [PGBParseAPIClient fetchUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^(NSArray *books) {
         for (NSDictionary *book in books) {
             
@@ -350,45 +311,32 @@
                 realmBook.isDownloaded = [book[@"isDownloaded"] integerValue];
                 realmBook.isBookmarked = [book[@"isBookmarked"] integerValue];
                 
-                if (realmBook.ebookID.length)
-                {
-                    NSData *bookCoverData = [NSData dataWithContentsOfURL:[PGBRealmBook createBookCoverURL:realmBook.ebookID]];
-                    
-                    if (bookCoverData)
-                    {
-                        realmBook.bookCoverData = bookCoverData;
-                    }
-                    
-                    NSLog(@"begin storing to realm");
-                    [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
-                        return realmBook;
-                    } andCompletion:^{
-                        completionBlock();
-                    }];
-                    
-                }
+                [PGBRealmBook storeUserBookDataWithBookwithUpdateBlock:^PGBRealmBook *{
+                    return realmBook;
+                } andCompletion:^{
+                    completionBlock();
+                }];
             }];
         }
-        
-        NSLog(@"end storing to realm");
     }];
 }
 
-+(void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock {
-    
++ (void)storeUserBookDataFromRealmStoreToParseWithRealmBook:(PGBRealmBook *)realmBook andCompletion:(void (^)())completionBlock
+{
     [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
         completionBlock();
     }];
 }
 
-+(void)updateParseWithRealmBookDataWithCompletion:(void (^)(BOOL success))completionBlock{
++ (void)updateParseWithRealmBookDataWithCompletion:(void (^)(BOOL success))completionBlock
+{
     [PGBParseAPIClient deleteUserBookDataWithUserObject:[PFUser currentUser] andCompletion:^(BOOL success) {
         if (success) {
             NSArray *booksInRealm = [PGBRealmBook getUserBookDataInArray];
             
             if (booksInRealm.count) {
                 for (PGBRealmBook *realmBook in booksInRealm) {
-    
+                    
                     [PGBParseAPIClient storeUserBookDataWithUserObject:[PFUser currentUser] realmBookObject:realmBook andCompletion:^(PFObject *bookObject) {
                         completionBlock(YES);
                     }];
@@ -402,7 +350,8 @@
     }];
 }
 
-+(PGBRealmBook *)findRealmBookInRealDatabaseWithRealmBook:(PGBRealmBook *)bookToBeFound {
++ (PGBRealmBook *)findRealmBookInRealDatabaseWithRealmBook:(PGBRealmBook *)bookToBeFound
+{
     RLMResults *result = [PGBRealmBook objectsWhere:@"ebookID = %@",bookToBeFound.ebookID];
     
     return [result firstObject];
