@@ -256,10 +256,10 @@
 			children = (
 				4C7026921C6192020026569B /* BookPage */,
 				4C70268F1C61918D0026569B /* Home */,
-				4C7026901C6191B10026569B /* Search */,
-				4C7026941C6192950026569B /* Social */,
 				4C7026911C6191D90026569B /* Library */,
 				4C7026931C6192400026569B /* Profile */,
+				4C7026901C6191B10026569B /* Search */,
+				4C7026941C6192950026569B /* Social */,
 				4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarController.h */,
 				4C3FDE901C0FD95F00F5B8FA /* PGBTabBarController.m */,
 			);
@@ -314,10 +314,10 @@
 		4C7026901C6191B10026569B /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				89B2FE0A1C1CCE070048889B /* PGBSearchCustomTableCell.h */,
-				89B2FE0B1C1CCE070048889B /* PGBSearchCustomTableCell.m */,
 				4C9D16611C0CF04800DBF989 /* PGBSearchViewController.h */,
 				4C9D16621C0CF04800DBF989 /* PGBSearchViewController.m */,
+				89B2FE0A1C1CCE070048889B /* PGBSearchCustomTableCell.h */,
+				89B2FE0B1C1CCE070048889B /* PGBSearchCustomTableCell.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";

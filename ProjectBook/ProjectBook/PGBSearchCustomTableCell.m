@@ -10,8 +10,6 @@
 
 @interface PGBSearchCustomTableCell ()
 
-
-
 @end
 
 @implementation PGBSearchCustomTableCell
