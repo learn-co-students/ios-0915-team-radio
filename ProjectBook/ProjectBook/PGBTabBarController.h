@@ -1,5 +1,5 @@
 //
-//  PGBTabBarViewController.h
+//  PGBTabBarController.h
 //  ProjectBook
 //
 //  Created by Wo Jun Feng on 12/2/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PGBTabBarViewController : UITabBarController
+@interface PGBTabBarController : UITabBarController
 
 @end

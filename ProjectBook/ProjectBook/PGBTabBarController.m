@@ -1,20 +1,20 @@
 //
-//  PGBTabBarViewController.m
+//  PGBTabBarController.m
 //  ProjectBook
 //
 //  Created by Wo Jun Feng on 12/2/15.
 //  Copyright © 2015 FIS. All rights reserved.
 //
 
-#import "PGBTabBarViewController.h"
+#import "PGBTabBarController.h"
 #import <IonIcons.h>
 #import <ChameleonFramework/Chameleon.h>
 
-@interface PGBTabBarViewController ()
+@interface PGBTabBarController ()
 
 @end
 
-@implementation PGBTabBarViewController
+@implementation PGBTabBarController
 
 - (void)viewDidLoad
 {

@@ -11,7 +11,7 @@
 		4C25FFA61C03B7E200B5C8E3 /* Book+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFA31C03B7E200B5C8E3 /* Book+CoreDataProperties.m */; };
 		4C25FFA71C03B7E200B5C8E3 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFA51C03B7E200B5C8E3 /* Book.m */; };
 		4C25FFAB1C03B83B00B5C8E3 /* PGBDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25FFAA1C03B83B00B5C8E3 /* PGBDataStore.m */; };
-		4C3FDE911C0FD95F00F5B8FA /* PGBTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */; };
+		4C3FDE911C0FD95F00F5B8FA /* PGBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FDE901C0FD95F00F5B8FA /* PGBTabBarController.m */; };
 		4C5D94791BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */; };
 		4C5D947E1BFE389A0086DB5F /* PGBLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D947D1BFE389A0086DB5F /* PGBLibraryViewController.m */; };
 		4C6476A61C23687F0087DA9A /* PGBConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6476A51C23687F0087DA9A /* PGBConstants.m */; };
@@ -101,8 +101,8 @@
 		4C25FFA51C03B7E200B5C8E3 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		4C25FFA91C03B83B00B5C8E3 /* PGBDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBDataStore.h; sourceTree = "<group>"; };
 		4C25FFAA1C03B83B00B5C8E3 /* PGBDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBDataStore.m; sourceTree = "<group>"; };
-		4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBTabBarViewController.h; sourceTree = "<group>"; };
-		4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBTabBarViewController.m; sourceTree = "<group>"; };
+		4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBTabBarController.h; sourceTree = "<group>"; };
+		4C3FDE901C0FD95F00F5B8FA /* PGBTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBTabBarController.m; sourceTree = "<group>"; };
 		4C5D94781BFE2E3E0086DB5F /* MyBooksStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyBooksStoryboard.storyboard; sourceTree = "<group>"; };
 		4C5D947C1BFE389A0086DB5F /* PGBLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBLibraryViewController.h; sourceTree = "<group>"; };
 		4C5D947D1BFE389A0086DB5F /* PGBLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBLibraryViewController.m; sourceTree = "<group>"; };
@@ -254,14 +254,14 @@
 		4C58DDE11C1BC18F00438AB0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4C7026941C6192950026569B /* Social */,
-				4C7026931C6192400026569B /* Profile */,
 				4C7026921C6192020026569B /* BookPage */,
 				4C70268F1C61918D0026569B /* Home */,
 				4C7026901C6191B10026569B /* Search */,
+				4C7026941C6192950026569B /* Social */,
 				4C7026911C6191D90026569B /* Library */,
-				4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarViewController.h */,
-				4C3FDE901C0FD95F00F5B8FA /* PGBTabBarViewController.m */,
+				4C7026931C6192400026569B /* Profile */,
+				4C3FDE8F1C0FD95F00F5B8FA /* PGBTabBarController.h */,
+				4C3FDE901C0FD95F00F5B8FA /* PGBTabBarController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -757,7 +757,7 @@
 				8964243C1C163C3D00FBB988 /* PGBChatTableViewCell.m in Sources */,
 				4C9597AB1BFBEB2000BBD558 /* PGBRealmUser.m in Sources */,
 				4C094AEB1C167ECE00F21208 /* PGBParseAPIClient.m in Sources */,
-				4C3FDE911C0FD95F00F5B8FA /* PGBTabBarViewController.m in Sources */,
+				4C3FDE911C0FD95F00F5B8FA /* PGBTabBarController.m in Sources */,
 				A77A08F91BFBE78700CA62F8 /* PGBparsingThroughText.m in Sources */,
 				4C25FFAB1C03B83B00B5C8E3 /* PGBDataStore.m in Sources */,
 				899A4D071C10A77200D499C4 /* PGBChatMessageVC.m in Sources */,
