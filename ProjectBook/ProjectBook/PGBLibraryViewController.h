@@ -1,5 +1,5 @@
 //
-//  PGBMyBookViewController.h
+//  PGBLibraryViewController.h
 //  ProjectBook
 //
 //  Created by Wo Jun Feng on 11/19/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PGBMyBookViewController : UIViewController 
+@interface PGBLibraryViewController : UIViewController 
 
 @end

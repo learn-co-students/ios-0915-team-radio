@@ -1,12 +1,12 @@
 //
-//  PGBMyBookViewController.m
+//  PGBLibraryViewController.m
 //  ProjectBook
 //
 //  Created by Wo Jun Feng on 11/19/15.
 //  Copyright © 2015 FIS. All rights reserved.
 //
 
-#import "PGBMyBookViewController.h"
+#import "PGBLibraryViewController.h"
 #import "PGBSearchCustomTableCell.h"
 #import "PGBRealmBook.h"
 #import "PGBBookViewController.h"
@@ -14,7 +14,7 @@
 #import <YYWebImage/YYWebImage.h>
 
 
-@interface PGBMyBookViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface PGBLibraryViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *bookSegmentControl;
 @property (weak, nonatomic) IBOutlet UITableView *bookTableView;
@@ -27,9 +27,10 @@
 
 @end
 
-@implementation PGBMyBookViewController
+@implementation PGBLibraryViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     [self.bookTableView registerNib:[UINib nibWithNibName:@"PGBSearchCustomTableCell" bundle:nil] forCellReuseIdentifier:@"SearchCustomCell"];
@@ -46,13 +47,8 @@
     [self loadTableViewContent];
 }
 
-
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
 
     self.bookSearchBar.text = @"";
@@ -67,7 +63,8 @@
     [self fetchBookFromRealm];
 }
 
-- (void)fetchBookFromRealm {
+- (void)fetchBookFromRealm
+{
     NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
     
     [bgQueue addOperationWithBlock:^{
@@ -84,7 +81,8 @@
 }
 
 
-- (void)fetchBookFromParse {
+- (void)fetchBookFromParse
+{
     NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
     
     [bgQueue addOperationWithBlock:^{
@@ -118,8 +116,8 @@
     }];
 }
 
-- (void)loadTableViewContent{
-    
+- (void)loadTableViewContent
+{
     if (self.bookSegmentControl.selectedSegmentIndex == 0) {
         self.searchFilter = [NSPredicate predicateWithFormat:@"isDownloaded == YES"];
         self.booksDisplayed = [[self.books filteredArrayUsingPredicate:self.searchFilter] mutableCopy];
@@ -127,10 +125,10 @@
         self.searchFilter = [NSPredicate predicateWithFormat:@"isBookmarked == YES"];
         self.booksDisplayed = [[self.books filteredArrayUsingPredicate:self.searchFilter] mutableCopy];
     }
-
 }
 
-- (IBAction)bookSegmentedControlSelected:(UISegmentedControl *)sender {
+- (IBAction)bookSegmentedControlSelected:(UISegmentedControl *)sender
+{
     
     if (self.bookSegmentControl.selectedSegmentIndex == 0) {
         
@@ -157,8 +155,8 @@
     
 }
 
-- (IBAction)searchButtonTapped:(id)sender {
-    
+- (IBAction)searchButtonTapped:(id)sender
+{
     [UITableView animateWithDuration:0.2 animations:^{
         [self.bookTableView setContentOffset:CGPointZero];
     } completion:^(BOOL finished) {
@@ -167,16 +165,18 @@
 }
 
 #pragma mark - Delegate Methods
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.booksDisplayed.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (tableView == self.bookTableView) {
         
         PGBSearchCustomTableCell *cell = (PGBSearchCustomTableCell *)[tableView dequeueReusableCellWithIdentifier:@"SearchCustomCell" forIndexPath:indexPath];
@@ -193,8 +193,8 @@
     return [[UITableViewCell alloc]init];
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
     if (![searchText isEqualToString:@""]) {
         if (self.bookSegmentControl.selectedSegmentIndex == 0) {
             self.searchFilter = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ AND isDownloaded == YES", searchText];
@@ -220,15 +220,18 @@
 
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
     [self.bookSearchBar resignFirstResponder];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [self performSegueWithIdentifier:@"bookDetailSegue" sender:nil];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     PGBBookViewController *bookPageVC = segue.destinationViewController;
     
     NSIndexPath *selectedIndexPath = self.bookTableView.indexPathForSelectedRow;
