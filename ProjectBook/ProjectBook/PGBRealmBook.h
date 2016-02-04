@@ -12,17 +12,17 @@
 
 @interface PGBRealmBook : RLMObject
 
-@property (strong, nonatomic)NSString *title;
-@property (strong, nonatomic)NSString *author;
-@property (strong, nonatomic)NSString *genre;
-@property (strong, nonatomic)NSString *language;
-@property (strong, nonatomic)NSString *friendlyTitle;
-@property (strong, nonatomic)NSString *downloadURL;
-@property (strong, nonatomic)NSString *bookDescription;
-@property (assign, nonatomic)NSString *ebookID;
-@property (assign, nonatomic)BOOL isDownloaded;
-@property (assign, nonatomic)BOOL isBookmarked;
-@property (strong, nonatomic)NSData *bookCoverData;
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *author;
+@property (strong, nonatomic) NSString *genre;
+@property (strong, nonatomic) NSString *language;
+@property (strong, nonatomic) NSString *friendlyTitle;
+@property (strong, nonatomic) NSString *downloadURL;
+@property (strong, nonatomic) NSString *bookDescription;
+@property (assign, nonatomic) NSString *ebookID;
+@property (assign, nonatomic) BOOL isDownloaded;
+@property (assign, nonatomic) BOOL isBookmarked;
+@property (strong, nonatomic) NSData *bookCoverData;
 
 - (instancetype)init;
 - (instancetype)initWithTitle:(NSString *)title

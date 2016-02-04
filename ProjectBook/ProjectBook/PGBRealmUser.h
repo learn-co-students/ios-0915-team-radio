@@ -12,11 +12,11 @@
 
 @interface PGBRealmUser : RLMObject
 
-@property (strong, nonatomic)NSString *username;
-@property (strong, nonatomic)NSString *firstname;
-@property (strong, nonatomic)NSString *lastname;
-@property (strong, nonatomic)NSString *location;
-@property (strong, nonatomic)NSString *email;
+@property (strong, nonatomic) NSString *username;
+@property (strong, nonatomic) NSString *firstname;
+@property (strong, nonatomic) NSString *lastname;
+@property (strong, nonatomic) NSString *location;
+@property (strong, nonatomic) NSString *email;
 
 - (instancetype)init;
 - (instancetype)initWithUsername:(NSString *)username

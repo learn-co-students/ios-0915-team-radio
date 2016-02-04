@@ -19,7 +19,7 @@
 - (void)saveContext;
 - (void)fetchData;
 - (NSURL *)applicationDocumentsDirectory;
-- (void) generateTestDataWithArrayOfBooks:(NSArray *)arrayOfDictioanries;
+- (void)generateTestDataWithArrayOfBooks:(NSArray *)arrayOfDictioanries;
 
 
 @end

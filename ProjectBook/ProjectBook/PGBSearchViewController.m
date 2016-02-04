@@ -25,10 +25,10 @@
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) PGBDataStore *dataStore;
 
-@property (strong, nonatomic)UITapGestureRecognizer *dismissKeyboardGesture;
+@property (strong, nonatomic) UITapGestureRecognizer *dismissKeyboardGesture;
 
-@property (nonatomic, strong)NSOperationQueue *bgQueue;
-@property (nonatomic, strong)NSOperationQueue *bookCoverBgQueue;
+@property (nonatomic, strong) NSOperationQueue *bgQueue;
+@property (nonatomic, strong) NSOperationQueue *bookCoverBgQueue;
 
 @property (nonatomic, strong) NSTimer *searchTimer;
 

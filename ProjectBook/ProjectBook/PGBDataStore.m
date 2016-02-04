@@ -86,7 +86,7 @@
 //    }
 }
 
-- (void) generateTestDataWithArrayOfBooks:(NSArray *)arrayOfDictioanries
+- (void)generateTestDataWithArrayOfBooks:(NSArray *)arrayOfDictioanries
 {
     for (NSDictionary *book in arrayOfDictioanries) {
         Book *newBook = [NSEntityDescription insertNewObjectForEntityForName:@"Book" inManagedObjectContext:self.managedObjectContext];
