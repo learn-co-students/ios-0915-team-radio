@@ -42,6 +42,8 @@ static dispatch_once_t onceToken;
 
 @implementation PGBHomeViewController
 
+#pragma mark VCLifeCycle Methods
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -88,7 +90,9 @@ static dispatch_once_t onceToken;
     [self.popularCollectionView setDataSource:self];
     
     //xib
-    [self.popularCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
+//    [self.popularCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
+    [self.popularCollectionView registerClass:[PGBCustomBookCollectionViewCell class] forCellWithReuseIdentifier:@"PopularBookCover"];
+    
     
     self.popularCollectionView.backgroundColor = [UIColor whiteColor];
     self.popularCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
@@ -99,7 +103,9 @@ static dispatch_once_t onceToken;
     [self.classicsCollectionView setDataSource:self];
     
     //xib
-    [self.classicsCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
+//    [self.classicsCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
+    [self.classicsCollectionView registerClass:[PGBCustomBookCollectionViewCell class] forCellWithReuseIdentifier:@"ClassicsBookCover"];
+    
     
     self.classicsCollectionView.backgroundColor = [UIColor whiteColor];
     self.classicsCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
@@ -111,7 +117,8 @@ static dispatch_once_t onceToken;
     [self.shakespeareCollectionView setDataSource:self];
     
     //xib
-    [self.shakespeareCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
+//    [self.shakespeareCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
+    [self.shakespeareCollectionView registerClass:[PGBCustomBookCollectionViewCell class] forCellWithReuseIdentifier:@"ShakespearBookCover"];
     
     self.shakespeareCollectionView.backgroundColor = [UIColor whiteColor];
     self.shakespeareCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
@@ -120,8 +127,6 @@ static dispatch_once_t onceToken;
     [self fetchBookFromParse];
     
 }
-
-
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -135,36 +140,6 @@ static dispatch_once_t onceToken;
     }
     
 }
-
-
--(void)fetchBookFromParse {
-    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
-    
-    [bgQueue addOperationWithBlock:^{
-        if ([PFUser currentUser]) {
-            
-            [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
-                NSLog(@"user data: %@", data);
-                
-                PFObject *user = data;
-                if (user) {
-                    
-                    [PGBRealmBook deleteAllUserBookDataWithCompletion:^{
-                        
-                        [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
-                            NSLog(@"successfully fetch book from parse");
-                            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-                            [center postNotificationName:@"StoringDataFromParseToRealm" object:nil];
-                        }];
-                        
-                    }];
-                }
-            }];
-            
-        }
-    }];
-}
-
 
 -(void)viewDidAppear:(BOOL)animated {
     
@@ -223,6 +198,36 @@ static dispatch_once_t onceToken;
     
 }
 
+#pragma mark Generate Books
+
+-(void)fetchBookFromParse {
+    NSOperationQueue *bgQueue = [[NSOperationQueue alloc]init];
+    
+    [bgQueue addOperationWithBlock:^{
+        if ([PFUser currentUser]) {
+            
+            [PGBParseAPIClient fetchUserProfileDataWithUserObject:[PFUser currentUser] andCompletion:^(PFObject *data) {
+                NSLog(@"user data: %@", data);
+                
+                PFObject *user = data;
+                if (user) {
+                    
+                    [PGBRealmBook deleteAllUserBookDataWithCompletion:^{
+                        
+                        [PGBRealmBook fetchUserBookDataFromParseStoreToRealmWithCompletion:^{
+                            NSLog(@"successfully fetch book from parse");
+                            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+                            [center postNotificationName:@"StoringDataFromParseToRealm" object:nil];
+                        }];
+                        
+                    }];
+                }
+            }];
+            
+        }
+    }];
+}
+
 - (void)generateBook {
     PGBDataStore *dataStore = [PGBDataStore sharedDataStore];
     [dataStore fetchData];
@@ -246,7 +251,8 @@ static dispatch_once_t onceToken;
     return url;
 }
 
-//collection view
+#pragma mark CollectionView methods
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     
@@ -261,59 +267,43 @@ static dispatch_once_t onceToken;
     return self.classicBooks.count;
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *reuseIdentifier;
+    if (collectionView == self.popularCollectionView) {
+        reuseIdentifier = @"PopularBookCover";
+    } else if (collectionView == self.classicsCollectionView) {
+        reuseIdentifier = @"ClassicsBookCover";
+    } else reuseIdentifier = @"ShakespearBookCover";
     
-    PGBCustomBookCollectionViewCell *cell = (PGBCustomBookCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:@"bookCoverCell" forIndexPath:indexPath];
     
-    if (collectionView == self.popularCollectionView)
-    {
+    PGBCustomBookCollectionViewCell *cell = (PGBCustomBookCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    
+    if (collectionView == self.popularCollectionView) {
         if (self.books.count != 0) {
-            if (indexPath.row < self.books.count)
-            {
+            if (indexPath.row < self.books.count) {
                 PGBRealmBook *book = self.books[indexPath.row];
-                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
-                
-                if (bookCoverImage) {
-                    cell.bookCover.image = bookCoverImage;
-                } else {
-                    cell.titleTV.text = book.title;
-                    cell.authorLabel.text = book.author;
-                }
+                cell.titleLabel.text = book.title;
+                cell.authorLabel.text = book.author;
             }
         }
         return cell;
         
     } else if (collectionView == self.classicsCollectionView) {
         if (self.classicBooks.count != 0) {
-            if (indexPath.row < self.classicBooks.count)
-            {
+            if (indexPath.row < self.classicBooks.count) {
                 PGBRealmBook *book = self.classicBooks[indexPath.row];
-                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
-                
-                if (bookCoverImage) {
-                    cell.bookCover.image = bookCoverImage;
-                } else {
-                    cell.titleTV.text = book.title;
-                    cell.authorLabel.text = book.author;
-                }
+                cell.titleLabel.text = book.title;
+                cell.authorLabel.text = book.author;
             }
         }
         return cell;
         
     } else if (collectionView == self.shakespeareCollectionView) {
         if (self.shakespeareBooks.count != 0) {
-            if (indexPath.row < self.shakespeareBooks.count)
-            {
+            if (indexPath.row < self.shakespeareBooks.count) {
                 PGBRealmBook *book = self.shakespeareBooks[indexPath.row];
-                UIImage *bookCoverImage = [UIImage imageWithData:book.bookCoverData];
-                
-                if (bookCoverImage) {
-                    cell.bookCover.image = bookCoverImage;
-                } else {
-                    cell.titleTV.text = book.title;
+                    cell.titleLabel.text = book.title;
                     cell.authorLabel.text = @"William Shakespeare";
-                }
             }
         }
         return cell;
@@ -324,11 +314,9 @@ static dispatch_once_t onceToken;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"bookSegue" sender:collectionView];
-    
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     PGBBookViewController *bookPageVC = segue.destinationViewController;
     
     NSArray *arrayOfIndexPaths;
@@ -353,7 +341,8 @@ static dispatch_once_t onceToken;
     
 }
 
-//login info
+#pragma mark Login Methods
+
 - (IBAction)loginButtonTouched:(id)sender {
     
     if (![PFUser currentUser]) { // No user logged in
@@ -484,6 +473,8 @@ static dispatch_once_t onceToken;
     return informationComplete;
     
 }
+
+#pragma mark Parse Methods
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {

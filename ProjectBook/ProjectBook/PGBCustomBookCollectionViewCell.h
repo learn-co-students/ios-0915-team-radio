@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Masonry/Masonry.h>
 
 @interface PGBCustomBookCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
-@property (weak, nonatomic) IBOutlet UITextView *titleTV;
-@property (weak, nonatomic) IBOutlet UIImageView *bookCover;
-@property (weak, nonatomic) IBOutlet UIView *overlayView;
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UILabel *authorLabel;
 
 @end
