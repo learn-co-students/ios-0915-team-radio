@@ -12,7 +12,7 @@
 @interface PGBReviewViewController ()
 
 @property (strong, nonatomic) NSMutableString *htmlString;
-@property (weak, nonatomic) IBOutlet UIView *webViewContainer;
+@property (strong, nonatomic) UIView *webViewContainer;
 
 @end
 
@@ -20,13 +20,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.webViewContainer = [UIView new];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.webViewContainer];
+    [self.webViewContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(64.0f);
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-113.0f);
+        make.right.mas_equalTo(self.view.mas_right);
+        make.left.mas_equalTo(self.view.mas_left);
+    }];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
--(void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     [self getReviewswithCompletion:^(BOOL success) {

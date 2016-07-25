@@ -177,14 +177,15 @@
     return [[UITableViewCell alloc]init];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.bookSearchBar resignFirstResponder];
     self.bookSearchBar.hidden = YES;
+    PGBBookViewController *bookPageVC = [[PGBBookViewController alloc] init];
+    PGBRealmBook *bookAtIndexPath = self.books[indexPath.row];
+    bookPageVC.book = bookAtIndexPath;
     
-    [self performSegueWithIdentifier:@"bookDetailSegue" sender:nil];
-    
+    [self.navigationController pushViewController:bookPageVC animated:YES];
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

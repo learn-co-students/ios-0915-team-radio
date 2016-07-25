@@ -170,7 +170,7 @@
     [self performSegueWithIdentifier:@"bookDetailFun" sender:self];
 }
 
--(JSQMessage *)messageCreatedAt:(NSDate *)date withText:(NSString *)text {
+- (JSQMessage *)messageCreatedAt:(NSDate *)date withText:(NSString *)text {
     for(JSQMessage *message in self.messagesInConversation) {
         if([message.date isEqual:date] && [message.text isEqualToString:text]) {
             return message;
@@ -180,7 +180,7 @@
     return nil;
 }
 
--(void)removeLocallySentMessagesAndMergeNewMessages:(NSArray *)messages {
+- (void)removeLocallySentMessagesAndMergeNewMessages:(NSArray *)messages {
     [self.messagesInConversation removeObjectsInArray:self.locallySentMessages];
     [self.locallySentMessages removeAllObjects];
     

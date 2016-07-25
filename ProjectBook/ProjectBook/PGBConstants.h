@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppDelegate.h"
 
+#ifndef PGBConstants_h
+#define kDeviceOS [[UIDevice currentDevice] systemVersion] floatValue]
+#define kScreenBound [[UIScreen mainScreen] bounds]
+#define iPadUI UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
+#define iPhoneUI UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone
+#endif
 @interface PGBConstants : NSObject
 
 extern NSString *const GOODREADS_KEY;

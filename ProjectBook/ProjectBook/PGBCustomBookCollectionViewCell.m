@@ -21,8 +21,6 @@
     _titleLabel.numberOfLines = 0;
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.adjustsFontSizeToFitWidth = YES;
-
-//    self.titleLabel.font = [UIFont fontWithName:@"Moon" size:14.0f];
     _titleLabel.textColor = [UIColor whiteColor];
     [self addSubview: _titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -31,13 +29,11 @@
         make.top.mas_equalTo(self.mas_top);
     }];
     
-    
     _authorLabel = [UILabel new];
     _authorLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _authorLabel.numberOfLines = 0;
     _authorLabel.textAlignment = NSTextAlignmentCenter;
     _authorLabel.adjustsFontSizeToFitWidth = YES;
-    //    self.titleLabel.font = [UIFont fontWithName:@"Moon" size:14.0f];
     _authorLabel.textColor = [UIColor whiteColor];
     [self addSubview:_authorLabel];
     [_authorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -48,5 +44,7 @@
     
     return self;
 }
+
+// TODO: add method to size text and line break appropriatly, will also fix deque with ine # issue
 
 @end

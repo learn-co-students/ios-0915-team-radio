@@ -17,13 +17,8 @@
 #import "PGBDataStore.h"
 #import "Book.h"
 #import "Reachability.h"
-
-#import <Masonry/Masonry.h>
-#import <AFNetworking/AFNetworking.h>
-#import <Availability.h>
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
-#import <MBProgressHUD/MBProgressHUD.h>
+#import "PGBImageTableViewCell.h"
+#import "PGBConstants.h"
 
 static dispatch_once_t onceToken;
 
@@ -84,44 +79,7 @@ static dispatch_once_t onceToken;
     self.dataStore = [PGBDataStore sharedDataStore];
     [self.dataStore fetchData];
     
-    //popular books
-    //delegate
-    [self.popularCollectionView setDelegate:self];
-    [self.popularCollectionView setDataSource:self];
-    
-    //xib
-//    [self.popularCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
-    [self.popularCollectionView registerClass:[PGBCustomBookCollectionViewCell class] forCellWithReuseIdentifier:@"PopularBookCover"];
-    
-    
-    self.popularCollectionView.backgroundColor = [UIColor whiteColor];
-    self.popularCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    
-    //classic books
-    //delegate
-    [self.classicsCollectionView setDelegate:self];
-    [self.classicsCollectionView setDataSource:self];
-    
-    //xib
-//    [self.classicsCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
-    [self.classicsCollectionView registerClass:[PGBCustomBookCollectionViewCell class] forCellWithReuseIdentifier:@"ClassicsBookCover"];
-    
-    
-    self.classicsCollectionView.backgroundColor = [UIColor whiteColor];
-    self.classicsCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    
-    
-    //classic books
-    //delegate
-    [self.shakespeareCollectionView setDelegate:self];
-    [self.shakespeareCollectionView setDataSource:self];
-    
-    //xib
-//    [self.shakespeareCollectionView registerNib:[UINib nibWithNibName:@"PGBCustomBookCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"bookCoverCell"];
-    [self.shakespeareCollectionView registerClass:[PGBCustomBookCollectionViewCell class] forCellWithReuseIdentifier:@"ShakespearBookCover"];
-    
-    self.shakespeareCollectionView.backgroundColor = [UIColor whiteColor];
-    self.shakespeareCollectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    [self addMainTable];
     
     //fetch from parse when the app opens for the first time
     [self fetchBookFromParse];
@@ -138,7 +96,7 @@ static dispatch_once_t onceToken;
     } else if (![PFUser currentUser] && ![self.loginButton.title isEqual: @"Login"]){
         [self.loginButton setTitle:@"Login"];
     }
-    
+
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -186,10 +144,7 @@ static dispatch_once_t onceToken;
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [hud setHidden:YES];
-                [self.classicsCollectionView reloadData];
-                [self.popularCollectionView reloadData];
-                [self.shakespeareCollectionView reloadData];
-                
+                [self.mainTable reloadData];
             }];
         }];
         
@@ -239,7 +194,7 @@ static dispatch_once_t onceToken;
         }
     }
     
-    [self.popularCollectionView reloadData];
+    [self.mainTable reloadData];
 }
 
 
@@ -250,35 +205,126 @@ static dispatch_once_t onceToken;
     NSURL *url = [NSURL URLWithString:bookCoverURL];
     return url;
 }
+#pragma mark TableView Methods 
+
+- (void)addMainTable {
+    
+    self.mainTable = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.mainTable.delegate = self;
+    self.mainTable.dataSource = self;
+    self.mainTable.bounces = NO;
+    if ([kDeviceOS >= 9.0f) {
+        self.mainTable.cellLayoutMarginsFollowReadableWidth = NO;
+    }
+    self.mainTable.backgroundColor = [UIColor whiteColor];
+    self.mainTable.separatorStyle = UITableViewCellSelectionStyleNone;
+    [self.view addSubview:self.mainTable];
+    // top should equal navbar.mas_bottom and bottom should equal tabbar.mas_top
+    [self.mainTable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(64.0f);
+        make.width.mas_equalTo(self.view.mas_width);
+        make.height.mas_equalTo(self.view.mas_height).offset(-113.0f);
+    }];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 4;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0;
+    } else return (iPadUI) ? 90.0f : 45.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [UIView new];
+    headerView.backgroundColor = [UIColor colorWithRed:0.29 green:0.72 blue:0.31 alpha:1.0];
+    UILabel *sectionLabel = [UILabel new];
+    sectionLabel.textColor = [UIColor whiteColor];
+    [headerView addSubview:sectionLabel];
+    [sectionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(headerView.mas_left).offset(8.0f);
+        make.centerY.mas_equalTo(headerView.mas_centerY);
+        
+    }];
+    
+    if (section == 1)
+        sectionLabel.text = @"Popular";
+    else if (section == 2)
+        sectionLabel.text = @"Classics";
+    else if (section == 3)
+        sectionLabel.text = @"Shakespear";
+    
+    return headerView;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return (indexPath.section == 0) ? tableView.frame.size.height / 2.75f : tableView.frame.size.height / 3.75f;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        PGBImageTableViewCell *imageCell = [[PGBImageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ImageCell"];
+        [imageCell.mainImage setImage:[UIImage imageNamed:@"girlimage"]];
+        cell = imageCell;
+    } else {
+        UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        flowLayout.minimumLineSpacing = 12.0f;
+        [flowLayout setSectionInset:UIEdgeInsetsMake(6.0f, 6.0f, 6.0f, 6.0f)];
+
+        self.bookView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+        self.bookView.tag = indexPath.section;
+        self.bookView.dataSource = self;
+        self.bookView.delegate = self;
+        self.bookView.backgroundColor = [UIColor whiteColor];
+        [self.bookView registerClass:[PGBCustomBookCollectionViewCell class] forCellWithReuseIdentifier:@"BookCover"];
+        
+        [cell.contentView addSubview:self.bookView];
+        [self.bookView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(cell.contentView.mas_top);
+            make.bottom.mas_equalTo(cell.contentView.mas_bottom);
+            make.right.mas_equalTo(cell.contentView.mas_right);
+            make.left.mas_equalTo(cell.contentView.mas_left);
+        }];
+    }
+    return cell;
+}
+
+
 
 #pragma mark CollectionView methods
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    if (collectionView == self.popularCollectionView) {
+    if (collectionView.tag == 1) {
         return self.books.count;
-    } else if (collectionView == self.classicsCollectionView) {
+    } else if (collectionView.tag == 2) {
         return self.classicBooks.count;
-    }  else if (collectionView == self.shakespeareCollectionView) {
+    }  else if (collectionView.tag == 3) {
         return self.shakespeareBooks.count;
     }
     
     return self.classicBooks.count;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return CGSizeMake(collectionView.frame.size.width / 4.5 , collectionView.frame.size.height - 24.0f);
+}
+
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *reuseIdentifier;
-    if (collectionView == self.popularCollectionView) {
-        reuseIdentifier = @"PopularBookCover";
-    } else if (collectionView == self.classicsCollectionView) {
-        reuseIdentifier = @"ClassicsBookCover";
-    } else reuseIdentifier = @"ShakespearBookCover";
+
+    PGBCustomBookCollectionViewCell *cell = (PGBCustomBookCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:@"BookCover" forIndexPath:indexPath];
     
-    
-    PGBCustomBookCollectionViewCell *cell = (PGBCustomBookCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    if (collectionView == self.popularCollectionView) {
+    if (collectionView.tag == 1) {
         if (self.books.count != 0) {
             if (indexPath.row < self.books.count) {
                 PGBRealmBook *book = self.books[indexPath.row];
@@ -288,7 +334,7 @@ static dispatch_once_t onceToken;
         }
         return cell;
         
-    } else if (collectionView == self.classicsCollectionView) {
+    } else if (collectionView.tag == 2) {
         if (self.classicBooks.count != 0) {
             if (indexPath.row < self.classicBooks.count) {
                 PGBRealmBook *book = self.classicBooks[indexPath.row];
@@ -298,7 +344,7 @@ static dispatch_once_t onceToken;
         }
         return cell;
         
-    } else if (collectionView == self.shakespeareCollectionView) {
+    } else if (collectionView.tag == 3) {
         if (self.shakespeareBooks.count != 0) {
             if (indexPath.row < self.shakespeareBooks.count) {
                 PGBRealmBook *book = self.shakespeareBooks[indexPath.row];
@@ -311,34 +357,16 @@ static dispatch_once_t onceToken;
     return nil;
 }
 
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"bookSegue" sender:collectionView];
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    PGBBookViewController *bookPageVC = segue.destinationViewController;
+    PGBRealmBook *bookAtIndexPath = nil;
     
-    NSArray *arrayOfIndexPaths;
-    NSArray *relevantBookArray;
+    if (collectionView.tag == 1) bookAtIndexPath = self.books[indexPath.row];
+    else if (collectionView.tag == 2) bookAtIndexPath = self.classicBooks[indexPath.row];
+    else if (collectionView.tag == 3) bookAtIndexPath = self.shakespeareBooks[indexPath.row];
     
-    if (sender == self.popularCollectionView) {
-        arrayOfIndexPaths = [self.popularCollectionView indexPathsForSelectedItems];
-        relevantBookArray = self.books;
-    } else if (sender == self.classicsCollectionView) {
-        arrayOfIndexPaths = [self.classicsCollectionView indexPathsForSelectedItems];
-        relevantBookArray = self.classicBooks;
-    }  else if (sender == self.shakespeareCollectionView) {
-        arrayOfIndexPaths = [self.shakespeareCollectionView indexPathsForSelectedItems];
-        relevantBookArray = self.shakespeareBooks;
-    }
-    
-    NSIndexPath *selectedIndexPath = [arrayOfIndexPaths firstObject];
-    
-    PGBRealmBook *bookAtIndexPath = relevantBookArray[selectedIndexPath.row];
-
-    bookPageVC.book = bookAtIndexPath;
-    
+    PGBBookViewController *bookInfoVC = [[PGBBookViewController alloc] init];
+    bookInfoVC.book = bookAtIndexPath;
+    [self.navigationController pushViewController:bookInfoVC animated:YES];
 }
 
 #pragma mark Login Methods

@@ -12,12 +12,16 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <Masonry/Masonry.h>
+#import <AFNetworking/AFNetworking.h>
+#import <Availability.h>
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
-@interface PGBHomeViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface PGBHomeViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *popularCollectionView;
-@property (weak, nonatomic) IBOutlet UICollectionView *classicsCollectionView;
-@property (weak, nonatomic) IBOutlet UICollectionView *shakespeareCollectionView;
-
+@property (nonatomic, strong) UITableView *mainTable;
+@property (nonatomic, strong) UICollectionView *bookView;
 
 @end
